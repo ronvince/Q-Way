@@ -15,6 +15,7 @@
 		CE45A6401B3D5260007B3624 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE45A63F1B3D5260007B3624 /* Images.xcassets */; };
 		CE45A6431B3D5260007B3624 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE45A6411B3D5260007B3624 /* LaunchScreen.xib */; };
 		CE45A64F1B3D5260007B3624 /* IndoorNavigationAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE45A64E1B3D5260007B3624 /* IndoorNavigationAppTests.m */; };
+		CE45A65A1B3D582E007B3624 /* Employee.m in Sources */ = {isa = PBXBuildFile; fileRef = CE45A6591B3D582E007B3624 /* Employee.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,8 @@
 		CE45A6481B3D5260007B3624 /* IndoorNavigationAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IndoorNavigationAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE45A64D1B3D5260007B3624 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE45A64E1B3D5260007B3624 /* IndoorNavigationAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IndoorNavigationAppTests.m; sourceTree = "<group>"; };
+		CE45A6581B3D582E007B3624 /* Employee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Employee.h; sourceTree = "<group>"; };
+		CE45A6591B3D582E007B3624 /* Employee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Employee.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +68,8 @@
 		CE45A6231B3D525F007B3624 = {
 			isa = PBXGroup;
 			children = (
+				CE45A6581B3D582E007B3624 /* Employee.h */,
+				CE45A6591B3D582E007B3624 /* Employee.m */,
 				CE45A62E1B3D525F007B3624 /* IndoorNavigationApp */,
 				CE45A64B1B3D5260007B3624 /* IndoorNavigationAppTests */,
 				CE45A62D1B3D525F007B3624 /* Products */,
@@ -222,6 +227,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE45A65A1B3D582E007B3624 /* Employee.m in Sources */,
 				CE45A6351B3D525F007B3624 /* AppDelegate.m in Sources */,
 				CE45A6321B3D525F007B3624 /* main.m in Sources */,
 				CE45A63B1B3D5260007B3624 /* ViewController.m in Sources */,
@@ -420,6 +426,7 @@
 				CE45A6541B3D5260007B3624 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CE45A6551B3D5260007B3624 /* Build configuration list for PBXNativeTarget "IndoorNavigationAppTests" */ = {
 			isa = XCConfigurationList;
@@ -428,6 +435,7 @@
 				CE45A6571B3D5260007B3624 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
