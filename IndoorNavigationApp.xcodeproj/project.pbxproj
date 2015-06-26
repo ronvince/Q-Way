@@ -16,6 +16,8 @@
 		CE45A6431B3D5260007B3624 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE45A6411B3D5260007B3624 /* LaunchScreen.xib */; };
 		CE45A64F1B3D5260007B3624 /* IndoorNavigationAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE45A64E1B3D5260007B3624 /* IndoorNavigationAppTests.m */; };
 		CE45A65A1B3D582E007B3624 /* Employee.m in Sources */ = {isa = PBXBuildFile; fileRef = CE45A6591B3D582E007B3624 /* Employee.m */; };
+		CE45A65D1B3D5B84007B3624 /* enchancedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE45A65C1B3D5B84007B3624 /* enchancedCell.m */; };
+		CE45A6601B3D5FBD007B3624 /* addEmployeeData.m in Sources */ = {isa = PBXBuildFile; fileRef = CE45A65F1B3D5FBD007B3624 /* addEmployeeData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,10 @@
 		CE45A64E1B3D5260007B3624 /* IndoorNavigationAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IndoorNavigationAppTests.m; sourceTree = "<group>"; };
 		CE45A6581B3D582E007B3624 /* Employee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Employee.h; sourceTree = "<group>"; };
 		CE45A6591B3D582E007B3624 /* Employee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Employee.m; sourceTree = "<group>"; };
+		CE45A65B1B3D5B84007B3624 /* enchancedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = enchancedCell.h; sourceTree = "<group>"; };
+		CE45A65C1B3D5B84007B3624 /* enchancedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = enchancedCell.m; sourceTree = "<group>"; };
+		CE45A65E1B3D5FBD007B3624 /* addEmployeeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addEmployeeData.h; sourceTree = "<group>"; };
+		CE45A65F1B3D5FBD007B3624 /* addEmployeeData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addEmployeeData.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +99,10 @@
 				CE45A6391B3D5260007B3624 /* ViewController.h */,
 				CE45A63A1B3D5260007B3624 /* ViewController.m */,
 				CE45A63C1B3D5260007B3624 /* Main.storyboard */,
+				CE45A65E1B3D5FBD007B3624 /* addEmployeeData.h */,
+				CE45A65F1B3D5FBD007B3624 /* addEmployeeData.m */,
+				CE45A65B1B3D5B84007B3624 /* enchancedCell.h */,
+				CE45A65C1B3D5B84007B3624 /* enchancedCell.m */,
 				CE45A63F1B3D5260007B3624 /* Images.xcassets */,
 				CE45A6411B3D5260007B3624 /* LaunchScreen.xib */,
 				CE45A6361B3D525F007B3624 /* IndoorNavigationApp.xcdatamodeld */,
@@ -228,8 +238,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE45A65A1B3D582E007B3624 /* Employee.m in Sources */,
+				CE45A6601B3D5FBD007B3624 /* addEmployeeData.m in Sources */,
 				CE45A6351B3D525F007B3624 /* AppDelegate.m in Sources */,
 				CE45A6321B3D525F007B3624 /* main.m in Sources */,
+				CE45A65D1B3D5B84007B3624 /* enchancedCell.m in Sources */,
 				CE45A63B1B3D5260007B3624 /* ViewController.m in Sources */,
 				CE45A6381B3D525F007B3624 /* IndoorNavigationApp.xcdatamodeld in Sources */,
 			);
