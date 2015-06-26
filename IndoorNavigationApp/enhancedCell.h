@@ -1,5 +1,5 @@
 //
-//  enchancedCell.h
+//  enhancedCell.h
 //  IndoorNavigationApp
 //
 //  Created by user on 6/26/15.
@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface enchancedCell : UITableViewCell
+@interface enhancedCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *namefield;
-@property (strong, nonatomic) IBOutlet UILabel *desigfield;
 @property (strong, nonatomic) IBOutlet UILabel *emailfield;
+@property (strong, nonatomic) IBOutlet UILabel *desigfield;
 @property (strong, nonatomic) IBOutlet UIImageView *imagefield;
+
 @end

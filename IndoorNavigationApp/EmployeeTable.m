@@ -7,7 +7,7 @@
 //
 
 #import "EmployeeTable.h"
-#import "enchancedCell.h"
+#import "enhancedCell.h"
 #import "Employee.h"
 
 @interface EmployeeTable ()
@@ -114,7 +114,7 @@
     [self.tableView reloadData];
 }
 
-
+#pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -135,113 +135,50 @@
     
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView
-
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   /* NSMutableArray *defaultData = [[NSMutableArray alloc] init];
-    [defaultData addObject:@"PM"];
-    [defaultData addObject:@"Developer"];
-    [defaultData addObject:@"Architect"];
-    [defaultData addObject:@"BA"];
-    [defaultData addObject:@"Trainee"];
-    [defaultData addObject:@"Intern"];
-    
-    */
-    
-    UIImageView *imagefield =[[UIImageView alloc] init];
-    //setting default image
-    
-   // imagefield.image = [UIImage imageNamed:@"default.jpg"];
-    
+   
     
     static NSString *CellIdentifier = @"Cell";
-    enchancedCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    enhancedCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     cell.textLabel.textColor=[UIColor blackColor];
     cell.textLabel.font=[UIFont fontWithName:@"Arial Rounded MT" size:16.0];
+    /*if (cell == nil)
+     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+     */
     
     Employee *emp;
     if(isFiltered)
-    {
+        
         emp = [self.tableArray objectAtIndex:indexPath.row];
-           }
     else
-    {
-    emp= [self.allTableData objectAtIndex:indexPath.row];
-    }
+        emp = [self.allTableData objectAtIndex:indexPath.row];
     
+    cell.namefield.text=emp.name;
     cell.desigfield.text=emp.desig;
     cell.emailfield.text=emp.email;
-    cell.namefield.text=emp.name;
-    
     
     NSString *inputString = emp.empid;
     int value = [inputString intValue];
+    NSLog(@"%d",value);
+    
     NSString *imageName=[NSString stringWithFormat:@"%d.jpg",value];
+    
+    UIImageView *imagefield =[[UIImageView alloc] initWithFrame:CGRectMake(50,50,20,20)];
     
     // [self.view addSubview:dot];
     cell.imagefield.layer.cornerRadius = imagefield.frame.size.width/2;
     cell.imagefield.layer.cornerRadius =  cell.imagefield.frame.size.height/2;
     cell.imagefield.layer.masksToBounds = YES;
     cell.imagefield.layer.borderWidth = 0;
+    
     cell.imagefield.image=[UIImage imageNamed:imageName];
+    NSLog(@"%@", imageName);
+    NSLog(@"%@", emp.name);
+    return cell;   
     
-    return cell;
-    
     
 }
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

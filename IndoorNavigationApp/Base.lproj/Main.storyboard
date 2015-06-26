@@ -21,7 +21,7 @@
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="83" id="52X-PU-KtO" customClass="enchancedCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="83" id="52X-PU-KtO" customClass="enhancedCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="52X-PU-KtO" id="Rrd-5k-pRf">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -50,9 +50,10 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="desigfield" destination="KFx-qy-kHO" id="ntw-O2-9dF"/>
-                                    <outlet property="emailfield" destination="tc8-NG-FKw" id="TwF-0c-KH6"/>
-                                    <outlet property="namefield" destination="GAZ-Ll-ekk" id="oGf-r4-sGH"/>
+                                    <outlet property="desigfield" destination="tc8-NG-FKw" id="x9A-XI-Ggq"/>
+                                    <outlet property="emailfield" destination="KFx-qy-kHO" id="SlE-Y5-a98"/>
+                                    <outlet property="imagefield" destination="8tR-Kj-5hJ" id="V4u-l8-qMw"/>
+                                    <outlet property="namefield" destination="GAZ-Ll-ekk" id="OB0-II-EjO"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
