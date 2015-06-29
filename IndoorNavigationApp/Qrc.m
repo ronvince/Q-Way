@@ -7,8 +7,12 @@
 //
 
 #import "Qrc.h"
+#import <CoreData/CoreData.h>
+#import "QRCode.h"
+#import "TimeLog.h"
 
 @interface Qrc ()
+@property (strong) NSMutableArray *qrcodes;
 @property (nonatomic) BOOL isReading;
 @property (nonatomic, strong) AVCaptureSession *captureSession;
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer *videoPreviewLayer;
@@ -19,6 +23,17 @@
 @end
 
 @implementation Qrc
+
+NSManagedObjectContext *managedObjectContext;
+- (NSManagedObjectContext *)managedObjectContext
+{
+    NSManagedObjectContext *context = nil;
+    id delegate = [[UIApplication sharedApplication] delegate];
+    if ([delegate performSelector:@selector(managedObjectContext)]) {
+        context = [delegate managedObjectContext];
+    }
+    return context;
+}
 
 
 - (void)viewDidLoad {
@@ -101,9 +116,95 @@
     if (metadataObjects != nil && [metadataObjects count] > 0) {
         AVMetadataMachineReadableCodeObject *metadataObj = [metadataObjects objectAtIndex:0];
         if ([[metadataObj type] isEqualToString:AVMetadataObjectTypeQRCode]) {
-           // [_lblStatus performSelectorOnMainThread:@selector(setText:) withObject:[metadataObj stringValue] waitUntilDone:NO];
-            NSString *jithi=[metadataObj stringValue] ;
-            NSLog(@"%@",jithi);
+           // [_lblStatus performSelectorOnMainThread:@selector(setText:) withObject:[metadataObj
+            
+            NSString *string = [metadataObj stringValue];
+            
+            NSLog(@"%@",string);
+            
+            
+            //code for fetch in timelog
+            /*            NSManagedObjectContext *managedObjectContext1 = [self managedObjectContext];
+             NSFetchRequest *fetchRequest1 = [[NSFetchRequest alloc] initWithEntityName:@"TimeLog"];
+             
+             fetchRequest1.fetchLimit = 1;
+             fetchRequest1.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"slno" ascending:NO]];
+             
+             NSError *error = nil;
+             
+             id last = [managedObjectContext1 executeFetchRequest:fetchRequest1 error:&error].firstObject;
+             
+             NSLog(@"%@", last);
+             */
+            
+            NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+            NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+            [fetchRequest setEntity:[NSEntityDescription entityForName:@"QRCode" inManagedObjectContext:managedObjectContext]];
+            // self.employees = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+            // NSString *delstring = _deletefield.text;
+            
+            //for (NSManagedObject *device in self.employees){
+            
+            [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"qr == %@ ", string]];
+            NSError* error = nil;
+            NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+            NSLog(@"hellooo %lu",(unsigned long)results.count);
+            /*      Employee *emp=[results  objectAtIndex:0];
+             [managedObjectContext deleteObject:emp];
+             //}
+             [managedObjectContext save:&error];
+             
+             
+             */
+            QRCode *qc = [results objectAtIndex:0];
+            /*if ([NSMutableArray isKindOfClass:[qc class]]){
+             NSLog(@"adfafd");
+             }*/
+            NSLog(@"%@%@", qc.x,qc.y);
+            
+            
+            //code for timelog db
+            NSString *qrdef = qc.def;
+            
+            NSManagedObjectContext *context = [self managedObjectContext];
+            
+            // Create a new managed object
+            NSManagedObject *newDevice = [NSEntityDescription insertNewObjectForEntityForName:@"TimeLog" inManagedObjectContext:context];
+            [newDevice setValue:qrdef forKey:@"deftime"];
+            
+            //code for obtaining date
+            NSDateFormatter *format = [[NSDateFormatter alloc] init];
+            [format setDateFormat:@"MMM dd, yyyy"];
+            
+            NSDate *now = [[NSDate alloc] init];
+            
+            NSString *dateString = [format stringFromDate:now];
+            
+            [newDevice setValue:dateString forKey:@"date"];
+            
+            NSDateFormatter *format1 = [[NSDateFormatter alloc] init];
+            [format1 setDateFormat:@"hh:mm"];
+            
+            NSDate *now1 = [[NSDate alloc] init];
+            
+            NSString *timeString = [format1 stringFromDate:now1];
+            
+            [newDevice setValue:timeString forKey:@"time"];
+            NSLog(@"%@", timeString);
+            
+            //code for Unique id
+            
+            
+            
+            
+            NSManagedObjectID *moID = [newDevice objectID];
+            
+            NSLog(@"%@", moID);
+            NSString *sln = [NSString stringWithFormat:@"%@", moID];
+            
+            [newDevice setValue:sln forKey:@"slno"];
+            
+            
             [self performSelectorOnMainThread:@selector(stopReading) withObject:nil waitUntilDone:NO];
             [_start performSelectorOnMainThread:@selector(setTitle:) withObject:@"Start!" waitUntilDone:NO];
             _isReading = NO;

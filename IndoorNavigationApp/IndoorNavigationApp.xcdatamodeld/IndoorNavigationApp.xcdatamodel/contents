@@ -9,7 +9,21 @@
         <attribute name="x" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="y" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
     </entity>
+    <entity name="QRCode" representedClassName="QRCode" syncable="YES">
+        <attribute name="def" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="qr" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="x" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="y" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+    </entity>
+    <entity name="TimeLog" representedClassName="TimeLog" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="deftime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="slno" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Employee" positionX="-63" positionY="-18" width="128" height="150"/>
+        <element name="QRCode" positionX="-45" positionY="54" width="128" height="105"/>
+        <element name="TimeLog" positionX="-54" positionY="45" width="128" height="105"/>
     </elements>
 </model>
