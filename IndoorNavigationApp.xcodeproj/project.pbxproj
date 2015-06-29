@@ -17,6 +17,11 @@
 		CE45A64F1B3D5260007B3624 /* IndoorNavigationAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE45A64E1B3D5260007B3624 /* IndoorNavigationAppTests.m */; };
 		CE45A65A1B3D582E007B3624 /* Employee.m in Sources */ = {isa = PBXBuildFile; fileRef = CE45A6591B3D582E007B3624 /* Employee.m */; };
 		CE45A6601B3D5FBD007B3624 /* addEmployeeData.m in Sources */ = {isa = PBXBuildFile; fileRef = CE45A65F1B3D5FBD007B3624 /* addEmployeeData.m */; };
+		CE4C5FC41B414C2E00784563 /* QRCode.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4C5FC31B414C2E00784563 /* QRCode.m */; };
+		CE4C5FC71B414C2F00784563 /* TimeLog.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4C5FC61B414C2F00784563 /* TimeLog.m */; };
+		CE4C5FCA1B41522E00784563 /* newCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4C5FC91B41522E00784563 /* newCell.m */; };
+		CE4C5FCD1B41534800784563 /* timeLogTable.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4C5FCC1B41534800784563 /* timeLogTable.m */; };
+		CE4C5FD01B41587300784563 /* addQrData.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4C5FCF1B41587300784563 /* addQrData.m */; };
 		CE50FCD31B412E2E00042AAD /* deleteEmployee.m in Sources */ = {isa = PBXBuildFile; fileRef = CE50FCD21B412E2E00042AAD /* deleteEmployee.m */; };
 		CE968AFC1B4101BE0006CB2C /* Qrc.m in Sources */ = {isa = PBXBuildFile; fileRef = CE968AFB1B4101BE0006CB2C /* Qrc.m */; };
 		CE968AFE1B41036D0006CB2C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE968AFD1B41036D0006CB2C /* AVFoundation.framework */; };
@@ -59,6 +64,16 @@
 		CE45A6591B3D582E007B3624 /* Employee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Employee.m; sourceTree = "<group>"; };
 		CE45A65E1B3D5FBD007B3624 /* addEmployeeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addEmployeeData.h; sourceTree = "<group>"; };
 		CE45A65F1B3D5FBD007B3624 /* addEmployeeData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addEmployeeData.m; sourceTree = "<group>"; };
+		CE4C5FC21B414C2E00784563 /* QRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCode.h; sourceTree = "<group>"; };
+		CE4C5FC31B414C2E00784563 /* QRCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCode.m; sourceTree = "<group>"; };
+		CE4C5FC51B414C2F00784563 /* TimeLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLog.h; sourceTree = "<group>"; };
+		CE4C5FC61B414C2F00784563 /* TimeLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeLog.m; sourceTree = "<group>"; };
+		CE4C5FC81B41522E00784563 /* newCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = newCell.h; sourceTree = "<group>"; };
+		CE4C5FC91B41522E00784563 /* newCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = newCell.m; sourceTree = "<group>"; };
+		CE4C5FCB1B41534800784563 /* timeLogTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = timeLogTable.h; sourceTree = "<group>"; };
+		CE4C5FCC1B41534800784563 /* timeLogTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = timeLogTable.m; sourceTree = "<group>"; };
+		CE4C5FCE1B41587300784563 /* addQrData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addQrData.h; sourceTree = "<group>"; };
+		CE4C5FCF1B41587300784563 /* addQrData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addQrData.m; sourceTree = "<group>"; };
 		CE50FCD11B412E2E00042AAD /* deleteEmployee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = deleteEmployee.h; sourceTree = "<group>"; };
 		CE50FCD21B412E2E00042AAD /* deleteEmployee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = deleteEmployee.m; sourceTree = "<group>"; };
 		CE968AFA1B4101BE0006CB2C /* Qrc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Qrc.h; sourceTree = "<group>"; };
@@ -104,6 +119,10 @@
 		CE45A6231B3D525F007B3624 = {
 			isa = PBXGroup;
 			children = (
+				CE4C5FC51B414C2F00784563 /* TimeLog.h */,
+				CE4C5FC61B414C2F00784563 /* TimeLog.m */,
+				CE4C5FC21B414C2E00784563 /* QRCode.h */,
+				CE4C5FC31B414C2E00784563 /* QRCode.m */,
 				CE968B091B4103E80006CB2C /* QuartzCore.framework */,
 				CE968B071B4103D50006CB2C /* Foundation.framework */,
 				CE968B051B4103BE0006CB2C /* CoreMedia.framework */,
@@ -138,6 +157,12 @@
 				CE968AFA1B4101BE0006CB2C /* Qrc.h */,
 				CE968AFB1B4101BE0006CB2C /* Qrc.m */,
 				CE45A63C1B3D5260007B3624 /* Main.storyboard */,
+				CE4C5FCE1B41587300784563 /* addQrData.h */,
+				CE4C5FCF1B41587300784563 /* addQrData.m */,
+				CE4C5FCB1B41534800784563 /* timeLogTable.h */,
+				CE4C5FCC1B41534800784563 /* timeLogTable.m */,
+				CE4C5FC81B41522E00784563 /* newCell.h */,
+				CE4C5FC91B41522E00784563 /* newCell.m */,
 				CE50FCD11B412E2E00042AAD /* deleteEmployee.h */,
 				CE50FCD21B412E2E00042AAD /* deleteEmployee.m */,
 				CED8A18E1B4BEAE8003B975C /* EmployeeTable.h */,
@@ -280,16 +305,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE4C5FCA1B41522E00784563 /* newCell.m in Sources */,
 				CE968AFC1B4101BE0006CB2C /* Qrc.m in Sources */,
+				CE4C5FCD1B41534800784563 /* timeLogTable.m in Sources */,
 				CE9D769A1B3D7F300079378F /* enhancedCell.m in Sources */,
 				CE45A65A1B3D582E007B3624 /* Employee.m in Sources */,
 				CE45A6601B3D5FBD007B3624 /* addEmployeeData.m in Sources */,
 				CE50FCD31B412E2E00042AAD /* deleteEmployee.m in Sources */,
 				CED8A1901B4BEAE8003B975C /* EmployeeTable.m in Sources */,
+				CE4C5FD01B41587300784563 /* addQrData.m in Sources */,
 				CE45A6351B3D525F007B3624 /* AppDelegate.m in Sources */,
 				CE45A6321B3D525F007B3624 /* main.m in Sources */,
 				CE45A63B1B3D5260007B3624 /* ViewController.m in Sources */,
+				CE4C5FC71B414C2F00784563 /* TimeLog.m in Sources */,
 				CE45A6381B3D525F007B3624 /* IndoorNavigationApp.xcdatamodeld in Sources */,
+				CE4C5FC41B414C2E00784563 /* QRCode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +446,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = IndoorNavigationApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -426,6 +457,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = IndoorNavigationApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
