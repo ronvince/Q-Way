@@ -17,6 +17,14 @@
 		CE45A64F1B3D5260007B3624 /* IndoorNavigationAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE45A64E1B3D5260007B3624 /* IndoorNavigationAppTests.m */; };
 		CE45A65A1B3D582E007B3624 /* Employee.m in Sources */ = {isa = PBXBuildFile; fileRef = CE45A6591B3D582E007B3624 /* Employee.m */; };
 		CE45A6601B3D5FBD007B3624 /* addEmployeeData.m in Sources */ = {isa = PBXBuildFile; fileRef = CE45A65F1B3D5FBD007B3624 /* addEmployeeData.m */; };
+		CE968AFC1B4101BE0006CB2C /* Qrc.m in Sources */ = {isa = PBXBuildFile; fileRef = CE968AFB1B4101BE0006CB2C /* Qrc.m */; };
+		CE968AFE1B41036D0006CB2C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE968AFD1B41036D0006CB2C /* AVFoundation.framework */; };
+		CE968B001B41037D0006CB2C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE968AFF1B41037D0006CB2C /* UIKit.framework */; };
+		CE968B021B41038D0006CB2C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE968B011B41038D0006CB2C /* CoreGraphics.framework */; };
+		CE968B041B4103A10006CB2C /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE968B031B4103A10006CB2C /* CoreVideo.framework */; };
+		CE968B061B4103BE0006CB2C /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE968B051B4103BE0006CB2C /* CoreMedia.framework */; };
+		CE968B081B4103D50006CB2C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE968B071B4103D50006CB2C /* Foundation.framework */; };
+		CE968B0A1B4103E80006CB2C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE968B091B4103E80006CB2C /* QuartzCore.framework */; };
 		CE9D769A1B3D7F300079378F /* enhancedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9D76991B3D7F300079378F /* enhancedCell.m */; };
 		CED8A1901B4BEAE8003B975C /* EmployeeTable.m in Sources */ = {isa = PBXBuildFile; fileRef = CED8A18F1B4BEAE8003B975C /* EmployeeTable.m */; };
 /* End PBXBuildFile section */
@@ -50,6 +58,15 @@
 		CE45A6591B3D582E007B3624 /* Employee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Employee.m; sourceTree = "<group>"; };
 		CE45A65E1B3D5FBD007B3624 /* addEmployeeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addEmployeeData.h; sourceTree = "<group>"; };
 		CE45A65F1B3D5FBD007B3624 /* addEmployeeData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addEmployeeData.m; sourceTree = "<group>"; };
+		CE968AFA1B4101BE0006CB2C /* Qrc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Qrc.h; sourceTree = "<group>"; };
+		CE968AFB1B4101BE0006CB2C /* Qrc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Qrc.m; sourceTree = "<group>"; };
+		CE968AFD1B41036D0006CB2C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		CE968AFF1B41037D0006CB2C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		CE968B011B41038D0006CB2C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		CE968B031B4103A10006CB2C /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		CE968B051B4103BE0006CB2C /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		CE968B071B4103D50006CB2C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CE968B091B4103E80006CB2C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CE9D76981B3D7F300079378F /* enhancedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = enhancedCell.h; sourceTree = "<group>"; };
 		CE9D76991B3D7F300079378F /* enhancedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = enhancedCell.m; sourceTree = "<group>"; };
 		CED8A18E1B4BEAE8003B975C /* EmployeeTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmployeeTable.h; sourceTree = "<group>"; };
@@ -61,6 +78,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE968B0A1B4103E80006CB2C /* QuartzCore.framework in Frameworks */,
+				CE968B081B4103D50006CB2C /* Foundation.framework in Frameworks */,
+				CE968B061B4103BE0006CB2C /* CoreMedia.framework in Frameworks */,
+				CE968B041B4103A10006CB2C /* CoreVideo.framework in Frameworks */,
+				CE968B021B41038D0006CB2C /* CoreGraphics.framework in Frameworks */,
+				CE968B001B41037D0006CB2C /* UIKit.framework in Frameworks */,
+				CE968AFE1B41036D0006CB2C /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +101,13 @@
 		CE45A6231B3D525F007B3624 = {
 			isa = PBXGroup;
 			children = (
+				CE968B091B4103E80006CB2C /* QuartzCore.framework */,
+				CE968B071B4103D50006CB2C /* Foundation.framework */,
+				CE968B051B4103BE0006CB2C /* CoreMedia.framework */,
+				CE968B031B4103A10006CB2C /* CoreVideo.framework */,
+				CE968B011B41038D0006CB2C /* CoreGraphics.framework */,
+				CE968AFF1B41037D0006CB2C /* UIKit.framework */,
+				CE968AFD1B41036D0006CB2C /* AVFoundation.framework */,
 				CE45A6581B3D582E007B3624 /* Employee.h */,
 				CE45A6591B3D582E007B3624 /* Employee.m */,
 				CE45A62E1B3D525F007B3624 /* IndoorNavigationApp */,
@@ -101,6 +132,8 @@
 				CE45A6341B3D525F007B3624 /* AppDelegate.m */,
 				CE45A6391B3D5260007B3624 /* ViewController.h */,
 				CE45A63A1B3D5260007B3624 /* ViewController.m */,
+				CE968AFA1B4101BE0006CB2C /* Qrc.h */,
+				CE968AFB1B4101BE0006CB2C /* Qrc.m */,
 				CE45A63C1B3D5260007B3624 /* Main.storyboard */,
 				CED8A18E1B4BEAE8003B975C /* EmployeeTable.h */,
 				CED8A18F1B4BEAE8003B975C /* EmployeeTable.m */,
@@ -242,6 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE968AFC1B4101BE0006CB2C /* Qrc.m in Sources */,
 				CE9D769A1B3D7F300079378F /* enhancedCell.m in Sources */,
 				CE45A65A1B3D582E007B3624 /* Employee.m in Sources */,
 				CE45A6601B3D5FBD007B3624 /* addEmployeeData.m in Sources */,
