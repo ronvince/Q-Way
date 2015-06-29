@@ -17,6 +17,7 @@
 		CE45A64F1B3D5260007B3624 /* IndoorNavigationAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE45A64E1B3D5260007B3624 /* IndoorNavigationAppTests.m */; };
 		CE45A65A1B3D582E007B3624 /* Employee.m in Sources */ = {isa = PBXBuildFile; fileRef = CE45A6591B3D582E007B3624 /* Employee.m */; };
 		CE45A6601B3D5FBD007B3624 /* addEmployeeData.m in Sources */ = {isa = PBXBuildFile; fileRef = CE45A65F1B3D5FBD007B3624 /* addEmployeeData.m */; };
+		CE50FCD31B412E2E00042AAD /* deleteEmployee.m in Sources */ = {isa = PBXBuildFile; fileRef = CE50FCD21B412E2E00042AAD /* deleteEmployee.m */; };
 		CE968AFC1B4101BE0006CB2C /* Qrc.m in Sources */ = {isa = PBXBuildFile; fileRef = CE968AFB1B4101BE0006CB2C /* Qrc.m */; };
 		CE968AFE1B41036D0006CB2C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE968AFD1B41036D0006CB2C /* AVFoundation.framework */; };
 		CE968B001B41037D0006CB2C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE968AFF1B41037D0006CB2C /* UIKit.framework */; };
@@ -58,6 +59,8 @@
 		CE45A6591B3D582E007B3624 /* Employee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Employee.m; sourceTree = "<group>"; };
 		CE45A65E1B3D5FBD007B3624 /* addEmployeeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addEmployeeData.h; sourceTree = "<group>"; };
 		CE45A65F1B3D5FBD007B3624 /* addEmployeeData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addEmployeeData.m; sourceTree = "<group>"; };
+		CE50FCD11B412E2E00042AAD /* deleteEmployee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = deleteEmployee.h; sourceTree = "<group>"; };
+		CE50FCD21B412E2E00042AAD /* deleteEmployee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = deleteEmployee.m; sourceTree = "<group>"; };
 		CE968AFA1B4101BE0006CB2C /* Qrc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Qrc.h; sourceTree = "<group>"; };
 		CE968AFB1B4101BE0006CB2C /* Qrc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Qrc.m; sourceTree = "<group>"; };
 		CE968AFD1B41036D0006CB2C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -135,6 +138,8 @@
 				CE968AFA1B4101BE0006CB2C /* Qrc.h */,
 				CE968AFB1B4101BE0006CB2C /* Qrc.m */,
 				CE45A63C1B3D5260007B3624 /* Main.storyboard */,
+				CE50FCD11B412E2E00042AAD /* deleteEmployee.h */,
+				CE50FCD21B412E2E00042AAD /* deleteEmployee.m */,
 				CED8A18E1B4BEAE8003B975C /* EmployeeTable.h */,
 				CED8A18F1B4BEAE8003B975C /* EmployeeTable.m */,
 				CE45A65E1B3D5FBD007B3624 /* addEmployeeData.h */,
@@ -279,6 +284,7 @@
 				CE9D769A1B3D7F300079378F /* enhancedCell.m in Sources */,
 				CE45A65A1B3D582E007B3624 /* Employee.m in Sources */,
 				CE45A6601B3D5FBD007B3624 /* addEmployeeData.m in Sources */,
+				CE50FCD31B412E2E00042AAD /* deleteEmployee.m in Sources */,
 				CED8A1901B4BEAE8003B975C /* EmployeeTable.m in Sources */,
 				CE45A6351B3D525F007B3624 /* AppDelegate.m in Sources */,
 				CE45A6321B3D525F007B3624 /* main.m in Sources */,

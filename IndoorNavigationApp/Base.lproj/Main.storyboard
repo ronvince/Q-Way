@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="sdG-cd-4jb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="P6X-Io-NRQ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
@@ -63,6 +63,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Employee Search" id="Z7L-bx-59e">
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="edit" id="GFK-Pw-owT">
+                            <connections>
+                                <segue destination="6M4-WY-CDT" kind="presentation" id="ehU-Qw-LYL"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="K4A-nL-IGy">
                             <connections>
                                 <segue destination="CiT-cj-5GR" kind="presentation" id="czg-NE-CHt"/>
@@ -87,6 +92,45 @@
                 </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1077" y="568"/>
+        </scene>
+        <!--Delete Employee-->
+        <scene sceneID="yYf-ba-Zr4">
+            <objects>
+                <viewController id="6M4-WY-CDT" customClass="deleteEmployee" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kgn-rz-Uv7"/>
+                        <viewControllerLayoutGuide type="bottom" id="cjh-7Z-MKD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="933-2j-u3r">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zn6-zm-5Pj">
+                                <rect key="frame" x="72" y="138" width="175" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1O9-Yu-FC2">
+                                <rect key="frame" x="291" y="138" width="44" height="30"/>
+                                <state key="normal" title="Delete">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="deletefunc:" destination="6M4-WY-CDT" eventType="touchUpInside" id="FVE-Sd-PGf"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="9fl-ya-AZG"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="deletefield" destination="zn6-zm-5Pj" id="6zm-Yg-1N1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SmZ-W9-jFq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1136" y="879"/>
         </scene>
         <!--Add Employee Data-->
         <scene sceneID="hz3-MZ-WjV">
@@ -261,7 +305,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UtM-Gf-EME" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-122.5" y="533.5"/>
+            <point key="canvasLocation" x="-340.5" y="449.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="D2n-C9-fyH">
