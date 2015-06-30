@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "QRCode.h"
 #import "TimeLog.h"
+#import "mapDraw.h"
 
 @interface Qrc ()
 @property (strong) NSMutableArray *qrcodes;
@@ -110,7 +111,8 @@ NSManagedObjectContext *managedObjectContext;
     // Remove the video preview layer from the viewPreview view's layer.
     [_videoPreviewLayer removeFromSuperlayer];
 }
-
+NSInteger x;
+NSInteger y;
 #pragma mark - AVCaptureMetadataOutputObjectsDelegate method implementation
 -(void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection{
     if (metadataObjects != nil && [metadataObjects count] > 0) {
@@ -162,6 +164,11 @@ NSManagedObjectContext *managedObjectContext;
              }*/
             NSLog(@"%@%@", qc.x,qc.y);
             
+            // x= qc.x;
+             x = [qc.x integerValue];
+            y = [qc.y integerValue];
+
+           // y=qc.y;
             
             //code for timelog db
             NSString *qrdef = qc.def;
@@ -209,10 +216,26 @@ NSManagedObjectContext *managedObjectContext;
             [_start performSelectorOnMainThread:@selector(setTitle:) withObject:@"Start!" waitUntilDone:NO];
             _isReading = NO;
             
+            
         }
         
     }
 
 }
+- (IBAction)okfun:(id)sender {
+    
+    
+    
+}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([segue.identifier isEqualToString:@"modal"]) {
+         NSLog(@"ok");
+        mapDraw *controller = (mapDraw *)segue.destinationViewController;
+        controller.ix=x;
+        controller.iy=y;
+       
+    }
+}
+
 
 @end

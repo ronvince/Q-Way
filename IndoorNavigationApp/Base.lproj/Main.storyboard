@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dkX-0I-xi7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="iTs-87-otQ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
@@ -65,12 +65,12 @@
                     <navigationItem key="navigationItem" title="Employee Search" id="Z7L-bx-59e">
                         <barButtonItem key="leftBarButtonItem" style="plain" systemItem="edit" id="GFK-Pw-owT">
                             <connections>
-                                <segue destination="6M4-WY-CDT" kind="presentation" id="ehU-Qw-LYL"/>
+                                <segue destination="6M4-WY-CDT" kind="modal" id="ehU-Qw-LYL"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="K4A-nL-IGy">
                             <connections>
-                                <segue destination="CiT-cj-5GR" kind="presentation" id="czg-NE-CHt"/>
+                                <segue destination="CiT-cj-5GR" kind="modal" id="czg-NE-CHt"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -91,7 +91,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1077" y="568"/>
+            <point key="canvasLocation" x="998" y="889"/>
         </scene>
         <!--Delete Employee-->
         <scene sceneID="yYf-ba-Zr4">
@@ -130,7 +130,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SmZ-W9-jFq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1077" y="1485"/>
+            <point key="canvasLocation" x="574.39999999999998" y="1405.8"/>
         </scene>
         <!--Add Employee Data-->
         <scene sceneID="hz3-MZ-WjV">
@@ -262,7 +262,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Tf-lN-9BO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1581" y="568"/>
+            <point key="canvasLocation" x="1413" y="535"/>
         </scene>
         <!--Item-->
         <scene sceneID="Ko0-RS-cAY">
@@ -292,6 +292,16 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="FVP-4k-9bR"/>
                                 </items>
                             </toolbar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UYY-ZM-QgR">
+                                <rect key="frame" x="139" y="574" width="100" height="26"/>
+                                <state key="normal" title="ok">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="okfun:" destination="sdG-cd-4jb" eventType="touchUpInside" id="3xs-Au-vWb"/>
+                                    <segue destination="iTs-87-otQ" kind="modal" identifier="modal" id="MHw-HY-LHw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -306,27 +316,68 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UtM-Gf-EME" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-959" y="-58"/>
+            <point key="canvasLocation" x="-13" y="-341"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="nIj-hU-W8V">
             <objects>
-                <viewController id="iTs-87-otQ" sceneMemberID="viewController">
+                <viewController id="iTs-87-otQ" customClass="mapDraw" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GgP-Iz-PRs"/>
                         <viewControllerLayoutGuide type="bottom" id="Mow-3k-kRc"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="CS7-QY-F7k">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7bU-f5-fPD">
+                                <rect key="frame" x="150" y="608" width="66" height="31"/>
+                                <state key="normal" title="QRCode">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="stillfunc:" destination="iTs-87-otQ" eventType="touchUpInside" id="OoC-e3-hUd"/>
+                                    <segue destination="sdG-cd-4jb" kind="modal" id="l7y-iS-0vB"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dbC-Ec-Rz4">
+                                <rect key="frame" x="290" y="608" width="46" height="30"/>
+                                <state key="normal" title="Log">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="stillfunc:" destination="iTs-87-otQ" eventType="touchUpInside" id="Qsi-Th-yjK"/>
+                                    <segue destination="Crv-3v-7du" kind="modal" id="bN0-Bo-8SA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UwE-WP-3dq">
+                                <rect key="frame" x="22" y="609" width="46" height="30"/>
+                                <state key="normal" title="Data">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="stillfunc:" destination="iTs-87-otQ" eventType="touchUpInside" id="FAZ-fe-av7"/>
+                                    <segue destination="UXr-Gn-Rsy" kind="modal" id="FPV-z1-Pkv"/>
+                                </connections>
+                            </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N2T-fq-Fd4">
+                                <rect key="frame" x="0.0" y="-97" width="375" height="709"/>
+                                <connections>
+                                    <outlet property="delegate" destination="iTs-87-otQ" id="8MR-NL-jId"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 1" id="uTK-6M-oc1"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="scrollView" destination="N2T-fq-Fd4" id="pZo-cs-Vhk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b5O-bK-Yro" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-967" y="752"/>
+            <point key="canvasLocation" x="784.5" y="-418.5"/>
         </scene>
         <!--Item-->
         <scene sceneID="xOo-xV-wHc">
@@ -379,20 +430,21 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Cd-Y9-fIm">
-                                <rect key="frame" x="260" y="49" width="34" height="30"/>
-                                <state key="normal" title="Save">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="savefunc:" destination="UXr-Gn-Rsy" eventType="touchUpInside" id="H6z-6T-a4r"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XkZ-on-WNg">
                                 <rect key="frame" x="235" y="161" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Cd-Y9-fIm">
+                                <rect key="frame" x="259" y="48" width="34" height="30"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="savefunc:" destination="UXr-Gn-Rsy" eventType="touchUpInside" id="H6z-6T-a4r"/>
+                                    <segue destination="iTs-87-otQ" kind="modal" id="7wi-GM-nsL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -407,7 +459,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rEC-KO-MGt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2042" y="568"/>
+            <point key="canvasLocation" x="1204" y="-384"/>
         </scene>
         <!--Item-->
         <scene sceneID="Utc-bI-09X">
@@ -424,6 +476,16 @@
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="sHc-0P-XgX">
+                            <rect key="frame" x="-23" y="-15" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Button">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <segue destination="iTs-87-otQ" kind="modal" id="ktw-pQ-NfD"/>
+                            </connections>
+                        </button>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="ZX9-qZ-zgI" customClass="newCell">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -474,7 +536,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YyQ-jH-ZaK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1558" y="1156"/>
+            <point key="canvasLocation" x="147" y="383"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="GhL-c5-3iX">
@@ -487,16 +549,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
-                    <connections>
-                        <segue destination="iTs-87-otQ" kind="relationship" relationship="viewControllers" id="Vle-rQ-TzS"/>
-                        <segue destination="sdG-cd-4jb" kind="relationship" relationship="viewControllers" id="OVo-gW-tAr"/>
-                        <segue destination="Crv-3v-7du" kind="relationship" relationship="viewControllers" id="rkU-4j-fh9"/>
-                        <segue destination="UXr-Gn-Rsy" kind="relationship" relationship="viewControllers" id="CeM-UM-7ee"/>
-                    </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dCw-8V-zeY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1507" y="48"/>
+            <point key="canvasLocation" x="-803.73333333333335" y="45.439999999999998"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="fgP-bO-SOx">
@@ -507,14 +563,14 @@
                         <viewControllerLayoutGuide type="bottom" id="SAR-E0-wJw"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Fq0-00-hSO">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nHZ-Ae-yvy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="126" y="50"/>
+            <point key="canvasLocation" x="157" y="325"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="D2n-C9-fyH">
@@ -532,7 +588,15 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CrN-i8-Iiw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="445" y="500"/>
+            <point key="canvasLocation" x="559" y="1009"/>
         </scene>
     </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="7wi-GM-nsL"/>
+    </inferredMetricsTieBreakers>
 </document>

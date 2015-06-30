@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <UIKit/UIView.h>
+#import <coreLocation/coreLocation.h>
 
-@interface mapDraw : UIViewController
+
+@interface mapDraw : UIViewController <UIScrollViewDelegate,CLLocationManagerDelegate>
+
+@property ( nonatomic )NSInteger *ix;
+@property (nonatomic )NSInteger *iy;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
