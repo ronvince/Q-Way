@@ -230,9 +230,10 @@ NSInteger y;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier isEqualToString:@"modal"]) {
          NSLog(@"ok");
-        mapDraw *controller = (mapDraw *)segue.destinationViewController;
+                mapDraw *controller = (mapDraw *)segue.destinationViewController;
         controller.ix=x;
         controller.iy=y;
+        controller.a=1;
        
     }
 }

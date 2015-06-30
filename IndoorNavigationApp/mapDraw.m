@@ -84,15 +84,17 @@ int a =0;
 }
 NSInteger cx;//=600;
 NSInteger cy;//=20;
+NSInteger ca;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
    // NSLog(@"%li",num);
     num=0;
-    a++;
+    
     // prev=0;
     cx = _ix ;
     cy = _iy ;
+    ca = _a;
     NSLog(@"%i",a);
    // NSLog(@"%li",cy);
     self.currentHeading =[[CLHeading alloc] init];
@@ -111,21 +113,26 @@ NSInteger cy;//=20;
     self.imageVie.frame = (CGRect){.origin=CGPointMake(0, 0), .size=CGSizeMake(1200,1200)};
     [self.scrollView addSubview:self.imageVie];
   [self.imageVie addSubview:self.imageView];
-   
-    UIImage *imag = [UIImage imageNamed:@"ar"];
-    self.imageVi = [[UIImageView alloc] initWithImage:imag];
-    self.imageVi.frame = (CGRect){.origin=CGPointMake(cx,cy),.size=CGSizeMake(100,200)};
-    
-    [self.imageView addSubview:self.imageVi];
-    
-    self.imla = [[UILabel  alloc] initWithFrame:CGRectMake(-250,-50,600,100)];
-    
-    [_imla   setText:@"JITHIN"];
-    [_imla setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:70]];
-    [_imla setTextColor:[UIColor brownColor ]];
-    // [_imla setTextAlignment:UITextAlignmentCenter];
-    _imla.textAlignment = NSTextAlignmentCenter;
-    [self.imageVi addSubview:self.imla];
+    if (_ix == NULL) {
+        ca=0;
+    }
+    if (ca==1) {
+        UIImage *imag = [UIImage imageNamed:@"ar"];
+        self.imageVi = [[UIImageView alloc] initWithImage:imag];
+        self.imageVi.frame = (CGRect){.origin=CGPointMake(cx,cy),.size=CGSizeMake(100,200)};
+        
+        [self.imageView addSubview:self.imageVi];
+        
+        self.imla = [[UILabel  alloc] initWithFrame:CGRectMake(-250,-50,600,100)];
+        
+        [_imla   setText:@"You"];
+        [_imla setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:70]];
+        [_imla setTextColor:[UIColor brownColor ]];
+        // [_imla setTextAlignment:UITextAlignmentCenter];
+        _imla.textAlignment = NSTextAlignmentCenter;
+        [self.imageVi addSubview:self.imla];
+
+    }
     
     
     self.scrollView.contentSize = CGSizeMake(self.imageVie.frame.size.width , self.imageVie.frame.size.height);
@@ -138,6 +145,10 @@ NSInteger cy;//=20;
     twoFingerTapRecognizer.numberOfTapsRequired = 1;
     twoFingerTapRecognizer.numberOfTouchesRequired = 2;
     [self.scrollView addGestureRecognizer:twoFingerTapRecognizer];
+    [self.view addSubview:self.databutton];
+     [self.view addSubview:self.searchbutton];
+     [self.view addSubview:self.logbutton];
+     [self.view addSubview:self.QRcodebutton];
    
 }
 
@@ -160,7 +171,7 @@ NSInteger prev;
 -(void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
 
 {
-    if (a%2==1) {
+   
         prev=num;
         self.currentHeading = newHeading;
        // NSLog(@"magnet%i",(int)newHeading.magneticHeading);
@@ -173,7 +184,7 @@ NSInteger prev;
         self.imageVi.transform = CGAffineTransformRotate (self.imageVi.transform, DEGREES_TO_RADIANS(-(num-prev)));
         
         [self.imageView addSubview:self.imageVi];
-    }
+    
     
     
     
@@ -189,8 +200,8 @@ NSInteger prev;
     
     return self.imageVie;
 }
-float jit=0.3125;
-float ji=0.3125;
+//float jit=0.3125;
+//float ji=0.3125;
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView
 {
     
@@ -211,7 +222,6 @@ float ji=0.3125;
 
 - (IBAction)stillfunc:(id)sender {
     [self.locationManager stopUpdatingHeading];
-    a++;
 }
 
 

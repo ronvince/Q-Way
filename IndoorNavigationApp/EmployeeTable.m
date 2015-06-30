@@ -9,6 +9,7 @@
 #import "EmployeeTable.h"
 #import "enhancedCell.h"
 #import "Employee.h"
+#import "mapDraw.h"
 
 @interface EmployeeTable ()
 @property (strong) NSMutableArray *allTableData;
@@ -18,7 +19,7 @@
 
 @implementation EmployeeTable
 @synthesize isFiltered;
-
+//int x,y;
 - (NSManagedObjectContext *)managedObjectContext
 {
     NSManagedObjectContext *context = nil;
@@ -179,6 +180,25 @@
     
     
 }
+
+//-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    NSLog(@"asfdsadf");
+//   // Employee *emp;
+////    x=[emp.x intValue];
+////    y= [emp.y intValue];
+//    
+//}
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    if([segue.identifier isEqualToString:@"returnmap"]) {
+//        NSLog(@"ok");
+//        mapDraw *controller = (mapDraw *)segue.destinationViewController;
+//        controller.ix=x;
+//        controller.iy=y;
+//        controller.a=1;
+//        
+//    }
+//}
 
 
 @end

@@ -15,6 +15,11 @@
 
 @property ( nonatomic )NSInteger *ix;
 @property (nonatomic )NSInteger *iy;
+@property (nonatomic)NSInteger *a;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) IBOutlet UIButton *databutton;
+@property (strong, nonatomic) IBOutlet UIButton *QRcodebutton;
+@property (strong, nonatomic) IBOutlet UIButton *logbutton;
+@property (strong, nonatomic) IBOutlet UIButton *searchbutton;
 
 @end

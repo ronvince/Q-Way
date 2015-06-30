@@ -38,9 +38,12 @@ NSManagedObjectContext *_managedObjectContext;
     NSError* error = nil;
     NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
     NSLog(@"hellooo %lu",(unsigned long)results.count);
-    Employee *emp=[results  objectAtIndex:0];
-    [managedObjectContext deleteObject:emp];
-    //}
+    if(results.count){
+        Employee *emp=[results  objectAtIndex:0];
+        [managedObjectContext deleteObject:emp];
+
+    }
+        //}
     [managedObjectContext save:&error];
         [self dismissViewControllerAnimated:YES completion:nil];
 }
