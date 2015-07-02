@@ -27,6 +27,7 @@
 int prevTextLen;
 //int x,y;
 int u=0;
+int check; //// For checking whether the view appears for the first
 
 //NSManagedObjectContext *managedObjectContext;
 - (NSManagedObjectContext *)managedObjectContext
@@ -45,6 +46,7 @@ int u=0;
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Employee"];
         self.allTableData = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
         self.tableArray = self.allTableData;
+         isFiltered = FALSE;
         [self.tableView reloadData];
         NSLog(@"%lu", (unsigned long)_allTableData.count);
     }
@@ -55,6 +57,7 @@ int u=0;
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Places"];
         self.allTableData = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
         self.tableArray = self.allTableData;
+         isFiltered = FALSE;
         [self.tableView reloadData];
         NSLog(@"%lu", (unsigned long)_allTableData.count);
     }
@@ -130,8 +133,21 @@ int u=0;
     [super viewDidAppear:animated];
     [self selection];
     [self defaultDatashow];
-    
-    
+    if(check!=1)
+    {
+    // default selection for EMPLOYEES
+    UIBezierPath *path1 = [UIBezierPath bezierPath];
+    [path1 moveToPoint:CGPointMake(50, 140.0)];
+    [path1 addLineToPoint:CGPointMake(135, 140.0)];
+    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+    shapeLayer.path = [path1 CGPath];
+    shapeLayer.strokeColor = [[UIColor yellowColor] CGColor];
+    shapeLayer.lineWidth = 2.0;
+    shapeLayer.fillColor = [[UIColor clearColor] CGColor];
+    [self.view.layer addSublayer:shapeLayer];
+    }
+    if(!isFiltered)
+    { self.searchBar.text=nil ;}
 }
 
 - (void)didReceiveMemoryWarning {
@@ -251,8 +267,9 @@ int u=0;
     Places *place;
     if(u==0)         //Employee results
     {
-        if(isFiltered  )
+        if(isFiltered)
         {
+          
             
             emp = [self.tableArray objectAtIndex:indexPath.row];
             cell.namefield.text=emp.name;
@@ -268,7 +285,7 @@ int u=0;
             cell.desigfield.text=emp.desig;
             cell.emailfield.text=emp.email;
             
-        }
+            }
         else
         {
             NSString *test = [_defaultData objectAtIndex:indexPath.row];
@@ -284,6 +301,7 @@ int u=0;
             NSString *imageName=[NSString stringWithFormat:@"%@.png",test];
             cell.imagefield.image=[UIImage imageNamed:imageName];
         }
+        
         
     }
     else if(u==1)            //Places results
@@ -387,26 +405,78 @@ int u=0;
 
 - (IBAction)employeefunc:(id)sender {
     u=0;
-    self.searchBar.text=nil;
-    self.tableArray=self.defaultData;
+     check=1; // For checking whether the view appears for the first
+       self.searchBar.text=nil;
     [self defaultDatashow];
+     self.tableArray=self.defaultData;
     [self selection];
 
     
 }
 - (IBAction)placefunc:(id)sender {
     u=1;
+    check=1;
     self.searchBar.text=nil;
+   [self defaultDatashow];
     self.tableArray=self.defaultData;
-    [self defaultDatashow];
-    [self selection];
+   [self selection];
 }
-
-
-
-
-
-
+- (IBAction)buttonPressed:(id)sender   //For showing selection among Employees and places
+{
+    NSInteger x1,x2;
+    NSArray* buttons = [NSArray arrayWithObjects:_buttonEmploy, _buttonPlace, nil];
+    
+    
+    for (UIButton* button in buttons) {
+        if (button == sender) {
+            UIBezierPath *path1 = [UIBezierPath bezierPath];
+            
+            if(button==_buttonEmploy)
+            {
+                x1=50.0;
+                x2=135.0;
+            }
+            else if (button==_buttonPlace)
+            {
+                x1=250.0;
+                x2=310.0;
+            }
+           
+            [path1 moveToPoint:CGPointMake(x1, 140.0)];
+            [path1 addLineToPoint:CGPointMake(x2, 140.0)];
+            CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+            shapeLayer.path = [path1 CGPath];
+            shapeLayer.strokeColor = [[UIColor yellowColor] CGColor];
+            shapeLayer.lineWidth = 2.0;
+            shapeLayer.fillColor = [[UIColor clearColor] CGColor];
+            [self.view.layer addSublayer:shapeLayer];
+            //button.selected = YES;
+        }
+        else {
+            UIBezierPath *path2 = [UIBezierPath bezierPath];
+            if(button==_buttonEmploy)
+            {
+                x1=0.0;
+                x2=180.0;
+            }
+            else if (button==_buttonPlace)
+            {
+                x1=180.0;
+                x2=360.0;
+            }
+            
+            [path2 moveToPoint:CGPointMake(x1, 140.0)];
+            [path2 addLineToPoint:CGPointMake(x2, 140.0)];
+            CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+            shapeLayer.path = [path2 CGPath];
+            shapeLayer.strokeColor = [[UIColor blueColor] CGColor];
+            shapeLayer.lineWidth = 2.0;
+            shapeLayer.fillColor = [[UIColor clearColor] CGColor];
+            [self.view.layer addSublayer:shapeLayer];
+            //button.selected = NO;
+        }
+    }
+}
 
 //-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 //{

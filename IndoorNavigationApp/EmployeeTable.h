@@ -12,5 +12,8 @@
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIButton *buttonPlace;
+@property (weak, nonatomic) IBOutlet UIButton *buttonEmploy;
 @property (nonatomic, assign) bool isFiltered;
+
 @end

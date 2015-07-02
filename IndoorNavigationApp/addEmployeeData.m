@@ -94,6 +94,25 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [[self view] endEditing:YES];
+}
+- (IBAction)dismisskeyboard:(id)sender {
+    [self.view endEditing:YES];
+}
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    return YES;
+}
+
+// It is important for you to hide the keyboard
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+
 
 
 @end
