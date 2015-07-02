@@ -54,7 +54,8 @@
     {
         nameLabel.text =place.placeName;
         [xField setText:[NSString stringWithFormat:@"%@", place.x]];
-        [yField setText:[NSString stringWithFormat:@"%@", place.y]];    }
+        [yField setText:[NSString stringWithFormat:@"%@", place.y]];
+    }
    }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

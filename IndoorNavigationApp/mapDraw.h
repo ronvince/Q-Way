@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <UIKit/UIView.h>
 #import <coreLocation/coreLocation.h>
-
+#import "Employee.h"
+#import "Places.h"
+#import "FLAnimatedImage.h"
+#import "FLAnimatedImageView.h"
 
 @interface mapDraw : UIViewController <UIScrollViewDelegate,CLLocationManagerDelegate>
 
@@ -17,6 +20,8 @@
 @property (nonatomic )NSInteger *iy;
 @property (nonatomic)NSInteger *a;
 @property (nonatomic)NSInteger *nullQrDB;
+@property (strong, nonatomic) Employee* employe;
+@property (strong, nonatomic) Places* place;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UIButton *databutton;
 @property (strong, nonatomic) IBOutlet UIButton *QRcodebutton;

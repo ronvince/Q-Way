@@ -38,6 +38,10 @@
 		CE968B081B4103D50006CB2C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE968B071B4103D50006CB2C /* Foundation.framework */; };
 		CE968B0A1B4103E80006CB2C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE968B091B4103E80006CB2C /* QuartzCore.framework */; };
 		CE9D769A1B3D7F300079378F /* enhancedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9D76991B3D7F300079378F /* enhancedCell.m */; };
+		CEC37A711B455C4D00C714C2 /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC37A6E1B455C4D00C714C2 /* FLAnimatedImage.m */; };
+		CEC37A721B455C4D00C714C2 /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC37A701B455C4D00C714C2 /* FLAnimatedImageView.m */; };
+		CEC37A741B455F5700C714C2 /* spot.gif in Resources */ = {isa = PBXBuildFile; fileRef = CEC37A731B455F5700C714C2 /* spot.gif */; };
+		CEC37A761B456BAC00C714C2 /* floor.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC37A751B456BAC00C714C2 /* floor.png */; };
 		CED8A1901B4BEAE8003B975C /* EmployeeTable.m in Sources */ = {isa = PBXBuildFile; fileRef = CED8A18F1B4BEAE8003B975C /* EmployeeTable.m */; };
 /* End PBXBuildFile section */
 
@@ -104,6 +108,12 @@
 		CE968B091B4103E80006CB2C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CE9D76981B3D7F300079378F /* enhancedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = enhancedCell.h; sourceTree = "<group>"; };
 		CE9D76991B3D7F300079378F /* enhancedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = enhancedCell.m; sourceTree = "<group>"; };
+		CEC37A6D1B455C4D00C714C2 /* FLAnimatedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImage.h; sourceTree = "<group>"; };
+		CEC37A6E1B455C4D00C714C2 /* FLAnimatedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImage.m; sourceTree = "<group>"; };
+		CEC37A6F1B455C4D00C714C2 /* FLAnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImageView.h; sourceTree = "<group>"; };
+		CEC37A701B455C4D00C714C2 /* FLAnimatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImageView.m; sourceTree = "<group>"; };
+		CEC37A731B455F5700C714C2 /* spot.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = spot.gif; sourceTree = "<group>"; };
+		CEC37A751B456BAC00C714C2 /* floor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = floor.png; sourceTree = "<group>"; };
 		CED8A18E1B4BEAE8003B975C /* EmployeeTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmployeeTable.h; sourceTree = "<group>"; };
 		CED8A18F1B4BEAE8003B975C /* EmployeeTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmployeeTable.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -170,6 +180,10 @@
 				CE48EC0D1B52464700F744C1 /* Places.h */,
 				CE48EC0E1B52464700F744C1 /* Places.m */,
 				CE45A6581B3D582E007B3624 /* Employee.h */,
+				CEC37A6D1B455C4D00C714C2 /* FLAnimatedImage.h */,
+				CEC37A6E1B455C4D00C714C2 /* FLAnimatedImage.m */,
+				CEC37A6F1B455C4D00C714C2 /* FLAnimatedImageView.h */,
+				CEC37A701B455C4D00C714C2 /* FLAnimatedImageView.m */,
 				CE45A6591B3D582E007B3624 /* Employee.m */,
 				CE45A6331B3D525F007B3624 /* AppDelegate.h */,
 				CE45A6341B3D525F007B3624 /* AppDelegate.m */,
@@ -212,6 +226,8 @@
 			isa = PBXGroup;
 			children = (
 				CE45A6301B3D525F007B3624 /* Info.plist */,
+				CEC37A751B456BAC00C714C2 /* floor.png */,
+				CEC37A731B455F5700C714C2 /* spot.gif */,
 				CE45A6311B3D525F007B3624 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -316,6 +332,8 @@
 			files = (
 				CE45A63E1B3D5260007B3624 /* Main.storyboard in Resources */,
 				CE45A6431B3D5260007B3624 /* LaunchScreen.xib in Resources */,
+				CEC37A741B455F5700C714C2 /* spot.gif in Resources */,
+				CEC37A761B456BAC00C714C2 /* floor.png in Resources */,
 				CE45A6401B3D5260007B3624 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,6 +360,7 @@
 				CE4C5FCD1B41534800784563 /* timeLogTable.m in Sources */,
 				CE9D769A1B3D7F300079378F /* enhancedCell.m in Sources */,
 				CE48EC151B52602900F744C1 /* categoryTableViewCell.m in Sources */,
+				CEC37A711B455C4D00C714C2 /* FLAnimatedImage.m in Sources */,
 				CE45A65A1B3D582E007B3624 /* Employee.m in Sources */,
 				CE48EC0F1B52464700F744C1 /* Places.m in Sources */,
 				CE45A6601B3D5FBD007B3624 /* addEmployeeData.m in Sources */,
@@ -352,6 +371,7 @@
 				CE45A6321B3D525F007B3624 /* main.m in Sources */,
 				CE45A63B1B3D5260007B3624 /* ViewController.m in Sources */,
 				CE397E841B44291E0080490B /* TimeLog.m in Sources */,
+				CEC37A721B455C4D00C714C2 /* FLAnimatedImageView.m in Sources */,
 				CE45A6381B3D525F007B3624 /* IndoorNavigationApp.xcdatamodeld in Sources */,
 				CE4C5FC41B414C2E00784563 /* QRCode.m in Sources */,
 			);

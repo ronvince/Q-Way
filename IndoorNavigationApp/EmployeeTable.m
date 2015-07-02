@@ -357,7 +357,7 @@ int check; //// For checking whether the view appears for the first
 -(void) showDetailsForIndexPath:(NSIndexPath*)indexPath
 {
     [self.searchBar resignFirstResponder];
-    homeViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"HomeViewController"];
+    mapDraw* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"mapDraw"];
     Employee*  employe;
     Places *place;
     categoryViewController *cat = [self.storyboard instantiateViewControllerWithIdentifier:@"categoryViewController"];
@@ -370,7 +370,7 @@ int check; //// For checking whether the view appears for the first
         employe = [_tableArray objectAtIndex:indexPath.row];
         vc.employe = employe;
         
-        [self.navigationController pushViewController:vc animated:true];
+       [self.navigationController pushViewController:vc animated:true];
     }
     else
     {
@@ -388,7 +388,7 @@ int check; //// For checking whether the view appears for the first
             place = [_tableArray objectAtIndex:indexPath.row];
             vc.place = place;
             
-            [self.navigationController pushViewController:vc animated:true];
+           [self.navigationController pushViewController:vc animated:true];
         }
         else
         {

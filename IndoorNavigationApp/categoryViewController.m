@@ -7,6 +7,8 @@
 //  Written By Anita Grace Daniel.
 
 #import "categoryViewController.h"
+#import "mapDraw.h"
+#import "Places.h"
 #import <CoreData/CoreData.h>
 
 @interface categoryViewController ()
@@ -243,6 +245,60 @@
     return cell;
    }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self showDetailsForIndexPath:indexPath];
+}
+
+-(void) showDetailsForIndexPath:(NSIndexPath*)indexPath
+{
+    [self.searchBar resignFirstResponder];
+    mapDraw* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"mapDraw"];
+    Employee*  employe;
+    Places *place;
+    if(emp_plac==0)
+    {
+        if(isFiltered)
+       {
+        employe = [self.filteredtableArray objectAtIndex:indexPath.row];
+        vc.employe = employe;
+        
+        [self.navigationController pushViewController:vc animated:true];
+       }
+    else
+       {
+        
+        employe = [self.categoryTableData objectAtIndex:indexPath.row];
+        vc.employe = employe;
+        
+        [self.navigationController pushViewController:vc animated:true];
+        
+       }
+    }
+    else if((int)emp_plac==1)
+    {
+        if(isFiltered)
+        {
+            place = [self.filteredtableArray objectAtIndex:indexPath.row];
+            vc.place = place;
+            
+            [self.navigationController pushViewController:vc animated:true];
+        }
+        else
+        {
+            
+            place = [self.categoryTableData objectAtIndex:indexPath.row];
+            vc.place = place;
+            
+            [self.navigationController pushViewController:vc animated:true];
+            
+        }
+    
+    
+    
+    
+    }
+}
 /*
 #pragma mark - Navigation
 
