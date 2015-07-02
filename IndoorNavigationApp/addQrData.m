@@ -4,7 +4,7 @@
 //
 //  Created by user on 6/29/15.
 //  Copyright (c) 2015 user. All rights reserved.
-//
+//  Written By Roni Vincent
 
 #import "addQrData.h"
 #import <CoreData/CoreData.h>

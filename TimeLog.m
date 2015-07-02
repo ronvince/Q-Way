@@ -2,7 +2,7 @@
 //  TimeLog.m
 //  IndoorNavigationApp
 //
-//  Created by user on 6/29/15.
+//  Created by user on 7/1/15.
 //  Copyright (c) 2015 user. All rights reserved.
 //
 
@@ -13,7 +13,7 @@
 
 @dynamic date;
 @dynamic deftime;
-@dynamic slno;
 @dynamic time;
+@dynamic datetime;
 
 @end

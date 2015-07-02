@@ -4,7 +4,7 @@
 //
 //  Created by user on 6/29/15.
 //  Copyright (c) 2015 user. All rights reserved.
-//
+//  Written By Jithin V.
 
 #import "mapDraw.h"
 #import <QuartzCore/QuartzCore.h>
@@ -84,7 +84,8 @@ int a =0;
 }
 NSInteger cx;//=600;
 NSInteger cy;//=20;
-NSInteger ca;
+NSInteger ca=0;
+NSInteger nu;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -95,6 +96,7 @@ NSInteger ca;
     cx = _ix ;
     cy = _iy ;
     ca = _a;
+    nu = _nullQrDB;
     NSLog(@"%i",a);
    // NSLog(@"%li",cy);
     self.currentHeading =[[CLHeading alloc] init];
@@ -116,6 +118,7 @@ NSInteger ca;
     if (_ix == NULL) {
         ca=0;
     }
+   // NSLog(@"%@",_ca);
     if (ca==1) {
         UIImage *imag = [UIImage imageNamed:@"ar"];
         self.imageVi = [[UIImageView alloc] initWithImage:imag];
@@ -133,7 +136,10 @@ NSInteger ca;
         [self.imageVi addSubview:self.imla];
 
     }
-    
+    if (nu==1) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Invalid" message:@"No such QR Code in Database" delegate:self cancelButtonTitle:@"Back" otherButtonTitles:nil];
+               [alert show];
+    }
     
     self.scrollView.contentSize = CGSizeMake(self.imageVie.frame.size.width , self.imageVie.frame.size.height);
     UITapGestureRecognizer *doubleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scrollViewDoubleTapped:)];

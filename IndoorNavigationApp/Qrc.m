@@ -4,7 +4,7 @@
 //
 //  Created by user on 6/28/15.
 //  Copyright (c) 2015 user. All rights reserved.
-//
+//  Written By Roni Vincent and Jithin V.
 
 #import "Qrc.h"
 #import <CoreData/CoreData.h>
@@ -24,7 +24,7 @@
 @end
 
 @implementation Qrc
-
+int nullQrDB =1;
 NSManagedObjectContext *managedObjectContext;
 - (NSManagedObjectContext *)managedObjectContext
 {
@@ -158,58 +158,66 @@ NSInteger y;
              
              
              */
-            QRCode *qc = [results objectAtIndex:0];
-            /*if ([NSMutableArray isKindOfClass:[qc class]]){
-             NSLog(@"adfafd");
-             }*/
-            NSLog(@"%@%@", qc.x,qc.y);
             
-            // x= qc.x;
-             x = [qc.x integerValue];
-            y = [qc.y integerValue];
+            QRCode *qc;
+            if (results.count!=0){
+                nullQrDB = 0;
+                qc = [results objectAtIndex:0];
+                NSLog(@"qrcode count  %lu", (unsigned long)results.count);
+                NSLog(@"%@%@", qc.x,qc.y);
+                
+                // x= qc.x;
+                x = [qc.x integerValue];
+                y = [qc.y integerValue];
+                
+                // y=qc.y;
+                
+                //code for timelog db
+                NSString *qrdef = qc.def;
+                
+                NSManagedObjectContext *context = [self managedObjectContext];
+                
+                // Create a new managed object
+                NSManagedObject *newDevice = [NSEntityDescription insertNewObjectForEntityForName:@"TimeLog" inManagedObjectContext:context];
+                [newDevice setValue:qrdef forKey:@"deftime"];
+                
+                //code for obtaining date
+                NSDateFormatter *format = [[NSDateFormatter alloc] init];
+                [format setDateFormat:@"MMM dd, yyyy"];
+                
+                NSDate *now = [[NSDate alloc] init];
+                
+                NSString *dateString = [format stringFromDate:now];
+                
+                [newDevice setValue:dateString forKey:@"date"];
+                
+                NSDateFormatter *format1 = [[NSDateFormatter alloc] init];
+                [format1 setDateFormat:@"hh:mm"];
+                
+                NSDate *now1 = [[NSDate alloc] init];
+                
+                NSString *timeString = [format1 stringFromDate:now1];
+                
+                [newDevice setValue:timeString forKey:@"time"];
+                NSLog(@"%@", timeString);
+                
+                NSDateFormatter *format2 = [[NSDateFormatter alloc] init];
+                [format2 setDateFormat:@"MMM dd, yyyy hh:mm:ss"];
+                
+                NSDate *now2 = [[NSDate alloc] init];
+                
+                NSString *datetimeString = [format2 stringFromDate:now2];
+                NSLog(@"%@", datetimeString);
+                [newDevice setValue:datetimeString forKey:@"datetime"];
+                //code for Unique id
+                
+                
+                
+               
 
-           // y=qc.y;
-            
-            //code for timelog db
-            NSString *qrdef = qc.def;
-            
-            NSManagedObjectContext *context = [self managedObjectContext];
-            
-            // Create a new managed object
-            NSManagedObject *newDevice = [NSEntityDescription insertNewObjectForEntityForName:@"TimeLog" inManagedObjectContext:context];
-            [newDevice setValue:qrdef forKey:@"deftime"];
-            
-            //code for obtaining date
-            NSDateFormatter *format = [[NSDateFormatter alloc] init];
-            [format setDateFormat:@"MMM dd, yyyy"];
-            
-            NSDate *now = [[NSDate alloc] init];
-            
-            NSString *dateString = [format stringFromDate:now];
-            
-            [newDevice setValue:dateString forKey:@"date"];
-            
-            NSDateFormatter *format1 = [[NSDateFormatter alloc] init];
-            [format1 setDateFormat:@"hh:mm"];
-            
-            NSDate *now1 = [[NSDate alloc] init];
-            
-            NSString *timeString = [format1 stringFromDate:now1];
-            
-            [newDevice setValue:timeString forKey:@"time"];
-            NSLog(@"%@", timeString);
-            
-            //code for Unique id
+            }
             
             
-            
-            
-            NSManagedObjectID *moID = [newDevice objectID];
-            
-            NSLog(@"%@", moID);
-            NSString *sln = [NSString stringWithFormat:@"%@", moID];
-            
-            [newDevice setValue:sln forKey:@"slno"];
             
             
             [self performSelectorOnMainThread:@selector(stopReading) withObject:nil waitUntilDone:NO];
@@ -235,6 +243,7 @@ NSInteger y;
         controller.ix=x;
         controller.iy=y;
         controller.a=1;
+        controller.nullQrDB = nullQrDB;
        
     }
 }

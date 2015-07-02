@@ -23,8 +23,8 @@
     </entity>
     <entity name="TimeLog" representedClassName="TimeLog" syncable="YES">
         <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="datetime" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="deftime" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="slno" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="time" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>

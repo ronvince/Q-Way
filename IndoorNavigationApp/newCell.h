@@ -15,6 +15,6 @@
 
 
 
-@property (strong, nonatomic) IBOutlet UILabel *datefield;
+
 
 @end

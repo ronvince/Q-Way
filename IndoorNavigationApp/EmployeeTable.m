@@ -4,7 +4,7 @@
 //
 //  Created by user on 7/7/15.
 //  Copyright (c) 2015 user. All rights reserved.
-//
+//  Written By Roni Vincent and Anita Grace Daniel.
 
 #import "EmployeeTable.h"
 #import "enhancedCell.h"
@@ -19,10 +19,12 @@
 @property (strong) NSMutableArray *allTableData;
 @property (strong) NSMutableArray *tableArray;
 @property (strong) NSMutableArray *defaultData;
+@property (strong) NSMutableArray *prevoiusdata;
 @end
 
 @implementation EmployeeTable
 @synthesize isFiltered;
+int prevTextLen;
 //int x,y;
 int u=0;
 
@@ -139,20 +141,21 @@ int u=0;
 
 -(void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)text
 {
-    
+    self.prevoiusdata = self.tableArray;
     if(text.length == 0)
     {
         isFiltered = FALSE;
-    
+        self.tableArray = self.allTableData;
+        prevTextLen = text.length;
        
     }
-    else if((text.length != 0) && (u==0) )
+    else if((prevTextLen<text.length) && (u==0) )
     {
         isFiltered = true;
         _tableArray = [[NSMutableArray alloc] init];
+        prevTextLen = text.length;
         
-        
-        for (Employee*  employe in _allTableData)
+        for (Employee*  employe in _prevoiusdata)
         {
             NSRange nameRange = [employe.name rangeOfString:text options:NSCaseInsensitiveSearch];
             NSRange descriptionRange = [ employe.desig rangeOfString:text options:NSCaseInsensitiveSearch];
@@ -162,13 +165,28 @@ int u=0;
             }
         }
     }
-    
-   else if((text.length != 0) && (u==1))
-    {
+    else if((prevTextLen>text.length) && (u==0)){
+        prevTextLen = text.length;
         isFiltered = true;
         _tableArray = [[NSMutableArray alloc] init];
         
-        for (Places*  place in _allTableData)
+        for (Employee *employe in self.allTableData){
+            NSRange nameRange = [employe.name rangeOfString:text options:NSCaseInsensitiveSearch];
+            NSRange descriptionRange = [ employe.desig rangeOfString:text options:NSCaseInsensitiveSearch];
+            if(nameRange.location != NSNotFound || descriptionRange.location != NSNotFound)
+            {
+                [_tableArray addObject: employe];
+            }
+        }
+
+    }
+    
+   else if((prevTextLen<text.length) && (u==1))
+    {
+        isFiltered = true;
+        _tableArray = [[NSMutableArray alloc] init];
+        prevTextLen = text.length;
+        for (Places*  place in self.prevoiusdata)
         {
             NSRange nameRange = [place.placeName rangeOfString:text options:NSCaseInsensitiveSearch];
             if(nameRange.location != NSNotFound )
@@ -177,6 +195,21 @@ int u=0;
             }
         }
     }
+   else if((prevTextLen>text.length) &&(u==1)){
+       prevTextLen = text.length;
+       isFiltered = true;
+       self.tableArray = [[NSMutableArray alloc] init];
+       
+       for (Places*  place in self.allTableData)
+       {
+           NSRange nameRange = [place.placeName rangeOfString:text options:NSCaseInsensitiveSearch];
+           if(nameRange.location != NSNotFound )
+           {
+               [_tableArray addObject: place];
+           }
+       }
+
+   }
     [self.tableView reloadData];
 }
 #pragma mark - Table view data source

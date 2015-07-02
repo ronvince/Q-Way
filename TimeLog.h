@@ -2,7 +2,7 @@
 //  TimeLog.h
 //  IndoorNavigationApp
 //
-//  Created by user on 6/29/15.
+//  Created by user on 7/1/15.
 //  Copyright (c) 2015 user. All rights reserved.
 //
 
@@ -14,7 +14,7 @@
 
 @property (nonatomic, retain) NSString * date;
 @property (nonatomic, retain) NSString * deftime;
-@property (nonatomic, retain) NSString * slno;
 @property (nonatomic, retain) NSString * time;
+@property (nonatomic, retain) NSString * datetime;
 
 @end
