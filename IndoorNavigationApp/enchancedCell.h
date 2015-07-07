@@ -12,5 +12,5 @@
 @property (strong, nonatomic) IBOutlet UILabel *namefield;
 @property (strong, nonatomic) IBOutlet UILabel *desigfield;
 @property (strong, nonatomic) IBOutlet UILabel *emailfield;
-
+@property (strong, nonatomic) IBOutlet UIImageView *imagefield;
 @end

@@ -18,6 +18,7 @@
 		CE45A65A1B3D582E007B3624 /* Employee.m in Sources */ = {isa = PBXBuildFile; fileRef = CE45A6591B3D582E007B3624 /* Employee.m */; };
 		CE45A65D1B3D5B84007B3624 /* enchancedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE45A65C1B3D5B84007B3624 /* enchancedCell.m */; };
 		CE45A6601B3D5FBD007B3624 /* addEmployeeData.m in Sources */ = {isa = PBXBuildFile; fileRef = CE45A65F1B3D5FBD007B3624 /* addEmployeeData.m */; };
+		CED8A1901B4BEAE8003B975C /* EmployeeTable.m in Sources */ = {isa = PBXBuildFile; fileRef = CED8A18F1B4BEAE8003B975C /* EmployeeTable.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		CE45A65C1B3D5B84007B3624 /* enchancedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = enchancedCell.m; sourceTree = "<group>"; };
 		CE45A65E1B3D5FBD007B3624 /* addEmployeeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addEmployeeData.h; sourceTree = "<group>"; };
 		CE45A65F1B3D5FBD007B3624 /* addEmployeeData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addEmployeeData.m; sourceTree = "<group>"; };
+		CED8A18E1B4BEAE8003B975C /* EmployeeTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmployeeTable.h; sourceTree = "<group>"; };
+		CED8A18F1B4BEAE8003B975C /* EmployeeTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmployeeTable.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +102,8 @@
 				CE45A6391B3D5260007B3624 /* ViewController.h */,
 				CE45A63A1B3D5260007B3624 /* ViewController.m */,
 				CE45A63C1B3D5260007B3624 /* Main.storyboard */,
+				CED8A18E1B4BEAE8003B975C /* EmployeeTable.h */,
+				CED8A18F1B4BEAE8003B975C /* EmployeeTable.m */,
 				CE45A65E1B3D5FBD007B3624 /* addEmployeeData.h */,
 				CE45A65F1B3D5FBD007B3624 /* addEmployeeData.m */,
 				CE45A65B1B3D5B84007B3624 /* enchancedCell.h */,
@@ -239,6 +244,7 @@
 			files = (
 				CE45A65A1B3D582E007B3624 /* Employee.m in Sources */,
 				CE45A6601B3D5FBD007B3624 /* addEmployeeData.m in Sources */,
+				CED8A1901B4BEAE8003B975C /* EmployeeTable.m in Sources */,
 				CE45A6351B3D525F007B3624 /* AppDelegate.m in Sources */,
 				CE45A6321B3D525F007B3624 /* main.m in Sources */,
 				CE45A65D1B3D5B84007B3624 /* enchancedCell.m in Sources */,
