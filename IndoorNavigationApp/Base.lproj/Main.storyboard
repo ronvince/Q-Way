@@ -497,6 +497,24 @@
                                     <outlet property="delegate" destination="iTs-87-otQ" id="8MR-NL-jId"/>
                                 </connections>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mKw-oU-8SW">
+                                <rect key="frame" x="62" y="17" width="30" height="30"/>
+                                <state key="normal" title="lock">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="lockfunction:" destination="iTs-87-otQ" eventType="touchUpInside" id="IUd-dW-Fgv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cjP-sf-J7h">
+                                <rect key="frame" x="182" y="18" width="34" height="30"/>
+                                <state key="normal" title="clear">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clearfunction:" destination="iTs-87-otQ" eventType="touchUpInside" id="lkp-gO-IsI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -504,7 +522,9 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="QRcodebutton" destination="7bU-f5-fPD" id="rW5-cW-ujg"/>
+                        <outlet property="clearbutton" destination="cjP-sf-J7h" id="gp6-Nd-lUa"/>
                         <outlet property="databutton" destination="UwE-WP-3dq" id="5Wm-i7-lHE"/>
+                        <outlet property="lockbutton" destination="mKw-oU-8SW" id="xZv-VR-P3w"/>
                         <outlet property="logbutton" destination="dbC-Ec-Rz4" id="Cfp-Et-khz"/>
                         <outlet property="scrollView" destination="N2T-fq-Fd4" id="pZo-cs-Vhk"/>
                         <outlet property="searchbutton" destination="00D-kD-auB" id="Ucl-04-P0d"/>
@@ -513,7 +533,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b5O-bK-Yro" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="JEN-Na-x0V" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="784.5" y="-418.5"/>
+            <point key="canvasLocation" x="787.5" y="-409.5"/>
         </scene>
         <!--Item-->
         <scene sceneID="xOo-xV-wHc">
@@ -612,19 +632,19 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="S. No" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGE-Pq-GDg">
                                     <rect key="frame" x="44" y="13" width="43" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="QR Code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VxO-Rz-2PQ">
                                     <rect key="frame" x="164" y="13" width="72" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kw2-Al-rxu">
                                     <rect key="frame" x="298" y="13" width="38" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>

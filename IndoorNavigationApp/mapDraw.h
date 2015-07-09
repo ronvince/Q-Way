@@ -27,5 +27,9 @@
 @property (strong, nonatomic) IBOutlet UIButton *QRcodebutton;
 @property (strong, nonatomic) IBOutlet UIButton *logbutton;
 @property (strong, nonatomic) IBOutlet UIButton *searchbutton;
+@property (weak, nonatomic) IBOutlet UIButton *clearbutton;
+@property (weak, nonatomic) IBOutlet UIButton *lockbutton;
+- (IBAction)clearfunction:(id)sender;
+- (IBAction)lockfunction:(id)sender;
 
 @end

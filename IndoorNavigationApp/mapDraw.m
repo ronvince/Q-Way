@@ -109,10 +109,10 @@ int m;
     [super viewDidLoad];
     num=0;
     
-    cx = _ix ;
-    cy = _iy ;
-    ca = _a;
-    nu = _nullQrDB;
+//    cx = _ix ;
+//    cy = _iy ;
+//    ca = _a;
+//    nu = _nullQrDB;
 
     NSLog(@"%i",a);
     
@@ -258,6 +258,8 @@ int m;
      [self.view addSubview:self.searchbutton];
      [self.view addSubview:self.logbutton];
      [self.view addSubview:self.QRcodebutton];
+    [self.view addSubview:self.clearbutton];
+    [self.view addSubview:self.lockbutton];
    
   //////////////////////////////////////////////////////
     CGRect scrollViewFrame = self.scrollView.frame;
@@ -287,14 +289,16 @@ NSInteger prev;
         prev=num;
         self.currentHeading = newHeading;
         num =360-(int)newHeading.magneticHeading;
+    if(rotationlock==0)
+    {
         self.imageView.transform = CGAffineTransformRotate (self.imageView.transform, DEGREES_TO_RADIANS(num-prev));
         [self.imageVie addSubview:self.imageView];
-        
-        self.imageVi.transform = CGAffineTransformRotate (self.imageVi.transform, DEGREES_TO_RADIANS(-(num-prev)));
+    }
+
+    self.imageVi.transform = CGAffineTransformRotate (self.imageVi.transform, DEGREES_TO_RADIANS(-(num-prev)));
         
         [self.imageView addSubview:self.imageVi];
-    
-    
+
     
     
 }
@@ -359,24 +363,25 @@ NSInteger prev;
         NSLog(@"Values are %@", Qrcode.Qrx);
         NSLog(@"Values are %@", Qrcode.Qry);
         [self.locationManager startUpdatingHeading];
+        if(Qrcode.Qrx!=NULL && Qrcode.Qry!=NULL)
+        {
          [_imageVi removeFromSuperview];
         cx=[Qrcode.Qrx intValue];
         cy=[Qrcode.Qry intValue];
         UIImage *imag = [UIImage imageNamed:@"ar"];
         self.imageVi = [[UIImageView alloc] initWithImage:imag];
         self.imageVi.frame = (CGRect){.origin=CGPointMake(cx,cy),.size=CGSizeMake(100,200)};
-        
+        self.imageVi.transform =CGAffineTransformMakeRotation(DEGREES_TO_RADIANS(-num));
         [self.imageView addSubview:self.imageVi];
-        
+       
         self.imglbl = [[UILabel  alloc] initWithFrame:CGRectMake(-250,-50,600,100)];
-        
         [_imglbl   setText:@"You"];
         [_imglbl setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:70]];
         [_imglbl setTextColor:[UIColor brownColor ]];
         _imglbl.textAlignment = NSTextAlignmentCenter;
         [self.imageVi addSubview:self.imglbl];
         
-        
+        }
         
     }
     if([segue.identifier isEqualToString:@"search"])
@@ -384,10 +389,9 @@ NSInteger prev;
         EmployeeTable *employeesearch = (EmployeeTable *)segue.sourceViewController;
         ex=[employeesearch.employexy.x  intValue];
         ey=[employeesearch.employexy.y intValue];
-        
+        [self.locationManager startUpdatingHeading];
         self.greengif=[[FLAnimatedImageView alloc]init];
         FLAnimatedImage *gifwork = [[FLAnimatedImage alloc] initWithAnimatedGIFData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"spot" ofType:@"gif"]]];
-        // self.greengif = [[FLAnimatedImage alloc] :gifwork];
         self.greengif.frame = (CGRect){.origin=CGPointMake(ex,ey), .size=CGSizeMake(200,200)};
         self.greengif.animatedImage = gifwork;
         
@@ -402,16 +406,11 @@ NSInteger prev;
         
         [self.greengif addSubview:self.giflbl];
         
-        self.subimbtn = [[UIButton  alloc] initWithFrame:CGRectMake(67,67,70,70)];//(67,67,70,70)
-        [_subimbtn setUserInteractionEnabled:YES ];
+        self.subimbtn = [[UIButton  alloc] initWithFrame:CGRectMake(67,67,70,70)];        [_subimbtn setUserInteractionEnabled:YES ];
         [_subimbtn addTarget:self
                       action:@selector(tapped)
             forControlEvents:UIControlEventTouchUpInside];
-        
-        //[_subimbtn  setTitle:@"J" forState:UIControlStateNormal];
         [_subimbtn setBackgroundColor:[UIColor clearColor]];
-        //[_subimbtn setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
-        
         self.imageVie.userInteractionEnabled = YES;
         self.imageView.userInteractionEnabled = YES;
         self.greengif.userInteractionEnabled = YES;
@@ -421,22 +420,49 @@ NSInteger prev;
         
           [self.imageView addSubview:_greengif];
     }
-//    if(gifimg.count==0)
-//        gifimg = [[NSMutableArray alloc] initWithObjects:nil];
-    
-    
-    
-//    for(m=0;m<gifimg.count;m++)
-//    {
-//        [self.imageView addSubview:gifimg[m]];
-//    }
-    
-
-        //NSLog(@"Search name is %@", employeesearch.employexy.x);
   
 }
     
     
+int rotationlock=0;
+int lock=0;
+- (IBAction)clearfunction:(id)sender
+{
+    
+    for(m=0;m<gifimg.count;m++)
+    {
+        _greengif=gifimg[m];
+        [_greengif removeFromSuperview];
+    }
+    NSLog(@"%li",gifimg.count);
+    if(gifimg.count>0)
+    {
+         gifimg = [[NSMutableArray alloc] initWithObjects:nil];
+    }
+    NSLog(@"%li",gifimg.count);
+}
 
+- (IBAction)lockfunction:(id)sender
+{
+    if(lock%2==0)
+    {
+        rotationlock=1;
+    }
+    else
+    {
+        if(rotationlock==1)
+        {
+            [self.locationManager stopUpdatingHeading];
+            rotationlock=0;
+            num=0;
+            _imageView.transform=CGAffineTransformMakeRotation(DEGREES_TO_RADIANS(0));
+            _imageVi.transform=CGAffineTransformMakeRotation(DEGREES_TO_RADIANS(0));
+            [self.locationManager startUpdatingHeading];
+        }
+        
+    }
+    lock++;
 
+    
+}
 @end
