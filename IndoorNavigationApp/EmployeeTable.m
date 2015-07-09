@@ -24,7 +24,7 @@
 
 @implementation EmployeeTable
 @synthesize isFiltered;
-int prevTextLen;
+int prevTextLen,glsl,glCor=0,gllen=0;
 //int x,y;
 int u=0;
 int check; //// For checking whether the view appears for the first
@@ -65,6 +65,7 @@ int check; //// For checking whether the view appears for the first
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.searchBar.delegate = (id)self;
+    glsl = 0;
   }
 -(void)defaultDatashow{
     if (u==0) {
@@ -155,78 +156,151 @@ int check; //// For checking whether the view appears for the first
     // Dispose of any resources that can be recreated.
 }
 
--(void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)text
-{
-    self.prevoiusdata = self.tableArray;
-    if(text.length == 0)
-    {
-        isFiltered = FALSE;
-        self.tableArray = self.allTableData;
-        prevTextLen = text.length;
-       
-    }
-    else if((prevTextLen<text.length) && (u==0) )
-    {
-        isFiltered = true;
-        _tableArray = [[NSMutableArray alloc] init];
-        prevTextLen = text.length;
+-(void)serfunc:(NSTimer *)theTimer{
+    int temp;
+    NSString *str1 = (NSString*)[theTimer userInfo];
+    temp = [str1 intValue];
+    printf("temp value in text func = %d\n", temp);
+    printf("sl value in textfunc = %d", glsl);
+    NSLog(@"sgsdgsdgsdfg   %@\n",t1);
+    
+    if (glsl==temp) {
         
-        for (Employee*  employe in _prevoiusdata)
+        self.prevoiusdata = self.tableArray;
+        NSLog(@"previ count = %lu",(unsigned long)self.prevoiusdata.count);
+        if(t1.length == 0)
         {
-            NSRange nameRange = [employe.name rangeOfString:text options:NSCaseInsensitiveSearch];
-            NSRange descriptionRange = [ employe.desig rangeOfString:text options:NSCaseInsensitiveSearch];
-            if(nameRange.location != NSNotFound || descriptionRange.location != NSNotFound)
+            isFiltered = FALSE;
+            self.tableArray = self.allTableData;
+            prevTextLen = t1.length;
+            
+        }
+        else if((prevTextLen<t1.length) && (u==0)&&(glCor==1) )
+        {
+            glCor=0;
+            isFiltered = true;
+            _tableArray = [[NSMutableArray alloc] init];
+            prevTextLen = t1.length;
+            
+            for (Employee*  employe in self.allTableData)
             {
-                [_tableArray addObject: employe];
+                NSRange nameRange = [employe.name rangeOfString:t1 options:NSCaseInsensitiveSearch];
+                NSRange descriptionRange = [ employe.desig rangeOfString:t1 options:NSCaseInsensitiveSearch];
+                if(nameRange.location != NSNotFound || descriptionRange.location != NSNotFound)
+                {
+                    [_tableArray addObject: employe];
+                }
             }
         }
-    }
-    else if((prevTextLen>text.length) && (u==0)){
-        prevTextLen = text.length;
-        isFiltered = true;
-        _tableArray = [[NSMutableArray alloc] init];
-        
-        for (Employee *employe in self.allTableData){
-            NSRange nameRange = [employe.name rangeOfString:text options:NSCaseInsensitiveSearch];
-            NSRange descriptionRange = [ employe.desig rangeOfString:text options:NSCaseInsensitiveSearch];
-            if(nameRange.location != NSNotFound || descriptionRange.location != NSNotFound)
+        else if((prevTextLen<t1.length) && (u==0) )
+        {
+            isFiltered = true;
+            _tableArray = [[NSMutableArray alloc] init];
+            prevTextLen = t1.length;
+            
+            for (Employee*  employe in _prevoiusdata)
             {
-                [_tableArray addObject: employe];
+                NSRange nameRange = [employe.name rangeOfString:t1 options:NSCaseInsensitiveSearch];
+                NSRange descriptionRange = [ employe.desig rangeOfString:t1 options:NSCaseInsensitiveSearch];
+                if(nameRange.location != NSNotFound || descriptionRange.location != NSNotFound)
+                {
+                    [_tableArray addObject: employe];
+                }
+            }
+        }
+        else if((prevTextLen>=t1.length) && (u==0)){
+            prevTextLen = t1.length;
+            isFiltered = true;
+            _tableArray = [[NSMutableArray alloc] init];
+            
+            for (Employee *employe in self.allTableData){
+                NSRange nameRange = [employe.name rangeOfString:t1 options:NSCaseInsensitiveSearch];
+                NSRange descriptionRange = [ employe.desig rangeOfString:t1 options:NSCaseInsensitiveSearch];
+                if(nameRange.location != NSNotFound || descriptionRange.location != NSNotFound)
+                {
+                    [_tableArray addObject: employe];
+                }
+            }
+            
+        }
+        else if((prevTextLen<t1.length) && (u==1)&&(glCor==1))
+        {
+            glCor = 0;
+            isFiltered = true;
+            _tableArray = [[NSMutableArray alloc] init];
+            prevTextLen = t1.length;
+            for (Places*  place in self.allTableData)
+            {
+                NSRange nameRange = [place.placeName rangeOfString:t1 options:NSCaseInsensitiveSearch];
+                if(nameRange.location != NSNotFound )
+                {
+                    [_tableArray addObject: place];
+                }
             }
         }
 
+        
+        else if((prevTextLen<t1.length) && (u==1))
+        {
+            isFiltered = true;
+            _tableArray = [[NSMutableArray alloc] init];
+            prevTextLen = t1.length;
+            for (Places*  place in self.prevoiusdata)
+            {
+                NSRange nameRange = [place.placeName rangeOfString:t1 options:NSCaseInsensitiveSearch];
+                if(nameRange.location != NSNotFound )
+                {
+                    [_tableArray addObject: place];
+                }
+            }
+        }
+        else if((prevTextLen>=t1.length) &&(u==1)){
+            prevTextLen = t1.length;
+            isFiltered = true;
+            self.tableArray = [[NSMutableArray alloc] init];
+            
+            for (Places*  place in self.allTableData)
+            {
+                NSRange nameRange = [place.placeName rangeOfString:t1 options:NSCaseInsensitiveSearch];
+                if(nameRange.location != NSNotFound )
+                {
+                    [_tableArray addObject: place];
+                }
+            }
+            
+        }
+        [self.tableView reloadData];
+        
     }
     
-   else if((prevTextLen<text.length) && (u==1))
-    {
-        isFiltered = true;
-        _tableArray = [[NSMutableArray alloc] init];
-        prevTextLen = text.length;
-        for (Places*  place in self.prevoiusdata)
-        {
-            NSRange nameRange = [place.placeName rangeOfString:text options:NSCaseInsensitiveSearch];
-            if(nameRange.location != NSNotFound )
-            {
-                [_tableArray addObject: place];
-            }
-        }
-    }
-   else if((prevTextLen>text.length) &&(u==1)){
-       prevTextLen = text.length;
-       isFiltered = true;
-       self.tableArray = [[NSMutableArray alloc] init];
-       
-       for (Places*  place in self.allTableData)
-       {
-           NSRange nameRange = [place.placeName rangeOfString:text options:NSCaseInsensitiveSearch];
-           if(nameRange.location != NSNotFound )
-           {
-               [_tableArray addObject: place];
-           }
-       }
+    
+}
+NSString *t1;
 
-   }
-    [self.tableView reloadData];
+-(void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)text
+{
+    if (text.length<gllen) {
+        glCor = 1;
+    }
+    gllen = text.length;
+    
+    t1= text;
+    printf("%d",glsl);
+    glsl++;
+    printf("%d",glsl);
+    int temp = glsl;
+    printf("value of temp in search %d", temp);
+    NSString *str = [NSString stringWithFormat:@"%d",temp];
+    
+    [NSTimer scheduledTimerWithTimeInterval:1.5
+                                     target:self
+                                   selector:@selector(serfunc:)
+                                   userInfo:str
+                                    repeats:NO];
+    
+    
+    
+    
 }
 #pragma mark - Table view data source
 

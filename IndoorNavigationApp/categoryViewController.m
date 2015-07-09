@@ -15,6 +15,7 @@
 
 @property (strong) NSMutableArray *categoryTableData;
 @property (strong) NSMutableArray *filteredtableArray;
+@property (strong) NSMutableArray *prevFilterArray;
 
 @end
 
@@ -22,6 +23,7 @@
 @synthesize categoryName;
 @synthesize isFiltered;
 @synthesize emp_plac;
+int prevCatTextLen,catSl,locLen=0,locCor=0;
 
 - (NSManagedObjectContext *)managedObjectContext
 {
@@ -34,6 +36,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    catSearchtext = 0;
     
     self.searchBar.delegate = (id)self;
     
@@ -84,47 +87,130 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)catSearchFunc:(NSTimer *)theTimer{
+    int temp;
+    NSString *str1 = (NSString*) [theTimer userInfo];
+    temp = [str1 intValue];
+    if (catSl==temp) {
+        self.prevFilterArray = self.filteredtableArray;
+        if(catSearchtext.length == 0)
+        {
+            isFiltered = FALSE;
+            self.filteredtableArray = self.categoryTableData;
+            prevCatTextLen = catSearchtext.length;
+        }
+        else if((prevCatTextLen<catSearchtext.length) && (emp_plac==0) &&(locCor==0))
+        {
+            locCor =0;
+            isFiltered = true;
+            self.filteredtableArray = [[NSMutableArray alloc] init];
+            prevCatTextLen = catSearchtext.length;
+            
+            for (Employee*  employe in self.categoryTableData)
+            {
+                NSRange nameRange = [employe.name rangeOfString:catSearchtext options:NSCaseInsensitiveSearch];
+                if(nameRange.location != NSNotFound )
+                {
+                    [_filteredtableArray addObject: employe];
+                }
+            }
+        }
+        else if((prevCatTextLen<catSearchtext.length) && (emp_plac==0) )
+        {
+            isFiltered = true;
+            self.filteredtableArray = [[NSMutableArray alloc] init];
+            prevCatTextLen = catSearchtext.length;
+            
+            for (Employee*  employe in self.prevFilterArray)
+            {
+                NSRange nameRange = [employe.name rangeOfString:catSearchtext options:NSCaseInsensitiveSearch];
+                if(nameRange.location != NSNotFound )
+                {
+                    [_filteredtableArray addObject: employe];
+                }
+            }
+        }
+        else if ((prevCatTextLen>=catSearchtext.length)&& (emp_plac==0)){
+            prevCatTextLen = catSearchtext.length;
+            isFiltered = true;
+            self.filteredtableArray = [[NSMutableArray alloc]init];
+            
+            for (Employee * employe in self.categoryTableData) {
+                NSRange nameRange = [employe.name rangeOfString:catSearchtext options:NSCaseInsensitiveSearch];
+                if(nameRange.location != NSNotFound )
+                {
+                    [_filteredtableArray addObject: employe];
+                }
+                
+            }
+        }
+        else if((prevCatTextLen<catSearchtext.length) && ((int) emp_plac==1)&&(locCor==0))
+        {
+            locCor=0;
+            isFiltered = true;
+            self.filteredtableArray = [[NSMutableArray alloc] init];
+            prevCatTextLen = catSearchtext.length;
+            
+            for (Places*  place in self.categoryTableData)
+            {
+                NSRange nameRange = [place.placeName rangeOfString:catSearchtext options:NSCaseInsensitiveSearch];
+                if(nameRange.location != NSNotFound )
+                {
+                    [self.filteredtableArray addObject: place];
+                }
+            }
+        }
+        else if((prevCatTextLen<catSearchtext.length) && ((int) emp_plac==1))
+        {
+            isFiltered = true;
+            self.filteredtableArray = [[NSMutableArray alloc] init];
+            prevCatTextLen = catSearchtext.length;
+            
+            for (Places*  place in self.prevFilterArray)
+            {
+                NSRange nameRange = [place.placeName rangeOfString:catSearchtext options:NSCaseInsensitiveSearch];
+                if(nameRange.location != NSNotFound )
+                {
+                    [self.filteredtableArray addObject: place];
+                }
+            }
+        }
+        else if ((prevCatTextLen>=catSearchtext.length)&&(emp_plac==1)){
+            
+            prevCatTextLen = catSearchtext.length;
+            isFiltered = true;
+            self.filteredtableArray = [[NSMutableArray alloc]init];
+            for (Places*  place in self.categoryTableData)
+            {
+                NSRange nameRange = [place.placeName rangeOfString:catSearchtext options:NSCaseInsensitiveSearch];
+                if(nameRange.location != NSNotFound )
+                {
+                    [self.filteredtableArray addObject: place];
+                }
+            }
+            
+        }
+        
+        
+        [self.tableView reloadData];
+    }
+}
+
+NSString *catSearchtext;
+
 -(void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)text
 {
-    
-    if(text.length == 0)
-    {
-        isFiltered = FALSE;
+    if (text.length<locLen) {
+        locCor=0;
     }
-    else if((text.length != 0) && (emp_plac==0) )
-    {
-        isFiltered = true;
-        _filteredtableArray = [[NSMutableArray alloc] init];
-        
-        
-        for (Employee*  employe in _categoryTableData)
-        {
-            NSRange nameRange = [employe.name rangeOfString:text options:NSCaseInsensitiveSearch];
-            if(nameRange.location != NSNotFound )
-            {
-                [_filteredtableArray addObject: employe];
-            }
-        }
-    }
-    
-    else if((text.length != 0) && ((int) emp_plac==1))
-    {
-        isFiltered = true;
-        self.filteredtableArray = [[NSMutableArray alloc] init];
-        
-        for (Places*  place in self.categoryTableData
-             )
-        {
-            NSRange nameRange = [place.placeName rangeOfString:text options:NSCaseInsensitiveSearch];
-            if(nameRange.location != NSNotFound )
-            {
-                [self.filteredtableArray addObject: place];
-            }
-        }
-    }
+    locLen = text.length;
+    catSearchtext = text;
+    catSl++;
+    int temp = catSl;
+    NSString *str = [NSString stringWithFormat:@"%d",temp];
+    [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(catSearchFunc:) userInfo:str repeats:NO];
     
     
-    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
