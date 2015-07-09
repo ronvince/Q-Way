@@ -167,8 +167,8 @@ NSInteger y;
                 NSLog(@"%@%@", qc.x,qc.y);
                 
                 // x= qc.x;
-                x = [qc.x integerValue];
-                y = [qc.y integerValue];
+                self.Qrx =[NSString stringWithFormat:@"%@",qc.x];//@"%@",qc.x; //[qc.x integerValue];
+                self.Qry =[NSString stringWithFormat:@"%@",qc.y]; //[qc.y integerValue];
                 
                 // y=qc.y;
                 
@@ -232,21 +232,21 @@ NSInteger y;
 }
 - (IBAction)okfun:(id)sender {
     
-    
+[self performSegueWithIdentifier:@"modal" sender:self];
     
 }
 //NSNumber *b = 1;
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([segue.identifier isEqualToString:@"modal"]) {
-         NSLog(@"ok");
-                mapDraw *controller = (mapDraw *)segue.destinationViewController;
-        controller.ix=x;
-        controller.iy=y;
-        controller.a=1;
-        controller.nullQrDB = nullQrDB;
-       
-    }
-}
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    if([segue.identifier isEqualToString:@"modal"]) {
+//         NSLog(@"ok");
+//                mapDraw *controller = (mapDraw *)segue.destinationViewController;
+//        controller.ix=x;
+//        controller.iy=y;
+//        controller.a=1;
+//        controller.nullQrDB = nullQrDB;
+//       
+//    }
+//}
 
 
 @end

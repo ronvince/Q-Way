@@ -394,7 +394,7 @@
                         <viewControllerLayoutGuide type="bottom" id="oWC-Eh-PI3"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Z1p-Qw-aUm">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iAo-HL-8fB">
@@ -420,7 +420,6 @@
                                 </state>
                                 <connections>
                                     <action selector="okfun:" destination="sdG-cd-4jb" eventType="touchUpInside" id="3xs-Au-vWb"/>
-                                    <segue destination="iTs-87-otQ" kind="modal" identifier="modal" id="MHw-HY-LHw"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -429,10 +428,11 @@
                     <tabBarItem key="tabBarItem" title="Item" id="swL-3N-n73"/>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="start" destination="Oye-HR-ZeE" id="Dxf-BL-hg3"/>
                         <outlet property="vi" destination="iAo-HL-8fB" id="yw3-9B-pyM"/>
+                        <segue destination="JEN-Na-x0V" kind="unwind" identifier="modal" unwindAction="prepareForUnwind:" id="g3S-W7-bFn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UtM-Gf-EME" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -511,6 +511,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b5O-bK-Yro" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="JEN-Na-x0V" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="784.5" y="-418.5"/>
         </scene>
@@ -832,6 +833,7 @@
                         <outlet property="buttonPlace" destination="o2q-Wz-1qa" id="Xgi-aW-Vfr"/>
                         <outlet property="searchBar" destination="7AL-96-C6d" id="E65-WK-ON9"/>
                         <outlet property="tableView" destination="I35-fr-uTH" id="imR-Ts-52Y"/>
+                        <segue destination="JEN-Na-x0V" kind="unwind" identifier="search" unwindAction="prepareForUnwind:" id="TDq-Vx-bQf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="naC-0t-3cI" userLabel="First Responder" sceneMemberID="firstResponder"/>

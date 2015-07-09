@@ -20,8 +20,8 @@
 @property (nonatomic )NSInteger *iy;
 @property (nonatomic)NSInteger *a;
 @property (nonatomic)NSInteger *nullQrDB;
-@property (strong, nonatomic) Employee* employe;
-@property (strong, nonatomic) Places* place;
+@property (strong, nonatomic) Employee* employemap;
+@property (strong, nonatomic) Places* placemap;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UIButton *databutton;
 @property (strong, nonatomic) IBOutlet UIButton *QRcodebutton;

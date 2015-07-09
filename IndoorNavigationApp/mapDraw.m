@@ -11,6 +11,7 @@
 #import <Foundation/Foundation.h>
 #import "EmployeeTable.h"
 #import <CoreData/CoreData.h>
+#import "Qrc.h"
 @import CoreGraphics;
 
 @interface mapDraw ()
@@ -116,17 +117,17 @@ int m;
     NSLog(@"%i",a);
     
    // NSLog(@"%li",cy);
-    if(_employe)
-    {
-        NSString *name = _employe.name;
-        //xField.text = employe.desig;
-       ea=1;
-        ex =[_employe.x intValue];
-        ey =[_employe.y intValue];
-        
-    }
-    else if(_place)
-    {
+//    if(_employe)
+//    {
+//        NSString *name = _employe.name;
+//        //xField.text = employe.desig;
+//       ea=1;
+//        ex =[_employe.x intValue];
+//        ey =[_employe.y intValue];
+//        
+//    }
+    //else if(_place)
+    //{
         //nameLabel.text =place.placeName;
 //        [xField setText:[NSString stringWithFormat:@"%@", place.x]];
 //        [yField setText:[NSString stringWithFormat:@"%@", place.y]];
@@ -135,7 +136,7 @@ int m;
 //        cy =_place.y;
 //        NSLog(@"%i",cx);
 //        NSLog(@"%i",cy);
-    }
+   // }
 
 
     
@@ -205,7 +206,7 @@ int m;
         
         self.giflbl = [[UILabel  alloc] initWithFrame:CGRectMake(-200,-30,600,100)];
         
-        [_giflbl   setText:_employe.name];
+       // [_giflbl   setText:_employe.name];
         [_giflbl setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:70]];
         [_giflbl setTextColor:[UIColor brownColor ]];
         _giflbl.textAlignment = NSTextAlignmentCenter;
@@ -258,11 +259,7 @@ int m;
      [self.view addSubview:self.logbutton];
      [self.view addSubview:self.QRcodebutton];
    
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    
-    [super viewWillAppear:animated];
+  //////////////////////////////////////////////////////
     CGRect scrollViewFrame = self.scrollView.frame;
     CGFloat scaleWidth = scrollViewFrame.size.width / self.scrollView.contentSize.width;
     CGFloat scaleHeight = scrollViewFrame.size.height/ self.scrollView.contentSize.height;
@@ -271,6 +268,13 @@ int m;
     self.scrollView.maximumZoomScale =2.0;
     self.scrollView.zoomScale = minScale;
     [self centerScrollViewContents];
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    
     
 }
 
@@ -345,4 +349,94 @@ NSInteger prev;
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
+-(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue
+{
+   
+    if ([segue.identifier isEqualToString:@"modal"])
+    {
+        Qrc *Qrcode = (Qrc *)segue.sourceViewController;
+        NSLog(@"Values are %@", Qrcode.Qrx);
+        NSLog(@"Values are %@", Qrcode.Qry);
+        [self.locationManager startUpdatingHeading];
+         [_imageVi removeFromSuperview];
+        cx=[Qrcode.Qrx intValue];
+        cy=[Qrcode.Qry intValue];
+        UIImage *imag = [UIImage imageNamed:@"ar"];
+        self.imageVi = [[UIImageView alloc] initWithImage:imag];
+        self.imageVi.frame = (CGRect){.origin=CGPointMake(cx,cy),.size=CGSizeMake(100,200)};
+        
+        [self.imageView addSubview:self.imageVi];
+        
+        self.imglbl = [[UILabel  alloc] initWithFrame:CGRectMake(-250,-50,600,100)];
+        
+        [_imglbl   setText:@"You"];
+        [_imglbl setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:70]];
+        [_imglbl setTextColor:[UIColor brownColor ]];
+        _imglbl.textAlignment = NSTextAlignmentCenter;
+        [self.imageVi addSubview:self.imglbl];
+        
+        
+        
+    }
+    if([segue.identifier isEqualToString:@"search"])
+    {
+        EmployeeTable *employeesearch = (EmployeeTable *)segue.sourceViewController;
+        ex=[employeesearch.employexy.x  intValue];
+        ey=[employeesearch.employexy.y intValue];
+        
+        self.greengif=[[FLAnimatedImageView alloc]init];
+        FLAnimatedImage *gifwork = [[FLAnimatedImage alloc] initWithAnimatedGIFData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"spot" ofType:@"gif"]]];
+        // self.greengif = [[FLAnimatedImage alloc] :gifwork];
+        self.greengif.frame = (CGRect){.origin=CGPointMake(ex,ey), .size=CGSizeMake(200,200)};
+        self.greengif.animatedImage = gifwork;
+        
+        [self.imageView addSubview:self.greengif];
+        
+        self.giflbl = [[UILabel  alloc] initWithFrame:CGRectMake(-200,-30,600,100)];
+        
+        [_giflbl   setText:employeesearch.employexy.name];
+        [_giflbl setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:70]];
+        [_giflbl setTextColor:[UIColor brownColor ]];
+        _giflbl.textAlignment = NSTextAlignmentCenter;
+        
+        [self.greengif addSubview:self.giflbl];
+        
+        self.subimbtn = [[UIButton  alloc] initWithFrame:CGRectMake(67,67,70,70)];//(67,67,70,70)
+        [_subimbtn setUserInteractionEnabled:YES ];
+        [_subimbtn addTarget:self
+                      action:@selector(tapped)
+            forControlEvents:UIControlEventTouchUpInside];
+        
+        //[_subimbtn  setTitle:@"J" forState:UIControlStateNormal];
+        [_subimbtn setBackgroundColor:[UIColor clearColor]];
+        //[_subimbtn setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
+        
+        self.imageVie.userInteractionEnabled = YES;
+        self.imageView.userInteractionEnabled = YES;
+        self.greengif.userInteractionEnabled = YES;
+        [self.greengif addSubview:self.subimbtn];
+        
+        [gifimg addObject:_greengif];
+        
+          [self.imageView addSubview:_greengif];
+    }
+//    if(gifimg.count==0)
+//        gifimg = [[NSMutableArray alloc] initWithObjects:nil];
+    
+    
+    
+//    for(m=0;m<gifimg.count;m++)
+//    {
+//        [self.imageView addSubview:gifimg[m]];
+//    }
+    
+
+        //NSLog(@"Search name is %@", employeesearch.employexy.x);
+  
+}
+    
+    
+
+
 @end

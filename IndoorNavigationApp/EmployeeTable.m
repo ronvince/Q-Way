@@ -357,7 +357,7 @@ int check; //// For checking whether the view appears for the first
 -(void) showDetailsForIndexPath:(NSIndexPath*)indexPath
 {
     [self.searchBar resignFirstResponder];
-    mapDraw* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"mapDraw"];
+   // mapDraw* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"mapDraw"];
     Employee*  employe;
     Places *place;
     categoryViewController *cat = [self.storyboard instantiateViewControllerWithIdentifier:@"categoryViewController"];
@@ -368,9 +368,9 @@ int check; //// For checking whether the view appears for the first
     if(isFiltered)
     {
         employe = [_tableArray objectAtIndex:indexPath.row];
-        vc.employe = employe;
-        
-       [self.navigationController pushViewController:vc animated:true];
+        _employexy = employe;
+        [self performSegueWithIdentifier:@"search" sender:self];
+       //[self.navigationController pushViewController:vc animated:true];
     }
     else
     {
@@ -386,9 +386,10 @@ int check; //// For checking whether the view appears for the first
         if(isFiltered)
         {
             place = [_tableArray objectAtIndex:indexPath.row];
-            vc.place = place;
-            
-           [self.navigationController pushViewController:vc animated:true];
+           // vc.place = place;
+            _placexy=place;
+            [self performSegueWithIdentifier:@"search" sender:self];
+          // [self.navigationController pushViewController:vc animated:true];
         }
         else
         {

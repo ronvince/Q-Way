@@ -261,7 +261,7 @@
         if(isFiltered)
        {
         employe = [self.filteredtableArray objectAtIndex:indexPath.row];
-        vc.employe = employe;
+      //  vc.employe = employe;
         
         [self.navigationController pushViewController:vc animated:true];
        }
@@ -269,7 +269,7 @@
        {
         
         employe = [self.categoryTableData objectAtIndex:indexPath.row];
-        vc.employe = employe;
+       // vc.employe = employe;
         
         [self.navigationController pushViewController:vc animated:true];
         
@@ -280,7 +280,7 @@
         if(isFiltered)
         {
             place = [self.filteredtableArray objectAtIndex:indexPath.row];
-            vc.place = place;
+          //  vc.place = place;
             
             [self.navigationController pushViewController:vc animated:true];
         }
@@ -288,7 +288,7 @@
         {
             
             place = [self.categoryTableData objectAtIndex:indexPath.row];
-            vc.place = place;
+            //vc.place = place;
             
             [self.navigationController pushViewController:vc animated:true];
             
