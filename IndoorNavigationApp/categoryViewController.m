@@ -339,7 +339,7 @@ NSString *catSearchtext;
 -(void) showDetailsForIndexPath:(NSIndexPath*)indexPath
 {
     [self.searchBar resignFirstResponder];
-    mapDraw* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"mapDraw"];
+    //mapDraw* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"mapDraw"];
     Employee*  employe;
     Places *place;
     if(emp_plac==0)
@@ -348,16 +348,18 @@ NSString *catSearchtext;
        {
         employe = [self.filteredtableArray objectAtIndex:indexPath.row];
       //  vc.employe = employe;
-        
-        [self.navigationController pushViewController:vc animated:true];
+           _categoryemployexy=employe;
+        [self performSegueWithIdentifier:@"categorysearch" sender:self];
+       // [self.navigationController pushViewController:vc animated:true];
        }
     else
        {
         
         employe = [self.categoryTableData objectAtIndex:indexPath.row];
        // vc.employe = employe;
-        
-        [self.navigationController pushViewController:vc animated:true];
+           _categoryemployexy=employe;
+        [self performSegueWithIdentifier:@"categorysearch" sender:self];
+       // [self.navigationController pushViewController:vc animated:true];
         
        }
     }
@@ -367,21 +369,20 @@ NSString *catSearchtext;
         {
             place = [self.filteredtableArray objectAtIndex:indexPath.row];
           //  vc.place = place;
-            
-            [self.navigationController pushViewController:vc animated:true];
+            _categoryplacexy=place;
+            [self performSegueWithIdentifier:@"categorysearch" sender:self];
+            //[self.navigationController pushViewController:vc animated:true];
         }
         else
         {
             
             place = [self.categoryTableData objectAtIndex:indexPath.row];
             //vc.place = place;
-            
-            [self.navigationController pushViewController:vc animated:true];
+             _categoryplacexy=place;
+            [self performSegueWithIdentifier:@"categorysearch" sender:self];
+          //  [self.navigationController pushViewController:vc animated:true];
             
         }
-    
-    
-    
     
     }
 }

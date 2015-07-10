@@ -125,6 +125,7 @@
                     <connections>
                         <outlet property="searchBar" destination="iwC-Up-m9k" id="bh5-HN-DSN"/>
                         <outlet property="tableView" destination="Frf-P1-Sbj" id="gtX-x3-bOo"/>
+                        <segue destination="JEN-Na-x0V" kind="unwind" identifier="categorysearch" unwindAction="prepareForUnwind:" id="ezk-B2-kFb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3TU-jP-czL" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -12,6 +12,7 @@
 #import "EmployeeTable.h"
 #import <CoreData/CoreData.h>
 #import "Qrc.h"
+#import "categoryViewController.h"
 @import CoreGraphics;
 
 @interface mapDraw ()
@@ -384,11 +385,14 @@ NSInteger prev;
         }
         
     }
-    if([segue.identifier isEqualToString:@"search"])
+    else if([segue.identifier isEqualToString:@"search"])
     {
-        EmployeeTable *employeesearch = (EmployeeTable *)segue.sourceViewController;
-        ex=[employeesearch.employexy.x  intValue];
-        ey=[employeesearch.employexy.y intValue];
+        EmployeeTable *search = (EmployeeTable *)segue.sourceViewController;
+
+    if(search.employexy)
+      {
+        ex=[search.employexy.x  intValue];
+        ey=[search.employexy.y intValue];
         [self.locationManager startUpdatingHeading];
         self.greengif=[[FLAnimatedImageView alloc]init];
         FLAnimatedImage *gifwork = [[FLAnimatedImage alloc] initWithAnimatedGIFData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"spot" ofType:@"gif"]]];
@@ -399,7 +403,7 @@ NSInteger prev;
         
         self.giflbl = [[UILabel  alloc] initWithFrame:CGRectMake(-200,-30,600,100)];
         
-        [_giflbl   setText:employeesearch.employexy.name];
+        [_giflbl   setText:search.employexy.name];
         [_giflbl setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:70]];
         [_giflbl setTextColor:[UIColor brownColor ]];
         _giflbl.textAlignment = NSTextAlignmentCenter;
@@ -419,8 +423,127 @@ NSInteger prev;
         [gifimg addObject:_greengif];
         
           [self.imageView addSubview:_greengif];
+      }
+        
+    else if(search.placexy)
+     {
+        
+        ex=[search.placexy.x  intValue];
+        ey=[search.placexy.y intValue];
+        [self.locationManager startUpdatingHeading];
+        self.greengif=[[FLAnimatedImageView alloc]init];
+        FLAnimatedImage *gifwork = [[FLAnimatedImage alloc] initWithAnimatedGIFData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"spot" ofType:@"gif"]]];
+        self.greengif.frame = (CGRect){.origin=CGPointMake(ex,ey), .size=CGSizeMake(200,200)};
+        self.greengif.animatedImage = gifwork;
+        
+        [self.imageView addSubview:self.greengif];
+        
+        self.giflbl = [[UILabel  alloc] initWithFrame:CGRectMake(-200,-30,600,100)];
+        
+        [_giflbl   setText:search.placexy.placeName];
+        [_giflbl setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:70]];
+        [_giflbl setTextColor:[UIColor brownColor ]];
+        _giflbl.textAlignment = NSTextAlignmentCenter;
+        
+        [self.greengif addSubview:self.giflbl];
+        
+        self.subimbtn = [[UIButton  alloc] initWithFrame:CGRectMake(67,67,70,70)];        [_subimbtn setUserInteractionEnabled:YES ];
+        [_subimbtn addTarget:self
+                      action:@selector(tapped)
+            forControlEvents:UIControlEventTouchUpInside];
+        [_subimbtn setBackgroundColor:[UIColor clearColor]];
+        self.imageVie.userInteractionEnabled = YES;
+        self.imageView.userInteractionEnabled = YES;
+        self.greengif.userInteractionEnabled = YES;
+        [self.greengif addSubview:self.subimbtn];
+        
+        [gifimg addObject:_greengif];
+        
+        [self.imageView addSubview:_greengif];
+        }
+        
     }
-  
+////////////////////
+    else if([segue.identifier isEqualToString:@"categorysearch"])
+    {
+        categoryViewController *categorysearch = (categoryViewController *)segue.sourceViewController;
+        
+        if(categorysearch.emp_plac==0)
+        {
+             printf("category employeekjfdhffhjkdhfjhjd");
+            ex=[categorysearch.categoryemployexy.x  intValue];
+            ey=[categorysearch.categoryemployexy.y intValue];
+            [self.locationManager startUpdatingHeading];
+            self.greengif=[[FLAnimatedImageView alloc]init];
+            FLAnimatedImage *gifwork = [[FLAnimatedImage alloc] initWithAnimatedGIFData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"spot" ofType:@"gif"]]];
+            self.greengif.frame = (CGRect){.origin=CGPointMake(ex,ey), .size=CGSizeMake(200,200)};
+            self.greengif.animatedImage = gifwork;
+            
+            [self.imageView addSubview:self.greengif];
+            
+            self.giflbl = [[UILabel  alloc] initWithFrame:CGRectMake(-200,-30,600,100)];
+            
+            [_giflbl   setText:categorysearch.categoryemployexy.name];
+            [_giflbl setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:70]];
+            [_giflbl setTextColor:[UIColor brownColor ]];
+            _giflbl.textAlignment = NSTextAlignmentCenter;
+            
+            [self.greengif addSubview:self.giflbl];
+            
+            self.subimbtn = [[UIButton  alloc] initWithFrame:CGRectMake(67,67,70,70)];        [_subimbtn setUserInteractionEnabled:YES ];
+            [_subimbtn addTarget:self
+                          action:@selector(tapped)
+                forControlEvents:UIControlEventTouchUpInside];
+            [_subimbtn setBackgroundColor:[UIColor clearColor]];
+            self.imageVie.userInteractionEnabled = YES;
+            self.imageView.userInteractionEnabled = YES;
+            self.greengif.userInteractionEnabled = YES;
+            [self.greengif addSubview:self.subimbtn];
+            
+            [gifimg addObject:_greengif];
+            
+            [self.imageView addSubview:_greengif];
+        }
+        
+        else if((int)categorysearch.emp_plac==1)
+        {
+            printf("category placekjfdhffhjkdhfjhjd");
+            ex=[categorysearch.categoryplacexy.x  intValue];
+            ey=[categorysearch.categoryplacexy.y intValue];
+            [self.locationManager startUpdatingHeading];
+            self.greengif=[[FLAnimatedImageView alloc]init];
+            FLAnimatedImage *gifwork = [[FLAnimatedImage alloc] initWithAnimatedGIFData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"spot" ofType:@"gif"]]];
+            self.greengif.frame = (CGRect){.origin=CGPointMake(ex,ey), .size=CGSizeMake(200,200)};
+            self.greengif.animatedImage = gifwork;
+            
+            [self.imageView addSubview:self.greengif];
+            
+            self.giflbl = [[UILabel  alloc] initWithFrame:CGRectMake(-200,-30,600,100)];
+            
+            [_giflbl   setText:categorysearch.categoryplacexy.placeName];
+            [_giflbl setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:70]];
+            [_giflbl setTextColor:[UIColor brownColor ]];
+            _giflbl.textAlignment = NSTextAlignmentCenter;
+            
+            [self.greengif addSubview:self.giflbl];
+            
+            self.subimbtn = [[UIButton  alloc] initWithFrame:CGRectMake(67,67,70,70)];        [_subimbtn setUserInteractionEnabled:YES ];
+            [_subimbtn addTarget:self
+                          action:@selector(tapped)
+                forControlEvents:UIControlEventTouchUpInside];
+            [_subimbtn setBackgroundColor:[UIColor clearColor]];
+            self.imageVie.userInteractionEnabled = YES;
+            self.imageView.userInteractionEnabled = YES;
+            self.greengif.userInteractionEnabled = YES;
+            [self.greengif addSubview:self.subimbtn];
+            
+            [gifimg addObject:_greengif];
+            
+            [self.imageView addSubview:_greengif];
+        }
+        
+    }
+
 }
     
     
