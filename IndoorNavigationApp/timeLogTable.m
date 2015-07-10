@@ -74,7 +74,12 @@ int sl = 1;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.navigationController.navigationBar.barTintColor=[UIColor colorWithRed:45.0/255 green:96.0/255 blue:202.0/255 alpha:1];
+    self.navigationItem.title=@"Scan History";
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:166.0/255 green:224.0/255 blue:253.0/255 alpha:1];
+    [self.navigationController.navigationBar
+     setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor colorWithRed:166.0/255 green:224.0/255 blue:253.0/255 alpha:1]}];
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -341,6 +341,8 @@ NSString *t1;
     Places *place;
     if(u==0)         //Employee results
     {
+        
+        
         if(isFiltered)
         {
           

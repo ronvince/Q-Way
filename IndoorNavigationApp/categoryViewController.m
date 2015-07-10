@@ -247,8 +247,12 @@ NSString *catSearchtext;
     Places *place;
     if(emp_plac==0)
     {
-      if(isFiltered)
-       {
+        
+        
+//      if(isFiltered)
+//       {
+        
+           
         emp = [self.filteredtableArray objectAtIndex:indexPath.row];
         cell.nameField.text=emp.name;
         NSLog(@"%@", emp.name);
@@ -267,32 +271,38 @@ NSString *catSearchtext;
         cell.imageField.layer.masksToBounds = YES;
         cell.imageField.layer.borderWidth = 0;
         cell.imageField.image=[UIImage imageNamed:imageName];
-      }
-    else
-      {
-        emp = [self.categoryTableData objectAtIndex:indexPath.row];
-        cell.nameField.text=emp.name;
-        NSLog(@"%@", emp.name);
-        NSLog(@"%@", categoryName);
-        cell.desigField.text = emp.desig;
-        cell.emailField.text=emp.email;
-        NSString *inputString = emp.empid;
-        int value = [inputString intValue];
-        NSLog(@"%d",value);
-        NSString *imageName=[NSString stringWithFormat:@"%d.jpg",value];
-        
-        
-        cell.imageField.layer.cornerRadius = cell.imageField.frame.size.width/4;
-        cell.imageField.layer.cornerRadius =  cell.imageField.frame.size.height/4;
-        cell.imageField.layer.masksToBounds = YES;
-        cell.imageField.layer.borderWidth = 0;
-        cell.imageField.image=[UIImage imageNamed:imageName];
-      }
+//      }
+    
+    
+//    else
+//      {
+//        emp = [self.categoryTableData objectAtIndex:indexPath.row];
+//        cell.nameField.text=emp.name;
+//        NSLog(@"%@", emp.name);
+//        NSLog(@"%@", categoryName);
+//        cell.desigField.text = emp.desig;
+//        cell.emailField.text=emp.email;
+//        NSString *inputString = emp.empid;
+//        int value = [inputString intValue];
+//        NSLog(@"%d",value);
+//        NSString *imageName=[NSString stringWithFormat:@"%d.jpg",value];
+//        
+//        
+//        cell.imageField.layer.cornerRadius = cell.imageField.frame.size.width/4;
+//        cell.imageField.layer.cornerRadius =  cell.imageField.frame.size.height/4;
+//        cell.imageField.layer.masksToBounds = YES;
+//        cell.imageField.layer.borderWidth = 0;
+//        cell.imageField.image=[UIImage imageNamed:imageName];
+//      }
     }
     else if((int)emp_plac==1)
     {
-        if(isFiltered)
-        {
+        
+//        
+//        if(isFiltered)
+//        {
+        
+            
             place = [self.filteredtableArray objectAtIndex:indexPath.row];
             cell.nameField.text=place.placeName;
            
@@ -307,25 +317,25 @@ NSString *catSearchtext;
             cell.imageField.image=[UIImage imageNamed:imageName];
             cell.desigField.text=place.placeType;
             cell.emailField.text=@" ";
-        }
-        else
-        {
-            place = [self.categoryTableData objectAtIndex:indexPath.row];
-            cell.nameField.text=place.placeName;
-            
-            cell.desigField.text = place.placeType;
-            
-             NSLog(@"dgdhgihuguigh");
-            NSString *imageName=[NSString stringWithFormat:@"%@.png",place.placeType];
-            cell.imageField.layer.cornerRadius = cell.imageField.frame.size.width/2;
-            cell.imageField.layer.cornerRadius =  cell.imageField.frame.size.height/2;
-            cell.imageField.layer.masksToBounds = YES;
-            cell.imageField.layer.borderWidth = 0;
-            cell.imageField.image=[UIImage imageNamed:imageName];
-            cell.desigField.text=place.placeType;
-            cell.emailField.text=@" ";
-
-        }  
+//        }
+//        else
+//        {
+//            place = [self.categoryTableData objectAtIndex:indexPath.row];
+//            cell.nameField.text=place.placeName;
+//            
+//            cell.desigField.text = place.placeType;
+//            
+//             NSLog(@"dgdhgihuguigh");
+//            NSString *imageName=[NSString stringWithFormat:@"%@.png",place.placeType];
+//            cell.imageField.layer.cornerRadius = cell.imageField.frame.size.width/2;
+//            cell.imageField.layer.cornerRadius =  cell.imageField.frame.size.height/2;
+//            cell.imageField.layer.masksToBounds = YES;
+//            cell.imageField.layer.borderWidth = 0;
+//            cell.imageField.image=[UIImage imageNamed:imageName];
+//            cell.desigField.text=place.placeType;
+//            cell.emailField.text=@" ";
+//
+//        }  
     
     }
     return cell;

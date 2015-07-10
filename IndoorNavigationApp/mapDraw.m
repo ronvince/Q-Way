@@ -356,6 +356,7 @@ NSInteger prev;
 
 -(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue
 {
+    printf("Check");
    
     if ([segue.identifier isEqualToString:@"modal"])
     {
@@ -428,7 +429,7 @@ int rotationlock=0;
 int lock=0;
 - (IBAction)clearfunction:(id)sender
 {
-    
+    printf("Check");
     for(m=0;m<gifimg.count;m++)
     {
         _greengif=gifimg[m];
@@ -444,6 +445,7 @@ int lock=0;
 
 - (IBAction)lockfunction:(id)sender
 {
+    printf("Check");
     if(lock%2==0)
     {
         rotationlock=1;
