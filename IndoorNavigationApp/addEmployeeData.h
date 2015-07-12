@@ -18,10 +18,17 @@
 @property (strong, nonatomic) IBOutlet UITextField *phnofield;
 @property (strong, nonatomic) IBOutlet UITextField *xfield;
 @property (strong, nonatomic) IBOutlet UITextField *yfield;
+
+@property (weak, nonatomic) IBOutlet UITextField *xPlace;
+
+@property (weak, nonatomic) IBOutlet UITextField *placefield;
+@property (weak, nonatomic) IBOutlet UITextField *placeTypeField;
+
+@property (weak, nonatomic) IBOutlet UITextField *yPlace;
+
 -(IBAction)save:(id)sender;
 -(IBAction)cancel:(id)sender;
-
-
+-(IBAction)saveplace:(id)sender;
 
 
 @end

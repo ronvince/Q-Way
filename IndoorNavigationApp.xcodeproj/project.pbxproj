@@ -17,6 +17,10 @@
 		CE45A64F1B3D5260007B3624 /* IndoorNavigationAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE45A64E1B3D5260007B3624 /* IndoorNavigationAppTests.m */; };
 		CE45A65A1B3D582E007B3624 /* Employee.m in Sources */ = {isa = PBXBuildFile; fileRef = CE45A6591B3D582E007B3624 /* Employee.m */; };
 		CE45A6601B3D5FBD007B3624 /* addEmployeeData.m in Sources */ = {isa = PBXBuildFile; fileRef = CE45A65F1B3D5FBD007B3624 /* addEmployeeData.m */; };
+		CE48EC0F1B52464700F744C1 /* Places.m in Sources */ = {isa = PBXBuildFile; fileRef = CE48EC0E1B52464700F744C1 /* Places.m */; };
+		CE48EC121B525FFA00F744C1 /* categoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE48EC111B525FFA00F744C1 /* categoryViewController.m */; };
+		CE48EC151B52602900F744C1 /* categoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE48EC141B52602900F744C1 /* categoryTableViewCell.m */; };
+		CE48EC181B52619700F744C1 /* homeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE48EC171B52619700F744C1 /* homeViewController.m */; };
 		CE4C5FC41B414C2E00784563 /* QRCode.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4C5FC31B414C2E00784563 /* QRCode.m */; };
 		CE4C5FC71B414C2F00784563 /* TimeLog.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4C5FC61B414C2F00784563 /* TimeLog.m */; };
 		CE4C5FCA1B41522E00784563 /* newCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4C5FC91B41522E00784563 /* newCell.m */; };
@@ -62,10 +66,18 @@
 		CE45A6481B3D5260007B3624 /* IndoorNavigationAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IndoorNavigationAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE45A64D1B3D5260007B3624 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE45A64E1B3D5260007B3624 /* IndoorNavigationAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IndoorNavigationAppTests.m; sourceTree = "<group>"; };
-		CE45A6581B3D582E007B3624 /* Employee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Employee.h; sourceTree = "<group>"; };
-		CE45A6591B3D582E007B3624 /* Employee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Employee.m; sourceTree = "<group>"; };
+		CE45A6581B3D582E007B3624 /* Employee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Employee.h; path = ../Employee.h; sourceTree = "<group>"; };
+		CE45A6591B3D582E007B3624 /* Employee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Employee.m; path = ../Employee.m; sourceTree = "<group>"; };
 		CE45A65E1B3D5FBD007B3624 /* addEmployeeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addEmployeeData.h; sourceTree = "<group>"; };
 		CE45A65F1B3D5FBD007B3624 /* addEmployeeData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addEmployeeData.m; sourceTree = "<group>"; };
+		CE48EC0D1B52464700F744C1 /* Places.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Places.h; path = ../Places.h; sourceTree = "<group>"; };
+		CE48EC0E1B52464700F744C1 /* Places.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Places.m; path = ../Places.m; sourceTree = "<group>"; };
+		CE48EC101B525FFA00F744C1 /* categoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = categoryViewController.h; sourceTree = "<group>"; };
+		CE48EC111B525FFA00F744C1 /* categoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = categoryViewController.m; sourceTree = "<group>"; };
+		CE48EC131B52602900F744C1 /* categoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = categoryTableViewCell.h; sourceTree = "<group>"; };
+		CE48EC141B52602900F744C1 /* categoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = categoryTableViewCell.m; sourceTree = "<group>"; };
+		CE48EC161B52619700F744C1 /* homeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = homeViewController.h; sourceTree = "<group>"; };
+		CE48EC171B52619700F744C1 /* homeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = homeViewController.m; sourceTree = "<group>"; };
 		CE4C5FC21B414C2E00784563 /* QRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCode.h; sourceTree = "<group>"; };
 		CE4C5FC31B414C2E00784563 /* QRCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCode.m; sourceTree = "<group>"; };
 		CE4C5FC51B414C2F00784563 /* TimeLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLog.h; sourceTree = "<group>"; };
@@ -137,8 +149,6 @@
 				CE968B011B41038D0006CB2C /* CoreGraphics.framework */,
 				CE968AFF1B41037D0006CB2C /* UIKit.framework */,
 				CE968AFD1B41036D0006CB2C /* AVFoundation.framework */,
-				CE45A6581B3D582E007B3624 /* Employee.h */,
-				CE45A6591B3D582E007B3624 /* Employee.m */,
 				CE45A62E1B3D525F007B3624 /* IndoorNavigationApp */,
 				CE45A64B1B3D5260007B3624 /* IndoorNavigationAppTests */,
 				CE45A62D1B3D525F007B3624 /* Products */,
@@ -157,6 +167,10 @@
 		CE45A62E1B3D525F007B3624 /* IndoorNavigationApp */ = {
 			isa = PBXGroup;
 			children = (
+				CE48EC0D1B52464700F744C1 /* Places.h */,
+				CE48EC0E1B52464700F744C1 /* Places.m */,
+				CE45A6581B3D582E007B3624 /* Employee.h */,
+				CE45A6591B3D582E007B3624 /* Employee.m */,
 				CE45A6331B3D525F007B3624 /* AppDelegate.h */,
 				CE45A6341B3D525F007B3624 /* AppDelegate.m */,
 				CE45A6391B3D5260007B3624 /* ViewController.h */,
@@ -164,6 +178,12 @@
 				CE968AFA1B4101BE0006CB2C /* Qrc.h */,
 				CE968AFB1B4101BE0006CB2C /* Qrc.m */,
 				CE45A63C1B3D5260007B3624 /* Main.storyboard */,
+				CE48EC161B52619700F744C1 /* homeViewController.h */,
+				CE48EC171B52619700F744C1 /* homeViewController.m */,
+				CE48EC101B525FFA00F744C1 /* categoryViewController.h */,
+				CE48EC111B525FFA00F744C1 /* categoryViewController.m */,
+				CE48EC131B52602900F744C1 /* categoryTableViewCell.h */,
+				CE48EC141B52602900F744C1 /* categoryTableViewCell.m */,
 				CE6F32751B4172EC00CFDF37 /* mapDraw.h */,
 				CE6F32761B4172EC00CFDF37 /* mapDraw.m */,
 				CE4C5FCE1B41587300784563 /* addQrData.h */,
@@ -314,12 +334,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE48EC121B525FFA00F744C1 /* categoryViewController.m in Sources */,
 				CE6F32771B4172EC00CFDF37 /* mapDraw.m in Sources */,
 				CE4C5FCA1B41522E00784563 /* newCell.m in Sources */,
+				CE48EC181B52619700F744C1 /* homeViewController.m in Sources */,
 				CE968AFC1B4101BE0006CB2C /* Qrc.m in Sources */,
 				CE4C5FCD1B41534800784563 /* timeLogTable.m in Sources */,
 				CE9D769A1B3D7F300079378F /* enhancedCell.m in Sources */,
+				CE48EC151B52602900F744C1 /* categoryTableViewCell.m in Sources */,
 				CE45A65A1B3D582E007B3624 /* Employee.m in Sources */,
+				CE48EC0F1B52464700F744C1 /* Places.m in Sources */,
 				CE45A6601B3D5FBD007B3624 /* addEmployeeData.m in Sources */,
 				CE50FCD31B412E2E00042AAD /* deleteEmployee.m in Sources */,
 				CED8A1901B4BEAE8003B975C /* EmployeeTable.m in Sources */,

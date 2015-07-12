@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EmployeeTable : UITableViewController
+@interface EmployeeTable : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-
-
-@property (nonatomic, assign) bool isFiltered;@end
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, assign) bool isFiltered;
+@end

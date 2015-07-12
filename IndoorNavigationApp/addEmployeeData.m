@@ -58,14 +58,36 @@
     if (![context save:&error]) {
         NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
     }
-    
-
-    
-    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
+- (IBAction)saveplace:(id)sender {
+    NSManagedObjectContext *context = [self managedObjectContext];
+    
+    // Create a new managed object
+    NSManagedObject *newDevice = [NSEntityDescription insertNewObjectForEntityForName:@"Places" inManagedObjectContext:context];
+    
+    [newDevice setValue:self.placefield.text forKey:@"placeName"];
+    
+    
+    float xvalue = [self.xPlace.text intValue];
+    [newDevice setValue:[NSNumber numberWithFloat:xvalue] forKey:@"x"];
+    
+    float yvalue = [self.yPlace.text intValue];
+    [newDevice setValue:[NSNumber numberWithFloat:yvalue] forKey:@"y"];
+  
+    [newDevice setValue:self.placeTypeField.text forKey:@"placeType"];
+    
+    NSError *error = nil;
+    
+    // Save the object to persistent store
+    if (![context save:&error]) {
+        NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
 
 
 - (IBAction)cancel:(id)sender {

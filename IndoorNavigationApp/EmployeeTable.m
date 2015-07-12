@@ -10,16 +10,23 @@
 #import "enhancedCell.h"
 #import "Employee.h"
 #import "mapDraw.h"
+#import "Places.h"
+#import "homeViewController.h"
+#import "categoryViewController.h"
+#import <CoreData/CoreData.h>
 
 @interface EmployeeTable ()
 @property (strong) NSMutableArray *allTableData;
 @property (strong) NSMutableArray *tableArray;
-//@property (strong) NSMutableArray *defaultData;
+@property (strong) NSMutableArray *defaultData;
 @end
 
 @implementation EmployeeTable
 @synthesize isFiltered;
 //int x,y;
+int u=0;
+
+//NSManagedObjectContext *managedObjectContext;
 - (NSManagedObjectContext *)managedObjectContext
 {
     NSManagedObjectContext *context = nil;
@@ -29,12 +36,56 @@
     }
     return context;
 }
-
+-(void)selection{
+    if (u==0) {
+        printf("u==0 employee");
+        NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Employee"];
+        self.allTableData = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+        self.tableArray = self.allTableData;
+        [self.tableView reloadData];
+        NSLog(@"%lu", (unsigned long)_allTableData.count);
+    }
+    else if (u==1)
+    {
+        printf("u==1 places");
+        NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Places"];
+        self.allTableData = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+        self.tableArray = self.allTableData;
+        [self.tableView reloadData];
+        NSLog(@"%lu", (unsigned long)_allTableData.count);
+    }
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _searchBar.delegate = (id)self;
+    self.searchBar.delegate = (id)self;
   }
-- (id)initWithStyle:(UITableViewStyle)style
+-(void)defaultDatashow{
+    if (u==0) {
+        self.defaultData  = [[NSMutableArray alloc] init];
+        [self.defaultData  addObject:@"PM"];
+        [self.defaultData  addObject:@"Developer"];
+        [self.defaultData  addObject:@"Architect"];
+        [self.defaultData  addObject:@"BA"];
+        [self.defaultData  addObject:@"Trainee"];
+        [self.defaultData  addObject:@"Intern"];
+            }
+    else if (u==1){
+        self.defaultData   = [[NSMutableArray alloc] init];
+        [self.defaultData  addObject:@"Meeting"];
+        [self.defaultData  addObject:@"Entry/Exit"];
+        [self.defaultData  addObject:@"Beverage"];
+        [self.defaultData  addObject:@"Toilet"];
+        [self.defaultData  addObject:@"Server"];
+        [self.defaultData  addObject:@"Eatery"];
+    }
+    
+}
+
+
+
+/*- (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
@@ -42,6 +93,7 @@
     }
     return self;
 }
+ */
 
 - (void)viewDidUnload
 {
@@ -74,13 +126,9 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self selection];
+    [self defaultDatashow];
     
-    // Fetch the devices from persistent data store
-    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Employee"];
-    self.allTableData = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
-    self.tableArray = self.allTableData;
-    [self.tableView reloadData];
     
 }
 
@@ -95,11 +143,14 @@
     if(text.length == 0)
     {
         isFiltered = FALSE;
+    
+       
     }
-    else
+    else if((text.length != 0) && (u==0) )
     {
         isFiltered = true;
         _tableArray = [[NSMutableArray alloc] init];
+        
         
         for (Employee*  employe in _allTableData)
         {
@@ -112,9 +163,22 @@
         }
     }
     
+   else if((text.length != 0) && (u==1))
+    {
+        isFiltered = true;
+        _tableArray = [[NSMutableArray alloc] init];
+        
+        for (Places*  place in _allTableData)
+        {
+            NSRange nameRange = [place.placeName rangeOfString:text options:NSCaseInsensitiveSearch];
+            if(nameRange.location != NSNotFound )
+            {
+                [_tableArray addObject: place];
+            }
+        }
+    }
     [self.tableView reloadData];
 }
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -130,9 +194,7 @@
         
         return self.tableArray.count;
     else
-        
-        return self.allTableData.count;
-        //return 6;
+        return 6;
     
 }
 
@@ -140,46 +202,178 @@
 {
    
     
+    UIImageView *imagefield =[[UIImageView alloc] init];
+    //setting default image
+    // imagefield.image = [UIImage imageNamed:@"default.jpg"];
+    
     static NSString *CellIdentifier = @"Cell";
     enhancedCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UIView *bgColorView = [[UIView alloc] init];
+    [bgColorView setBackgroundColor:[UIColor colorWithRed:0.698 green:0.745 blue:0.745 alpha:1]];
+    [cell setSelectedBackgroundView:bgColorView];
+
     cell.textLabel.textColor=[UIColor blackColor];
     cell.textLabel.font=[UIFont fontWithName:@"Arial Rounded MT" size:16.0];
-    /*if (cell == nil)
-     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-     */
-    
     Employee *emp;
-    if(isFiltered)
+    Places *place;
+    if(u==0)         //Employee results
+    {
+        if(isFiltered  )
+        {
+            
+            emp = [self.tableArray objectAtIndex:indexPath.row];
+            cell.namefield.text=emp.name;
+            NSString *inputString = emp.empid;
+            int value = [inputString intValue];
+            NSString *imageName=[NSString stringWithFormat:@"%d.jpg",value];
+            
+            cell.imagefield.layer.cornerRadius = imagefield.frame.size.width/2;
+            cell.imagefield.layer.cornerRadius =  cell.imagefield.frame.size.height/2;
+            cell.imagefield.layer.masksToBounds = YES;
+            cell.imagefield.layer.borderWidth = 0;
+            cell.imagefield.image=[UIImage imageNamed:imageName];
+            cell.desigfield.text=emp.desig;
+            cell.emailfield.text=emp.email;
+            
+        }
+        else
+        {
+            NSString *test = [_defaultData objectAtIndex:indexPath.row];
+            NSLog(@"%@",test);
+            cell.namefield.text=test;
+            cell.imagefield.layer.cornerRadius = cell.imagefield.frame.size.width/2;
+            cell.imagefield.layer.cornerRadius =  cell.imagefield.frame.size.height/2;
+            cell.imagefield.layer.masksToBounds = YES;
+            cell.imagefield.layer.borderWidth = 0;
+            cell.emailfield.text=@" ";
+            cell.desigfield.text=@" ";
+            
+            NSString *imageName=[NSString stringWithFormat:@"%@.png",test];
+            cell.imagefield.image=[UIImage imageNamed:imageName];
+        }
         
-        emp = [self.tableArray objectAtIndex:indexPath.row];
+    }
+    else if(u==1)            //Places results
+    {
+        if(isFiltered)
+        {
+            
+            place = [self.tableArray objectAtIndex:indexPath.row];
+            cell.namefield.text=place.placeName;
+            
+             NSString *imageName=[NSString stringWithFormat:@"%@.png",place.placeType];
+             cell.imagefield.layer.cornerRadius = imagefield.frame.size.width/2;
+             cell.imagefield.layer.cornerRadius =  cell.imagefield.frame.size.height/2;
+             cell.imagefield.layer.masksToBounds = YES;
+             cell.imagefield.layer.borderWidth = 0;
+             cell.imagefield.image=[UIImage imageNamed:imageName];
+             cell.desigfield.text=place.placeType;
+             cell.emailfield.text=@" ";
+                       
+        }
+        else
+        {
+            NSString *test = [_defaultData objectAtIndex:indexPath.row];
+            NSLog(@"%@",test);
+            cell.namefield.text=test;
+            cell.imagefield.layer.cornerRadius = cell.imagefield.frame.size.width/2;
+            cell.imagefield.layer.cornerRadius =  cell.imagefield.frame.size.height/2;
+            cell.imagefield.layer.masksToBounds = YES;
+            cell.imagefield.layer.borderWidth = 0;
+            cell.emailfield.text=@" ";
+             cell.desigfield.text=@" ";
+            if([test isEqualToString:@"Entry/Exit"])
+            {
+             NSString *imageName=[NSString stringWithFormat:@"Entry.png"];
+                cell.imagefield.image=[UIImage imageNamed:imageName] ;
+            }
+            else
+            {
+            NSString *imageName=[NSString stringWithFormat:@"%@.png",test];
+                cell.imagefield.image=[UIImage imageNamed:imageName]  ;
+            }
+           
+        }
+    }
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self showDetailsForIndexPath:indexPath];
+}
+
+-(void) showDetailsForIndexPath:(NSIndexPath*)indexPath
+{
+    [self.searchBar resignFirstResponder];
+    homeViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"HomeViewController"];
+    Employee*  employe;
+    Places *place;
+    categoryViewController *cat = [self.storyboard instantiateViewControllerWithIdentifier:@"categoryViewController"];
+    
+    
+    if(u==0)       //EMPLOYEE
+    {
+    if(isFiltered)
+    {
+        employe = [_tableArray objectAtIndex:indexPath.row];
+        vc.employe = employe;
+        
+        [self.navigationController pushViewController:vc animated:true];
+    }
     else
-        emp = [self.allTableData objectAtIndex:indexPath.row];
-    
-    cell.namefield.text=emp.name;
-    cell.desigfield.text=emp.desig;
-    cell.emailfield.text=emp.email;
-    
-    NSString *inputString = emp.empid;
-    int value = [inputString intValue];
-    NSLog(@"%d",value);
-    
-    NSString *imageName=[NSString stringWithFormat:@"%d.jpg",value];
-    
-    UIImageView *imagefield =[[UIImageView alloc] initWithFrame:CGRectMake(50,50,20,20)];
-    
-    // [self.view addSubview:dot];
-    cell.imagefield.layer.cornerRadius = imagefield.frame.size.width/2;
-    cell.imagefield.layer.cornerRadius =  cell.imagefield.frame.size.height/2;
-    cell.imagefield.layer.masksToBounds = YES;
-    cell.imagefield.layer.borderWidth = 0;
-    
-    cell.imagefield.image=[UIImage imageNamed:imageName];
-    NSLog(@"%@", imageName);
-    NSLog(@"%@", emp.name);
-    return cell;   
-    
+    {
+        NSString *str= [_defaultData objectAtIndex:indexPath.row];
+        cat.categoryName = str;
+       cat.emp_plac=u;
+        //  NSLog(@"%@",cat.categoryName);
+        [self.navigationController pushViewController:cat animated:true];
+    }
+    }
+    else if(u==1)     //PLACES
+    {
+        if(isFiltered)
+        {
+            place = [_tableArray objectAtIndex:indexPath.row];
+            vc.place = place;
+            
+            [self.navigationController pushViewController:vc animated:true];
+        }
+        else
+        {
+            NSString *str= [_defaultData objectAtIndex:indexPath.row];
+            cat.categoryName = str;
+            cat.emp_plac=u;
+            //  NSLog(@"%@",cat.categoryName);
+            [self.navigationController pushViewController:cat animated:true];
+        }
+
+    }
+}
+
+
+- (IBAction)employeefunc:(id)sender {
+    u=0;
+    self.searchBar.text=nil;
+    self.tableArray=self.defaultData;
+    [self defaultDatashow];
+    [self selection];
+
     
 }
+- (IBAction)placefunc:(id)sender {
+    u=1;
+    self.searchBar.text=nil;
+    self.tableArray=self.defaultData;
+    [self defaultDatashow];
+    [self selection];
+}
+
+
+
+
+
+
 
 //-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 //{
