@@ -109,38 +109,8 @@ int m;
 - (void)viewDidLoad {
     [super viewDidLoad];
     num=0;
-    NSLog(@"ijthfjhtnfkdjtidjsfkjdlkjfkljklfd");
-//    cx = _ix ;
-//    cy = _iy ;
-//    ca = _a;
-//    nu = _nullQrDB;
-
+   
     NSLog(@"%i",a);
-    
-   // NSLog(@"%li",cy);
-//    if(_employe)
-//    {
-//        NSString *name = _employe.name;
-//        //xField.text = employe.desig;
-//       ea=1;
-//        ex =[_employe.x intValue];
-//        ey =[_employe.y intValue];
-//        
-//    }
-    //else if(_place)
-    //{
-        //nameLabel.text =place.placeName;
-//        [xField setText:[NSString stringWithFormat:@"%@", place.x]];
-//        [yField setText:[NSString stringWithFormat:@"%@", place.y]];
-//        ca=1;
-//        cx=_place.x;
-//        cy =_place.y;
-//        NSLog(@"%i",cx);
-//        NSLog(@"%i",cy);
-   // }
-
-
-    
     
     
     self.currentHeading =[[CLHeading alloc] init];
@@ -410,7 +380,8 @@ NSInteger prev;
         
         [self.greengif addSubview:self.giflbl];
         
-        self.subimbtn = [[UIButton  alloc] initWithFrame:CGRectMake(67,67,70,70)];        [_subimbtn setUserInteractionEnabled:YES ];
+        self.subimbtn = [[UIButton  alloc] initWithFrame:CGRectMake(67,67,70,70)];
+          [_subimbtn setUserInteractionEnabled:YES ];
         [_subimbtn addTarget:self
                       action:@selector(tapped)
             forControlEvents:UIControlEventTouchUpInside];
@@ -447,7 +418,8 @@ NSInteger prev;
         
         [self.greengif addSubview:self.giflbl];
         
-        self.subimbtn = [[UIButton  alloc] initWithFrame:CGRectMake(67,67,70,70)];        [_subimbtn setUserInteractionEnabled:YES ];
+        self.subimbtn = [[UIButton  alloc] initWithFrame:CGRectMake(67,67,70,70)];
+         [_subimbtn setUserInteractionEnabled:YES ];
         [_subimbtn addTarget:self
                       action:@selector(tapped)
             forControlEvents:UIControlEventTouchUpInside];
@@ -465,12 +437,11 @@ NSInteger prev;
     }
     else if([segue.identifier isEqualToString:@"time2map"])
     {
-        NSLog(@"time tomapnfgjfjfnjnfjn");
+        
         [self.locationManager startUpdatingHeading];
     }
     
-    ////////////////////
-    else if([segue.identifier isEqualToString:@"categorysearch"])
+       else if([segue.identifier isEqualToString:@"categorysearch"])
     {
         categoryViewController *categorysearch = (categoryViewController *)segue.sourceViewController;
         
@@ -586,6 +557,7 @@ int lock=0;
             num=0;
             _imageView.transform=CGAffineTransformMakeRotation(DEGREES_TO_RADIANS(0));
             _imageVi.transform=CGAffineTransformMakeRotation(DEGREES_TO_RADIANS(0));
+            _imageVi.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
             [self.locationManager startUpdatingHeading];
         }
         
