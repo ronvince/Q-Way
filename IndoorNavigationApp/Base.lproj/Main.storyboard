@@ -198,7 +198,6 @@
                                 </state>
                                 <connections>
                                     <action selector="cancel:" destination="CiT-cj-5GR" eventType="touchUpInside" id="oCa-wm-fDI"/>
-                                    <segue destination="iTs-87-otQ" kind="modal" id="WT1-Bk-8dP"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Emp ID" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eYm-6b-Sbr">
@@ -390,7 +389,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Tf-lN-9BO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2257" y="47"/>
+            <point key="canvasLocation" x="2229" y="411"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="wEv-j5-gKM">
@@ -410,7 +409,29 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xuv-yZ-X4g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1760" y="431"/>
+            <point key="canvasLocation" x="1430" y="811"/>
+        </scene>
+        <!--Qrc-->
+        <scene sceneID="QrP-Wv-Hgy">
+            <objects>
+                <viewController id="on0-OL-zXa" customClass="Qrc" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hUW-cF-7w3"/>
+                        <viewControllerLayoutGuide type="bottom" id="HSb-af-TnJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qRi-jr-BHQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <segue destination="JEN-Na-x0V" kind="unwind" identifier="modal1" unwindAction="prepareForUnwind:" id="3yy-uj-KvY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PcW-yb-SvM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1644.5" y="-675.5"/>
         </scene>
         <!--Item-->
         <scene sceneID="Ko0-RS-cAY">
@@ -424,22 +445,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iAo-HL-8fB">
-                                <rect key="frame" x="58" y="49" width="262" height="342"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nk7-we-1cX">
-                                <rect key="frame" x="2" y="484" width="375" height="44"/>
-                                <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="OaL-bT-FZb"/>
-                                    <barButtonItem title="start" id="Oye-HR-ZeE">
-                                        <connections>
-                                            <action selector="StartFunction:" destination="sdG-cd-4jb" id="LL4-70-lbB"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="FVP-4k-9bR"/>
-                                </items>
-                            </toolbar>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UYY-ZM-QgR">
                                 <rect key="frame" x="139" y="574" width="100" height="26"/>
                                 <state key="normal" title="ok">
@@ -449,23 +454,39 @@
                                     <action selector="okfun:" destination="sdG-cd-4jb" eventType="touchUpInside" id="3xs-Au-vWb"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iAo-HL-8fB">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nk7-we-1cX">
+                                        <rect key="frame" x="0.0" y="503" width="375" height="44"/>
+                                        <items>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="OaL-bT-FZb"/>
+                                            <barButtonItem title="start" id="Oye-HR-ZeE">
+                                                <connections>
+                                                    <action selector="StartFunction:" destination="sdG-cd-4jb" id="LL4-70-lbB"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="FVP-4k-9bR"/>
+                                        </items>
+                                    </toolbar>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="swL-3N-n73"/>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="2Od-Ah-bM3"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="start" destination="Oye-HR-ZeE" id="Dxf-BL-hg3"/>
-                        <outlet property="vi" destination="iAo-HL-8fB" id="yw3-9B-pyM"/>
-                        <segue destination="JEN-Na-x0V" kind="unwind" identifier="modal" unwindAction="prepareForUnwind:" id="g3S-W7-bFn"/>
+                        <segue destination="JEN-Na-x0V" kind="unwind" identifier="modal1" unwindAction="prepareForUnwind:" id="vbb-ZM-vYL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UtM-Gf-EME" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1325.5" y="12.5"/>
+            <point key="canvasLocation" x="1196.5" y="-934.5"/>
         </scene>
         <!--Map Draw-->
         <scene sceneID="nIj-hU-W8V">
@@ -479,18 +500,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7bU-f5-fPD">
-                                <rect key="frame" x="14" y="599" width="70" height="55"/>
-                                <color key="backgroundColor" red="0.17647058823529413" green="0.37254901960784315" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" image="ic-qr">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="stillfunc:" destination="iTs-87-otQ" eventType="touchUpInside" id="OoC-e3-hUd"/>
-                                    <segue destination="sdG-cd-4jb" kind="modal" id="Hmg-MC-KWo"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="00D-kD-auB">
                                 <rect key="frame" x="84" y="599" width="70" height="55"/>
                                 <color key="backgroundColor" red="0.1764705882" green="0.37254901959999998" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -537,8 +546,20 @@
                                     <action selector="lockfunction:" destination="iTs-87-otQ" eventType="touchUpInside" id="IUd-dW-Fgv"/>
                                 </connections>
                             </button>
+                            <button clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7bU-f5-fPD">
+                                <rect key="frame" x="16" y="599" width="70" height="55"/>
+                                <color key="backgroundColor" red="0.17647058823529413" green="0.37254901960784315" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="ic-qr">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="stillfunc:" destination="iTs-87-otQ" eventType="touchUpInside" id="OoC-e3-hUd"/>
+                                    <segue destination="on0-OL-zXa" kind="modal" id="dqg-52-ido"/>
+                                </connections>
+                            </button>
                             <scrollView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N2T-fq-Fd4">
-                                <rect key="frame" x="2" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <connections>
                                     <outlet property="delegate" destination="iTs-87-otQ" id="8MR-NL-jId"/>
                                 </connections>
@@ -560,7 +581,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b5O-bK-Yro" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="JEN-Na-x0V" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2138.5" y="-865.5"/>
+            <point key="canvasLocation" x="2128.5" y="-1007.5"/>
         </scene>
         <!--Item-->
         <scene sceneID="xOo-xV-wHc">
@@ -641,7 +662,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rEC-KO-MGt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2446.5" y="1002.5"/>
+            <point key="canvasLocation" x="2402.5" y="998.5"/>
         </scene>
         <!--Item-->
         <scene sceneID="Utc-bI-09X">
@@ -683,7 +704,7 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
-                                                <segue destination="iTs-87-otQ" kind="modal" id="taq-Im-plU"/>
+                                                <action selector="timelogCancel:" destination="Crv-3v-7du" eventType="touchUpInside" id="dHB-4s-y9g"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -745,10 +766,13 @@
                     <navigationItem key="navigationItem" id="XL0-Vc-8f7"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <segue destination="JEN-Na-x0V" kind="unwind" identifier="time2map" unwindAction="prepareForUnwind:" id="sG8-Eq-fcA"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YyQ-jH-ZaK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1769" y="72"/>
+            <point key="canvasLocation" x="1735" y="108"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="GhL-c5-3iX">
@@ -764,25 +788,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dCw-8V-zeY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-976" y="-51"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="fgP-bO-SOx">
-            <objects>
-                <viewController id="XnR-Hx-P7g" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="P1G-jZ-ZCz"/>
-                        <viewControllerLayoutGuide type="bottom" id="SAR-E0-wJw"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Fq0-00-hSO">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nHZ-Ae-yvy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-627" y="237"/>
+            <point key="canvasLocation" x="-1322" y="27"/>
         </scene>
         <!--Search-->
         <scene sceneID="j3n-v5-gzT">
@@ -796,7 +802,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search" backgroundImage="blue" translatesAutoresizingMaskIntoConstraints="NO" id="7AL-96-C6d">
+                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search" backgroundImage="blue1" translatesAutoresizingMaskIntoConstraints="NO" id="7AL-96-C6d">
                                 <rect key="frame" x="0.0" y="64" width="375" height="44"/>
                                 <color key="backgroundColor" red="0.17647058823529413" green="0.37254901960784315" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -922,7 +928,7 @@
     </scenes>
     <resources>
         <image name="bic-back-top" width="8" height="12"/>
-        <image name="blue" width="2560" height="1440"/>
+        <image name="blue1" width="700" height="575"/>
         <image name="ic-lock" width="16" height="21"/>
         <image name="ic-qr" width="18" height="18"/>
         <image name="ic-refresh" width="16" height="22"/>
@@ -934,7 +940,4 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="HP9-YX-Yeu"/>
-    </inferredMetricsTieBreakers>
 </document>

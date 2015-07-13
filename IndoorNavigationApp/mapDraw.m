@@ -109,7 +109,7 @@ int m;
 - (void)viewDidLoad {
     [super viewDidLoad];
     num=0;
-    
+    NSLog(@"ijthfjhtnfkdjtidjsfkjdlkjfkljklfd");
 //    cx = _ix ;
 //    cy = _iy ;
 //    ca = _a;
@@ -358,7 +358,7 @@ NSInteger prev;
 -(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue
 {
    
-    if ([segue.identifier isEqualToString:@"modal"])
+    if ([segue.identifier isEqualToString:@"modal1"])
     {
         Qrc *Qrcode = (Qrc *)segue.sourceViewController;
         NSLog(@"Values are %@", Qrcode.Qrx);
@@ -463,7 +463,13 @@ NSInteger prev;
         }
         
     }
-////////////////////
+    else if([segue.identifier isEqualToString:@"time2map"])
+    {
+        NSLog(@"time tomapnfgjfjfnjnfjn");
+        [self.locationManager startUpdatingHeading];
+    }
+    
+    ////////////////////
     else if([segue.identifier isEqualToString:@"categorysearch"])
     {
         categoryViewController *categorysearch = (categoryViewController *)segue.sourceViewController;

@@ -44,6 +44,7 @@
 		CEC37A761B456BAC00C714C2 /* floor.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC37A751B456BAC00C714C2 /* floor.png */; };
 		CED8A1901B4BEAE8003B975C /* EmployeeTable.m in Sources */ = {isa = PBXBuildFile; fileRef = CED8A18F1B4BEAE8003B975C /* EmployeeTable.m */; };
 		CEE269001B4FC62E00587F13 /* infoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE268FF1B4FC62E00587F13 /* infoViewController.m */; };
+		CEE269031B53744200587F13 /* CaptureSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE269021B53744200587F13 /* CaptureSessionManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +120,8 @@
 		CED8A18F1B4BEAE8003B975C /* EmployeeTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmployeeTable.m; sourceTree = "<group>"; };
 		CEE268FE1B4FC62E00587F13 /* infoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = infoViewController.h; sourceTree = "<group>"; };
 		CEE268FF1B4FC62E00587F13 /* infoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = infoViewController.m; sourceTree = "<group>"; };
+		CEE269011B53744200587F13 /* CaptureSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureSessionManager.h; sourceTree = "<group>"; };
+		CEE269021B53744200587F13 /* CaptureSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptureSessionManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +197,8 @@
 				CE45A63A1B3D5260007B3624 /* ViewController.m */,
 				CE968AFA1B4101BE0006CB2C /* Qrc.h */,
 				CE968AFB1B4101BE0006CB2C /* Qrc.m */,
+				CEE269011B53744200587F13 /* CaptureSessionManager.h */,
+				CEE269021B53744200587F13 /* CaptureSessionManager.m */,
 				CE45A63C1B3D5260007B3624 /* Main.storyboard */,
 				CE48EC161B52619700F744C1 /* homeViewController.h */,
 				CE48EC171B52619700F744C1 /* homeViewController.m */,
@@ -362,6 +367,7 @@
 				CE4C5FCA1B41522E00784563 /* newCell.m in Sources */,
 				CE48EC181B52619700F744C1 /* homeViewController.m in Sources */,
 				CE968AFC1B4101BE0006CB2C /* Qrc.m in Sources */,
+				CEE269031B53744200587F13 /* CaptureSessionManager.m in Sources */,
 				CE4C5FCD1B41534800784563 /* timeLogTable.m in Sources */,
 				CE9D769A1B3D7F300079378F /* enhancedCell.m in Sources */,
 				CE48EC151B52602900F744C1 /* categoryTableViewCell.m in Sources */,

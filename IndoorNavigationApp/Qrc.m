@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 user. All rights reserved.
 //  Written By Roni Vincent and Jithin V.
 
+
 #import "Qrc.h"
 #import <CoreData/CoreData.h>
 #import "QRCode.h"
@@ -14,17 +15,22 @@
 
 @interface Qrc ()
 @property (strong) NSMutableArray *qrcodes;
-@property (nonatomic) BOOL isReading;
+/*@property (nonatomic) BOOL isReading;
 @property (nonatomic, strong) AVCaptureSession *captureSession;
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer *videoPreviewLayer;
 
 -(BOOL)startReading;
 -(void)stopReading;
-
+*/
 @end
 
 @implementation Qrc
+@synthesize scanningLabel;
+@synthesize DisplayLabel;
 int nullQrDB =1;
+int check1 = 0;
+
+
 NSManagedObjectContext *managedObjectContext;
 - (NSManagedObjectContext *)managedObjectContext
 {
@@ -38,23 +44,84 @@ NSManagedObjectContext *managedObjectContext;
 
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    _isReading = NO;
-    _captureSession = nil;
-    //_test.text = _lblStatus.text;
-    // Do any additional setup after loading the view, typically from a nib.
+    check1 = 0;
+    [self setCaptureManager:[[CaptureSessionManager alloc] init] ];
+    
+    [[self captureManager] addVideoInput];
+    
+    
+    
+    [[self captureManager] addVideoPreviewLayer];
+    CGRect layerRect = [[[self view] layer] bounds];
+    [[[self captureManager] previewLayer] setBounds:layerRect];
+    [[[self captureManager] previewLayer] setPosition:CGPointMake(CGRectGetMidX(layerRect),
+                                                                  CGRectGetMidY(layerRect))];
+    [[[self view] layer] addSublayer:[[self captureManager] previewLayer]];
+    
+    UIImageView *overlayImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"camera-focus-border.png"]];
+    [overlayImageView setFrame:CGRectMake(60, 140, 260, 200)];
+    [[self view] addSubview:overlayImageView];
+    //[overlayImageView release];
+    
+    UIButton *overlayButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [overlayButton setImage:[UIImage imageNamed:@"scanbutton.png"] forState:UIControlStateNormal];
+    [overlayButton setFrame:CGRectMake(145, 405, 80, 60)];
+    [overlayButton addTarget:self action:@selector(scanButtonPressed)   forControlEvents:UIControlEventTouchUpInside];
+    [[self view] addSubview:overlayButton];
+    
+    UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 50, 250, 30)];
+    [self setScanningLabel:tempLabel];
+    // [tempLabel release];
+    [scanningLabel setBackgroundColor:[UIColor clearColor]];
+    //[scanningLabel setFont:[UIFont fontWithName:@"Courier" size: 18.0]];
+    [scanningLabel setTextColor:[UIColor redColor]];
+    [scanningLabel setText:@"SCANNING IN PROGRESS!!"];
+    [scanningLabel setHidden:YES];
+    [[self view] addSubview:scanningLabel];
+    
+    UILabel *temp = [[UILabel alloc] initWithFrame:CGRectMake(70, 430, 250, 200)];
+    [self setDisplayLabel:temp];
+    [scanningLabel setBackgroundColor:[UIColor clearColor]];
+    [DisplayLabel setHidden:NO];
+    [[self view] addSubview:DisplayLabel];
+    [_captureManager.captureSession startRunning];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-#pragma mark - IBAction method implementation
+
+- (void) scanButtonPressed {
+    [[self scanningLabel] setHidden:NO];
+    [self performSelector:@selector(startReading:) withObject:[self scanningLabel]  ];
+}
+
+- (void)startReading:(UILabel *)label {
+    // [label setHidden:YES];
+    AVCaptureMetadataOutput *captureMetadataOutput = [[AVCaptureMetadataOutput alloc] init];
+    [_captureManager.captureSession addOutput:captureMetadataOutput];
+    
+    //NSLog(@"%d",check);
+    NSLog(@"DFGIKGILAUFG");
+    // Create a new serial dispatch queue.
+    dispatch_queue_t dispatchQueue;
+    dispatchQueue = dispatch_queue_create("myQueue", NULL);
+    [captureMetadataOutput setMetadataObjectsDelegate:self queue:dispatchQueue];
+    [captureMetadataOutput setMetadataObjectTypes:[NSArray arrayWithObject:AVMetadataObjectTypeQRCode]];
+    
+    
+    // [captureManager.captureSession startRunning];
+    
+}
+
+
+/*#pragma mark - IBAction method implementation
 - (IBAction)StartFunction:(id)sender {
     if (!_isReading) {
         if ([self startReading]) {
             [_start setTitle:@"Stop"];
-
+            
             
         }
     }
@@ -103,14 +170,18 @@ NSManagedObjectContext *managedObjectContext;
     [_captureSession startRunning];
     return YES;
 }
+ */
 -(void)stopReading{
     // Stop video capture and make the capture session object nil.
-    [_captureSession stopRunning];
-    _captureSession = nil;
+    [_captureManager.captureSession stopRunning];
+    _captureManager.captureSession = nil;
     
     // Remove the video preview layer from the viewPreview view's layer.
-    [_videoPreviewLayer removeFromSuperlayer];
+    //[_videoPreviewLayer removeFromSuperlayer];
 }
+ 
+ 
+
 NSInteger x;
 NSInteger y;
 #pragma mark - AVCaptureMetadataOutputObjectsDelegate method implementation
@@ -118,9 +189,9 @@ NSInteger y;
     if (metadataObjects != nil && [metadataObjects count] > 0) {
         AVMetadataMachineReadableCodeObject *metadataObj = [metadataObjects objectAtIndex:0];
         if ([[metadataObj type] isEqualToString:AVMetadataObjectTypeQRCode]) {
-           // [_lblStatus performSelectorOnMainThread:@selector(setText:) withObject:[metadataObj
-            
-            NSString *string = [metadataObj stringValue];
+            // [_lblStatus performSelectorOnMainThread:@selector(setText:) withObject:[metadataObj
+            [scanningLabel performSelectorOnMainThread:@selector(setText:) withObject:[metadataObj stringValue] waitUntilDone:NO];
+            NSLog(@"%@",scanningLabel.text);            NSString *string = [metadataObj stringValue];
             
             NSLog(@"%@",string);
             
@@ -160,8 +231,10 @@ NSInteger y;
              */
             
             QRCode *qc;
-            if (results.count!=0){
+            NSLog(@"check outside%d",check1);
+            if ((results.count!=0)&&(check1<1)){
                 nullQrDB = 0;
+                //check1++;
                 qc = [results objectAtIndex:0];
                 NSLog(@"qrcode count  %lu", (unsigned long)results.count);
                 NSLog(@"%@%@", qc.x,qc.y);
@@ -213,28 +286,31 @@ NSInteger y;
                 
                 
                 
-               
-
+                
+                
             }
             
             
             
             
             [self performSelectorOnMainThread:@selector(stopReading) withObject:nil waitUntilDone:NO];
-            [_start performSelectorOnMainThread:@selector(setTitle:) withObject:@"Start!" waitUntilDone:NO];
-            _isReading = NO;
             
+        
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self performSegueWithIdentifier:@"modal1" sender:self];
+            });
             
         }
         
     }
-
-}
-- (IBAction)okfun:(id)sender {
-    
-[self performSegueWithIdentifier:@"modal" sender:self];
     
 }
+/*- (IBAction)okfun:(id)sender {
+    
+    [self performSegueWithIdentifier:@"modal" sender:self];
+    
+}*/
 //NSNumber *b = 1;
 //- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 //    if([segue.identifier isEqualToString:@"modal"]) {

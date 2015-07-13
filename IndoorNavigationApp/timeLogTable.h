@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface timeLogTable : UITableViewController
+- (IBAction)timelogCancel:(id)sender;
 
 @end

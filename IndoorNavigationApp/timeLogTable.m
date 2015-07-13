@@ -130,4 +130,8 @@ int sl = 1;
     
 }
 
+- (IBAction)timelogCancel:(id)sender {
+    
+    [self performSegueWithIdentifier:@"time2map" sender:self];
+}
 @end
