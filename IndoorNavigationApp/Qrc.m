@@ -210,6 +210,57 @@ NSInteger y;
              NSLog(@"%@", last);
              */
             
+            
+            NSManagedObjectContext *managedObjectContext1 = [self managedObjectContext];
+            NSFetchRequest *request = [[NSFetchRequest alloc] init];
+            [request setEntity:[NSEntityDescription entityForName:@"TimeLog" inManagedObjectContext:managedObjectContext1]];
+            
+            [request setIncludesSubentities:NO]; //Omit subentities. Default is YES (i.e. include subentities)
+            
+            NSError *err;
+            NSUInteger count = [managedObjectContext1 countForFetchRequest:request error:&err];
+            if(count == NSNotFound) {
+                //Handle error
+            }
+            NSLog(@"llllllllllllllllllllll%lu",(unsigned long)count);
+            
+            
+            
+            NSManagedObjectContext *managedObjectContext2 = [self managedObjectContext];
+            NSFetchRequest *ch = [[NSFetchRequest alloc]init];
+            [ch setEntity:[NSEntityDescription entityForName:@"TimeLog" inManagedObjectContext:managedObjectContext2]];
+            
+            // NSFetchRequest *requestdel = [[NSFetchRequest alloc]initWithEntityName:@"TimeLog"];
+            // NSManagedObjectContext *managedObjectContext2 = [self managedObjectContext];
+            NSArray *result = [managedObjectContext2 executeFetchRequest:ch error:nil];
+            
+            if (result.count!=0) {
+                TimeLog *tim;
+                tim = [result objectAtIndex:0];
+                
+                NSDateFormatter *format = [[NSDateFormatter alloc] init];
+                [format setDateFormat:@"MMM dd, yyyy"];
+                
+                NSDate *now = [[NSDate alloc] init];
+                
+                NSString *datestring = [format stringFromDate:now];
+                NSLog(@"date check%@",datestring);
+                NSLog(@"tim.date check%@",tim.date);
+                if (![datestring isEqualToString:tim.date]) {
+                    for (NSManagedObject * res in result) {
+                        [managedObjectContext2 deleteObject:res];
+                    }
+                    NSError *saveError = nil;
+                    [managedObjectContext2 save:&saveError];
+                    count = 0;
+                }
+                
+            }
+            
+            
+            
+            
+            
             NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
             NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
             [fetchRequest setEntity:[NSEntityDescription entityForName:@"QRCode" inManagedObjectContext:managedObjectContext]];
@@ -234,7 +285,7 @@ NSInteger y;
             NSLog(@"check outside%d",check1);
             if ((results.count!=0)&&(check1<1)){
                 nullQrDB = 0;
-                //check1++;
+                check1++;
                 qc = [results objectAtIndex:0];
                 NSLog(@"qrcode count  %lu", (unsigned long)results.count);
                 NSLog(@"%@%@", qc.x,qc.y);
@@ -284,7 +335,12 @@ NSInteger y;
                 [newDevice setValue:datetimeString forKey:@"datetime"];
                 //code for Unique id
                 
-                
+                //code for Unique id
+                int f = (int)count;
+                f++;
+                printf("%d",f);
+                NSNumber *f1 = [NSNumber numberWithInt:f];
+                [newDevice setValue:f1 forKey:@"slno"];NSLog(@"%@", f1);
                 
                 
                 
