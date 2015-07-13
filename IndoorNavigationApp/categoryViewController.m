@@ -84,8 +84,6 @@
 
 -(void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)text
 {
-    //[[UILabel appearanceWhenContainedIn:[UISearchBar class], nil] setText:categoryName];
-    
     
     if(text.length == 0)
     {
@@ -243,7 +241,7 @@
     
     }
     return cell;
-}
+   }
 
 /*
 #pragma mark - Navigation
