@@ -181,7 +181,7 @@ int check; //// For checking whether the view appears for the first
         {
             isFiltered = FALSE;
             self.tableArray = self.allTableData;
-            prevTextLen = t1.length;
+            prevTextLen = (int)t1.length;
             
         }
         else if((prevTextLen<t1.length) && (u==0)&&(glCor==1) )
@@ -189,7 +189,7 @@ int check; //// For checking whether the view appears for the first
             glCor=0;
             isFiltered = true;
             _tableArray = [[NSMutableArray alloc] init];
-            prevTextLen = t1.length;
+            prevTextLen = (int)t1.length;
             
             for (Employee*  employe in self.allTableData)
             {
@@ -205,7 +205,7 @@ int check; //// For checking whether the view appears for the first
         {
             isFiltered = true;
             _tableArray = [[NSMutableArray alloc] init];
-            prevTextLen = t1.length;
+            prevTextLen = (int)t1.length;
             
             for (Employee*  employe in _prevoiusdata)
             {
@@ -218,7 +218,7 @@ int check; //// For checking whether the view appears for the first
             }
         }
         else if((prevTextLen>=t1.length) && (u==0)){
-            prevTextLen = t1.length;
+            prevTextLen = (int)t1.length;
             isFiltered = true;
             _tableArray = [[NSMutableArray alloc] init];
             
@@ -237,7 +237,7 @@ int check; //// For checking whether the view appears for the first
             glCor = 0;
             isFiltered = true;
             _tableArray = [[NSMutableArray alloc] init];
-            prevTextLen = t1.length;
+            prevTextLen = (int)t1.length;
             for (Places*  place in self.allTableData)
             {
                 NSRange nameRange = [place.placeName rangeOfString:t1 options:NSCaseInsensitiveSearch];
@@ -253,7 +253,7 @@ int check; //// For checking whether the view appears for the first
         {
             isFiltered = true;
             _tableArray = [[NSMutableArray alloc] init];
-            prevTextLen = t1.length;
+            prevTextLen = (int)t1.length;
             for (Places*  place in self.prevoiusdata)
             {
                 NSRange nameRange = [place.placeName rangeOfString:t1 options:NSCaseInsensitiveSearch];
@@ -264,7 +264,7 @@ int check; //// For checking whether the view appears for the first
             }
         }
         else if((prevTextLen>=t1.length) &&(u==1)){
-            prevTextLen = t1.length;
+            prevTextLen = (int)t1.length;
             isFiltered = true;
             self.tableArray = [[NSMutableArray alloc] init];
             
@@ -291,7 +291,7 @@ NSString *t1;
     if (text.length<gllen) {
         glCor = 1;
     }
-    gllen = text.length;
+    gllen = (int)text.length;
     
     t1= text;
     printf("%d",glsl);
@@ -459,7 +459,7 @@ NSString *t1;
     {
         NSString *str= [_defaultData objectAtIndex:indexPath.row];
         cat.categoryName = str;
-       cat.emp_plac=u;
+        cat.emp_plac=u ;
         //  NSLog(@"%@",cat.categoryName);
         [self.navigationController pushViewController:cat animated:true];
     }
@@ -507,7 +507,7 @@ NSString *t1;
 }
 - (IBAction)buttonPressed:(id)sender   //For showing selection among Employees and places
 {
-    NSInteger x1,x2;
+    float x1 = 0.0,x2 = 0.0;
     NSArray* buttons = [NSArray arrayWithObjects:_buttonEmploy, _buttonPlace, nil];
     
     
@@ -527,6 +527,7 @@ NSString *t1;
             }
            
             [path1 moveToPoint:CGPointMake(x1, 140.0)];
+            
             [path1 addLineToPoint:CGPointMake(x2, 140.0)];
             CAShapeLayer *shapeLayer = [CAShapeLayer layer];
             shapeLayer.path = [path1 CGPath];

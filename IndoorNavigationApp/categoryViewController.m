@@ -98,14 +98,14 @@ int prevCatTextLen,catSl,locLen=0,locCor=0;
         {
             isFiltered = FALSE;
             self.filteredtableArray = self.categoryTableData;
-            prevCatTextLen = catSearchtext.length;
+            prevCatTextLen = (int)catSearchtext.length;
         }
         else if((prevCatTextLen<catSearchtext.length) && (emp_plac==0) &&(locCor==0))
         {
             locCor =0;
             isFiltered = true;
             self.filteredtableArray = [[NSMutableArray alloc] init];
-            prevCatTextLen = catSearchtext.length;
+            prevCatTextLen = (int)catSearchtext.length;
             
             for (Employee*  employe in self.categoryTableData)
             {
@@ -120,7 +120,7 @@ int prevCatTextLen,catSl,locLen=0,locCor=0;
         {
             isFiltered = true;
             self.filteredtableArray = [[NSMutableArray alloc] init];
-            prevCatTextLen = catSearchtext.length;
+            prevCatTextLen = (int)catSearchtext.length;
             
             for (Employee*  employe in self.prevFilterArray)
             {
@@ -132,7 +132,7 @@ int prevCatTextLen,catSl,locLen=0,locCor=0;
             }
         }
         else if ((prevCatTextLen>=catSearchtext.length)&& (emp_plac==0)){
-            prevCatTextLen = catSearchtext.length;
+            prevCatTextLen = (int)catSearchtext.length;
             isFiltered = true;
             self.filteredtableArray = [[NSMutableArray alloc]init];
             
@@ -150,7 +150,7 @@ int prevCatTextLen,catSl,locLen=0,locCor=0;
             locCor=0;
             isFiltered = true;
             self.filteredtableArray = [[NSMutableArray alloc] init];
-            prevCatTextLen = catSearchtext.length;
+            prevCatTextLen = (int)catSearchtext.length;
             
             for (Places*  place in self.categoryTableData)
             {
@@ -165,7 +165,7 @@ int prevCatTextLen,catSl,locLen=0,locCor=0;
         {
             isFiltered = true;
             self.filteredtableArray = [[NSMutableArray alloc] init];
-            prevCatTextLen = catSearchtext.length;
+            prevCatTextLen = (int)catSearchtext.length;
             
             for (Places*  place in self.prevFilterArray)
             {
@@ -176,9 +176,9 @@ int prevCatTextLen,catSl,locLen=0,locCor=0;
                 }
             }
         }
-        else if ((prevCatTextLen>=catSearchtext.length)&&(emp_plac==1)){
+        else if ((prevCatTextLen>=catSearchtext.length)&&((int)emp_plac==1)){
             
-            prevCatTextLen = catSearchtext.length;
+            prevCatTextLen = (int)catSearchtext.length;
             isFiltered = true;
             self.filteredtableArray = [[NSMutableArray alloc]init];
             for (Places*  place in self.categoryTableData)
@@ -204,7 +204,7 @@ NSString *catSearchtext;
     if (text.length<locLen) {
         locCor=0;
     }
-    locLen = text.length;
+    locLen = (int)text.length;
     catSearchtext = text;
     catSl++;
     int temp = catSl;

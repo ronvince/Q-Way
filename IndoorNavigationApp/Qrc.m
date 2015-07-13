@@ -316,7 +316,7 @@ NSInteger y;
                 [newDevice setValue:dateString forKey:@"date"];
                 
                 NSDateFormatter *format1 = [[NSDateFormatter alloc] init];
-                [format1 setDateFormat:@"hh:mm"];
+                [format1 setDateFormat:@"hh:mm a"];
                 
                 NSDate *now1 = [[NSDate alloc] init];
                 
