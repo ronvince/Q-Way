@@ -4,7 +4,7 @@
 //
 //  Created by user on 6/28/15.
 //  Copyright (c) 2015 user. All rights reserved.
-//  Written By Roni Vincent and Jithin V.
+//  Written By Anita Grace Daniel and Roni Vincent.
 
 
 #import "Qrc.h"
@@ -29,7 +29,7 @@
 @synthesize DisplayLabel;
 int nullQrDB =1;
 int check1 = 0;
-
+UIButton *overlayButton;
 
 NSManagedObjectContext *managedObjectContext;
 - (NSManagedObjectContext *)managedObjectContext
@@ -63,7 +63,7 @@ NSManagedObjectContext *managedObjectContext;
     [[self view] addSubview:overlayImageView];
     //[overlayImageView release];
     
-    UIButton *overlayButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    overlayButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [overlayButton setImage:[UIImage imageNamed:@"scanbutton.png"] forState:UIControlStateNormal];
     [overlayButton setFrame:CGRectMake(145, 405, 80, 60)];
     [overlayButton addTarget:self action:@selector(scanButtonPressed)   forControlEvents:UIControlEventTouchUpInside];
@@ -93,6 +93,7 @@ NSManagedObjectContext *managedObjectContext;
 }
 
 - (void) scanButtonPressed {
+    overlayButton.hidden = YES;
     [[self scanningLabel] setHidden:NO];
     [self performSelector:@selector(startReading:) withObject:[self scanningLabel]  ];
 }
