@@ -20,13 +20,16 @@
 @property (strong) NSMutableArray *tableArray;
 @property (strong) NSMutableArray *defaultData;
 @property (strong) NSMutableArray *prevoiusdata;
+
 @end
 
 @implementation EmployeeTable
 @synthesize isFiltered;
 int prevTextLen,glsl,glCor=0,gllen=0;
+
+
 //int x,y;
-int u=0;
+int employ_plac=0; // whether the category belongs to employe/places.
 int check; //// For checking whether the view appears for the first
 
 //NSManagedObjectContext *managedObjectContext;
@@ -40,7 +43,7 @@ int check; //// For checking whether the view appears for the first
     return context;
 }
 -(void)selection{
-    if (u==0) {
+    if (employ_plac==0) {
         printf("u==0 employee");
         NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Employee"];
@@ -50,7 +53,7 @@ int check; //// For checking whether the view appears for the first
         [self.tableView reloadData];
         NSLog(@"%lu", (unsigned long)_allTableData.count);
     }
-    else if (u==1)
+    else if (employ_plac==1)
     {
         printf("u==1 places");
         NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
@@ -67,17 +70,14 @@ int check; //// For checking whether the view appears for the first
     self.searchBar.delegate = (id)self;
     glsl = 0;
     
-    self.navigationController.navigationBar.barTintColor=[UIColor colorWithRed:45.0/255 green:96.0/255 blue:202.0/255 alpha:1];
-    self.navigationItem.title=@"Search";
-    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:166.0/255 green:224.0/255 blue:253.0/255 alpha:1];
-   // [self.navigationController.navigationBar
-   //  setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor colorWithRed:166.0/255 green:224.0/255 blue:253.0/255 alpha:1]}];
-   // self.navigationController.navigationBar.translucent = NO;
-    
+    self.navigationController.navigationBar.barTintColor=[UIColor colorWithRed:0.200 green:0.463 blue:.827 alpha:1];
+    [self.navigationController.navigationBar
+     setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    self.navigationController.navigationBar.translucent = NO;
     
   }
 -(void)defaultDatashow{
-    if (u==0) {
+    if (employ_plac==0) {
         self.defaultData  = [[NSMutableArray alloc] init];
         [self.defaultData  addObject:@"PM"];
         [self.defaultData  addObject:@"Developer"];
@@ -86,7 +86,7 @@ int check; //// For checking whether the view appears for the first
         [self.defaultData  addObject:@"Trainee"];
         [self.defaultData  addObject:@"Intern"];
             }
-    else if (u==1){
+    else if (employ_plac==1){
         self.defaultData   = [[NSMutableArray alloc] init];
         [self.defaultData  addObject:@"Meeting"];
         [self.defaultData  addObject:@"Entry/Exit"];
@@ -147,8 +147,8 @@ int check; //// For checking whether the view appears for the first
     {
     // default selection for EMPLOYEES
     UIBezierPath *path1 = [UIBezierPath bezierPath];
-    [path1 moveToPoint:CGPointMake(50, 140.0)];
-    [path1 addLineToPoint:CGPointMake(135, 140.0)];
+    [path1 moveToPoint:CGPointMake(50, 75.0)];
+    [path1 addLineToPoint:CGPointMake(135, 75.0)];
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     shapeLayer.path = [path1 CGPath];
     shapeLayer.strokeColor = [[UIColor yellowColor] CGColor];
@@ -156,6 +156,9 @@ int check; //// For checking whether the view appears for the first
     shapeLayer.fillColor = [[UIColor clearColor] CGColor];
     [self.view.layer addSublayer:shapeLayer];
     }
+    
+    
+    
     if(!isFiltered)
     { self.searchBar.text=nil ;}
 }
@@ -184,7 +187,7 @@ int check; //// For checking whether the view appears for the first
             prevTextLen = (int)t1.length;
             
         }
-        else if((prevTextLen<t1.length) && (u==0)&&(glCor==1) )
+        else if((prevTextLen<t1.length) && (employ_plac==0)&&(glCor==1) )
         {
             glCor=0;
             isFiltered = true;
@@ -201,7 +204,7 @@ int check; //// For checking whether the view appears for the first
                 }
             }
         }
-        else if((prevTextLen<t1.length) && (u==0) )
+        else if((prevTextLen<t1.length) && (employ_plac==0) )
         {
             isFiltered = true;
             _tableArray = [[NSMutableArray alloc] init];
@@ -217,7 +220,7 @@ int check; //// For checking whether the view appears for the first
                 }
             }
         }
-        else if((prevTextLen>=t1.length) && (u==0)){
+        else if((prevTextLen>=t1.length) && (employ_plac==0)){
             prevTextLen = (int)t1.length;
             isFiltered = true;
             _tableArray = [[NSMutableArray alloc] init];
@@ -232,7 +235,7 @@ int check; //// For checking whether the view appears for the first
             }
             
         }
-        else if((prevTextLen<t1.length) && (u==1)&&(glCor==1))
+        else if((prevTextLen<t1.length) && (employ_plac==1)&&(glCor==1))
         {
             glCor = 0;
             isFiltered = true;
@@ -249,7 +252,7 @@ int check; //// For checking whether the view appears for the first
         }
 
         
-        else if((prevTextLen<t1.length) && (u==1))
+        else if((prevTextLen<t1.length) && (employ_plac==1))
         {
             isFiltered = true;
             _tableArray = [[NSMutableArray alloc] init];
@@ -263,7 +266,7 @@ int check; //// For checking whether the view appears for the first
                 }
             }
         }
-        else if((prevTextLen>=t1.length) &&(u==1)){
+        else if((prevTextLen>=t1.length) &&(employ_plac==1)){
             prevTextLen = (int)t1.length;
             isFiltered = true;
             self.tableArray = [[NSMutableArray alloc] init];
@@ -348,7 +351,7 @@ NSString *t1;
     cell.textLabel.font=[UIFont fontWithName:@"Arial Rounded MT" size:16.0];
     Employee *emp;
     Places *place;
-    if(u==0)         //Employee results
+    if(employ_plac==0)         //Employee results
     {
         if(isFiltered)
         {
@@ -387,7 +390,7 @@ NSString *t1;
         
         
     }
-    else if(u==1)            //Places results
+    else if(employ_plac==1)            //Places results
     {
         if(isFiltered)
         {
@@ -446,7 +449,7 @@ NSString *t1;
     categoryViewController *cat = [self.storyboard instantiateViewControllerWithIdentifier:@"categoryViewController"];
     
     
-    if(u==0)       //EMPLOYEE
+    if(employ_plac==0)       //EMPLOYEE
     {
     if(isFiltered)
     {
@@ -459,27 +462,25 @@ NSString *t1;
     {
         NSString *str= [_defaultData objectAtIndex:indexPath.row];
         cat.categoryName = str;
-        cat.emp_plac=u ;
+        cat.emp_plac=employ_plac ;
         //  NSLog(@"%@",cat.categoryName);
         [self.navigationController pushViewController:cat animated:true];
     }
     }
-    else if(u==1)     //PLACES
+    else if(employ_plac==1)     //PLACES
     {
         if(isFiltered)
         {
             place = [_tableArray objectAtIndex:indexPath.row];
-           // vc.place = place;
             _placexy=place;
             [self performSegueWithIdentifier:@"search" sender:self];
-          // [self.navigationController pushViewController:vc animated:true];
+         
         }
         else
         {
             NSString *str= [_defaultData objectAtIndex:indexPath.row];
             cat.categoryName = str;
-            cat.emp_plac=u;
-            //  NSLog(@"%@",cat.categoryName);
+            cat.emp_plac=employ_plac;
             [self.navigationController pushViewController:cat animated:true];
         }
 
@@ -488,7 +489,7 @@ NSString *t1;
 
 
 - (IBAction)employeefunc:(id)sender {
-    u=0;
+    employ_plac=0;
      check=1; // For checking whether the view appears for the first
        self.searchBar.text=nil;
     [self defaultDatashow];
@@ -498,7 +499,7 @@ NSString *t1;
     
 }
 - (IBAction)placefunc:(id)sender {
-    u=1;
+    employ_plac=1;
     check=1;
     self.searchBar.text=nil;
    [self defaultDatashow];
@@ -526,9 +527,9 @@ NSString *t1;
                 x2=310.0;
             }
            
-            [path1 moveToPoint:CGPointMake(x1, 140.0)];
+            [path1 moveToPoint:CGPointMake(x1, 75.0)];
             
-            [path1 addLineToPoint:CGPointMake(x2, 140.0)];
+            [path1 addLineToPoint:CGPointMake(x2, 75.0)];
             CAShapeLayer *shapeLayer = [CAShapeLayer layer];
             shapeLayer.path = [path1 CGPath];
             shapeLayer.strokeColor = [[UIColor yellowColor] CGColor];
@@ -550,11 +551,11 @@ NSString *t1;
                 x2=360.0;
             }
             
-            [path2 moveToPoint:CGPointMake(x1, 140.0)];
-            [path2 addLineToPoint:CGPointMake(x2, 140.0)];
+            [path2 moveToPoint:CGPointMake(x1, 75.0)];
+            [path2 addLineToPoint:CGPointMake(x2, 75.0)];
             CAShapeLayer *shapeLayer = [CAShapeLayer layer];
             shapeLayer.path = [path2 CGPath];
-            shapeLayer.strokeColor = [[UIColor blueColor] CGColor];
+            shapeLayer.strokeColor = [[UIColor colorWithRed:0.200 green:0.463 blue:.827 alpha:1] CGColor];
             shapeLayer.lineWidth = 2.0;
             shapeLayer.fillColor = [[UIColor clearColor] CGColor];
             [self.view.layer addSublayer:shapeLayer];
