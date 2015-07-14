@@ -13,6 +13,7 @@
 #import <CoreData/CoreData.h>
 #import "Qrc.h"
 #import "categoryViewController.h"
+#import "infoViewController.h"
 @import CoreGraphics;
 
 @interface mapDraw ()
@@ -23,11 +24,11 @@
 @property (nonatomic, strong) UILabel *giflbl;
 @property (nonatomic, strong) UIButton *subimbtn;
 @property (strong, nonatomic) FLAnimatedImageView *greengif;
-- (void)tapped;
 
 - (void)centerScrollViewContents;
 - (void)scrollViewDoubleTapped:(UITapGestureRecognizer*)recognizer;
 - (void)scrollViewTwoFingerTapped:(UITapGestureRecognizer*)recognizer;
+- (void)imageTapped:(UITapGestureRecognizer*)recognizer;
 
 @property (strong,nonatomic) CLLocationManager *locationManager;
 @property (strong,nonatomic) CLHeading * currentHeading;
@@ -73,17 +74,17 @@ int a =0;
 
 - (void)scrollViewDoubleTapped:(UITapGestureRecognizer*)recognizer {
     
-    CGPoint pointInView = [recognizer locationInView:self.imageView];
+    CGPoint pointInView = [recognizer locationInView:self.imageVie];
     CGFloat newZoomScale =self.scrollView.zoomScale*1.5;
     newZoomScale = MIN(newZoomScale, self.scrollView.maximumZoomScale);
-    pointInView.y=pointInView.y+200;
-    pointInView.x=pointInView.x+30;
+    pointInView.y=pointInView.y;
+    pointInView.x=pointInView.x;
     CGSize scrollViewSize = self.scrollView.bounds.size;
     
     CGFloat w = scrollViewSize.width / newZoomScale;
     CGFloat h = scrollViewSize.height / newZoomScale;
-    CGFloat x = pointInView.x - (w / 2.0);
-    CGFloat y = pointInView.y - (h / 2.0);
+    CGFloat x = pointInView.x-(w / 2.0);
+    CGFloat y = pointInView.y-(h / 2.0);
     
     CGRect rectToZoomTo = CGRectMake(x, y, w, h);
     
@@ -105,6 +106,8 @@ NSInteger ex;
 NSInteger ey;
 NSInteger ea=0;
  NSMutableArray *gifimg;
+NSMutableArray *employeedetails;
+NSMutableArray *placedetails;
 int m;
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -186,9 +189,6 @@ int m;
         
         self.subimbtn = [[UIButton  alloc] initWithFrame:CGRectMake(67,67,70,70)];//(67,67,70,70)
         [_subimbtn setUserInteractionEnabled:YES ];
-        [_subimbtn addTarget:self
-                      action:@selector(tapped)
-            forControlEvents:UIControlEventTouchUpInside];
         
         //[_subimbtn  setTitle:@"J" forState:UIControlStateNormal];
         [_subimbtn setBackgroundColor:[UIColor clearColor]];
@@ -208,7 +208,8 @@ int m;
         gifimg = [[NSMutableArray alloc] initWithObjects:nil];
     
     
-    
+     employeedetails = [[NSMutableArray alloc] initWithObjects:nil];
+     placedetails = [[NSMutableArray alloc] initWithObjects:nil];
     for(m=0;m<gifimg.count;m++)
     {
         [self.imageView addSubview:gifimg[m]];
@@ -225,6 +226,14 @@ int m;
     twoFingerTapRecognizer.numberOfTapsRequired = 1;
     twoFingerTapRecognizer.numberOfTouchesRequired = 2;
     [self.scrollView addGestureRecognizer:twoFingerTapRecognizer];
+    
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
+    tap.numberOfTapsRequired = 1;
+    tap.numberOfTouchesRequired = 1;
+    [self.imageView addGestureRecognizer:tap];
+    
+
     [self.view addSubview:self.databutton];
      [self.view addSubview:self.searchbutton];
      [self.view addSubview:self.logbutton];
@@ -305,16 +314,55 @@ NSInteger prev;
     [self centerScrollViewContents];
     
 }
--(void)tapped
-{
+int btnx;
+int btny;
+
+
+
+- (void)imageTapped:(UITapGestureRecognizer*)recognizer {
     
-    int btnx;
-    int btny;
-    btnx=_greengif.center.x;
-    btny=_greengif.center.y;
+    CGPoint tapPoint = [recognizer locationInView:self.imageView];
+    btnx=tapPoint.x;
+    btny=tapPoint.y;
     NSLog(@"hi");
     
+    NSLog(@"%i",btnx);
+    NSLog(@"%i",btny);
+ infoViewController *popController = [[infoViewController alloc] init];
+    
+     //employe=_employemap;
+        for(int i=0;i<employeedetails.count;i++)
+        {
+            _employemap=employeedetails[i];
+             NSLog(@"%@",_employemap.x);
+             NSLog(@"%@",_employemap.y);
+             NSLog(@"%i",btnx);
+             NSLog(@"%i",btny);
+            if([_employemap.x intValue]<=(btnx-94) && [_employemap.x intValue]>=(btnx-106)&&[_employemap.y intValue]<=(btny-94) && [_employemap.y intValue]>=(btny-106))
+            {
+        
+            popController.employe=_employemap;
+                popController.contentSize = CGSizeMake(210, 245);
+                 [self presentViewController:popController animated:YES completion:nil];
+            }
+        }
+    for(int i=0;i<placedetails.count;i++)
+    {
+        _placemap=placedetails[i];
+        if([_placemap.x intValue]<=(btnx-94) && [_placemap.x intValue]>=(btnx-106)&&[_placemap.y intValue]<=(btny-94) && [_placemap.y intValue]>=(btny-106))
+        {
+            popController.if_emp_place = 1;
+            popController.place=_placemap;
+            popController.contentSize = CGSizeMake(210, 245);
+            [self presentViewController:popController animated:YES completion:nil];
+        }
+    }
+    
+
+   
+
 }
+
 
 - (IBAction)stillfunc:(id)sender {
     [self.locationManager stopUpdatingHeading];
@@ -361,6 +409,7 @@ NSInteger prev;
 
     if(search.employexy)
       {
+          [employeedetails addObject:search.employexy];
         ex=[search.employexy.x  intValue];
         ey=[search.employexy.y intValue];
         [self.locationManager startUpdatingHeading];
@@ -368,8 +417,6 @@ NSInteger prev;
         FLAnimatedImage *gifwork = [[FLAnimatedImage alloc] initWithAnimatedGIFData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"spot" ofType:@"gif"]]];
         self.greengif.frame = (CGRect){.origin=CGPointMake(ex,ey), .size=CGSizeMake(200,200)};
         self.greengif.animatedImage = gifwork;
-        
-        [self.imageView addSubview:self.greengif];
         
         self.giflbl = [[UILabel  alloc] initWithFrame:CGRectMake(-200,-30,600,100)];
         
@@ -380,16 +427,11 @@ NSInteger prev;
         
         [self.greengif addSubview:self.giflbl];
         
-        self.subimbtn = [[UIButton  alloc] initWithFrame:CGRectMake(67,67,70,70)];
-          [_subimbtn setUserInteractionEnabled:YES ];
-        [_subimbtn addTarget:self
-                      action:@selector(tapped)
-            forControlEvents:UIControlEventTouchUpInside];
-        [_subimbtn setBackgroundColor:[UIColor clearColor]];
+        
         self.imageVie.userInteractionEnabled = YES;
         self.imageView.userInteractionEnabled = YES;
         self.greengif.userInteractionEnabled = YES;
-        [self.greengif addSubview:self.subimbtn];
+        
         
         [gifimg addObject:_greengif];
         
@@ -398,7 +440,7 @@ NSInteger prev;
         
     else if(search.placexy)
      {
-        
+        [placedetails addObject:search.placexy];
         ex=[search.placexy.x  intValue];
         ey=[search.placexy.y intValue];
         [self.locationManager startUpdatingHeading];
@@ -406,8 +448,6 @@ NSInteger prev;
         FLAnimatedImage *gifwork = [[FLAnimatedImage alloc] initWithAnimatedGIFData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"spot" ofType:@"gif"]]];
         self.greengif.frame = (CGRect){.origin=CGPointMake(ex,ey), .size=CGSizeMake(200,200)};
         self.greengif.animatedImage = gifwork;
-        
-        [self.imageView addSubview:self.greengif];
         
         self.giflbl = [[UILabel  alloc] initWithFrame:CGRectMake(-200,-30,600,100)];
         
@@ -418,16 +458,16 @@ NSInteger prev;
         
         [self.greengif addSubview:self.giflbl];
         
-        self.subimbtn = [[UIButton  alloc] initWithFrame:CGRectMake(67,67,70,70)];
-         [_subimbtn setUserInteractionEnabled:YES ];
-        [_subimbtn addTarget:self
-                      action:@selector(tapped)
-            forControlEvents:UIControlEventTouchUpInside];
-        [_subimbtn setBackgroundColor:[UIColor clearColor]];
+//        self.subimbtn = [[UIButton  alloc] initWithFrame:CGRectMake(67,67,70,70)];
+//         [_subimbtn setUserInteractionEnabled:YES ];
+//        [_subimbtn addTarget:self
+//                      action:@selector(tapped)
+//            forControlEvents:UIControlEventTouchUpInside];
+//        [_subimbtn setBackgroundColor:[UIColor clearColor]];
         self.imageVie.userInteractionEnabled = YES;
         self.imageView.userInteractionEnabled = YES;
         self.greengif.userInteractionEnabled = YES;
-        [self.greengif addSubview:self.subimbtn];
+        //[self.greengif addSubview:self.subimbtn];
         
         [gifimg addObject:_greengif];
         
@@ -435,19 +475,22 @@ NSInteger prev;
         }
         
     }
-    else if([segue.identifier isEqualToString:@"time2map"])
+else if([segue.identifier isEqualToString:@"time2map"])
     {
         
         [self.locationManager startUpdatingHeading];
     }
     
-       else if([segue.identifier isEqualToString:@"categorysearch"])
+else if([segue.identifier isEqualToString:@"categorysearch"])
     {
         categoryViewController *categorysearch = (categoryViewController *)segue.sourceViewController;
         
         if(categorysearch.emp_plac==0)
         {
-             printf("category employeekjfdhffhjkdhfjhjd");
+           
+            
+            [employeedetails addObject:categorysearch.categoryemployexy];
+            
             ex=[categorysearch.categoryemployexy.x  intValue];
             ey=[categorysearch.categoryemployexy.y intValue];
             [self.locationManager startUpdatingHeading];
@@ -456,7 +499,7 @@ NSInteger prev;
             self.greengif.frame = (CGRect){.origin=CGPointMake(ex,ey), .size=CGSizeMake(200,200)};
             self.greengif.animatedImage = gifwork;
             
-            [self.imageView addSubview:self.greengif];
+           
             
             self.giflbl = [[UILabel  alloc] initWithFrame:CGRectMake(-200,-30,600,100)];
             
@@ -467,24 +510,19 @@ NSInteger prev;
             
             [self.greengif addSubview:self.giflbl];
             
-            self.subimbtn = [[UIButton  alloc] initWithFrame:CGRectMake(67,67,70,70)];        [_subimbtn setUserInteractionEnabled:YES ];
-            [_subimbtn addTarget:self
-                          action:@selector(tapped)
-                forControlEvents:UIControlEventTouchUpInside];
-            [_subimbtn setBackgroundColor:[UIColor clearColor]];
+            
             self.imageVie.userInteractionEnabled = YES;
             self.imageView.userInteractionEnabled = YES;
             self.greengif.userInteractionEnabled = YES;
-            [self.greengif addSubview:self.subimbtn];
-            
             [gifimg addObject:_greengif];
             
-            [self.imageView addSubview:_greengif];
+           [self.imageView addSubview:_greengif];
         }
         
         else if((int)categorysearch.emp_plac==1)
         {
-            printf("category placekjfdhffhjkdhfjhjd");
+            
+            [placedetails addObject:categorysearch.categoryplacexy];
             ex=[categorysearch.categoryplacexy.x  intValue];
             ey=[categorysearch.categoryplacexy.y intValue];
             [self.locationManager startUpdatingHeading];
@@ -493,7 +531,6 @@ NSInteger prev;
             self.greengif.frame = (CGRect){.origin=CGPointMake(ex,ey), .size=CGSizeMake(200,200)};
             self.greengif.animatedImage = gifwork;
             
-            [self.imageView addSubview:self.greengif];
             
             self.giflbl = [[UILabel  alloc] initWithFrame:CGRectMake(-200,-30,600,100)];
             
@@ -504,15 +541,10 @@ NSInteger prev;
             
             [self.greengif addSubview:self.giflbl];
             
-            self.subimbtn = [[UIButton  alloc] initWithFrame:CGRectMake(67,67,70,70)];        [_subimbtn setUserInteractionEnabled:YES ];
-            [_subimbtn addTarget:self
-                          action:@selector(tapped)
-                forControlEvents:UIControlEventTouchUpInside];
-            [_subimbtn setBackgroundColor:[UIColor clearColor]];
             self.imageVie.userInteractionEnabled = YES;
             self.imageView.userInteractionEnabled = YES;
             self.greengif.userInteractionEnabled = YES;
-            [self.greengif addSubview:self.subimbtn];
+            
             
             [gifimg addObject:_greengif];
             
@@ -538,6 +570,14 @@ int lock=0;
     if(gifimg.count>0)
     {
          gifimg = [[NSMutableArray alloc] initWithObjects:nil];
+    }
+    if(placedetails.count>0)
+    {
+        placedetails = [[NSMutableArray alloc] initWithObjects:nil];
+    }
+    if(employeedetails.count>0)
+    {
+        employeedetails = [[NSMutableArray alloc] initWithObjects:nil];
     }
     NSLog(@"%li",gifimg.count);
 }
