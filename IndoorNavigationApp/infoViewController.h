@@ -34,6 +34,6 @@
 @property (strong, nonatomic) Employee* employe;
 
 @property (strong, nonatomic) Places* place;
-@property (nonatomic)  NSInteger *if_emp_place;
+@property (nonatomic)  NSInteger if_emp_place;
 
 @end
