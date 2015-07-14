@@ -23,7 +23,7 @@
 @implementation categoryViewController
 @synthesize categoryName;
 @synthesize isFiltered;
-@synthesize emp_plac;
+@synthesize emp_plac;  //whether category belongs to employee / places.
 int prevCatTextLen,catSl,locLen=0,locCor=0;
 
 - (NSManagedObjectContext *)managedObjectContext
@@ -37,19 +37,18 @@ int prevCatTextLen,catSl,locLen=0,locCor=0;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    catSearchtext = 0;
+        catSearchtext = 0;
     
     self.searchBar.delegate = (id)self;
-    
+    self.searchBar.placeholder=categoryName;
 }
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     [self selection];
-   // [self defaultDatashow];
-    
-    
 }
+
+
 -(void)selection{
     if ((int)emp_plac==0)
     {
@@ -226,10 +225,8 @@ NSString *catSearchtext;
 {
     // Return the number of rows in the section.
     if(self.isFiltered)
-        
         return self.filteredtableArray.count;
     else
-        // NSLog(@"%lu", (unsigned long)self.categoryTableData.count);
         return self.categoryTableData.count;
     
     
@@ -241,16 +238,13 @@ NSString *catSearchtext;
     
     categoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"category" forIndexPath:indexPath];
     
-    NSLog(@"fswasgdsdfhg");
     cell.textLabel.textColor=[UIColor blackColor];
     cell.textLabel.font=[UIFont fontWithName:@"Arial Rounded MT" size:16.0];
     Employee *emp;
     Places *place;
-    if(emp_plac==0)
+    if(emp_plac==0)     // EMPLOYEE
     {
-      if(isFiltered)
-       {
-        emp = [self.filteredtableArray objectAtIndex:indexPath.row];
+         emp = [self.filteredtableArray objectAtIndex:indexPath.row];
         cell.nameField.text=emp.name;
         NSLog(@"%@", emp.name);
         NSLog(@"%@", categoryName);
@@ -269,31 +263,10 @@ NSString *catSearchtext;
         cell.imageField.layer.borderWidth = 0;
         cell.imageField.image=[UIImage imageNamed:imageName];
       }
-    else
+ 
+    else if((int)emp_plac==1)   //PLACE
       {
-        emp = [self.categoryTableData objectAtIndex:indexPath.row];
-        cell.nameField.text=emp.name;
-        NSLog(@"%@", emp.name);
-        NSLog(@"%@", categoryName);
-        cell.desigField.text = emp.desig;
-        cell.emailField.text=emp.email;
-        NSString *inputString = emp.empid;
-        int value = [inputString intValue];
-        NSLog(@"%d",value);
-        NSString *imageName=[NSString stringWithFormat:@"%d.jpg",value];
-        
-        
-        cell.imageField.layer.cornerRadius = cell.imageField.frame.size.width/4;
-        cell.imageField.layer.cornerRadius =  cell.imageField.frame.size.height/4;
-        cell.imageField.layer.masksToBounds = YES;
-        cell.imageField.layer.borderWidth = 0;
-        cell.imageField.image=[UIImage imageNamed:imageName];
-      }
-    }
-    else if((int)emp_plac==1)
-    {
-        if(isFiltered)
-        {
+      
             place = [self.filteredtableArray objectAtIndex:indexPath.row];
             cell.nameField.text=place.placeName;
            
@@ -309,93 +282,41 @@ NSString *catSearchtext;
             cell.desigField.text=place.placeType;
             cell.emailField.text=@" ";
         }
-        else
-        {
-            place = [self.categoryTableData objectAtIndex:indexPath.row];
-            cell.nameField.text=place.placeName;
-            
-            cell.desigField.text = place.placeType;
-            
-             NSLog(@"dgdhgihuguigh");
-            NSString *imageName=[NSString stringWithFormat:@"%@.png",place.placeType];
-            cell.imageField.layer.cornerRadius = cell.imageField.frame.size.width/2;
-            cell.imageField.layer.cornerRadius =  cell.imageField.frame.size.height/2;
-            cell.imageField.layer.masksToBounds = YES;
-            cell.imageField.layer.borderWidth = 0;
-            cell.imageField.image=[UIImage imageNamed:imageName];
-            cell.desigField.text=place.placeType;
-            cell.emailField.text=@" ";
-
-        }  
-    
-    }
-    
-    [cell.popButton addTarget:self action:@selector(showPopover:) forControlEvents:UIControlEventTouchUpInside];
+[cell.popButton addTarget:self action:@selector(showPopover:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
     
-   }
+}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self showDetailsForIndexPath:indexPath];
 }
 
+
 -(void) showDetailsForIndexPath:(NSIndexPath*)indexPath
 {
     [self.searchBar resignFirstResponder];
-    //mapDraw* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"mapDraw"];
     Employee*  employe;
     Places *place;
     if(emp_plac==0)
-    {
-        if(isFiltered)
-       {
+      {
         employe = [self.filteredtableArray objectAtIndex:indexPath.row];
-      //  vc.employe = employe;
-           _categoryemployexy=employe;
+        _categoryemployexy=employe;
         [self performSegueWithIdentifier:@"categorysearch" sender:self];
-       // [self.navigationController pushViewController:vc animated:true];
        }
-    else
-       {
-        
-        employe = [self.categoryTableData objectAtIndex:indexPath.row];
-       // vc.employe = employe;
-           _categoryemployexy=employe;
-        [self performSegueWithIdentifier:@"categorysearch" sender:self];
-       // [self.navigationController pushViewController:vc animated:true];
-        
-       }
-    }
     else if((int)emp_plac==1)
-    {
-        if(isFiltered)
-        {
+      {
             place = [self.filteredtableArray objectAtIndex:indexPath.row];
-          //  vc.place = place;
             _categoryplacexy=place;
             [self performSegueWithIdentifier:@"categorysearch" sender:self];
-            //[self.navigationController pushViewController:vc animated:true];
-        }
-        else
-        {
-            
-            place = [self.categoryTableData objectAtIndex:indexPath.row];
-            //vc.place = place;
-             _categoryplacexy=place;
-            [self performSegueWithIdentifier:@"categorysearch" sender:self];
-          //  [self.navigationController pushViewController:vc animated:true];
-            
-        }
-    
-    }
+           
+      }
 }
 
 
 - (IBAction)showPopover:(id)sender
 {
     infoViewController *popController = [[infoViewController alloc] init];
-    //popController.sourceView = sender;
     Employee *employe;
     Places *place;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *)
@@ -403,24 +324,15 @@ NSString *catSearchtext;
     
     if(emp_plac==0)
     {
-        if(isFiltered)
-            employe= [_filteredtableArray objectAtIndex:indexPath.row];
-        else
-            employe =[_categoryTableData objectAtIndex:indexPath.row];
-        
+        employe= [_filteredtableArray objectAtIndex:indexPath.row];
         popController.employe=employe;
         popController.if_emp_place = emp_plac;
     }
     else  if((int)emp_plac==1)
     {
-        if(isFiltered)
-            place= [_filteredtableArray objectAtIndex:indexPath.row];
-        else
-            place =[_categoryTableData objectAtIndex:indexPath.row];
-        
-        popController.place=place;
-        
-        popController.if_emp_place = emp_plac;
+       place= [_filteredtableArray objectAtIndex:indexPath.row];
+       popController.place=place;
+       popController.if_emp_place = emp_plac;
     }
     popController.contentSize = CGSizeMake(210, 245);
     popController.arrowDirection =0;
