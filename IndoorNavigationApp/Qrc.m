@@ -195,7 +195,7 @@ NSInteger y;
             
             NSLog(@"%@",string);
             
-            
+            NSString *dateString;
             //code for fetch in timelog
             /*            NSManagedObjectContext *managedObjectContext1 = [self managedObjectContext];
              NSFetchRequest *fetchRequest1 = [[NSFetchRequest alloc] initWithEntityName:@"TimeLog"];
@@ -211,21 +211,21 @@ NSInteger y;
              */
             
             
-            NSManagedObjectContext *managedObjectContext1 = [self managedObjectContext];
-            NSFetchRequest *request = [[NSFetchRequest alloc] init];
-            [request setEntity:[NSEntityDescription entityForName:@"TimeLog" inManagedObjectContext:managedObjectContext1]];
+//            NSManagedObjectContext *managedObjectContext1 = [self managedObjectContext];
+//            NSFetchRequest *request = [[NSFetchRequest alloc] init];
+//            [request setEntity:[NSEntityDescription entityForName:@"TimeLog" inManagedObjectContext:managedObjectContext1]];
+//            
+//            [request setIncludesSubentities:NO]; //Omit subentities. Default is YES (i.e. include subentities)
+//            
+//            NSError *err;
+//            NSUInteger count = [managedObjectContext1 countForFetchRequest:request error:&err];
+//            if(count == NSNotFound) {
+//                //Handle error
+//            }
+//            NSLog(@"llllllllllllllllllllll%lu",(unsigned long)count);
             
-            [request setIncludesSubentities:NO]; //Omit subentities. Default is YES (i.e. include subentities)
             
-            NSError *err;
-            NSUInteger count = [managedObjectContext1 countForFetchRequest:request error:&err];
-            if(count == NSNotFound) {
-                //Handle error
-            }
-            NSLog(@"llllllllllllllllllllll%lu",(unsigned long)count);
-            
-            
-            
+            NSUInteger count;
             NSManagedObjectContext *managedObjectContext2 = [self managedObjectContext];
             NSFetchRequest *ch = [[NSFetchRequest alloc]init];
             [ch setEntity:[NSEntityDescription entityForName:@"TimeLog" inManagedObjectContext:managedObjectContext2]];
@@ -233,7 +233,8 @@ NSInteger y;
             // NSFetchRequest *requestdel = [[NSFetchRequest alloc]initWithEntityName:@"TimeLog"];
             // NSManagedObjectContext *managedObjectContext2 = [self managedObjectContext];
             NSArray *result = [managedObjectContext2 executeFetchRequest:ch error:nil];
-            
+            NSLog(@"%lu", (unsigned long)result.count);
+            count = result.count;
             if (result.count!=0) {
                 TimeLog *tim;
                 tim = [result objectAtIndex:0];
@@ -243,10 +244,10 @@ NSInteger y;
                 
                 NSDate *now = [[NSDate alloc] init];
                 
-                NSString *datestring = [format stringFromDate:now];
-                NSLog(@"date check%@",datestring);
+                dateString = [format stringFromDate:now];
+                NSLog(@"date check%@",dateString);
                 NSLog(@"tim.date check%@",tim.date);
-                if (![datestring isEqualToString:tim.date]) {
+                if (![dateString isEqualToString:tim.date]) {
                     for (NSManagedObject * res in result) {
                         [managedObjectContext2 deleteObject:res];
                     }
@@ -306,12 +307,12 @@ NSInteger y;
                 [newDevice setValue:qrdef forKey:@"deftime"];
                 
                 //code for obtaining date
-                NSDateFormatter *format = [[NSDateFormatter alloc] init];
-                [format setDateFormat:@"MMM dd, yyyy"];
-                
-                NSDate *now = [[NSDate alloc] init];
-                
-                NSString *dateString = [format stringFromDate:now];
+//                NSDateFormatter *format = [[NSDateFormatter alloc] init];
+//                [format setDateFormat:@"MMM dd, yyyy"];
+//                
+//                NSDate *now = [[NSDate alloc] init];
+//                
+//                NSString *dateString = [format stringFromDate:now];
                 
                 [newDevice setValue:dateString forKey:@"date"];
                 

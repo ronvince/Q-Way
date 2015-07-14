@@ -18,7 +18,7 @@
 @end
 
 @implementation timeLogTable
-int sl = 1;
+//int sl = 1;
 - (NSManagedObjectContext *)managedObjectContext
 {
     NSManagedObjectContext *context = nil;
@@ -32,7 +32,7 @@ int sl = 1;
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    sl=1;
+    //sl=1;
     // Fetch the devices from persistent data store
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"TimeLog"];
@@ -45,14 +45,14 @@ int sl = 1;
                                                                    ascending:YES];
     NSMutableArray *sortDescriptors = [[NSMutableArray alloc] initWithObjects:sortDescriptor, nil];
     [fetchRequest setSortDescriptors:sortDescriptors];
-    NSDateFormatter *format = [[NSDateFormatter alloc] init];
-    [format setDateFormat:@"MMM dd, yyyy"];
+   // NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    //[format setDateFormat:@"MMM dd, yyyy"];
     
-    NSDate *now = [[NSDate alloc] init];
+    //NSDate *now = [[NSDate alloc] init];
     
-    NSString *dateString = [format stringFromDate:now];
+    //NSString *dateString = [format stringFromDate:now];
     //dateString =@"hdfhjkfg";
-    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"date == %@", dateString]];
+    //[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"date == %@", dateString]];
     NSError *error = nil;
     
     self.timecell = [[managedObjectContext executeFetchRequest:fetchRequest error:&error]mutableCopy];
@@ -120,9 +120,9 @@ int sl = 1;
     cell.timefield.text = qr.time;
     //cell.datefield.text = qr.date;
  //   cell.slnofield.text = qr.slno;
-    NSString *s = [NSString stringWithFormat:@"%d",sl];
+    NSString *s = [NSString stringWithFormat:@"%@", qr.slno];
     cell.slnofield.text = s;
-    sl++;
+    //sl++;
     
     
     NSLog(@"helloWorld");
