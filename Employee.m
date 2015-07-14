@@ -2,7 +2,7 @@
 //  Employee.m
 //  IndoorNavigationApp
 //
-//  Created by user on 6/26/15.
+//  Created by user on 7/14/15.
 //  Copyright (c) 2015 user. All rights reserved.
 //
 
@@ -18,5 +18,6 @@
 @dynamic phno;
 @dynamic x;
 @dynamic y;
+@dynamic favrt;
 
 @end

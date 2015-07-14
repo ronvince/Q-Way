@@ -342,6 +342,72 @@ NSString *catSearchtext;
     
 }
 
+
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //NSIndexPath *path=[[NSIndexPath alloc]init];
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        
+        
+    }
+    
+}
+
+-(NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewRowAction *favAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Fav" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
+        
+        NSError* error = nil;
+        Employee *obj = [self.filteredtableArray objectAtIndex:indexPath.row];
+        NSLog(@"NAME  %@", obj.name);
+        NSLog(@"NAME  %@", obj.favrt);
+        
+        NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        [fetchRequest setEntity:[NSEntityDescription entityForName:@"Employee" inManagedObjectContext:managedObjectContext]];
+        
+        NSString *delstring = obj.empid;
+        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"empid == %@ ", delstring]];
+        
+        NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+        
+        Employee *emp1=[results  objectAtIndex:0];
+        /*
+         NSLog(@"NAME  %@", emp1.name);
+         NSLog(@"NAME  %@", obj.favrt);
+         */
+        emp1.favrt = @"1";
+        [managedObjectContext save:&error];
+        
+    }];
+    
+    
+    favAction.backgroundColor = [UIColor  redColor ];;
+    
+    
+    UITableViewRowAction *infoAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Info"  handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
+        
+        NSLog(@"WFGEQGEGEWG");
+        
+        
+    }];
+    // deleteAction.backgroundColor = [UIColor blueColor];;
+    
+    return @[infoAction,favAction];
+}
+
+
+
+
+
+
+
+
+
+
+
 /*
 #pragma mark - Navigation
 

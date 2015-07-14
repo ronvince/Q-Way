@@ -86,12 +86,6 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8PL-II-c2d">
-                                                    <rect key="frame" x="90" y="45" width="133" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJD-eJ-3x0">
                                                     <rect key="frame" x="90" y="26" width="133" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -109,7 +103,6 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="desigField" destination="TJD-eJ-3x0" id="p7k-vg-9ci"/>
-                                            <outlet property="emailField" destination="8PL-II-c2d" id="asb-e4-w2h"/>
                                             <outlet property="imageField" destination="Ime-9P-esr" id="c6N-Xt-MCc"/>
                                             <outlet property="nameField" destination="HJJ-ip-j7r" id="f2c-23-fzw"/>
                                             <outlet property="popButton" destination="qfX-Bv-VBK" id="Zfd-cj-CpR"/>
