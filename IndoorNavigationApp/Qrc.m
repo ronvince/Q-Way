@@ -4,7 +4,7 @@
 //
 //  Created by user on 6/28/15.
 //  Copyright (c) 2015 user. All rights reserved.
-//  Written By Roni Vincent and Jithin V.
+//  Written By Anita Grace Daniel and Roni Vincent.
 
 
 #import "Qrc.h"
@@ -29,7 +29,7 @@
 @synthesize DisplayLabel;
 int nullQrDB =1;
 int check1 = 0;
-
+UIButton *overlayButton;
 
 NSManagedObjectContext *managedObjectContext;
 - (NSManagedObjectContext *)managedObjectContext
@@ -63,7 +63,7 @@ NSManagedObjectContext *managedObjectContext;
     [[self view] addSubview:overlayImageView];
     //[overlayImageView release];
     
-    UIButton *overlayButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    overlayButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [overlayButton setImage:[UIImage imageNamed:@"scanbutton.png"] forState:UIControlStateNormal];
     [overlayButton setFrame:CGRectMake(145, 405, 80, 60)];
     [overlayButton addTarget:self action:@selector(scanButtonPressed)   forControlEvents:UIControlEventTouchUpInside];
@@ -93,6 +93,7 @@ NSManagedObjectContext *managedObjectContext;
 }
 
 - (void) scanButtonPressed {
+    overlayButton.hidden = YES;
     [[self scanningLabel] setHidden:NO];
     [self performSelector:@selector(startReading:) withObject:[self scanningLabel]  ];
 }
@@ -195,7 +196,7 @@ NSInteger y;
             
             NSLog(@"%@",string);
             
-            
+            NSString *dateString;
             //code for fetch in timelog
             /*            NSManagedObjectContext *managedObjectContext1 = [self managedObjectContext];
              NSFetchRequest *fetchRequest1 = [[NSFetchRequest alloc] initWithEntityName:@"TimeLog"];
@@ -211,21 +212,21 @@ NSInteger y;
              */
             
             
-            NSManagedObjectContext *managedObjectContext1 = [self managedObjectContext];
-            NSFetchRequest *request = [[NSFetchRequest alloc] init];
-            [request setEntity:[NSEntityDescription entityForName:@"TimeLog" inManagedObjectContext:managedObjectContext1]];
+//            NSManagedObjectContext *managedObjectContext1 = [self managedObjectContext];
+//            NSFetchRequest *request = [[NSFetchRequest alloc] init];
+//            [request setEntity:[NSEntityDescription entityForName:@"TimeLog" inManagedObjectContext:managedObjectContext1]];
+//            
+//            [request setIncludesSubentities:NO]; //Omit subentities. Default is YES (i.e. include subentities)
+//            
+//            NSError *err;
+//            NSUInteger count = [managedObjectContext1 countForFetchRequest:request error:&err];
+//            if(count == NSNotFound) {
+//                //Handle error
+//            }
+//            NSLog(@"llllllllllllllllllllll%lu",(unsigned long)count);
             
-            [request setIncludesSubentities:NO]; //Omit subentities. Default is YES (i.e. include subentities)
             
-            NSError *err;
-            NSUInteger count = [managedObjectContext1 countForFetchRequest:request error:&err];
-            if(count == NSNotFound) {
-                //Handle error
-            }
-            NSLog(@"llllllllllllllllllllll%lu",(unsigned long)count);
-            
-            
-            
+            NSUInteger count;
             NSManagedObjectContext *managedObjectContext2 = [self managedObjectContext];
             NSFetchRequest *ch = [[NSFetchRequest alloc]init];
             [ch setEntity:[NSEntityDescription entityForName:@"TimeLog" inManagedObjectContext:managedObjectContext2]];
@@ -233,7 +234,8 @@ NSInteger y;
             // NSFetchRequest *requestdel = [[NSFetchRequest alloc]initWithEntityName:@"TimeLog"];
             // NSManagedObjectContext *managedObjectContext2 = [self managedObjectContext];
             NSArray *result = [managedObjectContext2 executeFetchRequest:ch error:nil];
-            
+            NSLog(@"%lu", (unsigned long)result.count);
+            count = result.count;
             if (result.count!=0) {
                 TimeLog *tim;
                 tim = [result objectAtIndex:0];
@@ -243,10 +245,10 @@ NSInteger y;
                 
                 NSDate *now = [[NSDate alloc] init];
                 
-                NSString *datestring = [format stringFromDate:now];
-                NSLog(@"date check%@",datestring);
+                dateString = [format stringFromDate:now];
+                NSLog(@"date check%@",dateString);
                 NSLog(@"tim.date check%@",tim.date);
-                if (![datestring isEqualToString:tim.date]) {
+                if (![dateString isEqualToString:tim.date]) {
                     for (NSManagedObject * res in result) {
                         [managedObjectContext2 deleteObject:res];
                     }
@@ -306,12 +308,12 @@ NSInteger y;
                 [newDevice setValue:qrdef forKey:@"deftime"];
                 
                 //code for obtaining date
-                NSDateFormatter *format = [[NSDateFormatter alloc] init];
-                [format setDateFormat:@"MMM dd, yyyy"];
-                
-                NSDate *now = [[NSDate alloc] init];
-                
-                NSString *dateString = [format stringFromDate:now];
+//                NSDateFormatter *format = [[NSDateFormatter alloc] init];
+//                [format setDateFormat:@"MMM dd, yyyy"];
+//                
+//                NSDate *now = [[NSDate alloc] init];
+//                
+//                NSString *dateString = [format stringFromDate:now];
                 
                 [newDevice setValue:dateString forKey:@"date"];
                 

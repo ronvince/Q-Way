@@ -64,12 +64,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="iwC-Up-m9k">
-                                <rect key="frame" x="0.0" y="64" width="376" height="44"/>
+                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search" backgroundImage="blu" translatesAutoresizingMaskIntoConstraints="NO" id="iwC-Up-m9k">
+                                <rect key="frame" x="0.0" y="0.0" width="376" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="71" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Frf-P1-Sbj">
-                                <rect key="frame" x="0.0" y="108" width="414" height="628"/>
+                                <rect key="frame" x="5" y="44" width="371" height="592"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="category" rowHeight="70" id="hhd-of-Emo" customClass="categoryTableViewCell">
@@ -133,7 +133,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3TU-jP-czL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3465.5" y="-865.5"/>
+            <point key="canvasLocation" x="3440.5" y="-872.5"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="KHZ-dV-np4">
@@ -409,7 +409,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xuv-yZ-X4g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1212" y="899"/>
+            <point key="canvasLocation" x="1206" y="1155"/>
         </scene>
         <!--Qrc-->
         <scene sceneID="QrP-Wv-Hgy">
@@ -431,7 +431,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PcW-yb-SvM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1644.5" y="-675.5"/>
+            <point key="canvasLocation" x="1506.5" y="-633.5"/>
         </scene>
         <!--Item-->
         <scene sceneID="Ko0-RS-cAY">
@@ -802,14 +802,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search" backgroundImage="blue1" translatesAutoresizingMaskIntoConstraints="NO" id="7AL-96-C6d">
-                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
+                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search" backgroundImage="blu" translatesAutoresizingMaskIntoConstraints="NO" id="7AL-96-C6d">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <color key="backgroundColor" red="0.17647058823529413" green="0.37254901960784315" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJU-11-Zc0">
-                                <rect key="frame" x="0.0" y="108" width="186" height="42"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="0.0" y="44" width="186" height="42"/>
+                                <color key="backgroundColor" red="0.22745098039215686" green="0.46666666666666667" blue="0.82352941176470584" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="EMPLOYEES">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -821,8 +821,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o2q-Wz-1qa">
-                                <rect key="frame" x="186" y="108" width="189" height="42"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="186" y="44" width="189" height="42"/>
+                                <color key="backgroundColor" red="0.22745098039215686" green="0.46666666666666667" blue="0.82352941176470584" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="PLACES">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -834,8 +834,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="67" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="I35-fr-uTH">
-                                <rect key="frame" x="0.0" y="153" width="375" height="514"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="85" width="375" height="514"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="70" id="1mp-li-f5y" customClass="enhancedCell">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -885,9 +884,11 @@
                                 </connections>
                             </tableView>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="qTY-Td-bHR">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="e3M-ts-w8H">
+                            <color key="tintColor" red="0.6470588235294118" green="0.87450980392156863" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="iTs-87-otQ" kind="modal" id="HP9-YX-Yeu"/>
                             </connections>
@@ -928,7 +929,7 @@
     </scenes>
     <resources>
         <image name="bic-back-top" width="8" height="12"/>
-        <image name="blue1" width="700" height="575"/>
+        <image name="blu" width="700" height="575"/>
         <image name="ic-lock" width="16" height="21"/>
         <image name="ic-qr" width="18" height="18"/>
         <image name="ic-refresh" width="16" height="22"/>
