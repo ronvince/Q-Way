@@ -411,10 +411,32 @@
                     <view key="view" contentMode="scaleToFill" id="qRi-jr-BHQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mWL-zs-p0Y">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="147"/>
+                                <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="0.5" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wyb-cT-N8y">
+                                <rect key="frame" x="0.0" y="331" width="375" height="349"/>
+                                <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="0.5" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3M7-1M-yhr">
+                                <rect key="frame" x="0.0" y="147" width="70" height="184"/>
+                                <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="0.5" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="77A-gt-s9K">
+                                <rect key="frame" x="309" y="147" width="66" height="184"/>
+                                <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="0.5" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="view1" destination="mWL-zs-p0Y" id="C1R-eK-1K5"/>
+                        <outlet property="view2" destination="wyb-cT-N8y" id="HBq-X9-jiy"/>
+                        <outlet property="view3" destination="77A-gt-s9K" id="edD-ET-Wf0"/>
+                        <outlet property="view4" destination="3M7-1M-yhr" id="8E6-LR-BUT"/>
                         <segue destination="JEN-Na-x0V" kind="unwind" identifier="modal1" unwindAction="prepareForUnwind:" id="3yy-uj-KvY"/>
                     </connections>
                 </viewController>
