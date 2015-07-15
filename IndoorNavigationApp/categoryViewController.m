@@ -376,39 +376,45 @@ NSString *catSearchtext;
 
 -(NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewRowAction *favAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Fav" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
+    
+    NSError* error = nil;
+    Employee *obj = [self.filteredtableArray objectAtIndex:indexPath.row];
+    /*
+     NSLog(@"NAME  %@", obj.name);
+     NSLog(@"NAME  %@", obj.favrt);
+     */
+    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:[NSEntityDescription entityForName:@"Employee" inManagedObjectContext:managedObjectContext]];
+    
+    NSString *delstring = obj.empid;
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"empid == %@ ", delstring]];
+    
+    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    Employee *emp1=[results  objectAtIndex:0];
+    
+    
+    UITableViewRowAction *favAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"    " handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
+        
         
         NSError* error = nil;
-        Employee *obj = [self.filteredtableArray objectAtIndex:indexPath.row];
-        /*
-        NSLog(@"NAME  %@", obj.name);
-        NSLog(@"NAME  %@", obj.favrt);
-        */
-        NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        [fetchRequest setEntity:[NSEntityDescription entityForName:@"Employee" inManagedObjectContext:managedObjectContext]];
-        
-        NSString *delstring = obj.empid;
-        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"empid == %@ ", delstring]];
-        
-        NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
-        
-        Employee *emp1=[results  objectAtIndex:0];
-        /*
-         NSLog(@"NAME  %@", emp1.name);
-         NSLog(@"NAME  %@", obj.favrt);
-         */
-        emp1.favrt = @"1";
+      
+        if([emp1.favrt  isEqual:@"1"] )
+        emp1.favrt = @"0";
+        else
+            emp1.favrt = @"1";
         [managedObjectContext save:&error];
         
     }];
     
    
-                                                                        
-  favAction.backgroundColor = [UIColor  redColor ];;
+      if([emp1.favrt  isEqual:@"1"] )
+  favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"gold.png"]];
+    else
+    favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"silver.png"]];
     
-    
-    UITableViewRowAction *infoAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Info"  handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
+    UITableViewRowAction *infoAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"   "  handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
        
         infoViewController *popController = [[infoViewController alloc] init];
         Employee *employe;
@@ -424,7 +430,8 @@ NSString *catSearchtext;
         [self presentViewController:popController animated:YES completion:nil];
         
     }];
-    // deleteAction.backgroundColor = [UIColor blueColor];;
+   // infoAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"silver.png"]];;
+    
     
     return @[infoAction,favAction];
 }

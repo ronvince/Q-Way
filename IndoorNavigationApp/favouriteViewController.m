@@ -112,7 +112,7 @@
 
 -(NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewRowAction *favAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"     " handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
+    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"     " handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
         NSError* error = nil;
         Employee *obj = [self.tableArray objectAtIndex:indexPath.row];
         /*
@@ -145,9 +145,9 @@
 
         
     }];
-     favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"Untitled.png"]];;
+     deleteAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"Untitled.png"]];;
         
-    return @[favAction];
+    return @[deleteAction];
 }
 
 
