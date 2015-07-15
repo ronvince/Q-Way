@@ -125,11 +125,11 @@ int m;
     
     UIImage *image = [UIImage imageNamed:@"floor.png"];
     self.imageView = [[UIImageView alloc] initWithImage:image];
-    self.imageView.frame = (CGRect){.origin=CGPointMake(200,20), .size=CGSizeMake(800,1200)};
+    self.imageView.frame = (CGRect){.origin=CGPointMake(400,425), .size=CGSizeMake(400,600)};
     
     UIImage *ima = [UIImage imageNamed:@""];
     self.imageVie = [[UIImageView alloc] initWithImage:ima];
-    self.imageVie.frame = (CGRect){.origin=CGPointMake(0, 0), .size=CGSizeMake(1200,1200)};
+    self.imageVie.frame = (CGRect){.origin=CGPointMake(0, 0), .size=CGSizeMake(1200,1450)};
     [self.scrollView addSubview:self.imageVie];
   [self.imageVie addSubview:self.imageView];
     
@@ -232,7 +232,11 @@ int m;
     tap.numberOfTapsRequired = 1;
     tap.numberOfTouchesRequired = 1;
     [self.imageView addGestureRecognizer:tap];
+    //////////////////////////
     
+    _imageView.transform=CGAffineTransformMakeRotation(DEGREES_TO_RADIANS(-58));
+    
+    //////////////////////
 
     [self.view addSubview:self.databutton];
      [self.view addSubview:self.searchbutton];
@@ -245,9 +249,28 @@ int m;
     CGFloat scaleWidth = scrollViewFrame.size.width / self.scrollView.contentSize.width;
     CGFloat scaleHeight = scrollViewFrame.size.height/ self.scrollView.contentSize.height;
     CGFloat minScale = MIN(scaleWidth, scaleHeight);
-    self.scrollView.minimumZoomScale =minScale;
-    self.scrollView.maximumZoomScale =2.0;
+    self.scrollView.minimumZoomScale =1;//minScale;
+    self.scrollView.maximumZoomScale =5.0;
     self.scrollView.zoomScale = minScale;
+    
+    
+    
+    CGFloat newZoomScale =1;
+   // newZoomScale = MIN(newZoomScale, self.scrollView.maximumZoomScale);
+    CGSize scrollViewSize = self.scrollView.bounds.size;
+    
+    CGFloat w = scrollViewSize.width / newZoomScale;
+    CGFloat h = scrollViewSize.height / newZoomScale;
+    CGFloat x = _imageView.center.x- (w / 2.0f);
+    CGFloat y = _imageView.center.y- (h / 2.0f);
+    
+    CGRect rectToZoomTo = CGRectMake(x, y, w, h);
+    
+    [self.scrollView zoomToRect:rectToZoomTo animated:YES];
+
+    
+    
+    
     [self centerScrollViewContents];
     
 }
@@ -294,11 +317,11 @@ NSInteger prev;
 {
     int i=0;
     
-    if(_scrollView.zoomScale>=0.3125&&_scrollView.zoomScale<=2)
+    if(_scrollView.zoomScale>=0.3125&&_scrollView.zoomScale<=5)
     {
         
         _imageVi.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
-        self.imageVi.transform = CGAffineTransformRotate(self.imageVi.transform,DEGREES_TO_RADIANS(-num));
+        self.imageVi.transform = CGAffineTransformRotate(self.imageVi.transform,DEGREES_TO_RADIANS(-(num-58)));
        
      
         for(i=0;i<gifimg.count;i++)
@@ -329,8 +352,7 @@ int btny;
     NSLog(@"%i",btny);
  infoViewController *popController = [[infoViewController alloc] init];
     
-     //employe=_employemap;
-        for(int i=0;i<employeedetails.count;i++)
+    for(int i=0;i<employeedetails.count;i++)
         {
             _employemap=employeedetails[i];
              NSLog(@"%@",_employemap.x);
@@ -383,22 +405,26 @@ int btny;
         [self.locationManager startUpdatingHeading];
         if(Qrcode.Qrx!=NULL && Qrcode.Qry!=NULL)
         {
-         [_imageVi removeFromSuperview];
-        cx=[Qrcode.Qrx intValue];
-        cy=[Qrcode.Qry intValue];
-        UIImage *imag = [UIImage imageNamed:@"ar"];
-        self.imageVi = [[UIImageView alloc] initWithImage:imag];
-        self.imageVi.frame = (CGRect){.origin=CGPointMake(cx,cy),.size=CGSizeMake(100,200)};
-        self.imageVi.transform =CGAffineTransformMakeRotation(DEGREES_TO_RADIANS(-num));
-        [self.imageView addSubview:self.imageVi];
-       
-        self.imglbl = [[UILabel  alloc] initWithFrame:CGRectMake(-250,-50,600,100)];
-        [_imglbl   setText:@"You"];
-        [_imglbl setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:70]];
-        [_imglbl setTextColor:[UIColor brownColor ]];
-        _imglbl.textAlignment = NSTextAlignmentCenter;
-        [self.imageVi addSubview:self.imglbl];
-        
+           [_imageVi removeFromSuperview];
+           cx=[Qrcode.Qrx intValue];
+           cy=[Qrcode.Qry intValue];
+           UIImage *imag = [UIImage imageNamed:@"ar"];
+           self.imageVi = [[UIImageView alloc] initWithImage:imag];
+           self.imageVi.frame = (CGRect){.origin=CGPointMake(cx,cy),.size=CGSizeMake(100,200)};
+           
+           [self.imageView addSubview:self.imageVi];
+            
+           
+           self.imglbl = [[UILabel  alloc] initWithFrame:CGRectMake(-250,-50,600,100)];
+           [_imglbl   setText:@"You"];
+           [_imglbl setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:70]];
+           [_imglbl setTextColor:[UIColor brownColor ]];
+           _imglbl.textAlignment = NSTextAlignmentCenter;
+           [self.imageVi addSubview:self.imglbl];
+              _imageView.layer.anchorPoint=CGPointMake((float)(cx+50)/400,(float)(cy+100)/600);
+            _imageVi.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
+            self.imageVi.transform = CGAffineTransformRotate(self.imageVi.transform,DEGREES_TO_RADIANS(-(num-58)));
+            
         }
         
     }
@@ -599,9 +625,9 @@ int lock=0;
             [self.locationManager stopUpdatingHeading];
             rotationlock=0;
             num=0;
-            _imageView.transform=CGAffineTransformMakeRotation(DEGREES_TO_RADIANS(0));
-            _imageVi.transform=CGAffineTransformMakeRotation(DEGREES_TO_RADIANS(0));
+            _imageView.transform=CGAffineTransformMakeRotation(DEGREES_TO_RADIANS(-58));
             _imageVi.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
+            self.imageVi.transform = CGAffineTransformRotate(self.imageVi.transform,DEGREES_TO_RADIANS(-(num-58)));
             [self.locationManager startUpdatingHeading];
         }
         
