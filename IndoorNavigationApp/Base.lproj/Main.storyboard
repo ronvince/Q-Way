@@ -893,7 +893,8 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="e3M-ts-w8H">
                             <color key="tintColor" red="0.6470588235294118" green="0.87450980392156863" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <segue destination="iTs-87-otQ" kind="modal" id="HP9-YX-Yeu"/>
+                                <action selector="cancelbutton:" destination="hs7-Nt-DQZ" id="zRS-rO-gGl"/>
+                                <segue destination="JEN-Na-x0V" kind="unwind" identifier="favourite" unwindAction="prepareForUnwind:" id="2wd-ZP-vbY"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

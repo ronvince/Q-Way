@@ -108,8 +108,12 @@ NSInteger ea=0;
  NSMutableArray *gifimg;
 NSMutableArray *employeedetails;
 NSMutableArray *placedetails;
+int rotationlock=0;
+int lock=0;
 int m;
-- (void)viewDidLoad {
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     num=0;
    
@@ -586,8 +590,7 @@ else if([segue.identifier isEqualToString:@"categorysearch"])
 }
     
     
-int rotationlock=0;
-int lock=0;
+
 - (IBAction)clearfunction:(id)sender
 {
     
