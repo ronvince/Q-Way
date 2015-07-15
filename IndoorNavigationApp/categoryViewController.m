@@ -41,6 +41,25 @@ int prevCatTextLen,catSl,locLen=0,locCor=0;
     
     self.searchBar.delegate = (id)self;
     self.searchBar.placeholder=categoryName;
+    
+    _imagefield.layer.cornerRadius = _imagefield.frame.size.width/2;
+    _imagefield.layer.cornerRadius =  _imagefield.frame.size.height/2;
+    _imagefield.layer.masksToBounds = YES;
+    _imagefield.layer.borderWidth = 0;
+    
+    
+    
+    if([categoryName isEqualToString:@"Entry/Exit"])
+    {
+        NSString *imageName=[NSString stringWithFormat:@"Entry.png"];
+        _imagefield.image=[UIImage imageNamed:imageName] ;
+    }
+    else
+    {
+        NSString *imageName=[NSString stringWithFormat:@"%@.png",categoryName];
+        _imagefield.image=[UIImage imageNamed:imageName]  ;
+    }
+    
 }
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -248,7 +267,7 @@ NSString *catSearchtext;
         cell.nameField.text=emp.name;
         NSLog(@"%@", emp.name);
         NSLog(@"%@", categoryName);
-        cell.desigField.text = emp.desig;
+        cell.desigField.text = emp.favrt;
         cell.emailField.text=emp.email;
         
         NSString *inputString = emp.empid;
@@ -384,8 +403,9 @@ NSString *catSearchtext;
         
     }];
     
-    
-    favAction.backgroundColor = [UIColor  redColor ];;
+   
+                                                                        
+  favAction.backgroundColor = [UIColor  redColor ];;
     
     
     UITableViewRowAction *infoAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Info"  handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){

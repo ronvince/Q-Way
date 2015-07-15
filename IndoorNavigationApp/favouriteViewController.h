@@ -15,5 +15,5 @@
 @interface favouriteViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+- (void)willTransitionToState:(UITableViewCellStateMask)state;
 @end

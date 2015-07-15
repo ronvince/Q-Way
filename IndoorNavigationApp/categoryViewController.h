@@ -21,6 +21,7 @@
 @property (nonatomic)  NSInteger *emp_plac;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIImageView *imagefield;
 
 
 @end

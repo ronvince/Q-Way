@@ -338,10 +338,7 @@ NSString *t1;
    
     
     UIImageView *imagefield =[[UIImageView alloc] init];
-    //setting default image
-    // imagefield.image = [UIImage imageNamed:@"default.jpg"];
-    
-    static NSString *CellIdentifier = @"Cell";
+       static NSString *CellIdentifier = @"Cell";
     enhancedCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     UIView *bgColorView = [[UIView alloc] init];
     [bgColorView setBackgroundColor:[UIColor colorWithRed:0.698 green:0.745 blue:0.745 alpha:1]];
@@ -375,7 +372,7 @@ NSString *t1;
         else
         {
             NSString *test = [_defaultData objectAtIndex:indexPath.row];
-            NSLog(@"%@",test);
+            
             cell.namefield.text=test;
             cell.imagefield.layer.cornerRadius = cell.imagefield.frame.size.width/2;
             cell.imagefield.layer.cornerRadius =  cell.imagefield.frame.size.height/2;
@@ -385,6 +382,7 @@ NSString *t1;
             cell.desigfield.text=@" ";
             
             NSString *imageName=[NSString stringWithFormat:@"%@.png",test];
+   
             cell.imagefield.image=[UIImage imageNamed:imageName];
         }
         
@@ -411,7 +409,7 @@ NSString *t1;
         else
         {
             NSString *test = [_defaultData objectAtIndex:indexPath.row];
-            NSLog(@"%@",test);
+       
             cell.namefield.text=test;
             cell.imagefield.layer.cornerRadius = cell.imagefield.frame.size.width/2;
             cell.imagefield.layer.cornerRadius =  cell.imagefield.frame.size.height/2;
@@ -456,15 +454,14 @@ NSString *t1;
         employe = [_tableArray objectAtIndex:indexPath.row];
         _employexy = employe;
         [self performSegueWithIdentifier:@"search" sender:self];
-       //[self.navigationController pushViewController:vc animated:true];
+       
     }
     else
     {
         NSString *str= [_defaultData objectAtIndex:indexPath.row];
         cat.categoryName = str;
         cat.emp_plac=employ_plac ;
-        //  NSLog(@"%@",cat.categoryName);
-        [self.navigationController pushViewController:cat animated:true];
+              [self.navigationController pushViewController:cat animated:true];
     }
     }
     else if(employ_plac==1)     //PLACES
@@ -559,7 +556,7 @@ NSString *t1;
             shapeLayer.lineWidth = 2.0;
             shapeLayer.fillColor = [[UIColor clearColor] CGColor];
             [self.view.layer addSublayer:shapeLayer];
-            //button.selected = NO;
+           
         }
     }
 }
