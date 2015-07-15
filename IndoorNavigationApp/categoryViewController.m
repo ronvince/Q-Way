@@ -401,19 +401,18 @@ NSString *catSearchtext;
         NSError* error = nil;
       
         if([emp1.favrt  isEqual:@"1"] )
-        emp1.favrt = @"0";
+            emp1.favrt = @"0";
         else
             emp1.favrt = @"1";
         [managedObjectContext save:&error];
         
     }];
     
-   
-      if([emp1.favrt  isEqual:@"1"] )
-  favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"gold.png"]];
-    else
-    favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"silver.png"]];
     
+    if([emp1.favrt  isEqual:@"1"] )
+        favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"gold.png"]];
+    else
+        favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"silver.png"]];
     UITableViewRowAction *infoAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"   "  handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
        
         infoViewController *popController = [[infoViewController alloc] init];
