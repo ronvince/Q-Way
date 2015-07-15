@@ -197,6 +197,14 @@ NSInteger y;
             NSLog(@"%@",string);
             
             NSString *dateString;
+            NSDateFormatter *format = [[NSDateFormatter alloc] init];
+            [format setDateFormat:@"MMM dd, yyyy"];
+            
+            NSDate *now = [[NSDate alloc] init];
+            
+            dateString = [format stringFromDate:now];
+            NSLog(@"date check%@",dateString);
+
             //code for fetch in timelog
             /*            NSManagedObjectContext *managedObjectContext1 = [self managedObjectContext];
              NSFetchRequest *fetchRequest1 = [[NSFetchRequest alloc] initWithEntityName:@"TimeLog"];
@@ -240,12 +248,6 @@ NSInteger y;
                 TimeLog *tim;
                 tim = [result objectAtIndex:0];
                 
-                NSDateFormatter *format = [[NSDateFormatter alloc] init];
-                [format setDateFormat:@"MMM dd, yyyy"];
-                
-                NSDate *now = [[NSDate alloc] init];
-                
-                dateString = [format stringFromDate:now];
                 NSLog(@"date check%@",dateString);
                 NSLog(@"tim.date check%@",tim.date);
                 if (![dateString isEqualToString:tim.date]) {
