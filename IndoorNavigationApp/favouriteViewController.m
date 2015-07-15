@@ -80,11 +80,11 @@
     emp = [self.tableArray objectAtIndex:indexPath.row];
     cell.nameLabel.text=emp.name;
     cell.desigField.text = emp.desig;
-    NSLog(@"%@",emp.name);
+    
     
     NSString *inputString = emp.empid;
      int value = [inputString intValue];
-     NSLog(@"%d",value);
+  
      NSString *imageName=[NSString stringWithFormat:@"%d.jpg",value];
      
      
@@ -101,9 +101,58 @@
     [self performSegueWithIdentifier:@"favourite" sender:self];
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //NSIndexPath *path=[[NSIndexPath alloc]init];
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+           }
+    
+}
 
 
-/*
+-(NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewRowAction *favAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"     " handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
+        NSError* error = nil;
+        Employee *obj = [self.tableArray objectAtIndex:indexPath.row];
+        /*
+         NSLog(@"NAME  %@", obj.name);
+         NSLog(@"NAME  %@", obj.favrt);
+         */
+        NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        [fetchRequest setEntity:[NSEntityDescription entityForName:@"Employee" inManagedObjectContext:managedObjectContext]];
+        
+        NSString *delstring = obj.empid;
+        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"empid == %@ ", delstring]];
+        
+        NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+        
+        Employee *emp1=[results  objectAtIndex:0];
+        /*
+         NSLog(@"NAME  %@", emp1.name);
+         NSLog(@"NAME  %@", obj.favrt);
+         */
+        emp1.favrt = @"0";
+        [managedObjectContext save:&error];
+        
+        [self.tableArray removeObjectAtIndex:indexPath.row];
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
+        
+        [self.tableView reloadData];
+        
+        
+
+        
+    }];
+     favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"Untitled.png"]];;
+        
+    return @[favAction];
+}
+
+
+
+    /*
  #pragma mark - Navigation
  
  // In a storyboard-based application, you will often want to do a little preparation before navigation

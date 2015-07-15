@@ -68,11 +68,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="376" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="71" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Frf-P1-Sbj">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Frf-P1-Sbj">
                                 <rect key="frame" x="5" y="44" width="371" height="592"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="category" rowHeight="70" id="hhd-of-Emo" customClass="categoryTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="category" rowHeight="66" id="hhd-of-Emo" customClass="categoryTableViewCell">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hhd-of-Emo" id="UHF-4E-kOj">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -92,20 +92,12 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qfX-Bv-VBK">
-                                                    <rect key="frame" x="308" y="24" width="22" height="22"/>
-                                                    <size key="titleShadowOffset" width="5" height="5"/>
-                                                    <state key="normal">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="desigField" destination="TJD-eJ-3x0" id="p7k-vg-9ci"/>
                                             <outlet property="imageField" destination="Ime-9P-esr" id="c6N-Xt-MCc"/>
                                             <outlet property="nameField" destination="HJJ-ip-j7r" id="f2c-23-fzw"/>
-                                            <outlet property="popButton" destination="qfX-Bv-VBK" id="Zfd-cj-CpR"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -114,11 +106,15 @@
                                     <outlet property="delegate" destination="954-mp-i2S" id="WVr-5w-tjX"/>
                                 </connections>
                             </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zQA-i6-lEE">
+                                <rect key="frame" x="313" y="9" width="29" height="26"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="imagefield" destination="zQA-i6-lEE" id="zu8-sI-eNF"/>
                         <outlet property="searchBar" destination="iwC-Up-m9k" id="bh5-HN-DSN"/>
                         <outlet property="tableView" destination="Frf-P1-Sbj" id="gtX-x3-bOo"/>
                         <segue destination="JEN-Na-x0V" kind="unwind" identifier="categorysearch" unwindAction="prepareForUnwind:" id="ezk-B2-kFb"/>
@@ -551,10 +547,11 @@
                                     <segue destination="on0-OL-zXa" kind="modal" id="dqg-52-ido"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xl2-IJ-Vbs">
-                                <rect key="frame" x="294" y="556" width="65" height="45"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xl2-IJ-Vbs">
+                                <rect key="frame" x="294" y="556" width="65" height="43"/>
                                 <color key="backgroundColor" red="0.1764705882" green="0.37254901959999998" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="fav">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="FAV">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -564,7 +561,7 @@
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N2T-fq-Fd4">
-                                <rect key="frame" x="2" y="-119" width="375" height="786"/>
+                                <rect key="frame" x="0.0" y="-86" width="375" height="753"/>
                                 <connections>
                                     <outlet property="delegate" destination="iTs-87-otQ" id="8MR-NL-jId"/>
                                 </connections>
@@ -714,7 +711,7 @@
                                             </connections>
                                         </button>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.17647058823529413" green="0.37254901960784315" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.22745098039215686" green="0.46666666666666667" blue="0.82352941176470584" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kw2-Al-rxu">
                                     <rect key="frame" x="302" y="89" width="38" height="15"/>
@@ -964,10 +961,10 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.1764705882" green="0.37254901959999998" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.22745098039215686" green="0.46666666666666667" blue="0.82352941176470584" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="62" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="R73-rf-Vie">
-                                <rect key="frame" x="0.0" y="104" width="375" height="563"/>
+                                <rect key="frame" x="0.0" y="83" width="375" height="584"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="favrt" rowHeight="62" id="077-qg-pGX" customClass="favrtTableViewCell">
@@ -1014,7 +1011,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Uy-RB-u5t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2331.5" y="-144.5"/>
+            <point key="canvasLocation" x="2271.5" y="-168.5"/>
         </scene>
     </scenes>
     <resources>

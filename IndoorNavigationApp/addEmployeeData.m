@@ -42,6 +42,7 @@
     [newDevice setValue:self.empidfield.text forKey:@"empid"];
     [newDevice setValue:self.desigfield.text forKey:@"desig"];
     [newDevice setValue:self.emailidfield.text forKey:@"email"];
+    [newDevice setValue:@"0" forKey:@"favrt"];
     
     float xvalue = [self.xfield.text intValue];
     [newDevice setValue:[NSNumber numberWithFloat:xvalue] forKey:@"x"];
