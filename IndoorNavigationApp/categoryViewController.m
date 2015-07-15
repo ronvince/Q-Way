@@ -361,9 +361,10 @@ NSString *catSearchtext;
         
         NSError* error = nil;
         Employee *obj = [self.filteredtableArray objectAtIndex:indexPath.row];
+        /*
         NSLog(@"NAME  %@", obj.name);
         NSLog(@"NAME  %@", obj.favrt);
-        
+        */
         NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
         [fetchRequest setEntity:[NSEntityDescription entityForName:@"Employee" inManagedObjectContext:managedObjectContext]];
@@ -388,9 +389,19 @@ NSString *catSearchtext;
     
     
     UITableViewRowAction *infoAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Info"  handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
+       
+        infoViewController *popController = [[infoViewController alloc] init];
+        Employee *employe;
         
-        NSLog(@"WFGEQGEGEWG");
+        NSLog(@"%ld",(long)indexPath.row);
         
+        employe= [self.filteredtableArray objectAtIndex:indexPath.row];
+        popController.employe=employe;
+        NSLog(@"%@",employe.name);
+        popController.contentSize = CGSizeMake(200, 245);
+        popController.arrowDirection =0;
+        
+        [self presentViewController:popController animated:YES completion:nil];
         
     }];
     // deleteAction.backgroundColor = [UIColor blueColor];;

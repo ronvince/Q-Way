@@ -240,8 +240,7 @@ int m;
      [self.view addSubview:self.QRcodebutton];
     [self.view addSubview:self.clearbutton];
     [self.view addSubview:self.lockbutton];
-   
-  //////////////////////////////////////////////////////
+   [self.view addSubview:self.favbutton];  //////////////////////////////////////////////////////
     CGRect scrollViewFrame = self.scrollView.frame;
     CGFloat scaleWidth = scrollViewFrame.size.width / self.scrollView.contentSize.width;
     CGFloat scaleHeight = scrollViewFrame.size.height/ self.scrollView.contentSize.height;
@@ -480,6 +479,11 @@ else if([segue.identifier isEqualToString:@"time2map"])
         
         [self.locationManager startUpdatingHeading];
     }
+else if([segue.identifier isEqualToString:@"favourite"])
+{
+    
+    [self.locationManager startUpdatingHeading];
+}
     
 else if([segue.identifier isEqualToString:@"categorysearch"])
     {
