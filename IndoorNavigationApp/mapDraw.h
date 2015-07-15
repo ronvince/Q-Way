@@ -31,5 +31,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *lockbutton;
 - (IBAction)clearfunction:(id)sender;
 - (IBAction)lockfunction:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *favbutton;
 
 @end
