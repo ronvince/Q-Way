@@ -566,6 +566,9 @@ NSString *t1;
 
 
 
+- (IBAction)cancelbutton:(id)sender {
+    [self performSegueWithIdentifier:@"favourite" sender:self];
+}
 
 
 //-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
