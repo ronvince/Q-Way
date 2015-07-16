@@ -108,8 +108,12 @@ NSInteger ea=0;
  NSMutableArray *gifimg;
 NSMutableArray *employeedetails;
 NSMutableArray *placedetails;
+int rotationlock=0;
+int lock=0;
 int m;
-- (void)viewDidLoad {
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     num=0;
    
@@ -283,7 +287,7 @@ int m;
 }
 
 NSInteger  num=0;
-NSInteger prev;
+NSInteger prev=0;
 -(void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
 
 {
@@ -461,6 +465,8 @@ int btny;
         [gifimg addObject:_greengif];
         
           [self.imageView addSubview:_greengif];
+          
+          _greengif.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
       }
         
     else if(search.placexy)
@@ -497,6 +503,8 @@ int btny;
         [gifimg addObject:_greengif];
         
         [self.imageView addSubview:_greengif];
+         
+        _greengif.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
         }
         
     }
@@ -547,6 +555,7 @@ else if([segue.identifier isEqualToString:@"categorysearch"])
             [gifimg addObject:_greengif];
             
            [self.imageView addSubview:_greengif];
+             _greengif.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
         }
         
         else if((int)categorysearch.emp_plac==1)
@@ -579,6 +588,7 @@ else if([segue.identifier isEqualToString:@"categorysearch"])
             [gifimg addObject:_greengif];
             
             [self.imageView addSubview:_greengif];
+             _greengif.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
         }
         
     }
@@ -586,8 +596,7 @@ else if([segue.identifier isEqualToString:@"categorysearch"])
 }
     
     
-int rotationlock=0;
-int lock=0;
+
 - (IBAction)clearfunction:(id)sender
 {
     

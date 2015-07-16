@@ -29,7 +29,7 @@
 @synthesize DisplayLabel;
 int nullQrDB =1;
 int check1 = 0;
-UIButton *overlayButton;
+UIButton *overlayButton, *cancelButton;
 
 NSManagedObjectContext *managedObjectContext;
 - (NSManagedObjectContext *)managedObjectContext
@@ -67,7 +67,12 @@ NSManagedObjectContext *managedObjectContext;
     [overlayButton setImage:[UIImage imageNamed:@"scanbutton.png"] forState:UIControlStateNormal];
     [overlayButton setFrame:CGRectMake(145, 405, 80, 60)];
     [overlayButton addTarget:self action:@selector(scanButtonPressed)   forControlEvents:UIControlEventTouchUpInside];
-    [[self view] addSubview:overlayButton];
+    
+    
+    cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [cancelButton setImage:[UIImage imageNamed:@"scanbutton.png"] forState:UIControlStateNormal];
+    [cancelButton setFrame:CGRectMake(20, 20, 80, 60)];
+    [cancelButton addTarget:self action:@selector(cancelButtonPressed)   forControlEvents:UIControlEventTouchUpInside];
     
     UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 50, 250, 30)];
     [self setScanningLabel:tempLabel];
@@ -85,6 +90,14 @@ NSManagedObjectContext *managedObjectContext;
     [DisplayLabel setHidden:NO];
     [[self view] addSubview:DisplayLabel];
     [_captureManager.captureSession startRunning];
+    
+    
+    [self.view addSubview:_view1];
+    [self.view addSubview:_view2];
+    [self.view addSubview:_view3];
+    [self.view addSubview:_view4];
+    [[self view] addSubview:overlayButton];
+    [[self view] addSubview:cancelButton];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -96,6 +109,10 @@ NSManagedObjectContext *managedObjectContext;
     overlayButton.hidden = YES;
     [[self scanningLabel] setHidden:NO];
     [self performSelector:@selector(startReading:) withObject:[self scanningLabel]  ];
+}
+
+-(void) cancelButtonPressed{
+    [self performSegueWithIdentifier:@"modal1" sender:self];
 }
 
 - (void)startReading:(UILabel *)label {
