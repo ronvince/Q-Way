@@ -97,6 +97,7 @@
 {
     // Return the number of rows in the section.
     return self.timecell.count;
+   // return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
