@@ -11,7 +11,7 @@
 #import "ViewController.h"
 #import "CaptureSessionManager.h"
 @interface Qrc : UIViewController <AVCaptureMetadataOutputObjectsDelegate>
-
+@property (strong, nonatomic) IBOutlet UIProgressView *progressView;
 @property (strong, nonatomic) IBOutlet UIView *view1;
 @property (strong, nonatomic) IBOutlet UIView *view2;
 @property (strong, nonatomic) IBOutlet UIView *view3;
@@ -20,6 +20,7 @@
 @property (nonatomic,strong )NSString *Qrx;
 @property (nonatomic,strong )NSString *Qry;
 //@property (weak, nonatomic) IBOutlet UIView *vi;
+@property (strong, nonatomic) IBOutlet UIView *view5;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *start;
 //- (IBAction)StartFunction:(id)sender;

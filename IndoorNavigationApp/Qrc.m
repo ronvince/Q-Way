@@ -44,6 +44,7 @@ NSManagedObjectContext *managedObjectContext;
 
 
 - (void)viewDidLoad {
+    _progressView.progress = 0.0;
     check1 = 0;
     [self setCaptureManager:[[CaptureSessionManager alloc] init] ];
     
@@ -70,19 +71,19 @@ NSManagedObjectContext *managedObjectContext;
     
     
     cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [cancelButton setImage:[UIImage imageNamed:@"scanbutton.png"] forState:UIControlStateNormal];
-    [cancelButton setFrame:CGRectMake(20, 20, 80, 60)];
+    [cancelButton setImage:[UIImage imageNamed:@"cancel.png"] forState:UIControlStateNormal];
+    [cancelButton setFrame:CGRectMake(20, 20, 90, 40)];
     [cancelButton addTarget:self action:@selector(cancelButtonPressed)   forControlEvents:UIControlEventTouchUpInside];
     
-    UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 50, 250, 30)];
-    [self setScanningLabel:tempLabel];
-    // [tempLabel release];
-    [scanningLabel setBackgroundColor:[UIColor clearColor]];
-    //[scanningLabel setFont:[UIFont fontWithName:@"Courier" size: 18.0]];
-    [scanningLabel setTextColor:[UIColor redColor]];
-    [scanningLabel setText:@"SCANNING IN PROGRESS!!"];
-    [scanningLabel setHidden:YES];
-    [[self view] addSubview:scanningLabel];
+//    UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 50, 250, 30)];
+//    [self setScanningLabel:tempLabel];
+//    // [tempLabel release];
+//    [scanningLabel setBackgroundColor:[UIColor clearColor]];
+//    //[scanningLabel setFont:[UIFont fontWithName:@"Courier" size: 18.0]];
+//    [scanningLabel setTextColor:[UIColor redColor]];
+//    [scanningLabel setText:@"SCANNING IN PROGRESS!!"];
+//    [scanningLabel setHidden:YES];
+//    [[self view] addSubview:scanningLabel];
     
     UILabel *temp = [[UILabel alloc] initWithFrame:CGRectMake(70, 430, 250, 200)];
     [self setDisplayLabel:temp];
@@ -96,7 +97,10 @@ NSManagedObjectContext *managedObjectContext;
     [self.view addSubview:_view2];
     [self.view addSubview:_view3];
     [self.view addSubview:_view4];
-    [[self view] addSubview:overlayButton];
+    _view5.backgroundColor=[UIColor clearColor];
+    [self.view addSubview:_view5];
+    //[[self view] addSubview:overlayButton];
+    [overlayButton sendActionsForControlEvents:UIControlEventTouchUpInside];
     [[self view] addSubview:cancelButton];
 }
 
@@ -132,7 +136,20 @@ NSManagedObjectContext *managedObjectContext;
     // [captureManager.captureSession startRunning];
     
 }
-
+- (void)makeMyProgressBarMoving {
+    
+    float actual = [_progressView progress];
+    if (actual < 1) {
+        _progressView.progress = actual + ((float)3/(float)100);
+        [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(makeMyProgressBarMoving) userInfo:nil repeats:NO];
+    }
+    else{
+        
+        
+        
+    }
+    
+}
 
 /*#pragma mark - IBAction method implementation
 - (IBAction)StartFunction:(id)sender {
@@ -191,6 +208,12 @@ NSManagedObjectContext *managedObjectContext;
  */
 -(void)stopReading{
     // Stop video capture and make the capture session object nil.
+    
+    UIImageView *img=[[UIImageView alloc] initWithFrame:self.view5.bounds];
+    img.image=[UIImage imageNamed:@"qrcodeview.jpg"];
+    [self.view5 addSubview:img];
+    
+    
     [_captureManager.captureSession stopRunning];
     _captureManager.captureSession = nil;
     
@@ -372,8 +395,10 @@ NSInteger y;
             
             [self performSelectorOnMainThread:@selector(stopReading) withObject:nil waitUntilDone:NO];
             
-        
+             _progressView.progress = 0.0;
+            [self performSelectorOnMainThread:@selector(makeMyProgressBarMoving) withObject:nil waitUntilDone:NO];
             
+            sleep(3);
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self performSegueWithIdentifier:@"modal1" sender:self];
             });

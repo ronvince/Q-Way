@@ -13,6 +13,7 @@
 #import "Places.h"
 #import "homeViewController.h"
 #import "categoryViewController.h"
+#import "infoViewController.h"
 #import <CoreData/CoreData.h>
 
 @interface EmployeeTable ()
@@ -26,12 +27,13 @@
 @implementation EmployeeTable
 @synthesize isFiltered;
 CAShapeLayer *shapeLayer ;
+@synthesize scanningLabel;
 int prevTextLen,glsl,glCor=0,gllen=0;
 
 
 //int x,y;
 int employ_plac=0; // whether the category belongs to employe/places.
-int check = 0; //// For checking whether the view appears for the first
+int check; //// For checking whether the view appears for the first
 
 //NSManagedObjectContext *managedObjectContext;
 - (NSManagedObjectContext *)managedObjectContext
@@ -148,7 +150,7 @@ int check = 0; //// For checking whether the view appears for the first
     [self selection];
     [self defaultDatashow];
     printf("did %d", check);
-    if(check!=1)
+    if(check==0)
     {
         
     [_buttonEmploy setTitleColor:[UIColor yellowColor] forState:UIControlStateNormal];
@@ -156,8 +158,8 @@ int check = 0; //// For checking whether the view appears for the first
         
     [shapeLayer removeFromSuperlayer];
     UIBezierPath *path1 = [UIBezierPath bezierPath];
-    x1=(self.buttonEmploy.center.x)-40.0;
-    x2=(self.buttonEmploy.center.x)+40.0;
+    x1=(self.buttonEmploy.center.x)-45.0;
+    x2=(self.buttonEmploy.center.x)+45.0;
     
     
     [path1 moveToPoint:CGPointMake(x1, 0)];
@@ -168,6 +170,26 @@ int check = 0; //// For checking whether the view appears for the first
     shapeLayer.lineWidth = 2.0;
     shapeLayer.fillColor = [[UIColor yellowColor] CGColor];
     [self.lineView.layer addSublayer:shapeLayer];
+    }
+    else{
+        [_buttonPlace setTitleColor:[UIColor yellowColor] forState:UIControlStateNormal];
+        [_buttonEmploy setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        
+        [shapeLayer removeFromSuperlayer];
+        UIBezierPath *path1 = [UIBezierPath bezierPath];
+        x1=(self.buttonPlace.center.x)-31.0;
+        x2=(self.buttonPlace.center.x)+31.0;
+        
+        
+        [path1 moveToPoint:CGPointMake(x1, 0)];
+        [path1 addLineToPoint:CGPointMake(x2,0)];
+        shapeLayer= [CAShapeLayer layer];
+        shapeLayer.path = [path1 CGPath];
+        shapeLayer.strokeColor = [[UIColor yellowColor] CGColor];
+        shapeLayer.lineWidth = 2.0;
+        shapeLayer.fillColor = [[UIColor yellowColor] CGColor];
+        [self.lineView.layer addSublayer:shapeLayer];
+
     }
     if(!isFiltered)
     { self.searchBar.text=nil ;}
@@ -330,6 +352,15 @@ NSString *t1;
     
 }
 #pragma mark - Table view data source
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (isFiltered)
+    {
+        return YES;
+    }
+    return NO;
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -505,7 +536,7 @@ int x1,x2;
     [self.buttonEmploy setTitleColor:[UIColor yellowColor] forState:UIControlStateSelected];
     
     employ_plac=0;
-     check=1; // For checking whether the view appears for the first
+     check=0; // For checking whether the view appears for the first
     printf("emp button%d", check);       self.searchBar.text=nil;
     [self defaultDatashow];
      self.tableArray=self.defaultData;
@@ -562,12 +593,116 @@ int x1,x2;
 
 
 
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //NSIndexPath *path=[[NSIndexPath alloc]init];
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        
+        
+    }
+    
+}
+
+
+-(NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    NSError* error = nil;
+    Employee *obj = [self.prevoiusdata objectAtIndex:indexPath.row];
+    /*
+     NSLog(@"NAME  %@", obj.name);
+     NSLog(@"NAME  %@", obj.favrt);
+     */
+    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:[NSEntityDescription entityForName:@"Employee" inManagedObjectContext:managedObjectContext]];
+    
+    NSString *delstring = obj.empid;
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"empid == %@ ", delstring]];
+    
+    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    Employee *emp1=[results  objectAtIndex:0];
+    
+    
+    UITableViewRowAction *favAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"    " handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
+        
+        
+        NSError* error = nil;
+        
+        if([emp1.favrt  isEqual:@"1"])
+        {
+            emp1.favrt = @"0";
+            [scanningLabel setText:@"Already in favourites!!"];
+            [scanningLabel setHidden:NO];
+            favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"silver.png"]];
+            
+        }
+        else
+        {
+            emp1.favrt = @"1";
+            [scanningLabel setText:@"Added to favourites!!"];
+            [scanningLabel setHidden:NO];
+            favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"gold.png"]];
+            
+        }
+        [NSTimer scheduledTimerWithTimeInterval:1.5
+                                         target:self
+                                       selector:@selector(animate:)
+                                       userInfo:nil
+                                        repeats:NO];
+        
+        
+        [managedObjectContext save:&error];
+        
+    }];
+    
+    
+    if([emp1.favrt  isEqual:@"1"] )
+        favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"gold.png"]];
+    else
+        favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"silver.png"]];
+    UITableViewRowAction *infoAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"   "  handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
+        
+        infoViewController *popController = [[infoViewController alloc] init];
+        Employee *employe;
+        
+        NSLog(@"%ld",(long)indexPath.row);
+        
+        employe= [self.prevoiusdata objectAtIndex:indexPath.row];
+        popController.employe=employe;
+        NSLog(@"%@",employe.name);
+        popController.contentSize = CGSizeMake(200, 245);
+        popController.arrowDirection =0;
+        
+        [self presentViewController:popController animated:YES completion:nil];
+        
+    }];
+    infoAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"info3.png"]];;
+    
+    
+    return @[infoAction,favAction];
+}
+
+
 - (IBAction)cancelbutton:(id)sender {
-    check=0;
+    if (employ_plac==0) {
+        check=0;
+    }
+    else{
+        check = 1;
+    }
+    
     printf("cancel button%d", check);
      [self performSegueWithIdentifier:@"time2map" sender:self];
 }
 
+
+-(void)animate:(NSTimer *)theTimer {
+    [scanningLabel setHidden:YES];
+}
 
 //-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 //{
