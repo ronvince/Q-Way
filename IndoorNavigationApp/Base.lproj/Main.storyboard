@@ -832,16 +832,15 @@
                                 <color key="backgroundColor" red="0.17647058823529413" green="0.37254901960784315" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJU-11-Zc0">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJU-11-Zc0">
                                 <rect key="frame" x="0.0" y="44" width="186" height="42"/>
                                 <color key="backgroundColor" red="0.22745098039215686" green="0.46666666666666667" blue="0.82352941176470584" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="EMPLOYEES">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="buttonPressed:" destination="hs7-Nt-DQZ" eventType="touchUpInside" id="tpL-uj-KXQ"/>
                                     <action selector="employeefunc:" destination="hs7-Nt-DQZ" eventType="touchUpInside" id="DM5-xF-X3d"/>
                                 </connections>
                             </button>
@@ -850,11 +849,10 @@
                                 <color key="backgroundColor" red="0.22745098039215686" green="0.46666666666666667" blue="0.82352941176470584" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="PLACES">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="buttonPressed:" destination="hs7-Nt-DQZ" eventType="touchUpInside" id="mPs-9A-h4O"/>
                                     <action selector="placefunc:" destination="hs7-Nt-DQZ" eventType="touchUpInside" id="15D-HX-72I"/>
                                 </connections>
                             </button>
@@ -908,6 +906,10 @@
                                     <outlet property="delegate" destination="hs7-Nt-DQZ" id="Twg-eQ-UQ5"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="21J-Os-Nnm">
+                                <rect key="frame" x="0.0" y="75" width="375" height="11"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -916,22 +918,24 @@
                             <color key="tintColor" red="0.6470588235294118" green="0.87450980392156863" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="cancelbutton:" destination="hs7-Nt-DQZ" id="zRS-rO-gGl"/>
-                                <segue destination="JEN-Na-x0V" kind="unwind" identifier="favourite" unwindAction="prepareForUnwind:" id="2wd-ZP-vbY"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <nil key="simulatedTopBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="buttonEmploy" destination="dJU-11-Zc0" id="Opy-vo-hqG"/>
                         <outlet property="buttonPlace" destination="o2q-Wz-1qa" id="Xgi-aW-Vfr"/>
+                        <outlet property="lineView" destination="21J-Os-Nnm" id="KRR-YN-GzF"/>
                         <outlet property="searchBar" destination="7AL-96-C6d" id="E65-WK-ON9"/>
                         <outlet property="tableView" destination="I35-fr-uTH" id="imR-Ts-52Y"/>
                         <segue destination="JEN-Na-x0V" kind="unwind" identifier="search" unwindAction="prepareForUnwind:" id="TDq-Vx-bQf"/>
+                        <segue destination="JEN-Na-x0V" kind="unwind" identifier="time2map" unwindAction="prepareForUnwind:" id="TAJ-bO-Dhw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="naC-0t-3cI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3029.5" y="-941.5"/>
+            <point key="canvasLocation" x="2966.5" y="-949.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rhT-Ml-6MI">

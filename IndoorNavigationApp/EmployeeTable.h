@@ -20,4 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *buttonEmploy;
 @property (nonatomic, assign) bool isFiltered;
 
+@property (weak, nonatomic) IBOutlet UIView *lineView;
+
+
 @end
