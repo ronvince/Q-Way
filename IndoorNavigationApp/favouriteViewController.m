@@ -145,7 +145,7 @@
 
         
     }];
-     deleteAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"Untitled.png"]];;
+     deleteAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"trash2.png"]];;
         
     return @[deleteAction];
 }

@@ -23,6 +23,7 @@
 @implementation categoryViewController
 @synthesize categoryName;
 @synthesize isFiltered;
+@synthesize scanningLabel;
 @synthesize emp_plac;  //whether category belongs to employee / places.
 int prevCatTextLen,catSl,locLen=0,locCor=0;
 
@@ -38,7 +39,7 @@ int prevCatTextLen,catSl,locLen=0,locCor=0;
 - (void)viewDidLoad {
     [super viewDidLoad];
         catSearchtext = 0;
-    
+    //customizing search bar
     self.searchBar.delegate = (id)self;
     self.searchBar.placeholder=categoryName;
     
@@ -46,9 +47,7 @@ int prevCatTextLen,catSl,locLen=0,locCor=0;
     _imagefield.layer.cornerRadius =  _imagefield.frame.size.height/2;
     _imagefield.layer.masksToBounds = YES;
     _imagefield.layer.borderWidth = 0;
-    
-    
-    
+
     if([categoryName isEqualToString:@"Entry/Exit"])
     {
         NSString *imageName=[NSString stringWithFormat:@"Entry.png"];
@@ -59,6 +58,21 @@ int prevCatTextLen,catSl,locLen=0,locCor=0;
         NSString *imageName=[NSString stringWithFormat:@"%@.png",categoryName];
         _imagefield.image=[UIImage imageNamed:imageName]  ;
     }
+    
+    UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(75, 450, 250, 35)];
+    [self setScanningLabel:tempLabel];
+    
+   
+    
+    [self.scanningLabel setFont:[UIFont fontWithName:@"MuseoSans-500" size:15]];
+    [self.scanningLabel  setTextAlignment:NSTextAlignmentCenter];
+    [self.scanningLabel  setTextColor:[UIColor whiteColor]];
+    self.scanningLabel.backgroundColor = [UIColor colorWithRed:0.200 green:0.463 blue:.827 alpha:1];
+    self.scanningLabel.layer.cornerRadius = 10;
+    // self.label.layer.borderWidth = 1;
+    self.scanningLabel.layer.masksToBounds = YES;
+    [scanningLabel setHidden:YES];
+    [[self view] addSubview:scanningLabel];
     
 }
 - (void)viewDidAppear:(BOOL)animated
@@ -400,10 +414,26 @@ NSString *catSearchtext;
         
         NSError* error = nil;
       
-        if([emp1.favrt  isEqual:@"1"] )
+        if([emp1.favrt  isEqual:@"1"])
+        {
             emp1.favrt = @"0";
+              [scanningLabel setText:@"Already in favourites!!"];
+            [scanningLabel setHidden:NO];
+                 }
         else
+        {
             emp1.favrt = @"1";
+            [scanningLabel setText:@"Added to favourites!!"];
+        [scanningLabel setHidden:NO];
+            
+        }
+        [NSTimer scheduledTimerWithTimeInterval:1.5
+                                         target:self
+                                       selector:@selector(animate:)
+                                       userInfo:nil
+                                        repeats:NO];
+        
+        
         [managedObjectContext save:&error];
         
     }];
@@ -429,19 +459,16 @@ NSString *catSearchtext;
         [self presentViewController:popController animated:YES completion:nil];
         
     }];
-   // infoAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"silver.png"]];;
+   infoAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"info3.png"]];;
     
     
     return @[infoAction,favAction];
 }
 
 
-
-
-
-
-
-
+-(void)animate:(NSTimer *)theTimer {
+    [scanningLabel setHidden:YES];
+    }
 
 
 
