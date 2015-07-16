@@ -105,12 +105,14 @@ NSInteger nu;
 NSInteger ex;
 NSInteger ey;
 NSInteger ea=0;
- NSMutableArray *gifimg;
+NSMutableArray *gifimg;
 NSMutableArray *employeedetails;
 NSMutableArray *placedetails;
 int rotationlock=0;
 int lock=0;
 int m;
+int subviewstart=0;
+int searchstart=0;
 
 - (void)viewDidLoad
 {
@@ -296,15 +298,28 @@ NSInteger prev=0;
         self.currentHeading = newHeading;
         num =360-(int)newHeading.magneticHeading;
     if(rotationlock==0)
-    {
+      {
         self.imageView.transform = CGAffineTransformRotate (self.imageView.transform, DEGREES_TO_RADIANS(num-prev));
         [self.imageVie addSubview:self.imageView];
-    }
-
-    self.imageVi.transform = CGAffineTransformRotate (self.imageVi.transform, DEGREES_TO_RADIANS(-(num-prev)));
+      }
+   
+    if(subviewstart==1)
+      {
+        self.imageVi.transform = CGAffineTransformRotate (self.imageVi.transform, DEGREES_TO_RADIANS(-(num-prev)));
         
         [self.imageView addSubview:self.imageVi];
+      }
+    if (searchstart==1)
+    {
+        for(m=0;m<gifimg.count;m++)
+        {
+            _greengif=gifimg[m];
+            self.greengif.transform = CGAffineTransformRotate (self.greengif.transform, DEGREES_TO_RADIANS(-(num-prev)));
 
+        }
+
+    }
+        
     
     
 }
@@ -323,17 +338,18 @@ NSInteger prev=0;
     
     if(_scrollView.zoomScale>=0.3125&&_scrollView.zoomScale<=5)
     {
-        
-        _imageVi.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
-        self.imageVi.transform = CGAffineTransformRotate(self.imageVi.transform,DEGREES_TO_RADIANS(-(num-58)));
-       
+        if(subviewstart==1)
+         {
+            _imageVi.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
+            self.imageVi.transform = CGAffineTransformRotate(self.imageVi.transform,DEGREES_TO_RADIANS(-(num-58)));
+         }
      
         for(i=0;i<gifimg.count;i++)
-        {
+         {
             _greengif=gifimg[i];
             _greengif.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
-            
-        }
+            self.greengif.transform = CGAffineTransformRotate(self.greengif.transform,DEGREES_TO_RADIANS(-(num-58)));
+         }
     }
     
     
@@ -345,7 +361,8 @@ int btny;
 
 
 
-- (void)imageTapped:(UITapGestureRecognizer*)recognizer {
+- (void)imageTapped:(UITapGestureRecognizer*)recognizer
+ {
     
     CGPoint tapPoint = [recognizer locationInView:self.imageView];
     btnx=tapPoint.x;
@@ -354,7 +371,7 @@ int btny;
     
     NSLog(@"%i",btnx);
     NSLog(@"%i",btny);
- infoViewController *popController = [[infoViewController alloc] init];
+    infoViewController *popController = [[infoViewController alloc] init];
     
     for(int i=0;i<employeedetails.count;i++)
         {
@@ -366,21 +383,21 @@ int btny;
             if([_employemap.x intValue]<=(btnx-94) && [_employemap.x intValue]>=(btnx-106)&&[_employemap.y intValue]<=(btny-94) && [_employemap.y intValue]>=(btny-106))
             {
         
-            popController.employe=_employemap;
+                popController.employe=_employemap;
                 popController.contentSize = CGSizeMake(210, 245);
-                 [self presentViewController:popController animated:YES completion:nil];
+                [self presentViewController:popController animated:YES completion:nil];
             }
         }
     for(int i=0;i<placedetails.count;i++)
     {
         _placemap=placedetails[i];
         if([_placemap.x intValue]<=(btnx-94) && [_placemap.x intValue]>=(btnx-106)&&[_placemap.y intValue]<=(btny-94) && [_placemap.y intValue]>=(btny-106))
-        {
+          {
             popController.if_emp_place = 1;
             popController.place=_placemap;
             popController.contentSize = CGSizeMake(210, 245);
             [self presentViewController:popController animated:YES completion:nil];
-        }
+          }
     }
     
 
@@ -389,17 +406,19 @@ int btny;
 }
 
 
-- (IBAction)stillfunc:(id)sender {
+- (IBAction)stillfunc:(id)sender
+  {
     [self.locationManager stopUpdatingHeading];
-}
+  }
 
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+  {
     [super didReceiveMemoryWarning];
-}
+  }
 
 -(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue
-{
+ {
    
     if ([segue.identifier isEqualToString:@"modal1"])
     {
@@ -407,37 +426,38 @@ int btny;
         NSLog(@"Values are %@", Qrcode.Qrx);
         NSLog(@"Values are %@", Qrcode.Qry);
         [self.locationManager startUpdatingHeading];
-        if(Qrcode.Qrx!=NULL && Qrcode.Qry!=NULL)
-        {
-           [_imageVi removeFromSuperview];
-           cx=[Qrcode.Qrx intValue];
-           cy=[Qrcode.Qry intValue];
-           UIImage *imag = [UIImage imageNamed:@"ar"];
-           self.imageVi = [[UIImageView alloc] initWithImage:imag];
-           self.imageVi.frame = (CGRect){.origin=CGPointMake(cx,cy),.size=CGSizeMake(100,200)};
+        
+           if(Qrcode.Qrx!=NULL && Qrcode.Qry!=NULL)
+               
+            {
+              [_imageVi removeFromSuperview];
+              cx=[Qrcode.Qrx intValue];
+              cy=[Qrcode.Qry intValue];
+              UIImage *imag = [UIImage imageNamed:@"ar"];
+              self.imageVi = [[UIImageView alloc] initWithImage:imag];
+              self.imageVi.frame = (CGRect){.origin=CGPointMake(cx,cy),.size=CGSizeMake(100,200)};
            
-           [self.imageView addSubview:self.imageVi];
-            
+              [self.imageView addSubview:self.imageVi];
+                subviewstart=1;
            
-           self.imglbl = [[UILabel  alloc] initWithFrame:CGRectMake(-250,-50,600,100)];
-           [_imglbl   setText:@"You"];
-           [_imglbl setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:70]];
-           [_imglbl setTextColor:[UIColor brownColor ]];
-           _imglbl.textAlignment = NSTextAlignmentCenter;
-           [self.imageVi addSubview:self.imglbl];
+              self.imglbl = [[UILabel  alloc] initWithFrame:CGRectMake(-250,-50,600,100)];
+              [_imglbl   setText:@"You"];
+              [_imglbl setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:70]];
+              [_imglbl setTextColor:[UIColor brownColor ]];
+              _imglbl.textAlignment = NSTextAlignmentCenter;
+              [self.imageVi addSubview:self.imglbl];
               _imageView.layer.anchorPoint=CGPointMake((float)(cx+50)/400,(float)(cy+100)/600);
-            _imageVi.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
-            self.imageVi.transform = CGAffineTransformRotate(self.imageVi.transform,DEGREES_TO_RADIANS(-(num-58)));
-            
-        }
+              _imageVi.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
+              self.imageVi.transform = CGAffineTransformRotate(self.imageVi.transform,DEGREES_TO_RADIANS(-(num-58)));
+            }
         
     }
     else if([segue.identifier isEqualToString:@"search"])
     {
         EmployeeTable *search = (EmployeeTable *)segue.sourceViewController;
 
-    if(search.employexy)
-      {
+     if(search.employexy)
+       {
           [employeedetails addObject:search.employexy];
         ex=[search.employexy.x  intValue];
         ey=[search.employexy.y intValue];
@@ -464,13 +484,14 @@ int btny;
         
         [gifimg addObject:_greengif];
         
-          [self.imageView addSubview:_greengif];
-          
-          _greengif.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
-      }
+        [self.imageView addSubview:_greengif];
+        searchstart=1;
+        _greengif.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
+         self.greengif.transform = CGAffineTransformRotate(self.greengif.transform,DEGREES_TO_RADIANS(-(num-58)));
+       }
         
     else if(search.placexy)
-     {
+      {
         [placedetails addObject:search.placexy];
         ex=[search.placexy.x  intValue];
         ey=[search.placexy.y intValue];
@@ -488,38 +509,31 @@ int btny;
         _giflbl.textAlignment = NSTextAlignmentCenter;
         
         [self.greengif addSubview:self.giflbl];
-        
-//        self.subimbtn = [[UIButton  alloc] initWithFrame:CGRectMake(67,67,70,70)];
-//         [_subimbtn setUserInteractionEnabled:YES ];
-//        [_subimbtn addTarget:self
-//                      action:@selector(tapped)
-//            forControlEvents:UIControlEventTouchUpInside];
-//        [_subimbtn setBackgroundColor:[UIColor clearColor]];
+
         self.imageVie.userInteractionEnabled = YES;
         self.imageView.userInteractionEnabled = YES;
         self.greengif.userInteractionEnabled = YES;
-        //[self.greengif addSubview:self.subimbtn];
-        
         [gifimg addObject:_greengif];
         
         [self.imageView addSubview:_greengif];
-         
+        searchstart=1;
         _greengif.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
+         self.greengif.transform = CGAffineTransformRotate(self.greengif.transform,DEGREES_TO_RADIANS(-(num-58)));
         }
         
-    }
-else if([segue.identifier isEqualToString:@"time2map"])
+     }
+  else if([segue.identifier isEqualToString:@"time2map"])
     {
         
         [self.locationManager startUpdatingHeading];
     }
-else if([segue.identifier isEqualToString:@"favourite"])
-{
+  else if([segue.identifier isEqualToString:@"favourite"])
+   {
     
     [self.locationManager startUpdatingHeading];
-}
+   }
     
-else if([segue.identifier isEqualToString:@"categorysearch"])
+  else if([segue.identifier isEqualToString:@"categorysearch"])
     {
         categoryViewController *categorysearch = (categoryViewController *)segue.sourceViewController;
         
@@ -555,7 +569,10 @@ else if([segue.identifier isEqualToString:@"categorysearch"])
             [gifimg addObject:_greengif];
             
            [self.imageView addSubview:_greengif];
-             _greengif.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
+            searchstart=1;
+            _greengif.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
+            
+            self.greengif.transform = CGAffineTransformRotate(self.greengif.transform,DEGREES_TO_RADIANS(-(num-58)));
         }
         
         else if((int)categorysearch.emp_plac==1)
@@ -588,49 +605,52 @@ else if([segue.identifier isEqualToString:@"categorysearch"])
             [gifimg addObject:_greengif];
             
             [self.imageView addSubview:_greengif];
+            searchstart=1;
              _greengif.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
+            self.greengif.transform = CGAffineTransformRotate(self.greengif.transform,DEGREES_TO_RADIANS(-(num-58)));
         }
         
     }
 
-}
+ }
     
     
 
 - (IBAction)clearfunction:(id)sender
-{
+ {
     
     for(m=0;m<gifimg.count;m++)
-    {
+     {
         _greengif=gifimg[m];
         [_greengif removeFromSuperview];
-    }
+     }
     NSLog(@"%li",gifimg.count);
     if(gifimg.count>0)
-    {
+     {
          gifimg = [[NSMutableArray alloc] initWithObjects:nil];
-    }
+     }
     if(placedetails.count>0)
-    {
+     {
         placedetails = [[NSMutableArray alloc] initWithObjects:nil];
-    }
+     }
     if(employeedetails.count>0)
-    {
+     {
         employeedetails = [[NSMutableArray alloc] initWithObjects:nil];
-    }
+     }
+     searchstart=0;
     NSLog(@"%li",gifimg.count);
-}
+ }
 
 - (IBAction)lockfunction:(id)sender
-{
+ {
     if(lock%2==0)
-    {
+     {
         rotationlock=1;
-    }
+     }
     else
     {
         if(rotationlock==1)
-        {
+         {
             [self.locationManager stopUpdatingHeading];
             rotationlock=0;
             num=0;
@@ -638,11 +658,11 @@ else if([segue.identifier isEqualToString:@"categorysearch"])
             _imageVi.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
             self.imageVi.transform = CGAffineTransformRotate(self.imageVi.transform,DEGREES_TO_RADIANS(-(num-58)));
             [self.locationManager startUpdatingHeading];
-        }
+         }
         
     }
     lock++;
 
     
-}
+ }
 @end
