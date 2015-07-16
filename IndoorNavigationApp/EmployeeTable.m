@@ -169,14 +169,16 @@ int check; //// For checking whether the view appears for the first
 }
 
 -(void)serfunc:(NSTimer *)theTimer{
-    int temp;
+    int temp,uvar;
     NSString *str1 = (NSString*)[theTimer userInfo];
     temp = [str1 intValue];
+    uvar = temp%10;
+    temp = temp/10;
     printf("temp value in text func = %d\n", temp);
     printf("sl value in textfunc = %d", glsl);
     NSLog(@"sgsdgsdgsdfg   %@\n",t1);
     
-    if (glsl==temp) {
+    if ((glsl==temp)&&(uvar==employ_plac)) {
         
         self.prevoiusdata = self.tableArray;
         NSLog(@"previ count = %lu",(unsigned long)self.prevoiusdata.count);
@@ -303,7 +305,10 @@ NSString *t1;
     int temp = glsl;
     printf("value of temp in search %d", temp);
     NSString *str = [NSString stringWithFormat:@"%d",temp];
+    NSString *uvar = [NSString stringWithFormat:@"%d",employ_plac];
     
+    str = [str stringByAppendingString:uvar];
+    NSLog(@"%@",str);
     [NSTimer scheduledTimerWithTimeInterval:1.5
                                      target:self
                                    selector:@selector(serfunc:)
