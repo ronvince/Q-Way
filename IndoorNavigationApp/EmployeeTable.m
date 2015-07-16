@@ -25,12 +25,13 @@
 
 @implementation EmployeeTable
 @synthesize isFiltered;
+CAShapeLayer *shapeLayer ;
 int prevTextLen,glsl,glCor=0,gllen=0;
 
 
 //int x,y;
 int employ_plac=0; // whether the category belongs to employe/places.
-int check; //// For checking whether the view appears for the first
+int check = 0; //// For checking whether the view appears for the first
 
 //NSManagedObjectContext *managedObjectContext;
 - (NSManagedObjectContext *)managedObjectContext
@@ -74,6 +75,9 @@ int check; //// For checking whether the view appears for the first
     [self.navigationController.navigationBar
      setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     self.navigationController.navigationBar.translucent = NO;
+    
+    [_buttonEmploy setTitleColor:[UIColor purpleColor] forState:UIControlStateSelected];
+    
     
   }
 -(void)defaultDatashow{
@@ -143,22 +147,28 @@ int check; //// For checking whether the view appears for the first
     [super viewDidAppear:animated];
     [self selection];
     [self defaultDatashow];
+    printf("did %d", check);
     if(check!=1)
     {
-    // default selection for EMPLOYEES
+        
+    [_buttonEmploy setTitleColor:[UIColor yellowColor] forState:UIControlStateNormal];
+    [_buttonPlace setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        
+    [shapeLayer removeFromSuperlayer];
     UIBezierPath *path1 = [UIBezierPath bezierPath];
-    [path1 moveToPoint:CGPointMake(50, 75.0)];
-    [path1 addLineToPoint:CGPointMake(135, 75.0)];
-    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+    x1=(self.buttonEmploy.center.x)-40.0;
+    x2=(self.buttonEmploy.center.x)+40.0;
+    
+    
+    [path1 moveToPoint:CGPointMake(x1, 0)];
+    [path1 addLineToPoint:CGPointMake(x2,0)];
+    shapeLayer= [CAShapeLayer layer];
     shapeLayer.path = [path1 CGPath];
     shapeLayer.strokeColor = [[UIColor yellowColor] CGColor];
     shapeLayer.lineWidth = 2.0;
-    shapeLayer.fillColor = [[UIColor clearColor] CGColor];
-    [self.view.layer addSublayer:shapeLayer];
+    shapeLayer.fillColor = [[UIColor yellowColor] CGColor];
+    [self.lineView.layer addSublayer:shapeLayer];
     }
-    
-    
-    
     if(!isFiltered)
     { self.searchBar.text=nil ;}
 }
@@ -169,14 +179,16 @@ int check; //// For checking whether the view appears for the first
 }
 
 -(void)serfunc:(NSTimer *)theTimer{
-    int temp;
+    int temp,uvar;
     NSString *str1 = (NSString*)[theTimer userInfo];
     temp = [str1 intValue];
+    uvar = temp%10;
+    temp = temp/10;
     printf("temp value in text func = %d\n", temp);
     printf("sl value in textfunc = %d", glsl);
     NSLog(@"sgsdgsdgsdfg   %@\n",t1);
     
-    if (glsl==temp) {
+    if ((glsl==temp)&&(uvar==employ_plac)) {
         
         self.prevoiusdata = self.tableArray;
         NSLog(@"previ count = %lu",(unsigned long)self.prevoiusdata.count);
@@ -303,7 +315,10 @@ NSString *t1;
     int temp = glsl;
     printf("value of temp in search %d", temp);
     NSString *str = [NSString stringWithFormat:@"%d",temp];
+    NSString *uvar = [NSString stringWithFormat:@"%d",employ_plac];
     
+    str = [str stringByAppendingString:uvar];
+    NSLog(@"%@",str);
     [NSTimer scheduledTimerWithTimeInterval:1.5
                                      target:self
                                    selector:@selector(serfunc:)
@@ -483,91 +498,74 @@ NSString *t1;
 
     }
 }
-
+int x1,x2;
 
 - (IBAction)employeefunc:(id)sender {
+    
+    [self.buttonEmploy setTitleColor:[UIColor yellowColor] forState:UIControlStateSelected];
+    
     employ_plac=0;
      check=1; // For checking whether the view appears for the first
-       self.searchBar.text=nil;
+    printf("emp button%d", check);       self.searchBar.text=nil;
     [self defaultDatashow];
      self.tableArray=self.defaultData;
     [self selection];
+    [shapeLayer removeFromSuperlayer];
+    UIBezierPath *path1 = [UIBezierPath bezierPath];
+    x1=(self.buttonEmploy.center.x)-45.0;
+    x2=(self.buttonEmploy.center.x)+45.0;
+  
+    
+    [path1 moveToPoint:CGPointMake(x1, 0)];
+    [path1 addLineToPoint:CGPointMake(x2,0)];
+    shapeLayer= [CAShapeLayer layer];
+    shapeLayer.path = [path1 CGPath];
+    shapeLayer.strokeColor = [[UIColor yellowColor] CGColor];
+    shapeLayer.lineWidth = 2.0;
+    shapeLayer.fillColor = [[UIColor yellowColor] CGColor];
+           [self.lineView.layer addSublayer:shapeLayer];
 
+    [_buttonEmploy setTitleColor:[UIColor yellowColor] forState:UIControlStateNormal];
+    [_buttonPlace setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+   
     
 }
 - (IBAction)placefunc:(id)sender {
     employ_plac=1;
     check=1;
-    self.searchBar.text=nil;
+    printf("pla button%d", check);    self.searchBar.text=nil;
    [self defaultDatashow];
     self.tableArray=self.defaultData;
    [self selection];
-}
-- (IBAction)buttonPressed:(id)sender   //For showing selection among Employees and places
-{
-    float x1 = 0.0,x2 = 0.0;
-    NSArray* buttons = [NSArray arrayWithObjects:_buttonEmploy, _buttonPlace, nil];
+    
+    [shapeLayer removeFromSuperlayer];
+    UIBezierPath *path1 = [UIBezierPath bezierPath];
+    x1=(self.buttonPlace.center.x)-31.0;
+    x2=(self.buttonPlace.center.x)+31.0;
     
     
-    for (UIButton* button in buttons) {
-        if (button == sender) {
-            UIBezierPath *path1 = [UIBezierPath bezierPath];
-            
-            if(button==_buttonEmploy)
-            {
-                x1=50.0;
-                x2=135.0;
-            }
-            else if (button==_buttonPlace)
-            {
-                x1=250.0;
-                x2=310.0;
-            }
-           
-            [path1 moveToPoint:CGPointMake(x1, 75.0)];
-            
-            [path1 addLineToPoint:CGPointMake(x2, 75.0)];
-            CAShapeLayer *shapeLayer = [CAShapeLayer layer];
-            shapeLayer.path = [path1 CGPath];
-            shapeLayer.strokeColor = [[UIColor yellowColor] CGColor];
-            shapeLayer.lineWidth = 2.0;
-            shapeLayer.fillColor = [[UIColor clearColor] CGColor];
-            [self.view.layer addSublayer:shapeLayer];
-            //button.selected = YES;
-        }
-        else {
-            UIBezierPath *path2 = [UIBezierPath bezierPath];
-            if(button==_buttonEmploy)
-            {
-                x1=0.0;
-                x2=180.0;
-            }
-            else if (button==_buttonPlace)
-            {
-                x1=180.0;
-                x2=360.0;
-            }
-            
-            [path2 moveToPoint:CGPointMake(x1, 75.0)];
-            [path2 addLineToPoint:CGPointMake(x2, 75.0)];
-            CAShapeLayer *shapeLayer = [CAShapeLayer layer];
-            shapeLayer.path = [path2 CGPath];
-            shapeLayer.strokeColor = [[UIColor colorWithRed:0.200 green:0.463 blue:.827 alpha:1] CGColor];
-            shapeLayer.lineWidth = 2.0;
-            shapeLayer.fillColor = [[UIColor clearColor] CGColor];
-            [self.view.layer addSublayer:shapeLayer];
-           
-        }
-    }
+    [path1 moveToPoint:CGPointMake(x1, 0)];
+    [path1 addLineToPoint:CGPointMake(x2,0)];
+    shapeLayer = [CAShapeLayer layer];
+    shapeLayer.path = [path1 CGPath];
+    shapeLayer.strokeColor = [[UIColor yellowColor] CGColor];
+    shapeLayer.lineWidth = 2.0;
+    shapeLayer.fillColor = [[UIColor yellowColor] CGColor];
+    [self.lineView.layer addSublayer:shapeLayer];
+
+    [_buttonEmploy setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    [_buttonPlace setTitleColor:[UIColor yellowColor] forState:UIControlStateNormal];
+    
+    
+    
 }
-
-
-
 
 
 
 - (IBAction)cancelbutton:(id)sender {
-    [self performSegueWithIdentifier:@"favourite" sender:self];
+    check=0;
+    printf("cancel button%d", check);
+     [self performSegueWithIdentifier:@"time2map" sender:self];
 }
 
 
