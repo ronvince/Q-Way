@@ -14,6 +14,8 @@
 #import "Qrc.h"
 #import "categoryViewController.h"
 #import "infoViewController.h"
+#import <AudioToolbox/AudioServices.h>
+
 @import CoreGraphics;
 
 @interface mapDraw ()
@@ -468,11 +470,12 @@ int btny;
               self.imageVi.transform = CGAffineTransformRotate(self.imageVi.transform,DEGREES_TO_RADIANS(-(num-58)));
             
                 }
-           else
+           else if(Qrcode.nullQrDB==1)
                {
            
-               [_invalidlabel setText:@"invalid QRcode "];
+               [_invalidlabel setText:@"Invalid QRcode "];
                [_invalidlabel setHidden:NO];
+                AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
            
                [NSTimer scheduledTimerWithTimeInterval:1.5
                                                 target:self
@@ -480,6 +483,17 @@ int btny;
                                               userInfo:nil
                                                repeats:NO];
               }
+           else if (Qrcode.nullQrDB==2){
+               [_invalidlabel setText:@"No QR Code Scanned"];
+               [_invalidlabel setHidden:NO];
+               AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+               
+               [NSTimer scheduledTimerWithTimeInterval:1.5
+                                                target:self
+                                              selector:@selector(animate:)
+                                              userInfo:nil
+                                               repeats:NO];
+           }
     }
     else if([segue.identifier isEqualToString:@"search"])
     {

@@ -22,6 +22,7 @@
 		CE48EC121B525FFA00F744C1 /* categoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE48EC111B525FFA00F744C1 /* categoryViewController.m */; };
 		CE48EC151B52602900F744C1 /* categoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE48EC141B52602900F744C1 /* categoryTableViewCell.m */; };
 		CE48EC181B52619700F744C1 /* homeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE48EC171B52619700F744C1 /* homeViewController.m */; };
+		CE4AA7361B58D8BA00C6876D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE4AA7351B58D8BA00C6876D /* AudioToolbox.framework */; };
 		CE4C5FC41B414C2E00784563 /* QRCode.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4C5FC31B414C2E00784563 /* QRCode.m */; };
 		CE4C5FCA1B41522E00784563 /* newCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4C5FC91B41522E00784563 /* newCell.m */; };
 		CE4C5FCD1B41534800784563 /* timeLogTable.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4C5FCC1B41534800784563 /* timeLogTable.m */; };
@@ -89,6 +90,7 @@
 		CE48EC141B52602900F744C1 /* categoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = categoryTableViewCell.m; sourceTree = "<group>"; };
 		CE48EC161B52619700F744C1 /* homeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = homeViewController.h; sourceTree = "<group>"; };
 		CE48EC171B52619700F744C1 /* homeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = homeViewController.m; sourceTree = "<group>"; };
+		CE4AA7351B58D8BA00C6876D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		CE4C5FC21B414C2E00784563 /* QRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCode.h; sourceTree = "<group>"; };
 		CE4C5FC31B414C2E00784563 /* QRCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCode.m; sourceTree = "<group>"; };
 		CE4C5FC81B41522E00784563 /* newCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = newCell.h; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE4AA7361B58D8BA00C6876D /* AudioToolbox.framework in Frameworks */,
 				CE6F32791B4175E600CFDF37 /* CoreLocation.framework in Frameworks */,
 				CE968B0A1B4103E80006CB2C /* QuartzCore.framework in Frameworks */,
 				CE968B081B4103D50006CB2C /* Foundation.framework in Frameworks */,
@@ -161,6 +164,7 @@
 		CE45A6231B3D525F007B3624 = {
 			isa = PBXGroup;
 			children = (
+				CE4AA7351B58D8BA00C6876D /* AudioToolbox.framework */,
 				CE397E821B44291E0080490B /* TimeLog.h */,
 				CE397E831B44291E0080490B /* TimeLog.m */,
 				CE6F32781B4175E600CFDF37 /* CoreLocation.framework */,

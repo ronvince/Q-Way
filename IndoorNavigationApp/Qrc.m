@@ -45,6 +45,7 @@ NSManagedObjectContext *managedObjectContext;
 - (void)viewDidLoad {
      _nullQrDB=1;
     _progressView.progress = 0.0;
+   
     check1 = 0;
     [self setCaptureManager:[[CaptureSessionManager alloc] init] ];
     
@@ -58,21 +59,22 @@ NSManagedObjectContext *managedObjectContext;
     [[[self captureManager] previewLayer] setPosition:CGPointMake(CGRectGetMidX(layerRect),
                                                                   CGRectGetMidY(layerRect))];
     [[[self view] layer] addSublayer:[[self captureManager] previewLayer]];
+       UIImageView *overlayImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"blue_squre.png"]];
     
-    UIImageView *overlayImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"camera-focus-border.png"]];
-    [overlayImageView setFrame:CGRectMake(60, 140, 260, 200)];
+    [overlayImageView setFrame:CGRectMake(self.view.center.x-115, 140, 230, 230)];
     [[self view] addSubview:overlayImageView];
     //[overlayImageView release];
+ 
     
     overlayButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [overlayButton setImage:[UIImage imageNamed:@"scanbutton.png"] forState:UIControlStateNormal];
     [overlayButton setFrame:CGRectMake(145, 405, 80, 60)];
     [overlayButton addTarget:self action:@selector(scanButtonPressed)   forControlEvents:UIControlEventTouchUpInside];
     
-    
     cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [cancelButton setImage:[UIImage imageNamed:@"cancel.png"] forState:UIControlStateNormal];
-    [cancelButton setFrame:CGRectMake(20, 20, 90, 40)];
+    //[[cancelButton imageView] setContentMode: UIViewContentModeScaleAspectFit];
+    [cancelButton setImage:[UIImage imageNamed:@"cancelnew.png"] forState:UIControlStateNormal];
+    [cancelButton setFrame:CGRectMake(20, 30, 120, 40)];
     [cancelButton addTarget:self action:@selector(cancelButtonPressed)   forControlEvents:UIControlEventTouchUpInside];
     
     
@@ -98,15 +100,34 @@ NSManagedObjectContext *managedObjectContext;
     [_captureManager.captureSession startRunning];
     
     
+       //[[self view] addSubview:overlayButton];
+
+
+   
+    int screenwidth=self.view.frame.size.width;
+    int screenHeight=self.view.frame.size.height;
+    _view1=[[UIView alloc ]initWithFrame:CGRectMake(0,0, screenwidth, 140)];
+    _view1.backgroundColor=[UIColor colorWithWhite:0.7 alpha:0.5];
+    _view2=[[UIView alloc ]initWithFrame:CGRectMake(0, 140, self.view.center.x-115, 230)];
+    _view2.backgroundColor=[UIColor colorWithWhite:0.7 alpha:0.5];
+    _view3=[[UIView alloc ]initWithFrame:CGRectMake(self.view.center.x+115, 140, self.view.center.x-115, 230)];
+    _view3.backgroundColor=[UIColor colorWithWhite:0.7 alpha:0.5];
+    _view4=[[UIView alloc ]initWithFrame:CGRectMake(0, 370, screenwidth, screenHeight-370)];
+    _view4.backgroundColor=[UIColor colorWithWhite:0.7 alpha:0.5];
     [self.view addSubview:_view1];
     [self.view addSubview:_view2];
     [self.view addSubview:_view3];
     [self.view addSubview:_view4];
     _view5.backgroundColor=[UIColor clearColor];
     [self.view addSubview:_view5];
-    //[[self view] addSubview:overlayButton];
     [overlayButton sendActionsForControlEvents:UIControlEventTouchUpInside];
     [[self view] addSubview:cancelButton];
+   // _progressView.transform=CGAffineTransformMakeRotation((3.14)/2);
+    //_progressView.transform=CGAffineTransformScale(_progressView.transform, 1.0f, 3.0f);
+     //   _progressView.transform=CGAffineTransformTranslate(_progressView.transform, 150, 100);
+    
+    [self.view addSubview:_progressView];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -121,6 +142,7 @@ NSManagedObjectContext *managedObjectContext;
 }
 
 -(void) cancelButtonPressed{
+    _nullQrDB=2;
     [self performSegueWithIdentifier:@"modal1" sender:self];
 }
 
@@ -400,7 +422,8 @@ NSInteger y;
             
             [self performSelectorOnMainThread:@selector(stopReading) withObject:nil waitUntilDone:NO];
             
-             _progressView.progress = 0.0;
+            _progressView.progress = 0.0;
+           
             [self performSelectorOnMainThread:@selector(makeMyProgressBarMoving) withObject:nil waitUntilDone:NO];
             
             sleep(3);
