@@ -374,6 +374,14 @@ NSString *catSearchtext;
     
     
 }
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (emp_plac==0)
+    {
+        return YES;
+    }
+    return NO;
+}
 
 
 
@@ -417,7 +425,7 @@ NSString *catSearchtext;
         if([emp1.favrt  isEqual:@"1"])
         {
             emp1.favrt = @"0";
-              [scanningLabel setText:@"Already in favourites!!"];
+              [scanningLabel setText:@"Removed from favourites!!"];
             [scanningLabel setHidden:NO];
                  }
         else

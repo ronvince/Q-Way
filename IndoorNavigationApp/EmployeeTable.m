@@ -47,7 +47,7 @@ int check; //// For checking whether the view appears for the first
 }
 -(void)selection{
     if (employ_plac==0) {
-        printf("u==0 employee");
+        printf("employ_plac==0 employee");
         NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Employee"];
         self.allTableData = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
@@ -58,7 +58,7 @@ int check; //// For checking whether the view appears for the first
     }
     else if (employ_plac==1)
     {
-        printf("u==1 places");
+        printf("employ_plac==1 places");
         NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Places"];
         self.allTableData = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
@@ -355,7 +355,7 @@ NSString *t1;
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (isFiltered)
+    if (isFiltered && (employ_plac==0))
     {
         return YES;
     }
