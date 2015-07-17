@@ -144,9 +144,9 @@ int samesearch;
     
     
     //for toast message
-    UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 540, 230, 30)];
+    UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 540, 210, 25)];
     [self setInvalidlabel:tempLabel];
-    [self.invalidlabel setFont:[UIFont fontWithName:@"MuseoSans-500" size:15]];
+    [self.invalidlabel setFont:[UIFont fontWithName:@"Avenir-Roman" size:13]];
     [self.invalidlabel  setTextAlignment:NSTextAlignmentCenter];
     [self.invalidlabel setTextColor:[UIColor whiteColor]];
     self.invalidlabel.backgroundColor = [UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1];
