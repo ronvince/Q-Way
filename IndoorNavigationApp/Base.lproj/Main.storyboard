@@ -618,7 +618,7 @@
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N2T-fq-Fd4">
-                                <rect key="frame" x="-9" y="-9" width="393" height="947"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="668"/>
                                 <connections>
                                     <outlet property="delegate" destination="iTs-87-otQ" id="8MR-NL-jId"/>
                                 </connections>
@@ -1124,8 +1124,11 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ftb-Vg-fiQ">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ftb-Vg-fiQ">
                                                     <rect key="frame" x="21" y="4" width="55" height="53"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="ftb-Vg-fiQ" secondAttribute="height" multiplier="1:1" id="JqR-jY-lzR"/>
+                                                    </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rRg-tr-KRs">
                                                     <rect key="frame" x="92" y="32" width="137" height="21"/>
@@ -1134,6 +1137,11 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ftb-Vg-fiQ" firstAttribute="leading" secondItem="uZz-ZC-A0F" secondAttribute="leadingMargin" constant="10" id="4hF-oO-or5"/>
+                                                <constraint firstItem="ftb-Vg-fiQ" firstAttribute="top" secondItem="uZz-ZC-A0F" secondAttribute="topMargin" constant="1" id="Gck-FS-5pf"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="ftb-Vg-fiQ" secondAttribute="bottom" constant="1" id="Zwh-dn-ptl"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="desigField" destination="rRg-tr-KRs" id="m3z-uQ-51P"/>
