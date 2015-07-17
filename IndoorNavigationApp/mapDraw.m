@@ -113,6 +113,7 @@ int lock=0;
 int m;
 int subviewstart=0;
 int searchstart=0;
+int samesearch;
 
 - (void)viewDidLoad
 {
@@ -455,43 +456,73 @@ int btny;
     else if([segue.identifier isEqualToString:@"search"])
     {
         EmployeeTable *search = (EmployeeTable *)segue.sourceViewController;
+    
 
      if(search.employexy)
        {
-          [employeedetails addObject:search.employexy];
-        ex=[search.employexy.x  intValue];
-        ey=[search.employexy.y intValue];
-        [self.locationManager startUpdatingHeading];
-        self.greengif=[[FLAnimatedImageView alloc]init];
-        FLAnimatedImage *gifwork = [[FLAnimatedImage alloc] initWithAnimatedGIFData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"spot" ofType:@"gif"]]];
-        self.greengif.frame = (CGRect){.origin=CGPointMake(ex,ey), .size=CGSizeMake(200,200)};
-        self.greengif.animatedImage = gifwork;
+           samesearch=0;
+           for (m=0; m<employeedetails.count;m++)
+           {
+               _employemap=employeedetails[m];
+               if (search.employexy.empid==_employemap.empid)
+               {
+                   samesearch=1;
+               }
+           }
+           
+           if(samesearch==0)
+             
+           {
+           
+             [employeedetails addObject:search.employexy];
+             ex=[search.employexy.x  intValue];
+             ey=[search.employexy.y intValue];
+             [self.locationManager startUpdatingHeading];
+             self.greengif=[[FLAnimatedImageView alloc]init];
+             FLAnimatedImage *gifwork = [[FLAnimatedImage alloc] initWithAnimatedGIFData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"spot" ofType:@"gif"]]];
+             self.greengif.frame = (CGRect){.origin=CGPointMake(ex,ey), .size=CGSizeMake(200,200)};
+             self.greengif.animatedImage = gifwork;
         
-        self.giflbl = [[UILabel  alloc] initWithFrame:CGRectMake(-200,-30,600,100)];
+             self.giflbl = [[UILabel  alloc] initWithFrame:CGRectMake(-200,-30,600,100)];
         
-        [_giflbl   setText:search.employexy.name];
-        [_giflbl setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:70]];
-        [_giflbl setTextColor:[UIColor brownColor ]];
-        _giflbl.textAlignment = NSTextAlignmentCenter;
+             [_giflbl   setText:search.employexy.name];
+             [_giflbl setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:70]];
+             [_giflbl setTextColor:[UIColor brownColor ]];
+             _giflbl.textAlignment = NSTextAlignmentCenter;
         
-        [self.greengif addSubview:self.giflbl];
-        
-        
-        self.imageVie.userInteractionEnabled = YES;
-        self.imageView.userInteractionEnabled = YES;
-        self.greengif.userInteractionEnabled = YES;
+             [self.greengif addSubview:self.giflbl];
         
         
-        [gifimg addObject:_greengif];
+             self.imageVie.userInteractionEnabled = YES;
+             self.imageView.userInteractionEnabled = YES;
+             self.greengif.userInteractionEnabled = YES;
         
-        [self.imageView addSubview:_greengif];
-        searchstart=1;
-        _greengif.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
-         self.greengif.transform = CGAffineTransformRotate(self.greengif.transform,DEGREES_TO_RADIANS(-(num-58)));
+        
+             [gifimg addObject:_greengif];
+        
+             [self.imageView addSubview:_greengif];
+             searchstart=1;
+             _greengif.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
+             self.greengif.transform = CGAffineTransformRotate(self.greengif.transform,DEGREES_TO_RADIANS(-(num-58)));
+           }
        }
-        
     else if(search.placexy)
       {
+          samesearch=0;
+          for (m=0; m<placedetails.count;m++)
+          {
+              _placemap=placedetails[m];
+              if (search.placexy.placeName==_placemap.placeName)
+              {
+                  samesearch=1;
+              }
+          }
+          
+          if(samesearch==0)
+              
+          {
+
+          
         [placedetails addObject:search.placexy];
         ex=[search.placexy.x  intValue];
         ey=[search.placexy.y intValue];
@@ -519,6 +550,7 @@ int btny;
         searchstart=1;
         _greengif.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
          self.greengif.transform = CGAffineTransformRotate(self.greengif.transform,DEGREES_TO_RADIANS(-(num-58)));
+          }
         }
         
      }
@@ -539,7 +571,21 @@ int btny;
         
         if(categorysearch.emp_plac==0)
         {
-           
+            samesearch=0;
+            for (m=0; m<employeedetails.count;m++)
+            {
+                _employemap=employeedetails[m];
+                if (categorysearch.categoryemployexy.empid==_employemap.empid)
+                {
+                    samesearch=1;
+                }
+            }
+            
+            if(samesearch==0)
+                
+            {
+
+            
             
             [employeedetails addObject:categorysearch.categoryemployexy];
             
@@ -573,10 +619,28 @@ int btny;
             _greengif.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
             
             self.greengif.transform = CGAffineTransformRotate(self.greengif.transform,DEGREES_TO_RADIANS(-(num-58)));
+            }
         }
         
         else if((int)categorysearch.emp_plac==1)
         {
+            
+            
+            samesearch=0;
+            for (m=0; m<placedetails.count;m++)
+            {
+                _placemap=placedetails[m];
+                if (categorysearch.categoryplacexy.placeName==_placemap.placeName)
+                {
+                    samesearch=1;
+                }
+            }
+            
+            if(samesearch==0)
+                
+            {
+                
+
             
             [placedetails addObject:categorysearch.categoryplacexy];
             ex=[categorysearch.categoryplacexy.x  intValue];
@@ -608,6 +672,7 @@ int btny;
             searchstart=1;
              _greengif.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
             self.greengif.transform = CGAffineTransformRotate(self.greengif.transform,DEGREES_TO_RADIANS(-(num-58)));
+            }
         }
         
     }
