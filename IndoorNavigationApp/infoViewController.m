@@ -57,11 +57,20 @@
     img.layer.masksToBounds = YES;
     img.layer.borderWidth = 0;
     
+    
+    UILabel *phno=[[UILabel alloc] initWithFrame:CGRectMake(10,125,150,100)];
+    phno.textAlignment = NSTextAlignmentCenter;
+    phno.center = CGPointMake(105,225);
+    //phno.textColor = [UIColor redColor];
+    
+    
+    
     if(if_emp_place==0)
     {
         name.text=_employe.name;
         desig.text=_employe.desig;
         email.text=_employe.email;
+        phno.text=_employe.phno;
         NSString *inputString = _employe.empid;
         int value = [inputString intValue];
         NSString *imageName=[NSString stringWithFormat:@"%d.jpg",value];
@@ -83,7 +92,10 @@
     [self.view addSubview:name];
     [self.view addSubview:desig];
     [self.view addSubview:img];
-    [self.view addSubview:email];    // Do any additional setup after loading the view.
+    [self.view addSubview:email];
+   // [self.view addSubview:phno];
+    
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {

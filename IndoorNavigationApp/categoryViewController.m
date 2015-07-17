@@ -59,15 +59,15 @@ int prevCatTextLen,catSl,locLen=0,locCor=0;
         _imagefield.image=[UIImage imageNamed:imageName]  ;
     }
     
-    UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(75, 450, 250, 30)];
+    UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 450, 210, 25)];
     [self setToastLabel:tempLabel];
     
    
     
-    [self.toastLabel setFont:[UIFont fontWithName:@"MuseoSans-500" size:15]];
+    [self.toastLabel setFont:[UIFont fontWithName:@"Avenir-Roman" size:13]];
     [self.toastLabel  setTextAlignment:NSTextAlignmentCenter];
     [self.toastLabel  setTextColor:[UIColor whiteColor]];
-    self.toastLabel.backgroundColor = [UIColor colorWithRed:0.200 green:0.463 blue:.827 alpha:1];
+    self.toastLabel.backgroundColor =[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1];
     self.toastLabel.layer.cornerRadius = 10;
     // self.label.layer.borderWidth = 1;
     self.toastLabel.layer.masksToBounds = YES;
@@ -281,7 +281,7 @@ NSString *catSearchtext;
         cell.nameField.text=emp.name;
         NSLog(@"%@", emp.name);
         NSLog(@"%@", categoryName);
-        cell.desigField.text = emp.favrt;
+        cell.desigField.text = emp.desig;
         cell.emailField.text=emp.email;
         
         NSString *inputString = emp.empid;
@@ -443,7 +443,7 @@ NSString *catSearchtext;
         
         
         [managedObjectContext save:&error];
-        
+        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationNone];
     }];
     
     
