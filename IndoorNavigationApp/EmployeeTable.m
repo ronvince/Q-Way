@@ -27,7 +27,7 @@
 @implementation EmployeeTable
 @synthesize isFiltered;
 CAShapeLayer *shapeLayer ;
-@synthesize scanningLabel;
+@synthesize toastLabel;
 int prevTextLen,glsl,glCor=0,gllen=0;
 
 
@@ -78,8 +78,18 @@ int check; //// For checking whether the view appears for the first
      setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     self.navigationController.navigationBar.translucent = NO;
     
-    [_buttonEmploy setTitleColor:[UIColor purpleColor] forState:UIControlStateSelected];
-    
+    //for toast message
+    UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 450, 210, 25)];
+    [self setToastLabel:tempLabel];
+
+    [toastLabel setFont:[UIFont fontWithName:@"Avenir-Roman" size:13]];
+    [toastLabel  setTextAlignment:NSTextAlignmentCenter];
+    [toastLabel  setTextColor:[UIColor whiteColor]];
+    toastLabel.backgroundColor = [UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1];
+    toastLabel.layer.cornerRadius = 10;
+    toastLabel.layer.masksToBounds = YES;
+    [toastLabel setHidden:YES];
+    [[self view] addSubview:toastLabel];
     
   }
 -(void)defaultDatashow{
@@ -118,7 +128,7 @@ int check; //// For checking whether the view appears for the first
 
 - (void)viewDidUnload
 {
-    // [self setSearchBar:nil];
+    
     [super viewDidUnload];
 }
 
@@ -487,8 +497,7 @@ NSString *t1;
 -(void) showDetailsForIndexPath:(NSIndexPath*)indexPath
 {
     [self.searchBar resignFirstResponder];
-   // mapDraw* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"mapDraw"];
-    Employee*  employe;
+     Employee*  employe;
     Places *place;
     categoryViewController *cat = [self.storyboard instantiateViewControllerWithIdentifier:@"categoryViewController"];
     
@@ -537,7 +546,7 @@ int x1,x2;
     
     employ_plac=0;
      check=0; // For checking whether the view appears for the first
-    printf("emp button%d", check);       self.searchBar.text=nil;
+    self.searchBar.text=nil;
     [self defaultDatashow];
      self.tableArray=self.defaultData;
     [self selection];
@@ -564,7 +573,7 @@ int x1,x2;
 - (IBAction)placefunc:(id)sender {
     employ_plac=1;
     check=1;
-    printf("pla button%d", check);    self.searchBar.text=nil;
+    self.searchBar.text=nil;
    [self defaultDatashow];
     self.tableArray=self.defaultData;
    [self selection];
@@ -610,12 +619,8 @@ int x1,x2;
     
     
     NSError* error = nil;
-    Employee *obj = [self.prevoiusdata objectAtIndex:indexPath.row];
-    /*
-     NSLog(@"NAME  %@", obj.name);
-     NSLog(@"NAME  %@", obj.favrt);
-     */
-    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+    Employee *obj = [self.tableArray objectAtIndex:indexPath.row];
+      NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     [fetchRequest setEntity:[NSEntityDescription entityForName:@"Employee" inManagedObjectContext:managedObjectContext]];
     
@@ -627,7 +632,7 @@ int x1,x2;
     Employee *emp1=[results  objectAtIndex:0];
     
     
-    UITableViewRowAction *favAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"    " handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
+    UITableViewRowAction *favAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"     " handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
         
         
         NSError* error = nil;
@@ -635,18 +640,16 @@ int x1,x2;
         if([emp1.favrt  isEqual:@"1"])
         {
             emp1.favrt = @"0";
-            [scanningLabel setText:@"Already in favourites!!"];
-            [scanningLabel setHidden:NO];
-            favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"silver.png"]];
-            
+            [toastLabel setText:@"Removed from favourites!!"];
+            [toastLabel setHidden:NO];
+        
         }
         else
         {
             emp1.favrt = @"1";
-            [scanningLabel setText:@"Added to favourites!!"];
-            [scanningLabel setHidden:NO];
-            favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"gold.png"]];
-            
+            [toastLabel setText:@"Added to favourites!!"];
+            [toastLabel setHidden:NO];
+         
         }
         [NSTimer scheduledTimerWithTimeInterval:1.5
                                          target:self
@@ -654,24 +657,27 @@ int x1,x2;
                                        userInfo:nil
                                         repeats:NO];
         
-        
         [managedObjectContext save:&error];
-        
+        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationNone];        
     }];
     
-    
+    //setting 
     if([emp1.favrt  isEqual:@"1"] )
         favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"gold.png"]];
     else
         favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"silver.png"]];
-    UITableViewRowAction *infoAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"   "  handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
+    
+    
+    
+    
+    UITableViewRowAction *infoAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"    "  handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
         
         infoViewController *popController = [[infoViewController alloc] init];
         Employee *employe;
         
         NSLog(@"%ld",(long)indexPath.row);
         
-        employe= [self.prevoiusdata objectAtIndex:indexPath.row];
+        employe= [self.tableArray objectAtIndex:indexPath.row];
         popController.employe=employe;
         NSLog(@"%@",employe.name);
         popController.contentSize = CGSizeMake(200, 245);
@@ -701,7 +707,7 @@ int x1,x2;
 
 
 -(void)animate:(NSTimer *)theTimer {
-    [scanningLabel setHidden:YES];
+    [toastLabel setHidden:YES];
 }
 
 //-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath

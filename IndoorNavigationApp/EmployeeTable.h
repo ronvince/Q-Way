@@ -19,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *buttonPlace;
 @property (weak, nonatomic) IBOutlet UIButton *buttonEmploy;
 @property (nonatomic, assign) bool isFiltered;
-@property (nonatomic, retain) UILabel *scanningLabel;
+@property (nonatomic, retain) UILabel *toastLabel;
 @property (weak, nonatomic) IBOutlet UIView *lineView;
 
 
