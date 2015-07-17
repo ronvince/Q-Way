@@ -141,6 +141,19 @@ int samesearch;
   [self.imageVie addSubview:self.imageView];
     
     
+    //for toast message
+    UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 540, 230, 30)];
+    [self setInvalidlabel:tempLabel];
+    [self.invalidlabel setFont:[UIFont fontWithName:@"MuseoSans-500" size:15]];
+    [self.invalidlabel  setTextAlignment:NSTextAlignmentCenter];
+    [self.invalidlabel setTextColor:[UIColor whiteColor]];
+    self.invalidlabel.backgroundColor = [UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1];
+    self.invalidlabel.layer.cornerRadius = 10;
+    self.invalidlabel.layer.masksToBounds = YES;
+    [_invalidlabel setHidden:YES];
+    [[self view] addSubview:_invalidlabel];
+    
+
     
     if (_ix == NULL) {
       //  ca=0;
@@ -251,7 +264,8 @@ int samesearch;
      [self.view addSubview:self.QRcodebutton];
     [self.view addSubview:self.clearbutton];
     [self.view addSubview:self.lockbutton];
-   [self.view addSubview:self.favbutton];  //////////////////////////////////////////////////////
+   [self.view addSubview:self.favbutton];
+    //////////////////////////////////////////////////////
     CGRect scrollViewFrame = self.scrollView.frame;
     CGFloat scaleWidth = scrollViewFrame.size.width / self.scrollView.contentSize.width;
     CGFloat scaleHeight = scrollViewFrame.size.height/ self.scrollView.contentSize.height;
@@ -263,7 +277,7 @@ int samesearch;
     
     
     CGFloat newZoomScale =1;
-   // newZoomScale = MIN(newZoomScale, self.scrollView.maximumZoomScale);
+   
     CGSize scrollViewSize = self.scrollView.bounds.size;
     
     CGFloat w = scrollViewSize.width / newZoomScale;
@@ -426,11 +440,13 @@ int btny;
         Qrc *Qrcode = (Qrc *)segue.sourceViewController;
         NSLog(@"Values are %@", Qrcode.Qrx);
         NSLog(@"Values are %@", Qrcode.Qry);
+        NSLog(@"Values are %li", Qrcode.nullQrDB);
         [self.locationManager startUpdatingHeading];
         
            if(Qrcode.Qrx!=NULL && Qrcode.Qry!=NULL)
                
             {
+                
               [_imageVi removeFromSuperview];
               cx=[Qrcode.Qrx intValue];
               cy=[Qrcode.Qry intValue];
@@ -450,8 +466,20 @@ int btny;
               _imageView.layer.anchorPoint=CGPointMake((float)(cx+50)/400,(float)(cy+100)/600);
               _imageVi.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
               self.imageVi.transform = CGAffineTransformRotate(self.imageVi.transform,DEGREES_TO_RADIANS(-(num-58)));
-            }
-        
+            
+                }
+           else
+               {
+           
+               [_invalidlabel setText:@"invalid QRcode "];
+               [_invalidlabel setHidden:NO];
+           
+               [NSTimer scheduledTimerWithTimeInterval:1.5
+                                                target:self
+                                              selector:@selector(animate:)
+                                              userInfo:nil
+                                               repeats:NO];
+              }
     }
     else if([segue.identifier isEqualToString:@"search"])
     {
@@ -727,7 +755,13 @@ int btny;
         
     }
     lock++;
-
-    
  }
+
+
+-(void)animate:(NSTimer *)theTimer {
+    [_invalidlabel setHidden:YES];
+}
+
+
+
 @end

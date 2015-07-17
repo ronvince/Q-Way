@@ -32,5 +32,5 @@
 - (IBAction)clearfunction:(id)sender;
 - (IBAction)lockfunction:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *favbutton;
-
+@property (nonatomic, retain) UILabel *invalidlabel;
 @end

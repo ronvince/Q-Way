@@ -22,5 +22,5 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIImageView *imagefield;
-@property (nonatomic, retain) UILabel *scanningLabel;
+@property (nonatomic, retain) UILabel *toastLabel;
 @end

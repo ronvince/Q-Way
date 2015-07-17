@@ -19,6 +19,7 @@
 
 @property (nonatomic,strong )NSString *Qrx;
 @property (nonatomic,strong )NSString *Qry;
+@property (nonatomic)  NSInteger nullQrDB;
 //@property (weak, nonatomic) IBOutlet UIView *vi;
 @property (strong, nonatomic) IBOutlet UIView *view5;
 
@@ -28,7 +29,6 @@
 @property (retain) CaptureSessionManager *captureManager;
 @property (nonatomic, retain) UILabel *scanningLabel;
 @property (nonatomic, retain) UILabel *DisplayLabel;
-
 
 
 

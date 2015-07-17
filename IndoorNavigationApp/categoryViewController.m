@@ -23,7 +23,7 @@
 @implementation categoryViewController
 @synthesize categoryName;
 @synthesize isFiltered;
-@synthesize scanningLabel;
+
 @synthesize emp_plac;  //whether category belongs to employee / places.
 int prevCatTextLen,catSl,locLen=0,locCor=0;
 
@@ -59,20 +59,20 @@ int prevCatTextLen,catSl,locLen=0,locCor=0;
         _imagefield.image=[UIImage imageNamed:imageName]  ;
     }
     
-    UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(75, 450, 250, 35)];
-    [self setScanningLabel:tempLabel];
+    UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(75, 450, 250, 30)];
+    [self setToastLabel:tempLabel];
     
    
     
-    [self.scanningLabel setFont:[UIFont fontWithName:@"MuseoSans-500" size:15]];
-    [self.scanningLabel  setTextAlignment:NSTextAlignmentCenter];
-    [self.scanningLabel  setTextColor:[UIColor whiteColor]];
-    self.scanningLabel.backgroundColor = [UIColor colorWithRed:0.200 green:0.463 blue:.827 alpha:1];
-    self.scanningLabel.layer.cornerRadius = 10;
+    [self.toastLabel setFont:[UIFont fontWithName:@"MuseoSans-500" size:15]];
+    [self.toastLabel  setTextAlignment:NSTextAlignmentCenter];
+    [self.toastLabel  setTextColor:[UIColor whiteColor]];
+    self.toastLabel.backgroundColor = [UIColor colorWithRed:0.200 green:0.463 blue:.827 alpha:1];
+    self.toastLabel.layer.cornerRadius = 10;
     // self.label.layer.borderWidth = 1;
-    self.scanningLabel.layer.masksToBounds = YES;
-    [scanningLabel setHidden:YES];
-    [[self view] addSubview:scanningLabel];
+    self.toastLabel.layer.masksToBounds = YES;
+    [_toastLabel setHidden:YES];
+    [[self view] addSubview:_toastLabel];
     
 }
 - (void)viewDidAppear:(BOOL)animated
@@ -425,14 +425,14 @@ NSString *catSearchtext;
         if([emp1.favrt  isEqual:@"1"])
         {
             emp1.favrt = @"0";
-              [scanningLabel setText:@"Removed from favourites!!"];
-            [scanningLabel setHidden:NO];
+              [_toastLabel setText:@"Removed from favourites!!"];
+            [_toastLabel setHidden:NO];
                  }
         else
         {
             emp1.favrt = @"1";
-            [scanningLabel setText:@"Added to favourites!!"];
-        [scanningLabel setHidden:NO];
+            [_toastLabel setText:@"Added to favourites!!"];
+        [_toastLabel setHidden:NO];
             
         }
         [NSTimer scheduledTimerWithTimeInterval:1.5
@@ -475,7 +475,7 @@ NSString *catSearchtext;
 
 
 -(void)animate:(NSTimer *)theTimer {
-    [scanningLabel setHidden:YES];
+    [_toastLabel setHidden:YES];
     }
 
 

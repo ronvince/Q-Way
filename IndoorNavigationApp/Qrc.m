@@ -27,7 +27,6 @@
 @implementation Qrc
 @synthesize scanningLabel;
 @synthesize DisplayLabel;
-int nullQrDB =1;
 int check1 = 0;
 UIButton *overlayButton, *cancelButton;
 
@@ -44,6 +43,7 @@ NSManagedObjectContext *managedObjectContext;
 
 
 - (void)viewDidLoad {
+     _nullQrDB=1;
     _progressView.progress = 0.0;
     check1 = 0;
     [self setCaptureManager:[[CaptureSessionManager alloc] init] ];
@@ -74,6 +74,11 @@ NSManagedObjectContext *managedObjectContext;
     [cancelButton setImage:[UIImage imageNamed:@"cancel.png"] forState:UIControlStateNormal];
     [cancelButton setFrame:CGRectMake(20, 20, 90, 40)];
     [cancelButton addTarget:self action:@selector(cancelButtonPressed)   forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    
+    
+    
     
 //    UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 50, 250, 30)];
 //    [self setScanningLabel:tempLabel];
@@ -328,7 +333,7 @@ NSInteger y;
             QRCode *qc;
             NSLog(@"check outside%d",check1);
             if ((results.count!=0)&&(check1<1)){
-                nullQrDB = 0;
+                _nullQrDB = 0;
                 check1++;
                 qc = [results objectAtIndex:0];
                 NSLog(@"qrcode count  %lu", (unsigned long)results.count);
