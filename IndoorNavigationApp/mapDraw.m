@@ -14,6 +14,7 @@
 #import "Qrc.h"
 #import "categoryViewController.h"
 #import "infoViewController.h"
+#import "favouriteViewController.h"
 #import <AudioToolbox/AudioServices.h>
 
 @import CoreGraphics;
@@ -444,6 +445,7 @@ int btny;
     {
         EmployeeTable *search = (EmployeeTable *)segue.sourceViewController;
     
+        [self.locationManager startUpdatingHeading];
 
      if(search.employexy)
        {
@@ -464,7 +466,7 @@ int btny;
              [employeedetails addObject:search.employexy];
              ex=[search.employexy.x  intValue];
              ey=[search.employexy.y intValue];
-             [self.locationManager startUpdatingHeading];
+             
              self.greengif=[[FLAnimatedImageView alloc]init];
              FLAnimatedImage *gifwork = [[FLAnimatedImage alloc] initWithAnimatedGIFData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"spot" ofType:@"gif"]]];
              self.greengif.frame = (CGRect){.origin=CGPointMake(ex,ey), .size=CGSizeMake(200,200)};
@@ -513,7 +515,7 @@ int btny;
         [placedetails addObject:search.placexy];
         ex=[search.placexy.x  intValue];
         ey=[search.placexy.y intValue];
-        [self.locationManager startUpdatingHeading];
+        
         self.greengif=[[FLAnimatedImageView alloc]init];
         FLAnimatedImage *gifwork = [[FLAnimatedImage alloc] initWithAnimatedGIFData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"spot" ofType:@"gif"]]];
         self.greengif.frame = (CGRect){.origin=CGPointMake(ex,ey), .size=CGSizeMake(200,200)};
@@ -549,13 +551,68 @@ int btny;
   else if([segue.identifier isEqualToString:@"favourite"])
    {
     
-    [self.locationManager startUpdatingHeading];
+       favouriteViewController *favouritesearch = (favouriteViewController *)segue.sourceViewController;
+       [self.locationManager startUpdatingHeading];
+       
+       if(favouritesearch.favouriteemployeexy)
+       {
+           samesearch=0;
+           for (m=0; m<employeedetails.count;m++)
+           {
+               _employemap=employeedetails[m];
+               if (favouritesearch.favouriteemployeexy.empid==_employemap.empid)
+               {
+                   samesearch=1;
+               }
+           }
+           
+           if(samesearch==0)
+               
+           {
+               
+               [employeedetails addObject:favouritesearch.favouriteemployeexy];
+               ex=[favouritesearch.favouriteemployeexy.x  intValue];
+               ey=[favouritesearch.favouriteemployeexy.y intValue];
+               
+               self.greengif=[[FLAnimatedImageView alloc]init];
+               FLAnimatedImage *gifwork = [[FLAnimatedImage alloc] initWithAnimatedGIFData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"spot" ofType:@"gif"]]];
+               self.greengif.frame = (CGRect){.origin=CGPointMake(ex,ey), .size=CGSizeMake(200,200)};
+               self.greengif.animatedImage = gifwork;
+               
+               self.giflbl = [[UILabel  alloc] initWithFrame:CGRectMake(-200,-30,600,100)];
+               
+               [_giflbl   setText:favouritesearch.favouriteemployeexy.name];
+               [_giflbl setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:70]];
+               [_giflbl setTextColor:[UIColor brownColor ]];
+               _giflbl.textAlignment = NSTextAlignmentCenter;
+               
+               [self.greengif addSubview:self.giflbl];
+               
+               
+               self.imageView.userInteractionEnabled = YES;
+               self.Mapimage.userInteractionEnabled = YES;
+               self.greengif.userInteractionEnabled = YES;
+               
+               
+               [gifimg addObject:_greengif];
+               
+               [self.Mapimage addSubview:_greengif];
+               searchstart=1;
+               _greengif.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
+               self.greengif.transform = CGAffineTransformRotate(self.greengif.transform,DEGREES_TO_RADIANS(-(num-58)));
+           }
+       }
+
+       
+       
+       
+    
    }
     
   else if([segue.identifier isEqualToString:@"categorysearch"])
     {
         categoryViewController *categorysearch = (categoryViewController *)segue.sourceViewController;
-        
+        [self.locationManager startUpdatingHeading];
         if(categorysearch.emp_plac==0)
         {
             samesearch=0;
@@ -578,7 +635,7 @@ int btny;
             
             ex=[categorysearch.categoryemployexy.x  intValue];
             ey=[categorysearch.categoryemployexy.y intValue];
-            [self.locationManager startUpdatingHeading];
+            
             self.greengif=[[FLAnimatedImageView alloc]init];
             FLAnimatedImage *gifwork = [[FLAnimatedImage alloc] initWithAnimatedGIFData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"spot" ofType:@"gif"]]];
             self.greengif.frame = (CGRect){.origin=CGPointMake(ex,ey), .size=CGSizeMake(200,200)};
@@ -632,7 +689,7 @@ int btny;
             [placedetails addObject:categorysearch.categoryplacexy];
             ex=[categorysearch.categoryplacexy.x  intValue];
             ey=[categorysearch.categoryplacexy.y intValue];
-            [self.locationManager startUpdatingHeading];
+    
             self.greengif=[[FLAnimatedImageView alloc]init];
             FLAnimatedImage *gifwork = [[FLAnimatedImage alloc] initWithAnimatedGIFData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"spot" ofType:@"gif"]]];
             self.greengif.frame = (CGRect){.origin=CGPointMake(ex,ey), .size=CGSizeMake(200,200)};

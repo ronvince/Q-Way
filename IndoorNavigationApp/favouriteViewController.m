@@ -133,9 +133,9 @@
    
     
     employe = [_tableArray objectAtIndex:indexPath.row];
-    //_employexy = employe;
+    _favouriteemployeexy = employe;
 
-
+   [self performSegueWithIdentifier:@"favourite" sender:self];
 
 
 }
@@ -144,7 +144,7 @@
 
 
 - (IBAction)cancelfunction:(id)sender {
-    [self performSegueWithIdentifier:@"favourite" sender:self];
+    [self performSegueWithIdentifier:@"time2map" sender:self];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath

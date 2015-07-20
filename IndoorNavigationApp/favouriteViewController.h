@@ -14,6 +14,7 @@
 
 @interface favouriteViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
+@property (strong, nonatomic) Employee* favouriteemployeexy;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
