@@ -70,14 +70,36 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     
-    
     favrtTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"favrt" forIndexPath:indexPath];
     Employee*  emp;
+     emp = [self.tableArray objectAtIndex:indexPath.row];
+    NSString *key = emp.desig;
+      if([key isEqualToString:@"PM"])
+    {
+        cell.desigField.textColor=[UIColor redColor];
+    }
+    else if([key isEqualToString:@"Developer"])
+    {
+        cell.desigField.textColor=[UIColor blueColor];
+    }
+    else if([key isEqualToString:@"Architect"])
+    {
+        cell.desigField.textColor=[UIColor yellowColor];
+    }
+    else if([key isEqualToString:@"BA"])
+    {
+        cell.desigField.textColor=[UIColor grayColor];
+    }
+    else if([key isEqualToString:@"Trainee"])
+    {
+        cell.desigField.textColor=[UIColor greenColor];
+    }
+    else if([key isEqualToString:@"Intern"])
+    {
+        cell.desigField.textColor=[UIColor orangeColor];
+    }
+
     
-    cell.textLabel.textColor=[UIColor blackColor];
-    cell.textLabel.font=[UIFont fontWithName:@"Arial Rounded MT" size:16.0];
-    
-    emp = [self.tableArray objectAtIndex:indexPath.row];
     cell.nameLabel.text=emp.name;
     cell.desigField.text = emp.desig;
     
@@ -96,6 +118,30 @@
      
       return cell;
 }
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self showDetailsForIndexPath:indexPath];
+}
+
+
+-(void) showDetailsForIndexPath:(NSIndexPath*)indexPath
+{
+   
+    Employee*  employe;
+   
+    
+    employe = [_tableArray objectAtIndex:indexPath.row];
+    //_employexy = employe;
+
+
+
+
+}
+
+
+
 
 - (IBAction)cancelfunction:(id)sender {
     [self performSegueWithIdentifier:@"favourite" sender:self];

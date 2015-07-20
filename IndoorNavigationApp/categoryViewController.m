@@ -74,6 +74,7 @@ int prevCatTextLen,catSl,locLen=0,locCor=0;
     [_toastLabel setHidden:YES];
     [[self view] addSubview:_toastLabel];
     
+    
 }
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -448,10 +449,14 @@ NSString *catSearchtext;
     
     
     if([emp1.favrt  isEqual:@"1"] )
-        favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"gold.png"]];
+        favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"fav_active.png"]];
     else
-        favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"silver.png"]];
-    UITableViewRowAction *infoAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"   "  handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
+        favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"fav.png"]];
+    
+    
+    
+    
+    UITableViewRowAction *infoAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"     "  handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
        
         infoViewController *popController = [[infoViewController alloc] init];
         Employee *employe;
@@ -467,7 +472,9 @@ NSString *catSearchtext;
         [self presentViewController:popController animated:YES completion:nil];
         
     }];
-   infoAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"info3.png"]];;
+    
+   
+   infoAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"info.png"]];;
     
     
     return @[infoAction,favAction];
@@ -477,9 +484,6 @@ NSString *catSearchtext;
 -(void)animate:(NSTimer *)theTimer {
     [_toastLabel setHidden:YES];
     }
-
-
-
 /*
 #pragma mark - Navigation
 
