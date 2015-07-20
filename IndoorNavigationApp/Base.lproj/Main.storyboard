@@ -1095,7 +1095,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="62" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="R73-rf-Vie">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="62" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="R73-rf-Vie">
                                 <rect key="frame" x="-4" y="83" width="383" height="584"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -1137,7 +1137,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="desigField" destination="rRg-tr-KRs" id="m3z-uQ-51P"/>
-                                            <outlet property="imageView" destination="KeF-Hf-zGt" id="JNM-sN-zd8"/>
+                                            <outlet property="fav_image" destination="KeF-Hf-zGt" id="PuT-jz-UJj"/>
                                             <outlet property="nameLabel" destination="tIf-XB-G8Y" id="MSM-7W-P6H"/>
                                         </connections>
                                     </tableViewCell>

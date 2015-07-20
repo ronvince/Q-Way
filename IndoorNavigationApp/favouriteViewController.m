@@ -25,10 +25,10 @@
     return context;
 }
 
--(void)viewWillAppear:(BOOL)animated
+-(void)viewDidAppear:(BOOL)animated
 {
     
-    
+    [super viewDidAppear:animated];
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     [fetchRequest setEntity:[NSEntityDescription entityForName:@"Employee" inManagedObjectContext:managedObjectContext]];
@@ -45,6 +45,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -67,7 +72,8 @@
     
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     
     
     favrtTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"favrt" forIndexPath:indexPath];
@@ -106,15 +112,15 @@
     
     NSString *inputString = emp.empid;
      int value = [inputString intValue];
-  
-     NSString *imageName=[NSString stringWithFormat:@"%d.jpg",value];
+    NSLog(@"%d",value);
+     NSString *imageName=[NSString stringWithFormat:@"7.jpg"];
      
      
-     cell.imageView.layer.cornerRadius = cell.imageView.frame.size.width/2;
-     cell.imageView.layer.cornerRadius =  cell.imageView.frame.size.height/2;
-     cell.imageView.layer.masksToBounds = YES;
-     cell.imageView.layer.borderWidth = 0;
-     cell.imageView.image=[UIImage imageNamed:imageName];
+     cell.fav_image.layer.cornerRadius = cell.fav_image.frame.size.width/2;
+     cell.fav_image.layer.cornerRadius =  cell.fav_image.frame.size.height/2;
+     cell.fav_image.layer.masksToBounds = YES;
+     cell.fav_image.layer.borderWidth = 0;
+     cell.fav_image.image=[UIImage imageNamed:imageName];
      
       return cell;
 }

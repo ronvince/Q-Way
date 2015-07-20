@@ -73,7 +73,8 @@
         phno.text=_employe.phno;
         NSString *inputString = _employe.empid;
         int value = [inputString intValue];
-        NSString *imageName=[NSString stringWithFormat:@"%d.jpg",value];
+        NSLog(@"%d",value);
+        NSString *imageName=[NSString stringWithFormat:@"7.jpg"];
         img.image = [UIImage imageNamed:imageName];
     }
     else if((int)if_emp_place==1)

@@ -288,7 +288,7 @@ NSString *catSearchtext;
         NSString *inputString = emp.empid;
         int value = [inputString intValue];
         NSLog(@"%d",value);
-        NSString *imageName=[NSString stringWithFormat:@"%d.jpg",value];
+        NSString *imageName=[NSString stringWithFormat:@"7.jpg"];
         
         
         cell.imageField.layer.cornerRadius = cell.imageField.frame.size.width/2;
@@ -449,9 +449,9 @@ NSString *catSearchtext;
     
     
     if([emp1.favrt  isEqual:@"1"] )
-        favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"fav_active.png"]];
+        favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"icon2.png"]];
     else
-        favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"fav.png"]];
+        favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"icon1.png"]];
     
     
     
@@ -474,7 +474,7 @@ NSString *catSearchtext;
     }];
     
    
-   infoAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"info.png"]];;
+   infoAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"icon3.png"]];;
     
     
     return @[infoAction,favAction];
