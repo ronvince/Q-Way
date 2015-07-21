@@ -414,7 +414,8 @@ NSString *t1;
             cell.namefield.text=emp.name;
             NSString *inputString = emp.empid;
             int value = [inputString intValue];
-            NSString *imageName=[NSString stringWithFormat:@"%d.jpg",value];
+            NSLog(@"%d",value);
+            NSString *imageName=[NSString stringWithFormat:@"7.jpg"];
             
             cell.imagefield.layer.cornerRadius = imagefield.frame.size.width/2;
             cell.imagefield.layer.cornerRadius =  cell.imagefield.frame.size.height/2;
@@ -663,9 +664,9 @@ int x1,x2;
     
     //setting 
     if([emp1.favrt  isEqual:@"1"] )
-        favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"gold.png"]];
+        favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"icon2.png"]];
     else
-        favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"silver.png"]];
+        favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"icon1.png"]];
     
     
     
@@ -686,7 +687,7 @@ int x1,x2;
         [self presentViewController:popController animated:YES completion:nil];
         
     }];
-    infoAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"info3.png"]];;
+    infoAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"icon3.png"]];;
     
     
     return @[infoAction,favAction];

@@ -74,6 +74,7 @@ int prevCatTextLen,catSl,locLen=0,locCor=0;
     [_toastLabel setHidden:YES];
     [[self view] addSubview:_toastLabel];
     
+    
 }
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -287,7 +288,7 @@ NSString *catSearchtext;
         NSString *inputString = emp.empid;
         int value = [inputString intValue];
         NSLog(@"%d",value);
-        NSString *imageName=[NSString stringWithFormat:@"%d.jpg",value];
+        NSString *imageName=[NSString stringWithFormat:@"7.jpg"];
         
         
         cell.imageField.layer.cornerRadius = cell.imageField.frame.size.width/2;
@@ -448,10 +449,14 @@ NSString *catSearchtext;
     
     
     if([emp1.favrt  isEqual:@"1"] )
-        favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"gold.png"]];
+        favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"icon2.png"]];
     else
-        favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"silver.png"]];
-    UITableViewRowAction *infoAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"   "  handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
+        favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"icon1.png"]];
+    
+    
+    
+    
+    UITableViewRowAction *infoAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"     "  handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
        
         infoViewController *popController = [[infoViewController alloc] init];
         Employee *employe;
@@ -467,7 +472,9 @@ NSString *catSearchtext;
         [self presentViewController:popController animated:YES completion:nil];
         
     }];
-   infoAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"info3.png"]];;
+    
+   
+   infoAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"icon3.png"]];;
     
     
     return @[infoAction,favAction];
@@ -477,9 +484,6 @@ NSString *catSearchtext;
 -(void)animate:(NSTimer *)theTimer {
     [_toastLabel setHidden:YES];
     }
-
-
-
 /*
 #pragma mark - Navigation
 
