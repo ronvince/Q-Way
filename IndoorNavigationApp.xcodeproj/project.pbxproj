@@ -27,6 +27,8 @@
 		CE4C5FCA1B41522E00784563 /* newCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4C5FC91B41522E00784563 /* newCell.m */; };
 		CE4C5FCD1B41534800784563 /* timeLogTable.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4C5FCC1B41534800784563 /* timeLogTable.m */; };
 		CE4C5FD01B41587300784563 /* addQrData.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4C5FCF1B41587300784563 /* addQrData.m */; };
+		CE4CECCA1B5E5BB800664BA4 /* IndoorNavigationApp.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = CE4CECC91B5E5BB800664BA4 /* IndoorNavigationApp.sqlite */; };
+		CE4CECCB1B5E5BB800664BA4 /* IndoorNavigationApp.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = CE4CECC91B5E5BB800664BA4 /* IndoorNavigationApp.sqlite */; };
 		CE50FCD31B412E2E00042AAD /* deleteEmployee.m in Sources */ = {isa = PBXBuildFile; fileRef = CE50FCD21B412E2E00042AAD /* deleteEmployee.m */; };
 		CE6F32771B4172EC00CFDF37 /* mapDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6F32761B4172EC00CFDF37 /* mapDraw.m */; };
 		CE6F32791B4175E600CFDF37 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6F32781B4175E600CFDF37 /* CoreLocation.framework */; };
@@ -99,6 +101,7 @@
 		CE4C5FCC1B41534800784563 /* timeLogTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = timeLogTable.m; sourceTree = "<group>"; };
 		CE4C5FCE1B41587300784563 /* addQrData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addQrData.h; sourceTree = "<group>"; };
 		CE4C5FCF1B41587300784563 /* addQrData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addQrData.m; sourceTree = "<group>"; };
+		CE4CECC91B5E5BB800664BA4 /* IndoorNavigationApp.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = IndoorNavigationApp.sqlite; path = "../../Library/Developer/CoreSimulator/Devices/F2E2BB9C-7E31-4FD7-9364-4C6F6A766BDF/data/Containers/Data/Application/74E0E600-511B-410B-BC98-83C744999110/Documents/IndoorNavigationApp.sqlite"; sourceTree = "<group>"; };
 		CE50FCD11B412E2E00042AAD /* deleteEmployee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = deleteEmployee.h; sourceTree = "<group>"; };
 		CE50FCD21B412E2E00042AAD /* deleteEmployee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = deleteEmployee.m; sourceTree = "<group>"; };
 		CE6F32751B4172EC00CFDF37 /* mapDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mapDraw.h; sourceTree = "<group>"; };
@@ -195,6 +198,7 @@
 		CE45A62E1B3D525F007B3624 /* IndoorNavigationApp */ = {
 			isa = PBXGroup;
 			children = (
+				CE4CECC91B5E5BB800664BA4 /* IndoorNavigationApp.sqlite */,
 				CE48EC0D1B52464700F744C1 /* Places.h */,
 				CE48EC0E1B52464700F744C1 /* Places.m */,
 				CE45A6581B3D582E007B3624 /* Employee.h */,
@@ -359,6 +363,7 @@
 			files = (
 				CE45A63E1B3D5260007B3624 /* Main.storyboard in Resources */,
 				CE45A6431B3D5260007B3624 /* LaunchScreen.xib in Resources */,
+				CE4CECCA1B5E5BB800664BA4 /* IndoorNavigationApp.sqlite in Resources */,
 				CEA630F91B564B2A00FA0A35 /* trash.png in Resources */,
 				CEC37A741B455F5700C714C2 /* spot.gif in Resources */,
 				CEC37A761B456BAC00C714C2 /* floor.png in Resources */,
@@ -370,6 +375,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE4CECCB1B5E5BB800664BA4 /* IndoorNavigationApp.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

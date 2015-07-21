@@ -355,7 +355,7 @@ NSString *t1;
     
     str = [str stringByAppendingString:uvar];
     NSLog(@"%@",str);
-    [NSTimer scheduledTimerWithTimeInterval:1.5
+    [NSTimer scheduledTimerWithTimeInterval:0.5
                                      target:self
                                    selector:@selector(serfunc:)
                                    userInfo:str

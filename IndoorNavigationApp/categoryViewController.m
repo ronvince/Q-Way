@@ -243,7 +243,7 @@ NSString *catSearchtext;
     catSl++;
     int temp = catSl;
     NSString *str = [NSString stringWithFormat:@"%d",temp];
-    [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(catSearchFunc:) userInfo:str repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(catSearchFunc:) userInfo:str repeats:NO];
     
     
 }
@@ -309,14 +309,23 @@ NSString *catSearchtext;
             cell.nameField.text=place.placeName;
            
             cell.desigField.text = place.placeType;
-        
-            
+          if([categoryName isEqualToString:@"Entry/Exit"])
+          {
+              NSString *imageName=[NSString stringWithFormat:@"Entry.png"];
+              cell.imageField.image=[UIImage imageNamed:imageName] ;
+          }
+          else
+          {
+              
             NSString *imageName=[NSString stringWithFormat:@"%@.png",place.placeType];
+          cell.imageField.image=[UIImage imageNamed:imageName];
+          }
+    
             cell.imageField.layer.cornerRadius = cell.imageField.frame.size.width/2;
             cell.imageField.layer.cornerRadius =  cell.imageField.frame.size.height/2;
             cell.imageField.layer.masksToBounds = YES;
             cell.imageField.layer.borderWidth = 0;
-            cell.imageField.image=[UIImage imageNamed:imageName];
+          
             cell.desigField.text=place.placeType;
             cell.emailField.text=@" ";
         }
