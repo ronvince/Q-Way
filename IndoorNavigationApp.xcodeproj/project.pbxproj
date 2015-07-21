@@ -39,6 +39,7 @@
 		CE968B0A1B4103E80006CB2C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE968B091B4103E80006CB2C /* QuartzCore.framework */; };
 		CE9D769A1B3D7F300079378F /* enhancedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9D76991B3D7F300079378F /* enhancedCell.m */; };
 		CED8A1901B4BEAE8003B975C /* EmployeeTable.m in Sources */ = {isa = PBXBuildFile; fileRef = CED8A18F1B4BEAE8003B975C /* EmployeeTable.m */; };
+		CEEB241B1B5A537E00E5674F /* infoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEEB241A1B5A537E00E5674F /* infoViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,8 @@
 		CE9D76991B3D7F300079378F /* enhancedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = enhancedCell.m; sourceTree = "<group>"; };
 		CED8A18E1B4BEAE8003B975C /* EmployeeTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmployeeTable.h; sourceTree = "<group>"; };
 		CED8A18F1B4BEAE8003B975C /* EmployeeTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmployeeTable.m; sourceTree = "<group>"; };
+		CEEB24191B5A537E00E5674F /* infoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = infoViewController.h; sourceTree = "<group>"; };
+		CEEB241A1B5A537E00E5674F /* infoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = infoViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +183,8 @@
 				CE45A63C1B3D5260007B3624 /* Main.storyboard */,
 				CE48EC161B52619700F744C1 /* homeViewController.h */,
 				CE48EC171B52619700F744C1 /* homeViewController.m */,
+				CEEB24191B5A537E00E5674F /* infoViewController.h */,
+				CEEB241A1B5A537E00E5674F /* infoViewController.m */,
 				CE48EC101B525FFA00F744C1 /* categoryViewController.h */,
 				CE48EC111B525FFA00F744C1 /* categoryViewController.m */,
 				CE48EC131B52602900F744C1 /* categoryTableViewCell.h */,
@@ -342,6 +347,7 @@
 				CE4C5FCD1B41534800784563 /* timeLogTable.m in Sources */,
 				CE9D769A1B3D7F300079378F /* enhancedCell.m in Sources */,
 				CE48EC151B52602900F744C1 /* categoryTableViewCell.m in Sources */,
+				CEEB241B1B5A537E00E5674F /* infoViewController.m in Sources */,
 				CE45A65A1B3D582E007B3624 /* Employee.m in Sources */,
 				CE48EC0F1B52464700F744C1 /* Places.m in Sources */,
 				CE45A6601B3D5FBD007B3624 /* addEmployeeData.m in Sources */,

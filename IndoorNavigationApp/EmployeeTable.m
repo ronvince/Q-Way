@@ -369,7 +369,7 @@ int check; //// For checking whether the view appears for the first
     {
         employe = [_tableArray objectAtIndex:indexPath.row];
         vc.employe = employe;
-        
+         [[self navigationController] popViewControllerAnimated:YES];
         [self.navigationController pushViewController:vc animated:true];
     }
     else
@@ -377,7 +377,9 @@ int check; //// For checking whether the view appears for the first
         NSString *str= [_defaultData objectAtIndex:indexPath.row];
         cat.categoryName = str;
        cat.emp_plac=u;
-        //  NSLog(@"%@",cat.categoryName);
+        
+      [[self navigationController] popViewControllerAnimated:YES];
+        
         [self.navigationController pushViewController:cat animated:true];
     }
     }
@@ -395,7 +397,7 @@ int check; //// For checking whether the view appears for the first
             NSString *str= [_defaultData objectAtIndex:indexPath.row];
             cat.categoryName = str;
             cat.emp_plac=u;
-            //  NSLog(@"%@",cat.categoryName);
+          
             [self.navigationController pushViewController:cat animated:true];
         }
 

@@ -7,6 +7,7 @@
 //  Written By Anita Grace Daniel.
 
 #import "categoryViewController.h"
+#import "infoViewController.h"
 #import <CoreData/CoreData.h>
 
 @interface categoryViewController ()
@@ -38,6 +39,7 @@
 }
 - (void)viewDidAppear:(BOOL)animated
 {
+    _searchBar.placeholder = categoryName;
     [super viewDidAppear:animated];
     [self selection];
    // [self defaultDatashow];
@@ -165,8 +167,8 @@
         cell.nameField.text=emp.name;
         NSLog(@"%@", emp.name);
         NSLog(@"%@", categoryName);
-        cell.desigField.text = emp.desig;
-        cell.emailField.text=emp.email;
+        //cell.desigField.text = emp.desig;
+       // cell.emailField.text=emp.email;
         
         NSString *inputString = emp.empid;
         int value = [inputString intValue];
@@ -186,8 +188,8 @@
         cell.nameField.text=emp.name;
         NSLog(@"%@", emp.name);
         NSLog(@"%@", categoryName);
-        cell.desigField.text = emp.desig;
-        cell.emailField.text=emp.email;
+       // cell.desigField.text = emp.desig;
+       // cell.emailField.text=emp.email;
         NSString *inputString = emp.empid;
         int value = [inputString intValue];
         NSLog(@"%d",value);
@@ -240,8 +242,53 @@
         }  
     
     }
+     [cell.popButton addTarget:self action:@selector(showPopover:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
    }
+
+
+
+- (IBAction)showPopover:(id)sender
+{
+    infoViewController *popController = [[infoViewController alloc] init];
+    //popController.sourceView = sender;
+    Employee *employe;
+    Places *place;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *)
+                              [[sender superview] superview]];
+    
+    if(emp_plac==0)
+    {
+    if(isFiltered)
+        employe= [_filteredtableArray objectAtIndex:indexPath.row];
+    else
+        employe =[_categoryTableData objectAtIndex:indexPath.row];
+    
+    popController.employe=employe;
+        popController.if_emp_place = emp_plac;
+    }
+    else  if((int)emp_plac==1)
+    {
+        if(isFiltered)
+            place= [_filteredtableArray objectAtIndex:indexPath.row];
+        else
+            place =[_categoryTableData objectAtIndex:indexPath.row];
+        
+        popController.place=place;
+        
+         popController.if_emp_place = emp_plac;
+    }
+    popController.contentSize = CGSizeMake(210, 245);
+    popController.arrowDirection =0;
+    
+    [self presentViewController:popController animated:YES completion:nil];
+    
+    
+}
+
+
+
+
 
 /*
 #pragma mark - Navigation

@@ -15,4 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *emailField;
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageField;
+@property (weak, nonatomic) IBOutlet UIButton *popButton;
+
+
 @end
