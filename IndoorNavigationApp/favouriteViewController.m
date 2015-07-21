@@ -83,33 +83,33 @@
     NSString *key = emp.desig;
       if([key isEqualToString:@"PM"])
     {
-        cell.desigField.textColor=[UIColor redColor];
+        cell.desigField.textColor=[UIColor colorWithRed:0.941 green:0.365 blue:0.333 alpha:1];
     }
     else if([key isEqualToString:@"Developer"])
     {
-        cell.desigField.textColor=[UIColor blueColor];
+        cell.desigField.textColor=[UIColor colorWithRed:0.278 green:0.624 blue:0.871 alpha:1];
     }
     else if([key isEqualToString:@"Architect"])
     {
-        cell.desigField.textColor=[UIColor yellowColor];
+        cell.desigField.textColor=[UIColor colorWithRed:0.996 green:0.765 blue:0 alpha:1];
     }
     else if([key isEqualToString:@"BA"])
     {
-        cell.desigField.textColor=[UIColor grayColor];
+        cell.desigField.textColor=[UIColor colorWithRed:0.349 green:0.455 blue:0.498 alpha:1];
     }
     else if([key isEqualToString:@"Trainee"])
     {
-        cell.desigField.textColor=[UIColor greenColor];
+        cell.desigField.textColor=[UIColor colorWithRed:0.541 green:0.773 blue:0.224 alpha:1];
     }
     else if([key isEqualToString:@"Intern"])
     {
-        cell.desigField.textColor=[UIColor orangeColor];
+        cell.desigField.textColor=[UIColor colorWithRed:0.776 green:0.612 blue:0.424 alpha:1];
     }
 
     
     cell.nameLabel.text=emp.name;
     cell.desigField.text = emp.desig;
-    
+    cell.emailField.text=emp.email;
     
     NSString *inputString = emp.empid;
      int value = [inputString intValue];
