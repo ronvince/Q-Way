@@ -13,4 +13,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *desigField;
 @property (weak, nonatomic) IBOutlet UIImageView *fav_image;
 
+@property (weak, nonatomic) IBOutlet UILabel *emailField;
+
 @end
