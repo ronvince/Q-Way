@@ -72,6 +72,7 @@ int check; //// For checking whether the view appears for the first
     [super viewDidLoad];
     self.searchBar.delegate = (id)self;
     glsl = 0;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     self.navigationController.navigationBar.barTintColor=[UIColor colorWithRed:0.200 green:0.463 blue:.827 alpha:1];
     [self.navigationController.navigationBar
@@ -125,7 +126,10 @@ int check; //// For checking whether the view appears for the first
     return self;
 }
  */
-
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self.searchBar resignFirstResponder];
+}
 - (void)viewDidUnload
 {
     

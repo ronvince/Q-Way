@@ -42,7 +42,8 @@ int prevCatTextLen,catSl,locLen=0,locCor=0;
     //customizing search bar
     self.searchBar.delegate = (id)self;
     self.searchBar.placeholder=categoryName;
-    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+
     _imagefield.layer.cornerRadius = _imagefield.frame.size.width/2;
     _imagefield.layer.cornerRadius =  _imagefield.frame.size.height/2;
     _imagefield.layer.masksToBounds = YES;
@@ -266,7 +267,10 @@ NSString *catSearchtext;
     
 }
 
-
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self.searchBar resignFirstResponder];
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
