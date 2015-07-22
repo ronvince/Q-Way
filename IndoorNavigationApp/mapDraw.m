@@ -753,10 +753,14 @@ int btny;
  {
     if(lock%2==0)
      {
-        rotationlock=1;
+         UIImage *btnImage1 = [UIImage imageNamed:@"ic-lock.png"];
+         [sender setImage:btnImage1 forState:UIControlStateNormal];
+         rotationlock=1;
      }
     else
     {
+        UIImage *btnImage1 = [UIImage imageNamed:@"un_lock.png"];
+        [sender setImage:btnImage1 forState:UIControlStateNormal];
         if(rotationlock==1)
          {
             [self.locationManager stopUpdatingHeading];
