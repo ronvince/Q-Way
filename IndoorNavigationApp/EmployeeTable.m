@@ -675,7 +675,7 @@ int x1,x2;
     
     
     
-    UITableViewRowAction *infoAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"    "  handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
+    UITableViewRowAction *infoAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"     "  handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
         
         infoViewController *popController = [[infoViewController alloc] init];
         Employee *employe;
@@ -685,7 +685,7 @@ int x1,x2;
         employe= [self.tableArray objectAtIndex:indexPath.row];
         popController.employe=employe;
         NSLog(@"%@",employe.name);
-        popController.contentSize = CGSizeMake(200, 245);
+        popController.contentSize = CGSizeMake(230, 245);
         popController.arrowDirection =0;
         
         [self presentViewController:popController animated:YES completion:nil];

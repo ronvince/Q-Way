@@ -28,29 +28,29 @@
     [super viewDidLoad];
     
     
-    UIView *pop=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 200,250)];
+    UIView *pop=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 230,250)];
     // pop.backgroundColor = [UIColor colorWithRed:0.722 green:0.722 blue:0.722 alpha:1];
     
     //name field
-    UILabel *name=[[UILabel alloc] initWithFrame:CGRectMake(0,0,100,75)];
+    UILabel *name=[[UILabel alloc] initWithFrame:CGRectMake(0,0,230,75)];
     name.textAlignment = NSTextAlignmentCenter;
-    name.center = CGPointMake(100,135);
+    name.center = CGPointMake(115,135);
     
     //setting designation
-    UILabel *desig=[[UILabel alloc] initWithFrame:CGRectMake(10,85,150,100)];
+    UILabel *desig=[[UILabel alloc] initWithFrame:CGRectMake(10,85,190,100)];
     desig.textAlignment = NSTextAlignmentCenter;
-    desig.center = CGPointMake(100,160);
+    desig.center = CGPointMake(115,160);
     desig.textColor = [UIColor redColor];
     
     //setting email info
-    UILabel *email=[[UILabel alloc] initWithFrame:CGRectMake(10,95,225,120)];
+    UILabel *email=[[UILabel alloc] initWithFrame:CGRectMake(10,95,230,120)];
     email.textAlignment = NSTextAlignmentCenter;
-    email.center = CGPointMake(100,195);
+    email.center = CGPointMake(115,195);
     [email setFont:[UIFont fontWithName:@"Times New Roman" size:18.0f]];
     email.textColor =[UIColor  colorWithRed:0.4 green:0.4 blue:0.4 alpha:1];
     
     // setting imageview
-    UIImageView* img = [[UIImageView alloc] initWithFrame:CGRectMake(50, 20, 100,95)];
+    UIImageView* img = [[UIImageView alloc] initWithFrame:CGRectMake(65, 20, 100,95)];
     
     img.layer.cornerRadius = img.frame.size.width/2;
     img.layer.cornerRadius =  img.frame.size.height/2;
@@ -60,7 +60,7 @@
     
     UILabel *phno=[[UILabel alloc] initWithFrame:CGRectMake(10,125,150,100)];
     phno.textAlignment = NSTextAlignmentCenter;
-    phno.center = CGPointMake(100,225);
+    phno.center = CGPointMake(115,225);
     //phno.textColor = [UIColor redColor];
     
     

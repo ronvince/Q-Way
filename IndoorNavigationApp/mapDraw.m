@@ -342,7 +342,7 @@ int btny;
             {
         
                 popController.employe=_employemap;
-                popController.contentSize = CGSizeMake(210, 245);
+                popController.contentSize = CGSizeMake(230, 245);
                 [self presentViewController:popController animated:YES completion:nil];
             }
         }
@@ -353,7 +353,7 @@ int btny;
           {
             popController.if_emp_place = 1;
             popController.place=_placemap;
-            popController.contentSize = CGSizeMake(210, 245);
+            popController.contentSize = CGSizeMake(230, 245);
             [self presentViewController:popController animated:YES completion:nil];
           }
     }
@@ -383,7 +383,7 @@ int btny;
         Qrc *Qrcode = (Qrc *)segue.sourceViewController;
         NSLog(@"Values are %@", Qrcode.Qrx);
         NSLog(@"Values are %@", Qrcode.Qry);
-        NSLog(@"Values are %d", Qrcode.nullQrDB);
+        NSLog(@"Values are %ld", (long)Qrcode.nullQrDB);
         [self.locationManager startUpdatingHeading];
         
            if(Qrcode.Qrx!=NULL && Qrcode.Qry!=NULL)
