@@ -728,36 +728,21 @@ int btny;
 
 - (IBAction)clearfunction:(id)sender
  {
-    
-    
-     
-     /*
-     self.refreshgif=[[FLAnimatedImageView alloc]init];
-     FLAnimatedImage *gifRefresh = [[FLAnimatedImage alloc] initWithAnimatedGIFData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"refresh" ofType:@"gif"]]];
-     //self.greengif.frame = (CGRect){.origin=CGPointMake(ex,ey), .size=CGSizeMake(200,200)};
-     self.refreshgif.animatedImage = gifRefresh;
-    // UIImage *btnImag = [UIImage imageNamed: gifRefresh];
-     //[sender setImage:btnImag forState:UIControlStateNormal];
-     
-     [self.clearbutton addSubview:self.refreshgif];
-     */
-     
-     
      
      NSMutableArray *imageArray = [NSMutableArray new];
      
-     for (int i = 1; i < 8; i ++) {
-         [imageArray addObject:[UIImage imageNamed:[NSString stringWithFormat:@"ref%d.png",i]]];
+     for (int i = 1; i <= 12; i ++) {
+         [imageArray addObject:[UIImage imageNamed:[NSString stringWithFormat:@"l%d.png",i]]];
      }
      
-     [self.clearbutton setImage:[UIImage imageNamed:@"ref1.png"] forState:UIControlStateNormal];
+     [self.clearbutton setImage:[UIImage imageNamed:@"l1.png"] forState:UIControlStateNormal];
      
      [self.clearbutton.imageView setAnimationImages:[imageArray copy]];
-     [self.clearbutton.imageView setAnimationDuration:0.2];
+     [self.clearbutton.imageView setAnimationDuration:.5];
      
      [self.clearbutton.imageView startAnimating];
     
-     [NSTimer scheduledTimerWithTimeInterval:1.5
+     [NSTimer scheduledTimerWithTimeInterval:0.5
                                       target:self
                                     selector:@selector(loading:)
                                     userInfo:nil
