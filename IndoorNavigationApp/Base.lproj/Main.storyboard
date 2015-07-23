@@ -567,7 +567,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mKw-oU-8SW">
                                 <rect key="frame" x="245" y="597" width="57" height="55"/>
                                 <color key="backgroundColor" red="0.1764705882" green="0.37254901959999998" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" image="ic-lock">
+                                <state key="normal" image="un_lock">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1221,11 +1221,11 @@
         <image name="bic-back-top_blue" width="8" height="12"/>
         <image name="blu" width="700" height="575"/>
         <image name="fav1" width="18" height="18"/>
-        <image name="ic-lock" width="16" height="21"/>
         <image name="ic-qr" width="18" height="18"/>
         <image name="ic-refresh" width="16" height="22"/>
         <image name="ic-search" width="18" height="18"/>
         <image name="log1" width="18" height="18"/>
+        <image name="un_lock" width="14" height="18"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
