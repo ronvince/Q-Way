@@ -30,6 +30,7 @@
 		CE4CECCD1B5E5FA000664BA4 /* IndoorNavigationApp.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = CE4CECCC1B5E5FA000664BA4 /* IndoorNavigationApp.sqlite */; };
 		CE4CECCE1B5E5FA000664BA4 /* IndoorNavigationApp.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = CE4CECCC1B5E5FA000664BA4 /* IndoorNavigationApp.sqlite */; };
 		CE50FCD31B412E2E00042AAD /* deleteEmployee.m in Sources */ = {isa = PBXBuildFile; fileRef = CE50FCD21B412E2E00042AAD /* deleteEmployee.m */; };
+		CE65CD5A1B60C0850023C746 /* logTable.m in Sources */ = {isa = PBXBuildFile; fileRef = CE65CD591B60C0850023C746 /* logTable.m */; };
 		CE6F32771B4172EC00CFDF37 /* mapDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6F32761B4172EC00CFDF37 /* mapDraw.m */; };
 		CE6F32791B4175E600CFDF37 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6F32781B4175E600CFDF37 /* CoreLocation.framework */; };
 		CE968AFC1B4101BE0006CB2C /* Qrc.m in Sources */ = {isa = PBXBuildFile; fileRef = CE968AFB1B4101BE0006CB2C /* Qrc.m */; };
@@ -104,6 +105,8 @@
 		CE4CECCC1B5E5FA000664BA4 /* IndoorNavigationApp.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = IndoorNavigationApp.sqlite; sourceTree = "<group>"; };
 		CE50FCD11B412E2E00042AAD /* deleteEmployee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = deleteEmployee.h; sourceTree = "<group>"; };
 		CE50FCD21B412E2E00042AAD /* deleteEmployee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = deleteEmployee.m; sourceTree = "<group>"; };
+		CE65CD581B60C0850023C746 /* logTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logTable.h; sourceTree = "<group>"; };
+		CE65CD591B60C0850023C746 /* logTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = logTable.m; sourceTree = "<group>"; };
 		CE6F32751B4172EC00CFDF37 /* mapDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mapDraw.h; sourceTree = "<group>"; };
 		CE6F32761B4172EC00CFDF37 /* mapDraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mapDraw.m; sourceTree = "<group>"; };
 		CE6F32781B4175E600CFDF37 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -216,6 +219,8 @@
 				CEE269011B53744200587F13 /* CaptureSessionManager.h */,
 				CEE269021B53744200587F13 /* CaptureSessionManager.m */,
 				CE45A63C1B3D5260007B3624 /* Main.storyboard */,
+				CE65CD581B60C0850023C746 /* logTable.h */,
+				CE65CD591B60C0850023C746 /* logTable.m */,
 				CE48EC161B52619700F744C1 /* homeViewController.h */,
 				CE48EC171B52619700F744C1 /* homeViewController.m */,
 				CE48EC101B525FFA00F744C1 /* categoryViewController.h */,
@@ -392,6 +397,7 @@
 				CE48EC181B52619700F744C1 /* homeViewController.m in Sources */,
 				CE968AFC1B4101BE0006CB2C /* Qrc.m in Sources */,
 				CEE269031B53744200587F13 /* CaptureSessionManager.m in Sources */,
+				CE65CD5A1B60C0850023C746 /* logTable.m in Sources */,
 				CE4C5FCD1B41534800784563 /* timeLogTable.m in Sources */,
 				CE9D769A1B3D7F300079378F /* enhancedCell.m in Sources */,
 				CE48EC151B52602900F744C1 /* categoryTableViewCell.m in Sources */,

@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface newCell : UITableViewCell
+
 @property (strong, nonatomic) IBOutlet UILabel *slnofield;
+
 @property (strong, nonatomic) IBOutlet UILabel *deffield;
 @property (strong, nonatomic) IBOutlet UILabel *timefield;
-
-
 
 
 
