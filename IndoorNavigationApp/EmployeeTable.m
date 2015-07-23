@@ -637,7 +637,7 @@ int x1,x2;
     Employee *emp1=[results  objectAtIndex:0];
     
     
-    UITableViewRowAction *favAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"     " handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
+    UITableViewRowAction *favAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"    " handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
         
         
         NSError* error = nil;
@@ -675,7 +675,7 @@ int x1,x2;
     
     
     
-    UITableViewRowAction *infoAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"     "  handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
+    UITableViewRowAction *infoAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"    "  handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
         
         infoViewController *popController = [[infoViewController alloc] init];
         Employee *employe;

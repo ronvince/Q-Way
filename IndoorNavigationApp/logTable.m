@@ -59,6 +59,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.allowsSelection = NO;
+    UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 500, 210, 25)];
+    [self setToastLabel:tempLabel];
+    
+    
+    
+    [self.toastLabel setFont:[UIFont fontWithName:@"Avenir-Roman" size:13]];
+    [self.toastLabel  setTextAlignment:NSTextAlignmentCenter];
+    [self.toastLabel  setTextColor:[UIColor whiteColor]];
+    self.toastLabel.backgroundColor =[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1];
+    self.toastLabel.layer.cornerRadius = 10;
+    // self.label.layer.borderWidth = 1;
+    self.toastLabel.layer.masksToBounds = YES;
+    [_toastLabel setHidden:YES];
+    [[self view] addSubview:_toastLabel];
     // Do any additional setup after loading the view.
 }
 
@@ -120,23 +135,43 @@
     //sl++;
     
     
-    NSLog(@"helloWorld");
+   
     return cell;
     
 }
 
 - (IBAction)timelogCancel:(id)sender {
+ 
     
     [self performSegueWithIdentifier:@"time2map" sender:self];
+    
 }
 
 - (IBAction)clearHistory:(id)sender {
+    
+  if ([_timecell count] == 0) {
+    
+      [_toastLabel setText:@"History empty"];
+      [_toastLabel setHidden:NO];
+
+  }
+    else
+    {
+        [_toastLabel setText:@"Scan history cleared"];
+        [_toastLabel setHidden:NO];
+    
+    }
+    [NSTimer scheduledTimerWithTimeInterval:1.5
+                                     target:self
+                                   selector:@selector(animate:)
+                                   userInfo:nil
+                                    repeats:NO];
+    
+
+    
     NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *)
                               [[sender superview] superview]];
-    
-    
-    
-    //NSUInteger count;
+
     NSManagedObjectContext *managedObjectContext2 = [self managedObjectContext];
     NSFetchRequest *ch = [[NSFetchRequest alloc]init];
     [ch setEntity:[NSEntityDescription entityForName:@"TimeLog" inManagedObjectContext:managedObjectContext2]];
@@ -169,5 +204,8 @@
     
 }
 
+-(void)animate:(NSTimer *)theTimer {
+    [_toastLabel setHidden:YES];
+    }
 
 @end

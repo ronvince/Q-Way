@@ -10,5 +10,4 @@
 
 @interface logTable : UIViewController<UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-
-@end
+@property (nonatomic, retain) UILabel *toastLabel;@end

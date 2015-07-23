@@ -28,7 +28,7 @@
     [super viewDidLoad];
     
     
-    UIView *pop=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 230,250)];
+    UIView *pop=[[UIView alloc] initWithFrame:CGRectMake(0,0, 230,250)];
     // pop.backgroundColor = [UIColor colorWithRed:0.722 green:0.722 blue:0.722 alpha:1];
     
     //name field
@@ -105,7 +105,7 @@
 }
 - (void)prepareForPopoverPresentation:(UIPopoverPresentationController *)popoverPresentationController {
     
-    self.sourceRect = CGRectMake(180, 230, 0, 0);
+    self.sourceRect = CGRectMake(self.view.center.x,self.view.center.y,0,0);//(180, 230, 0, 0);
     
     
     
