@@ -27,6 +27,7 @@
 @property (nonatomic, strong) UILabel *giflbl;
 @property (nonatomic, strong) UIButton *subimbtn;
 @property (strong, nonatomic) FLAnimatedImageView *greengif;
+@property (strong, nonatomic) FLAnimatedImageView *refreshgif;
 
 - (void)centerScrollViewContents;
 - (void)scrollViewDoubleTapped:(UITapGestureRecognizer*)recognizer;
@@ -727,39 +728,72 @@ int btny;
 
 - (IBAction)clearfunction:(id)sender
  {
+     
+     NSMutableArray *imageArray = [NSMutableArray new];
+     
+     for (int i = 1; i <= 12; i ++) {
+         [imageArray addObject:[UIImage imageNamed:[NSString stringWithFormat:@"l%d.png",i]]];
+     }
+     
+     [self.clearbutton setImage:[UIImage imageNamed:@"l1.png"] forState:UIControlStateNormal];
+     
+     [self.clearbutton.imageView setAnimationImages:[imageArray copy]];
+     [self.clearbutton.imageView setAnimationDuration:.5];
+     
+     [self.clearbutton.imageView startAnimating];
+    
+     [NSTimer scheduledTimerWithTimeInterval:0.5
+                                      target:self
+                                    selector:@selector(loading:)
+                                    userInfo:nil
+                                     repeats:NO];
+     
+     
+ }
+
+
+-(void)loading:(NSTimer *)theTimer {
+    
     
     for(m=0;m<gifimg.count;m++)
-     {
+    {
         _greengif=gifimg[m];
         [_greengif removeFromSuperview];
-     }
-
+    }
+    
     if(gifimg.count>0)
-     {
-         gifimg = [[NSMutableArray alloc] initWithObjects:nil];
-     }
+    {
+        gifimg = [[NSMutableArray alloc] initWithObjects:nil];
+    }
     if(placedetails.count>0)
-     {
+    {
         placedetails = [[NSMutableArray alloc] initWithObjects:nil];
-     }
+    }
     if(employeedetails.count>0)
-     {
+    {
         employeedetails = [[NSMutableArray alloc] initWithObjects:nil];
-     }
-     searchstart=0;
- }
+    }
+    searchstart=0;
+    
+    [self.clearbutton.imageView stopAnimating];
+    UIImage *btnImage1 = [UIImage imageNamed:@"ic-refresh.png"];
+    [self.clearbutton setImage:btnImage1 forState:UIControlStateNormal];
+
+}
+
+
 
 - (IBAction)lockfunction:(id)sender
  {
     if(lock%2==0)
      {
-         UIImage *btnImage1 = [UIImage imageNamed:@"ic-lock.png"];
+         UIImage *btnImage1 = [UIImage imageNamed:@"un_lock.png"];
          [sender setImage:btnImage1 forState:UIControlStateNormal];
          rotationlock=1;
      }
     else
     {
-        UIImage *btnImage1 = [UIImage imageNamed:@"un_lock.png"];
+        UIImage *btnImage1 = [UIImage imageNamed:@"ic-lock.png"];
         [sender setImage:btnImage1 forState:UIControlStateNormal];
         if(rotationlock==1)
          {
