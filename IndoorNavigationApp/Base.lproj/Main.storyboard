@@ -954,20 +954,20 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C4d-I6-1LO">
-                                <rect key="frame" x="-4" y="0.0" width="383" height="80"/>
+                                <rect key="frame" x="-4" y="0.0" width="383" height="90"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan history" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wCI-In-sop">
-                                        <rect key="frame" x="144" y="40" width="96" height="30"/>
+                                        <rect key="frame" x="144" y="40" width="96" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pUh-8t-9mA">
-                                        <rect key="frame" x="325" y="40" width="45" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pUh-8t-9mA">
+                                        <rect key="frame" x="325" y="40" width="45" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="45" id="olG-rQ-TH6"/>
                                         </constraints>
-                                        <state key="normal" title="Clear">
+                                        <state key="normal" image="bin">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -975,7 +975,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LzY-VM-lXq">
-                                        <rect key="frame" x="28" y="40" width="48" height="30"/>
+                                        <rect key="frame" x="28" y="40" width="48" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="48" id="vss-Q4-UxH"/>
                                         </constraints>
@@ -1392,6 +1392,7 @@
     <resources>
         <image name="bic-back-top" width="8" height="12"/>
         <image name="bic-back-top_blue" width="8" height="12"/>
+        <image name="bin" width="40" height="40"/>
         <image name="blu" width="700" height="575"/>
         <image name="fav1" width="18" height="18"/>
         <image name="ic-lock" width="16" height="21"/>
