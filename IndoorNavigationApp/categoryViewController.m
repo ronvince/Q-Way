@@ -373,13 +373,13 @@ NSString *catSearchtext;
     {
         employe= [_filteredtableArray objectAtIndex:indexPath.row];
         popController.employe=employe;
-        popController.if_emp_place = emp_plac;
+        popController.if_emp_place = (NSInteger)emp_plac;
     }
     else  if((int)emp_plac==1)
     {
        place= [_filteredtableArray objectAtIndex:indexPath.row];
        popController.place=place;
-       popController.if_emp_place = emp_plac;
+       popController.if_emp_place = (NSInteger)emp_plac;
     }
     popController.contentSize = CGSizeMake(210, 245);
     popController.arrowDirection =0;
@@ -462,14 +462,21 @@ NSString *catSearchtext;
     
     
     if([emp1.favrt  isEqual:@"1"] )
-        favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"icon2.png"]];
+    {
+        favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"icon22.png"]];
+        favAction.title.   autoContentAccessingProxy;// .contentMode = UIViewContentModeScaleAspectFit;
+        // favAction.backgroundEffect.
+      // [[UIButton appearance] setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+    }
     else
-        favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"icon1.png"]];
+    {
+        favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"icon11.png"]];
+//     [[UIButton appearance]
+//                                         forState:UIControlStateNormal];
+    }
     
     
-    
-    
-    UITableViewRowAction *infoAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"      "  handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
+    UITableViewRowAction *infoAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"     "  handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
        
         infoViewController *popController = [[infoViewController alloc] init];
         Employee *employe;
@@ -487,7 +494,7 @@ NSString *catSearchtext;
     }];
     
    
-   infoAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"icon3.png"]];;
+   infoAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"icon33.png"]];;
     
     
     return @[infoAction,favAction];
