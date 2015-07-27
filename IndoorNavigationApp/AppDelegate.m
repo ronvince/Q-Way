@@ -22,7 +22,9 @@
     [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
     
    [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
+    
   
+    [NSThread sleepForTimeInterval:1.0];
     return YES;
 }
 

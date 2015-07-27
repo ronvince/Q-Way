@@ -3,11 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "rsz_icon3.png"
+      "filename" : "qway1.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "qway1-1.png"
     },
     {
       "idiom" : "universal",
