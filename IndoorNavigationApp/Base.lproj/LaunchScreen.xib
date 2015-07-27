@@ -19,8 +19,48 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bagrnd" translatesAutoresizingMaskIntoConstraints="NO" id="qc5-pu-iIs">
                     <rect key="frame" x="-16" y="0.0" width="534" height="506"/>
                 </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow" translatesAutoresizingMaskIntoConstraints="NO" id="rY8-Wg-rbq">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="19" id="4HN-5x-xcH">
+                            <variation key="widthClass=compact" constant="18"/>
+                        </constraint>
+                        <constraint firstAttribute="width" constant="20" id="NiN-hL-GqJ">
+                            <variation key="widthClass=compact" constant="18"/>
+                        </constraint>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="4HN-5x-xcH"/>
+                            <exclude reference="NiN-hL-GqJ"/>
+                        </mask>
+                    </variation>
+                    <variation key="widthClass=compact">
+                        <mask key="constraints">
+                            <include reference="4HN-5x-xcH"/>
+                            <include reference="NiN-hL-GqJ"/>
+                        </mask>
+                    </variation>
+                </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qway1" translatesAutoresizingMaskIntoConstraints="NO" id="onh-ZO-LjS">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="150" id="FXQ-Hu-fVq"/>
+                        <constraint firstAttribute="height" constant="150" id="gI8-0i-oJP"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="FXQ-Hu-fVq"/>
+                            <exclude reference="gI8-0i-oJP"/>
+                        </mask>
+                    </variation>
+                    <variation key="widthClass=compact" misplaced="YES">
+                        <rect key="frame" x="180" y="187" width="120" height="105"/>
+                        <mask key="constraints">
+                            <include reference="FXQ-Hu-fVq"/>
+                            <include reference="gI8-0i-oJP"/>
+                        </mask>
+                    </variation>
                 </imageView>
             </subviews>
             <constraints>
@@ -32,12 +72,19 @@
                 <constraint firstItem="qc5-pu-iIs" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Yde-Pr-ZQh"/>
                 <constraint firstAttribute="centerX" secondItem="8ie-xW-0ye" secondAttribute="centerX" id="ZEH-qu-HZ9"/>
                 <constraint firstAttribute="trailing" secondItem="qc5-pu-iIs" secondAttribute="trailing" id="he4-kz-rhh"/>
+                <constraint firstItem="rY8-Wg-rbq" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="330" id="j1b-Ov-CUa">
+                    <variation key="widthClass=compact" constant="370"/>
+                </constraint>
+                <constraint firstItem="rY8-Wg-rbq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="275" id="y2Y-TL-Xft">
+                    <variation key="widthClass=compact" constant="245"/>
+                </constraint>
                 <constraint firstAttribute="centerX" secondItem="onh-ZO-LjS" secondAttribute="centerX" id="yE6-IB-FpT"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <variation key="default">
                 <mask key="subviews">
+                    <exclude reference="rY8-Wg-rbq"/>
                     <exclude reference="onh-ZO-LjS"/>
                 </mask>
                 <mask key="constraints">
@@ -47,10 +94,13 @@
                     <exclude reference="he4-kz-rhh"/>
                     <exclude reference="3Hu-7s-GSn"/>
                     <exclude reference="yE6-IB-FpT"/>
+                    <exclude reference="j1b-Ov-CUa"/>
+                    <exclude reference="y2Y-TL-Xft"/>
                 </mask>
             </variation>
             <variation key="widthClass=compact">
                 <mask key="subviews">
+                    <include reference="rY8-Wg-rbq"/>
                     <include reference="onh-ZO-LjS"/>
                 </mask>
                 <mask key="constraints">
@@ -60,12 +110,15 @@
                     <include reference="he4-kz-rhh"/>
                     <include reference="3Hu-7s-GSn"/>
                     <include reference="yE6-IB-FpT"/>
+                    <include reference="j1b-Ov-CUa"/>
+                    <include reference="y2Y-TL-Xft"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="505" y="433"/>
+            <point key="canvasLocation" x="394" y="385"/>
         </view>
     </objects>
     <resources>
+        <image name="arrow" width="32" height="32"/>
         <image name="bagrnd" width="700" height="575"/>
         <image name="qway1" width="120" height="105"/>
     </resources>
