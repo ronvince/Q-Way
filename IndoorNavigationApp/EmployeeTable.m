@@ -251,6 +251,19 @@ int check; //// For checking whether the view appears for the first
                     [_tableArray addObject: employe];
                 }
             }
+            //if condition on result
+            if (self.tableArray.count==0) {
+                self.toastLabel.text = @"Result Not Found";
+                self.toastLabel.hidden = NO;
+                [NSTimer scheduledTimerWithTimeInterval:1.5
+                                                 target:self
+                                               selector:@selector(animate:)
+                                               userInfo:nil
+                                                repeats:NO];
+                
+                
+            }
+
         }
         else if((prevTextLen<t1.length) && (employ_plac==0) )
         {
@@ -267,6 +280,19 @@ int check; //// For checking whether the view appears for the first
                     [_tableArray addObject: employe];
                 }
             }
+            //if condition on result
+            if (self.tableArray.count==0) {
+                self.toastLabel.text = @"Result Not Found";
+                self.toastLabel.hidden = NO;
+                [NSTimer scheduledTimerWithTimeInterval:1.5
+                                                 target:self
+                                               selector:@selector(animate:)
+                                               userInfo:nil
+                                                repeats:NO];
+                
+                
+            }
+
         }
         else if((prevTextLen>=t1.length) && (employ_plac==0)){
             prevTextLen = (int)t1.length;
@@ -281,6 +307,19 @@ int check; //// For checking whether the view appears for the first
                     [_tableArray addObject: employe];
                 }
             }
+            //if condition on result
+            if (self.tableArray.count==0) {
+                self.toastLabel.text = @"Result Not Found";
+                self.toastLabel.hidden = NO;
+                [NSTimer scheduledTimerWithTimeInterval:1.5
+                                                 target:self
+                                               selector:@selector(animate:)
+                                               userInfo:nil
+                                                repeats:NO];
+                
+                
+            }
+
             
         }
         else if((prevTextLen<t1.length) && (employ_plac==1)&&(glCor==1))
@@ -297,6 +336,19 @@ int check; //// For checking whether the view appears for the first
                     [_tableArray addObject: place];
                 }
             }
+            //if condition on result
+            if (self.tableArray.count==0) {
+                self.toastLabel.text = @"Result Not Found";
+                self.toastLabel.hidden = NO;
+                [NSTimer scheduledTimerWithTimeInterval:1.5
+                                                 target:self
+                                               selector:@selector(animate:)
+                                               userInfo:nil
+                                                repeats:NO];
+                
+                
+            }
+
         }
 
         
@@ -327,6 +379,19 @@ int check; //// For checking whether the view appears for the first
                     [_tableArray addObject: place];
                 }
             }
+            //if condition on result
+            if (self.tableArray.count==0) {
+                self.toastLabel.text = @"Result Not Found";
+                self.toastLabel.hidden = NO;
+                [NSTimer scheduledTimerWithTimeInterval:1.5
+                                                 target:self
+                                               selector:@selector(animate:)
+                                               userInfo:nil
+                                                repeats:NO];
+                
+                
+            }
+
             
         }
         [self.tableView reloadData];

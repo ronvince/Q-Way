@@ -149,6 +149,19 @@ int prevCatTextLen,catSl,locLen=0,locCor=0;
                     [_filteredtableArray addObject: employe];
                 }
             }
+            //if condition on result
+            if (self.filteredtableArray.count==0) {
+                self.toastLabel.text = @"Result Not Found";
+                self.toastLabel.hidden = NO;
+                [NSTimer scheduledTimerWithTimeInterval:1.5
+                                                 target:self
+                                               selector:@selector(animate:)
+                                               userInfo:nil
+                                                repeats:NO];
+                
+                
+            }
+
         }
         else if((prevCatTextLen<catSearchtext.length) && (emp_plac==0) )
         {
@@ -164,6 +177,19 @@ int prevCatTextLen,catSl,locLen=0,locCor=0;
                     [_filteredtableArray addObject: employe];
                 }
             }
+            //if condition on result
+            if (self.filteredtableArray.count==0) {
+                self.toastLabel.text = @"Result Not Found";
+                self.toastLabel.hidden = NO;
+                [NSTimer scheduledTimerWithTimeInterval:1.5
+                                                 target:self
+                                               selector:@selector(animate:)
+                                               userInfo:nil
+                                                repeats:NO];
+                
+                
+            }
+
         }
         else if ((prevCatTextLen>=catSearchtext.length)&& (emp_plac==0)){
             prevCatTextLen = (int)catSearchtext.length;
@@ -178,6 +204,19 @@ int prevCatTextLen,catSl,locLen=0,locCor=0;
                 }
                 
             }
+            //if condition on result
+            if (self.filteredtableArray.count==0) {
+                self.toastLabel.text = @"Result Not Found";
+                self.toastLabel.hidden = NO;
+                [NSTimer scheduledTimerWithTimeInterval:1.5
+                                                 target:self
+                                               selector:@selector(animate:)
+                                               userInfo:nil
+                                                repeats:NO];
+                
+                
+            }
+
         }
         else if((prevCatTextLen<catSearchtext.length) && ((int) emp_plac==1)&&(locCor==0))
         {
@@ -194,6 +233,19 @@ int prevCatTextLen,catSl,locLen=0,locCor=0;
                     [self.filteredtableArray addObject: place];
                 }
             }
+            //if condition on result
+            if (self.filteredtableArray.count==0) {
+                self.toastLabel.text = @"Result Not Found";
+                self.toastLabel.hidden = NO;
+                [NSTimer scheduledTimerWithTimeInterval:1.5
+                                                 target:self
+                                               selector:@selector(animate:)
+                                               userInfo:nil
+                                                repeats:NO];
+                
+                
+            }
+
         }
         else if((prevCatTextLen<catSearchtext.length) && ((int) emp_plac==1))
         {
@@ -209,6 +261,19 @@ int prevCatTextLen,catSl,locLen=0,locCor=0;
                     [self.filteredtableArray addObject: place];
                 }
             }
+            //if condition on result
+            if (self.filteredtableArray.count==0) {
+                self.toastLabel.text = @"Result Not Found";
+                self.toastLabel.hidden = NO;
+                [NSTimer scheduledTimerWithTimeInterval:1.5
+                                                 target:self
+                                               selector:@selector(animate:)
+                                               userInfo:nil
+                                                repeats:NO];
+                
+                
+            }
+
         }
         else if ((prevCatTextLen>=catSearchtext.length)&&((int)emp_plac==1)){
             
@@ -223,6 +288,19 @@ int prevCatTextLen,catSl,locLen=0,locCor=0;
                     [self.filteredtableArray addObject: place];
                 }
             }
+            //if condition on result
+            if (self.filteredtableArray.count==0) {
+                self.toastLabel.text = @"Result Not Found";
+                self.toastLabel.hidden = NO;
+                [NSTimer scheduledTimerWithTimeInterval:1.5
+                                                 target:self
+                                               selector:@selector(animate:)
+                                               userInfo:nil
+                                                repeats:NO];
+                
+                
+            }
+
             
         }
         
