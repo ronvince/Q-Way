@@ -127,7 +127,73 @@ int prevCatTextLen,catSl,locLen=0,locCor=0;
     NSString *str1 = (NSString*) [theTimer userInfo];
     temp = [str1 intValue];
     if (catSl==temp) {
-        self.prevFilterArray = self.filteredtableArray;
+        
+        
+        
+        if (emp_plac==0) {
+            isFiltered = true;
+            NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+            NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Employee"];
+            NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"desig == %@ " , categoryName];
+            NSPredicate *predicate2 =[NSPredicate predicateWithFormat:@"name contains[cd] %@", catSearchtext];
+            NSPredicate *compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[predicate1,predicate2]];
+            [fetchRequest setPredicate:compoundPredicate];
+            self.filteredtableArray = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+            NSLog(@"%lu",(unsigned long)self.filteredtableArray.count);
+            //if condition on result
+            if (self.filteredtableArray.count==0) {
+                self.toastLabel.text = @"Result Not Found";
+                self.toastLabel.hidden = NO;
+                [NSTimer scheduledTimerWithTimeInterval:1.5
+                                                 target:self
+                                               selector:@selector(animate:)
+                                               userInfo:nil
+                                                repeats:NO];
+                
+                
+            }
+
+        }
+        else if((int)emp_plac==1){
+            isFiltered = true;
+            NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+            NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Places"];
+            NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"placeType == %@ " , categoryName];
+            NSPredicate *predicate2 =[NSPredicate predicateWithFormat:@"placeName contains[cd] %@", catSearchtext];
+            NSPredicate *compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[predicate1,predicate2]];
+            [fetchRequest setPredicate:compoundPredicate];
+            self.filteredtableArray = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+            NSLog(@"%lu",(unsigned long)self.filteredtableArray.count);
+            //if condition on result
+            if (self.filteredtableArray.count==0) {
+                self.toastLabel.text = @"Result Not Found";
+                self.toastLabel.hidden = NO;
+                [NSTimer scheduledTimerWithTimeInterval:1.5
+                                                 target:self
+                                               selector:@selector(animate:)
+                                               userInfo:nil
+                                                repeats:NO];
+                
+                
+            }
+
+        }
+        if (catSearchtext.length==0) {
+            isFiltered = false;
+            self.filteredtableArray = self.categoryTableData;
+        }
+        
+        
+//        NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"imageDownloaded = 1"];
+//        NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"favorite = %d",[NSNumber numberWithBool:NO].integerValue];
+//        NSPredicate *predicate3 = [NSPredicate predicateWithFormat:@"hidden = 0"];
+//        
+//        
+//        NSPredicate *compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[predicate1,predicate2,predicate3]];
+        
+        
+
+/*        self.prevFilterArray = self.filteredtableArray;
         if(catSearchtext.length == 0)
         {
             isFiltered = FALSE;
@@ -304,7 +370,7 @@ int prevCatTextLen,catSl,locLen=0,locCor=0;
             
         }
         
-        
+        */
         [self.tableView reloadData];
     }
 }
