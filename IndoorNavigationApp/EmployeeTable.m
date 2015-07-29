@@ -72,6 +72,9 @@ int check; //// For checking whether the view appears for the first
     [super viewDidLoad];
     self.searchBar.delegate = (id)self;
     glsl = 0;
+    
+    _searchBar.returnKeyType = UIReturnKeyDone;
+    
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     self.navigationController.navigationBar.barTintColor=[UIColor colorWithRed:0.200 green:0.463 blue:.827 alpha:1];
@@ -80,17 +83,32 @@ int check; //// For checking whether the view appears for the first
     self.navigationController.navigationBar.translucent = NO;
     
     //for toast message
-    UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 450, 210, 25)];
+    UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 200, 210, 25)];
     [self setToastLabel:tempLabel];
 
     [toastLabel setFont:[UIFont fontWithName:@"Avenir-Roman" size:13]];
     [toastLabel  setTextAlignment:NSTextAlignmentCenter];
-    [toastLabel  setTextColor:[UIColor whiteColor]];
-    toastLabel.backgroundColor = [UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1];
+    [toastLabel  setTextColor:[UIColor blackColor]];
+    toastLabel.backgroundColor = [UIColor whiteColor];
     toastLabel.layer.cornerRadius = 10;
     toastLabel.layer.masksToBounds = YES;
     [toastLabel setHidden:YES];
     [[self view] addSubview:toastLabel];
+    
+    
+    UILabel *temp1Label = [[UILabel alloc] initWithFrame:CGRectMake(85, 450, 210, 25)];
+    [self setFavLabel:temp1Label];
+    
+    [self.favLabel setFont:[UIFont fontWithName:@"Avenir-Roman" size:13]];
+    [self.favLabel  setTextAlignment:NSTextAlignmentCenter];
+    [self.favLabel  setTextColor:[UIColor whiteColor]];
+    self.favLabel.backgroundColor = [UIColor blackColor];
+    self.favLabel.layer.cornerRadius = 10;
+    self.favLabel.layer.masksToBounds = YES;
+    [self.favLabel setHidden:YES];
+    [[self view] addSubview:self.favLabel];
+    
+    
     
   }
 -(void)defaultDatashow{
@@ -232,6 +250,7 @@ int check; //// For checking whether the view appears for the first
         if(t1.length == 0)
         {
             isFiltered = FALSE;
+            self.toastLabel.hidden = YES;
         }
         else if (employ_plac==0) {
             isFiltered = true;
@@ -242,15 +261,19 @@ int check; //// For checking whether the view appears for the first
             NSLog(@"%lu",(unsigned long)self.tableArray.count);
             //if condition on result
             if (self.tableArray.count==0) {
-                self.toastLabel.text = @"Result Not Found";
+                self.toastLabel.text = @"No Results";
                 self.toastLabel.hidden = NO;
-                [NSTimer scheduledTimerWithTimeInterval:1.5
+               /* [NSTimer scheduledTimerWithTimeInterval:1.5
                                                  target:self
                                                selector:@selector(animate:)
                                                userInfo:nil
                                                 repeats:NO];
+                */
                 
                 
+            }
+            else{
+             self.toastLabel.hidden = YES;
             }
 
         }
@@ -263,14 +286,18 @@ int check; //// For checking whether the view appears for the first
             NSLog(@"%lu",(unsigned long)self.tableArray.count);
             //if condition on result
             if (self.tableArray.count==0) {
-                self.toastLabel.text = @"Result Not Found";
+                self.toastLabel.text = @"No Results";
                 self.toastLabel.hidden = NO;
-                [NSTimer scheduledTimerWithTimeInterval:1.5
+               /* [NSTimer scheduledTimerWithTimeInterval:1.5
                                                  target:self
                                                selector:@selector(animate:)
                                                userInfo:nil
                                                 repeats:NO];
+                */
                 
+            }
+            else{
+                self.toastLabel.hidden = YES;
                 
             }
 
@@ -537,7 +564,7 @@ NSString *t1;
             NSString *inputString = emp.empid;
             int value = [inputString intValue];
             NSLog(@"%d",value);
-            NSString *imageName=[NSString stringWithFormat:@"7.jpg"];
+            NSString *imageName=[NSString stringWithFormat:@"%d.png",value];
             
             cell.imagefield.layer.cornerRadius = imagefield.frame.size.width/2;
             cell.imagefield.layer.cornerRadius =  cell.imagefield.frame.size.height/2;
@@ -765,15 +792,15 @@ int x1,x2;
         if([emp1.favrt  isEqual:@"1"])
         {
             emp1.favrt = @"0";
-            [toastLabel setText:@"Removed from favourites!!"];
-            [toastLabel setHidden:NO];
+            [self.favLabel setText:@"Removed from favourites!!"];
+            [self.favLabel setHidden:NO];
         
         }
         else
         {
             emp1.favrt = @"1";
-            [toastLabel setText:@"Added to favourites!!"];
-            [toastLabel setHidden:NO];
+            [self.favLabel setText:@"Added to favourites!!"];
+            [self.favLabel setHidden:NO];
          
         }
         [NSTimer scheduledTimerWithTimeInterval:1.5
@@ -833,7 +860,17 @@ int x1,x2;
 
 -(void)animate:(NSTimer *)theTimer {
     [toastLabel setHidden:YES];
+    [_favLabel setHidden:YES];
 }
+
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
+    // Do the search...
+}
+
+
 
 //-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 //{

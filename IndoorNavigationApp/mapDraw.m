@@ -441,6 +441,21 @@ int btny;
                                               userInfo:nil
                                                repeats:NO];
            }
+        
+        CGFloat newZoomScale =_scrollView.zoomScale;
+        
+        CGSize scrollViewSize = self.scrollView.bounds.size;
+        
+        CGFloat w = scrollViewSize.width / newZoomScale;
+        CGFloat h = scrollViewSize.height / newZoomScale;
+        CGFloat x = _Mapimage.center.x- (w / 2.0f);
+        CGFloat y = _Mapimage.center.y- (h / 2.0f);
+        
+        CGRect rectToZoomTo = CGRectMake(x, y, w, h);
+        
+        [self.scrollView zoomToRect:rectToZoomTo animated:YES];
+        
+
     }
     else if([segue.identifier isEqualToString:@"search"])
     {
@@ -496,7 +511,7 @@ int btny;
              self.greengif.transform = CGAffineTransformRotate(self.greengif.transform,DEGREES_TO_RADIANS(-(num-58)));
                
                
-              CGFloat newZoomScale =_scrollView.zoomScale;
+             /* CGFloat newZoomScale =_scrollView.zoomScale;
                
                CGSize scrollViewSize = self.scrollView.bounds.size;
                
@@ -507,7 +522,7 @@ int btny;
                
                CGRect rectToZoomTo = CGRectMake(x, y, w, h);
                
-               [self.scrollView zoomToRect:rectToZoomTo animated:YES];
+               [self.scrollView zoomToRect:rectToZoomTo animated:YES];*/
                
                
 
@@ -560,7 +575,7 @@ int btny;
               
               
               
-              CGFloat newZoomScale =_scrollView.zoomScale;
+            /*  CGFloat newZoomScale =_scrollView.zoomScale;
               
               CGSize scrollViewSize = self.scrollView.bounds.size;
               
@@ -571,17 +586,47 @@ int btny;
               
               CGRect rectToZoomTo = CGRectMake(x, y, w, h);
               
-              [self.scrollView zoomToRect:rectToZoomTo animated:YES];
+              [self.scrollView zoomToRect:rectToZoomTo animated:YES];*/
               
               
           }
         }
+        
+        CGFloat newZoomScale =_scrollView.zoomScale;
+        
+        CGSize scrollViewSize = self.scrollView.bounds.size;
+        
+        CGFloat w = scrollViewSize.width / newZoomScale;
+        CGFloat h = scrollViewSize.height / newZoomScale;
+        CGFloat x = _Mapimage.center.x- (w / 2.0f);
+        CGFloat y = _Mapimage.center.y- (h / 2.0f);
+        
+        CGRect rectToZoomTo = CGRectMake(x, y, w, h);
+        
+        [self.scrollView zoomToRect:rectToZoomTo animated:YES];
+        
+
         
      }
   else if([segue.identifier isEqualToString:@"time2map"])
     {
         
         [self.locationManager startUpdatingHeading];
+        
+        CGFloat newZoomScale =_scrollView.zoomScale;
+        
+        CGSize scrollViewSize = self.scrollView.bounds.size;
+        
+        CGFloat w = scrollViewSize.width / newZoomScale;
+        CGFloat h = scrollViewSize.height / newZoomScale;
+        CGFloat x = _Mapimage.center.x- (w / 2.0f);
+        CGFloat y = _Mapimage.center.y- (h / 2.0f);
+        
+        CGRect rectToZoomTo = CGRectMake(x, y, w, h);
+        
+        [self.scrollView zoomToRect:rectToZoomTo animated:YES];
+        
+
     }
   else if([segue.identifier isEqualToString:@"favourite"])
    {
@@ -638,7 +683,7 @@ int btny;
                
                
                
-               CGFloat newZoomScale =_scrollView.zoomScale;
+             /*  CGFloat newZoomScale =_scrollView.zoomScale;
                
                CGSize scrollViewSize = self.scrollView.bounds.size;
                
@@ -649,15 +694,31 @@ int btny;
                
                CGRect rectToZoomTo = CGRectMake(x, y, w, h);
                
-               [self.scrollView zoomToRect:rectToZoomTo animated:YES];
+               [self.scrollView zoomToRect:rectToZoomTo animated:YES];*/
                
 
 
            }
+           
+           
        }
 
        
        
+       CGFloat newZoomScale =_scrollView.zoomScale;
+       
+       CGSize scrollViewSize = self.scrollView.bounds.size;
+       
+       CGFloat w = scrollViewSize.width / newZoomScale;
+       CGFloat h = scrollViewSize.height / newZoomScale;
+       CGFloat x = _Mapimage.center.x- (w / 2.0f);
+       CGFloat y = _Mapimage.center.y- (h / 2.0f);
+       
+       CGRect rectToZoomTo = CGRectMake(x, y, w, h);
+       
+       [self.scrollView zoomToRect:rectToZoomTo animated:YES];
+       
+ 
        
     
    }
@@ -717,14 +778,9 @@ int btny;
             
             self.greengif.transform = CGAffineTransformRotate(self.greengif.transform,DEGREES_TO_RADIANS(-(num-58)));
                 
-                
-                
-//                CGRect rectToZoomTo = CGRectMake(_imageView.center.x-600, _imageView.center.y-725, self.imageView.frame.size.width, self.imageView.frame.size.height);
-//                
-//                [self.scrollView zoomToRect:rectToZoomTo animated:YES];
 
                 
-                CGFloat newZoomScale =_scrollView.zoomScale;
+             /*   CGFloat newZoomScale =_scrollView.zoomScale;
                 
                 CGSize scrollViewSize = self.scrollView.bounds.size;
                 
@@ -735,7 +791,7 @@ int btny;
                 
                 CGRect rectToZoomTo = CGRectMake(x, y, w, h);
                 
-                [self.scrollView zoomToRect:rectToZoomTo animated:YES];
+                [self.scrollView zoomToRect:rectToZoomTo animated:YES];*/
                 
 
             }
@@ -794,7 +850,7 @@ int btny;
                 
                 
                 
-                CGFloat newZoomScale =_scrollView.zoomScale;
+             /*   CGFloat newZoomScale =_scrollView.zoomScale;
                 
                 CGSize scrollViewSize = self.scrollView.bounds.size;
                 
@@ -805,18 +861,32 @@ int btny;
                 
                 CGRect rectToZoomTo = CGRectMake(x, y, w, h);
                 
-                [self.scrollView zoomToRect:rectToZoomTo animated:YES];
+                [self.scrollView zoomToRect:rectToZoomTo animated:YES];*/
                 
 
 
             }
         }
         
+        CGFloat newZoomScale =_scrollView.zoomScale;
+        
+        CGSize scrollViewSize = self.scrollView.bounds.size;
+        
+        CGFloat w = scrollViewSize.width / newZoomScale;
+        CGFloat h = scrollViewSize.height / newZoomScale;
+        CGFloat x = _Mapimage.center.x- (w / 2.0f);
+        CGFloat y = _Mapimage.center.y- (h / 2.0f);
+        
+        CGRect rectToZoomTo = CGRectMake(x, y, w, h);
+        
+        [self.scrollView zoomToRect:rectToZoomTo animated:YES];
+        
+
     }
 
  }
-    
-    
+
+
 
 - (IBAction)clearfunction:(id)sender
  {
