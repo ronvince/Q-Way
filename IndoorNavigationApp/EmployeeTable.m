@@ -112,6 +112,8 @@ int check; //// For checking whether the view appears for the first
         [self.defaultData  addObject:@"Server"];
         [self.defaultData  addObject:@"Eatery"];
     }
+    self.tableArray = self.defaultData;
+    [self.tableView reloadData];
     
 }
 
@@ -161,7 +163,7 @@ int check; //// For checking whether the view appears for the first
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self selection];
+    //[self selection];
     [self defaultDatashow];
     printf("did %d", check);
     if(check==0)
@@ -226,7 +228,58 @@ int check; //// For checking whether the view appears for the first
     
     if ((glsl==temp)&&(uvar==employ_plac)) {
         
-        self.prevoiusdata = self.tableArray;
+        
+        if(t1.length == 0)
+        {
+            isFiltered = FALSE;
+        }
+        else if (employ_plac==0) {
+            isFiltered = true;
+            NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+            NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Employee"];
+            [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"name contains[cd] %@", t1]];
+            self.tableArray = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+            NSLog(@"%lu",(unsigned long)self.tableArray.count);
+            //if condition on result
+            if (self.tableArray.count==0) {
+                self.toastLabel.text = @"Result Not Found";
+                self.toastLabel.hidden = NO;
+                [NSTimer scheduledTimerWithTimeInterval:1.5
+                                                 target:self
+                                               selector:@selector(animate:)
+                                               userInfo:nil
+                                                repeats:NO];
+                
+                
+            }
+
+        }
+        else if (employ_plac==1) {
+            isFiltered = true;
+            NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+            NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Places"];
+            [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"placeName contains[cd] %@", t1]];
+            self.tableArray = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+            NSLog(@"%lu",(unsigned long)self.tableArray.count);
+            //if condition on result
+            if (self.tableArray.count==0) {
+                self.toastLabel.text = @"Result Not Found";
+                self.toastLabel.hidden = NO;
+                [NSTimer scheduledTimerWithTimeInterval:1.5
+                                                 target:self
+                                               selector:@selector(animate:)
+                                               userInfo:nil
+                                                repeats:NO];
+                
+                
+            }
+
+        }
+        
+        
+        
+        
+/*        self.prevoiusdata = self.tableArray;
         NSLog(@"previ count = %lu",(unsigned long)self.prevoiusdata.count);
         if(t1.length == 0)
         {
@@ -393,7 +446,7 @@ int check; //// For checking whether the view appears for the first
             }
 
             
-        }
+        }*/
         [self.tableView reloadData];
         
     }
@@ -617,9 +670,10 @@ int x1,x2;
     employ_plac=0;
      check=0; // For checking whether the view appears for the first
     self.searchBar.text=nil;
+    isFiltered = false;
     [self defaultDatashow];
      self.tableArray=self.defaultData;
-    [self selection];
+   // [self selection];
     [shapeLayer removeFromSuperlayer];
     UIBezierPath *path1 = [UIBezierPath bezierPath];
     x1=(self.buttonEmploy.center.x)-45.0;
@@ -644,9 +698,10 @@ int x1,x2;
     employ_plac=1;
     check=1;
     self.searchBar.text=nil;
+    isFiltered = false;
    [self defaultDatashow];
     self.tableArray=self.defaultData;
-   [self selection];
+   //[self selection];
     
     [shapeLayer removeFromSuperlayer];
     UIBezierPath *path1 = [UIBezierPath bezierPath];
