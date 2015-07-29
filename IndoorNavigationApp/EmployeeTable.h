@@ -21,6 +21,5 @@
 @property (nonatomic, assign) bool isFiltered;
 @property (nonatomic, retain) UILabel *toastLabel;
 @property (weak, nonatomic) IBOutlet UIView *lineView;
-
-
+@property (nonatomic, retain) UILabel *favLabel;
 @end

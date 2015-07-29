@@ -40,6 +40,8 @@ int prevCatTextLen,catSl,locLen=0,locCor=0;
     [super viewDidLoad];
         catSearchtext = 0;
     //customizing search bar
+    
+    self.searchBar.returnKeyType = UIReturnKeyDone;
     self.searchBar.delegate = (id)self;
     self.searchBar.placeholder=categoryName;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -60,20 +62,35 @@ int prevCatTextLen,catSl,locLen=0,locCor=0;
         _imagefield.image=[UIImage imageNamed:imageName]  ;
     }
     
-    UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 450, 210, 25)];
+    UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 200, 210, 25)];
     [self setToastLabel:tempLabel];
     
    
     
     [self.toastLabel setFont:[UIFont fontWithName:@"Avenir-Roman" size:13]];
     [self.toastLabel  setTextAlignment:NSTextAlignmentCenter];
-    [self.toastLabel  setTextColor:[UIColor whiteColor]];
-    self.toastLabel.backgroundColor =[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1];
+    [self.toastLabel  setTextColor:[UIColor blackColor]];
+    self.toastLabel.backgroundColor =[UIColor whiteColor];
     self.toastLabel.layer.cornerRadius = 10;
     // self.label.layer.borderWidth = 1;
     self.toastLabel.layer.masksToBounds = YES;
     [_toastLabel setHidden:YES];
     [[self view] addSubview:_toastLabel];
+    
+    UILabel *temp1Label = [[UILabel alloc] initWithFrame:CGRectMake(85, 450, 210, 25)];
+    [self setFavLabel:temp1Label];
+    
+    
+    
+    [self.favLabel setFont:[UIFont fontWithName:@"Avenir-Roman" size:13]];
+    [self.favLabel  setTextAlignment:NSTextAlignmentCenter];
+    [self.favLabel  setTextColor:[UIColor whiteColor]];
+    self.favLabel.backgroundColor =[UIColor blackColor];
+    self.favLabel.layer.cornerRadius = 10;
+    // self.label.layer.borderWidth = 1;
+    self.favLabel.layer.masksToBounds = YES;
+    [self.favLabel setHidden:YES];
+    [[self view] addSubview:_favLabel];
     
     
 }
@@ -142,15 +159,18 @@ int prevCatTextLen,catSl,locLen=0,locCor=0;
             NSLog(@"%lu",(unsigned long)self.filteredtableArray.count);
             //if condition on result
             if (self.filteredtableArray.count==0) {
-                self.toastLabel.text = @"Result Not Found";
+                self.toastLabel.text = @"No Results";
                 self.toastLabel.hidden = NO;
-                [NSTimer scheduledTimerWithTimeInterval:1.5
+                /*[NSTimer scheduledTimerWithTimeInterval:1.5
                                                  target:self
                                                selector:@selector(animate:)
                                                userInfo:nil
-                                                repeats:NO];
+                                                repeats:NO];*/
                 
                 
+            }
+            else{
+                self.toastLabel.hidden = YES;
             }
 
         }
@@ -166,20 +186,23 @@ int prevCatTextLen,catSl,locLen=0,locCor=0;
             NSLog(@"%lu",(unsigned long)self.filteredtableArray.count);
             //if condition on result
             if (self.filteredtableArray.count==0) {
-                self.toastLabel.text = @"Result Not Found";
+                self.toastLabel.text = @"No Results";
                 self.toastLabel.hidden = NO;
-                [NSTimer scheduledTimerWithTimeInterval:1.5
+                /*[NSTimer scheduledTimerWithTimeInterval:1.5
                                                  target:self
                                                selector:@selector(animate:)
                                                userInfo:nil
                                                 repeats:NO];
-                
+                */
                 
             }
-
+            else{
+                self.toastLabel.hidden = YES;
+            }
         }
         if (catSearchtext.length==0) {
             isFiltered = false;
+             self.toastLabel.hidden = YES;
             self.filteredtableArray = self.categoryTableData;
         }
         
@@ -436,7 +459,7 @@ NSString *catSearchtext;
         NSString *inputString = emp.empid;
         int value = [inputString intValue];
         NSLog(@"%d",value);
-        NSString *imageName=[NSString stringWithFormat:@"7.jpg"];
+        NSString *imageName=[NSString stringWithFormat:@"%d.png",value];
         
         
         cell.imageField.layer.cornerRadius = cell.imageField.frame.size.width/2;
@@ -583,14 +606,14 @@ NSString *catSearchtext;
         if([emp1.favrt  isEqual:@"1"])
         {
             emp1.favrt = @"0";
-              [_toastLabel setText:@"Removed from favourites!!"];
-            [_toastLabel setHidden:NO];
+              [_favLabel setText:@"Removed from favourites!!"];
+            [_favLabel setHidden:NO];
                  }
         else
         {
             emp1.favrt = @"1";
-            [_toastLabel setText:@"Added to favourites!!"];
-        [_toastLabel setHidden:NO];
+            [_favLabel setText:@"Added to favourites!!"];
+        [_favLabel setHidden:NO];
             
         }
         [NSTimer scheduledTimerWithTimeInterval:1.5
@@ -608,7 +631,7 @@ NSString *catSearchtext;
     if([emp1.favrt  isEqual:@"1"] )
     {
         favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"icon22.png"]];
-        favAction.title.   autoContentAccessingProxy;// .contentMode = UIViewContentModeScaleAspectFit;
+        //favAction.title.autoContentAccessingProxy;// .contentMode = UIViewContentModeScaleAspectFit;
         // favAction.backgroundEffect.
       // [[UIButton appearance] setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
     }
@@ -647,7 +670,16 @@ NSString *catSearchtext;
 
 -(void)animate:(NSTimer *)theTimer {
     [_toastLabel setHidden:YES];
-    }
+    [_favLabel setHidden:YES];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
+    // Do the search...
+}
+
+
 /*
 #pragma mark - Navigation
 

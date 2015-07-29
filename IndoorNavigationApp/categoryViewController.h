@@ -23,5 +23,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIImageView *imagefield;
 @property (nonatomic, retain) UILabel *toastLabel;
+@property (nonatomic, retain) UILabel *favLabel;
 
 @end

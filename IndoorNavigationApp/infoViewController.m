@@ -74,7 +74,7 @@
         NSString *inputString = _employe.empid;
         int value = [inputString intValue];
         NSLog(@"%d",value);
-        NSString *imageName=[NSString stringWithFormat:@"7.jpg"];
+        NSString *imageName=[NSString stringWithFormat:@"%d.png",value];
         img.image = [UIImage imageNamed:imageName];
     }
     else if((int)if_emp_place==1)

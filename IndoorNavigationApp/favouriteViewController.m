@@ -114,7 +114,7 @@
     NSString *inputString = emp.empid;
      int value = [inputString intValue];
     NSLog(@"%d",value);
-     NSString *imageName=[NSString stringWithFormat:@"7.jpg"];
+     NSString *imageName=[NSString stringWithFormat:@"%d.png",value];
      
      
      cell.fav_image.layer.cornerRadius = cell.fav_image.frame.size.width/2;
