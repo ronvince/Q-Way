@@ -272,9 +272,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CE45A62B1B3D525F007B3624 /* IndoorNavigationApp */ = {
+		CE45A62B1B3D525F007B3624 /* QWay */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CE45A6521B3D5260007B3624 /* Build configuration list for PBXNativeTarget "IndoorNavigationApp" */;
+			buildConfigurationList = CE45A6521B3D5260007B3624 /* Build configuration list for PBXNativeTarget "QWay" */;
 			buildPhases = (
 				CE45A6281B3D525F007B3624 /* Sources */,
 				CE45A6291B3D525F007B3624 /* Frameworks */,
@@ -284,7 +284,7 @@
 			);
 			dependencies = (
 			);
-			name = IndoorNavigationApp;
+			name = QWay;
 			productName = IndoorNavigationApp;
 			productReference = CE45A62C1B3D525F007B3624 /* IndoorNavigationApp.app */;
 			productType = "com.apple.product-type.application";
@@ -338,7 +338,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CE45A62B1B3D525F007B3624 /* IndoorNavigationApp */,
+				CE45A62B1B3D525F007B3624 /* QWay */,
 				CE45A6471B3D5260007B3624 /* IndoorNavigationAppTests */,
 			);
 		};
@@ -414,7 +414,7 @@
 /* Begin PBXTargetDependency section */
 		CE45A64A1B3D5260007B3624 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CE45A62B1B3D525F007B3624 /* IndoorNavigationApp */;
+			target = CE45A62B1B3D525F007B3624 /* QWay */;
 			targetProxy = CE45A6491B3D5260007B3624 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -587,7 +587,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CE45A6521B3D5260007B3624 /* Build configuration list for PBXNativeTarget "IndoorNavigationApp" */ = {
+		CE45A6521B3D5260007B3624 /* Build configuration list for PBXNativeTarget "QWay" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CE45A6531B3D5260007B3624 /* Debug */,
