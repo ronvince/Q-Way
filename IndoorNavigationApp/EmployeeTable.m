@@ -31,11 +31,10 @@ CAShapeLayer *shapeLayer ;
 int prevTextLen,glsl,glCor=0,gllen=0;
 
 
-//int x,y;
 int employ_plac=0; // whether the category belongs to employe/places.
 int check; //// For checking whether the view appears for the first
 
-//NSManagedObjectContext *managedObjectContext;
+
 - (NSManagedObjectContext *)managedObjectContext
 {
     NSManagedObjectContext *context = nil;
@@ -137,15 +136,7 @@ int check; //// For checking whether the view appears for the first
 
 
 
-/*- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
- */
+
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     [self.searchBar resignFirstResponder];
@@ -231,8 +222,7 @@ int check; //// For checking whether the view appears for the first
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+   }
 
 -(void)serfunc:(NSTimer *)theTimer{
     int temp,uvar;
@@ -263,12 +253,7 @@ int check; //// For checking whether the view appears for the first
             if (self.tableArray.count==0) {
                 self.toastLabel.text = @"No Results";
                 self.toastLabel.hidden = NO;
-               /* [NSTimer scheduledTimerWithTimeInterval:1.5
-                                                 target:self
-                                               selector:@selector(animate:)
-                                               userInfo:nil
-                                                repeats:NO];
-                */
+               
                 
                 
             }
@@ -288,12 +273,7 @@ int check; //// For checking whether the view appears for the first
             if (self.tableArray.count==0) {
                 self.toastLabel.text = @"No Results";
                 self.toastLabel.hidden = NO;
-               /* [NSTimer scheduledTimerWithTimeInterval:1.5
-                                                 target:self
-                                               selector:@selector(animate:)
-                                               userInfo:nil
-                                                repeats:NO];
-                */
+               
                 
             }
             else{
@@ -697,6 +677,7 @@ int x1,x2;
     employ_plac=0;
      check=0; // For checking whether the view appears for the first
     self.searchBar.text=nil;
+    self.toastLabel.hidden = YES;
     isFiltered = false;
     [self defaultDatashow];
      self.tableArray=self.defaultData;
@@ -729,7 +710,7 @@ int x1,x2;
    [self defaultDatashow];
     self.tableArray=self.defaultData;
    //[self selection];
-    
+    self.toastLabel.hidden = YES;
     [shapeLayer removeFromSuperlayer];
     UIBezierPath *path1 = [UIBezierPath bezierPath];
     x1=(self.buttonPlace.center.x)-31.0;
@@ -757,7 +738,7 @@ int x1,x2;
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //NSIndexPath *path=[[NSIndexPath alloc]init];
+   
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
         

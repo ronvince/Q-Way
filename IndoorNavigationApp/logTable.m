@@ -74,23 +74,16 @@
     self.toastLabel.layer.masksToBounds = YES;
     [_toastLabel setHidden:YES];
     [[self view] addSubview:_toastLabel];
-    // Do any additional setup after loading the view.
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+    }
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 
 
@@ -113,26 +106,18 @@
 {
     static NSString *CellIdentifier = @"Cell";
     newCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    //    NSString *searchcontents = @"";
-    //    if ([searchcontents isEqualToString:_searchfield.text]) {
-    //static NSString *CellIdentifier = @"Cell";
-    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
-    //NSManagedObject *device = [self.timecell objectAtIndex:indexPath.row];
+   
     
     TimeLog *qr = [self.timecell objectAtIndex:indexPath.row];
     
     
-    /*  [cell.textLabel setText:[NSString stringWithFormat:@"%@ %@", [device valueForKey:@"fname"], [device valueForKey:@"sname"]]];
-     [cell.detailTextLabel setText:[device valueForKey:@"age"]];*/
+    
     cell.deffield.text = qr.deftime;
     cell.timefield.text = qr.time;
-    //cell.datefield.text = qr.date;
-    //   cell.slnofield.text = qr.slno;
+   
     NSString *s = [NSString stringWithFormat:@"%@", qr.slno];
     cell.slnofield.text = s;
-    //sl++;
+ 
     
     
    
@@ -175,20 +160,10 @@
     NSManagedObjectContext *managedObjectContext2 = [self managedObjectContext];
     NSFetchRequest *ch = [[NSFetchRequest alloc]init];
     [ch setEntity:[NSEntityDescription entityForName:@"TimeLog" inManagedObjectContext:managedObjectContext2]];
-    
-    // NSFetchRequest *requestdel = [[NSFetchRequest alloc]initWithEntityName:@"TimeLog"];
-    // NSManagedObjectContext *managedObjectContext2 = [self managedObjectContext];
+   
     NSArray *result = [managedObjectContext2 executeFetchRequest:ch error:nil];
     NSLog(@"%lu", (unsigned long)result.count);
-    //count = result.count;
-    
-        //TimeLog *tim;
-       // tim = [result objectAtIndex:0];
-        
-        //NSLog(@"date check%@",dateString);
-       // NSLog(@"tim.date check%@",tim.date);
-        //if (![dateString isEqualToString:tim.date]) {
-    if (result.count!=0) {
+       if (result.count!=0) {
         for (NSManagedObject * res in result) {
             [managedObjectContext2 deleteObject:res];
             [self.timecell removeObjectAtIndex:indexPath.row];
@@ -197,8 +172,7 @@
         [managedObjectContext2 save:&saveError];
     }
     
-            //count = 0;
-    
+            
     [self.tableView reloadData];
     
     

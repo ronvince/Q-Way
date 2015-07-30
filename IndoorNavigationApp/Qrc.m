@@ -177,62 +177,6 @@ NSManagedObjectContext *managedObjectContext;
     }
     
 }
-
-/*#pragma mark - IBAction method implementation
-- (IBAction)StartFunction:(id)sender {
-    if (!_isReading) {
-        if ([self startReading]) {
-            [_start setTitle:@"Stop"];
-            
-            
-        }
-    }
-    else{
-        [self stopReading];
-        [_start setTitle:@"Start!"];
-    }
-    // _test.text = _lblStatus.text;
-    _isReading = !_isReading;
-}
-
-#pragma mark - Private method implementation
-- (BOOL)startReading {
-    NSError *error;
-    
-    AVCaptureDevice *captureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-    
-    AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:captureDevice error:&error];
-    
-    if (!input) {
-        NSLog(@"%@", [error localizedDescription]);
-        return NO;
-    }
-    
-    _captureSession = [[AVCaptureSession alloc] init];
-    [_captureSession addInput:input];
-    
-    // Initialize a AVCaptureMetadataOutput object and set it as the output device to the capture session.
-    AVCaptureMetadataOutput *captureMetadataOutput = [[AVCaptureMetadataOutput alloc] init];
-    [_captureSession addOutput:captureMetadataOutput];
-    
-    // Create a new serial dispatch queue.
-    dispatch_queue_t dispatchQueue;
-    dispatchQueue = dispatch_queue_create("myQueue", NULL);
-    [captureMetadataOutput setMetadataObjectsDelegate:self queue:dispatchQueue];
-    [captureMetadataOutput setMetadataObjectTypes:[NSArray arrayWithObject:AVMetadataObjectTypeQRCode]];
-    
-    // Initialize the video preview layer and add it as a sublayer to the viewPreview view's layer.
-    _videoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:_captureSession];
-    [_videoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
-    [_videoPreviewLayer setFrame:_vi.layer.bounds];
-    [_vi.layer addSublayer:_videoPreviewLayer];
-    
-    
-    // Start video capture.
-    [_captureSession startRunning];
-    return YES;
-}
- */
 -(void)stopReading{
     // Stop video capture and make the capture session object nil.
     
@@ -243,9 +187,7 @@ NSManagedObjectContext *managedObjectContext;
     
     [_captureManager.captureSession stopRunning];
     _captureManager.captureSession = nil;
-    
-    // Remove the video preview layer from the viewPreview view's layer.
-    //[_videoPreviewLayer removeFromSuperlayer];
+   
 }
  
  
@@ -257,7 +199,7 @@ NSInteger y;
     if (metadataObjects != nil && [metadataObjects count] > 0) {
         AVMetadataMachineReadableCodeObject *metadataObj = [metadataObjects objectAtIndex:0];
         if ([[metadataObj type] isEqualToString:AVMetadataObjectTypeQRCode]) {
-            // [_lblStatus performSelectorOnMainThread:@selector(setText:) withObject:[metadataObj
+            
             [scanningLabel performSelectorOnMainThread:@selector(setText:) withObject:[metadataObj stringValue] waitUntilDone:NO];
             NSLog(@"%@",scanningLabel.text);            NSString *string = [metadataObj stringValue];
             
@@ -273,32 +215,6 @@ NSInteger y;
             NSLog(@"date check%@",dateString);
 
             //code for fetch in timelog
-            /*            NSManagedObjectContext *managedObjectContext1 = [self managedObjectContext];
-             NSFetchRequest *fetchRequest1 = [[NSFetchRequest alloc] initWithEntityName:@"TimeLog"];
-             
-             fetchRequest1.fetchLimit = 1;
-             fetchRequest1.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"slno" ascending:NO]];
-             
-             NSError *error = nil;
-             
-             id last = [managedObjectContext1 executeFetchRequest:fetchRequest1 error:&error].firstObject;
-             
-             NSLog(@"%@", last);
-             */
-            
-            
-//            NSManagedObjectContext *managedObjectContext1 = [self managedObjectContext];
-//            NSFetchRequest *request = [[NSFetchRequest alloc] init];
-//            [request setEntity:[NSEntityDescription entityForName:@"TimeLog" inManagedObjectContext:managedObjectContext1]];
-//            
-//            [request setIncludesSubentities:NO]; //Omit subentities. Default is YES (i.e. include subentities)
-//            
-//            NSError *err;
-//            NSUInteger count = [managedObjectContext1 countForFetchRequest:request error:&err];
-//            if(count == NSNotFound) {
-//                //Handle error
-//            }
-//            NSLog(@"llllllllllllllllllllll%lu",(unsigned long)count);
             
             
             NSUInteger count;
@@ -306,8 +222,7 @@ NSInteger y;
             NSFetchRequest *ch = [[NSFetchRequest alloc]init];
             [ch setEntity:[NSEntityDescription entityForName:@"TimeLog" inManagedObjectContext:managedObjectContext2]];
             
-            // NSFetchRequest *requestdel = [[NSFetchRequest alloc]initWithEntityName:@"TimeLog"];
-            // NSManagedObjectContext *managedObjectContext2 = [self managedObjectContext];
+           
             NSArray *result = [managedObjectContext2 executeFetchRequest:ch error:nil];
             NSLog(@"%lu", (unsigned long)result.count);
             count = result.count;
@@ -335,22 +250,13 @@ NSInteger y;
             NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
             NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
             [fetchRequest setEntity:[NSEntityDescription entityForName:@"QRCode" inManagedObjectContext:managedObjectContext]];
-            // self.employees = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
-            // NSString *delstring = _deletefield.text;
             
-            //for (NSManagedObject *device in self.employees){
             
             [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"qr == %@ ", string]];
             NSError* error = nil;
             NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
             NSLog(@"hellooo %lu",(unsigned long)results.count);
-            /*      Employee *emp=[results  objectAtIndex:0];
-             [managedObjectContext deleteObject:emp];
-             //}
-             [managedObjectContext save:&error];
-             
-             
-             */
+          
             
             QRCode *qc;
             NSLog(@"check outside%d",check1);
@@ -377,12 +283,6 @@ NSInteger y;
                 [newDevice setValue:qrdef forKey:@"deftime"];
                 
                 //code for obtaining date
-//                NSDateFormatter *format = [[NSDateFormatter alloc] init];
-//                [format setDateFormat:@"MMM dd, yyyy"];
-//                
-//                NSDate *now = [[NSDate alloc] init];
-//                
-//                NSString *dateString = [format stringFromDate:now];
                 
                 [newDevice setValue:dateString forKey:@"date"];
                 
@@ -406,7 +306,7 @@ NSInteger y;
                 [newDevice setValue:datetimeString forKey:@"datetime"];
                 //code for Unique id
                 
-                //code for Unique id
+                
                 int f = (int)count;
                 f++;
                 printf("%d",f);
@@ -436,23 +336,7 @@ NSInteger y;
     }
     
 }
-/*- (IBAction)okfun:(id)sender {
-    
-    [self performSegueWithIdentifier:@"modal" sender:self];
-    
-}*/
-//NSNumber *b = 1;
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    if([segue.identifier isEqualToString:@"modal"]) {
-//         NSLog(@"ok");
-//                mapDraw *controller = (mapDraw *)segue.destinationViewController;
-//        controller.ix=x;
-//        controller.iy=y;
-//        controller.a=1;
-//        controller.nullQrDB = nullQrDB;
-//       
-//    }
-//}
+
 
 
 @end

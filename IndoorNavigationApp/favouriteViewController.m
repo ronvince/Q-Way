@@ -156,8 +156,7 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //NSIndexPath *path=[[NSIndexPath alloc]init];
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        if (editingStyle == UITableViewCellEditingStyleDelete) {
            }
     
 }
@@ -168,11 +167,7 @@
     UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"     " handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
         NSError* error = nil;
         Employee *obj = [self.tableArray objectAtIndex:indexPath.row];
-        /*
-         NSLog(@"NAME  %@", obj.name);
-         NSLog(@"NAME  %@", obj.favrt);
-         */
-        NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+                NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
         [fetchRequest setEntity:[NSEntityDescription entityForName:@"Employee" inManagedObjectContext:managedObjectContext]];
         
@@ -182,10 +177,7 @@
         NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
         
         Employee *emp1=[results  objectAtIndex:0];
-        /*
-         NSLog(@"NAME  %@", emp1.name);
-         NSLog(@"NAME  %@", obj.favrt);
-         */
+        
         emp1.favrt = @"0";
         [managedObjectContext save:&error];
         
@@ -205,14 +197,8 @@
 
 
 
-    /*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+
+
+
 
 @end

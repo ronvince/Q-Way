@@ -161,12 +161,6 @@ int prevCatTextLen,catSl,locLen=0,locCor=0;
             if (self.filteredtableArray.count==0) {
                 self.toastLabel.text = @"No Results";
                 self.toastLabel.hidden = NO;
-                /*[NSTimer scheduledTimerWithTimeInterval:1.5
-                                                 target:self
-                                               selector:@selector(animate:)
-                                               userInfo:nil
-                                                repeats:NO];*/
-                
                 
             }
             else{
@@ -188,12 +182,7 @@ int prevCatTextLen,catSl,locLen=0,locCor=0;
             if (self.filteredtableArray.count==0) {
                 self.toastLabel.text = @"No Results";
                 self.toastLabel.hidden = NO;
-                /*[NSTimer scheduledTimerWithTimeInterval:1.5
-                                                 target:self
-                                               selector:@selector(animate:)
-                                               userInfo:nil
-                                                repeats:NO];
-                */
+               
                 
             }
             else{
@@ -207,12 +196,7 @@ int prevCatTextLen,catSl,locLen=0,locCor=0;
         }
         
         
-//        NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"imageDownloaded = 1"];
-//        NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"favorite = %d",[NSNumber numberWithBool:NO].integerValue];
-//        NSPredicate *predicate3 = [NSPredicate predicateWithFormat:@"hidden = 0"];
-//        
-//        
-//        NSPredicate *compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[predicate1,predicate2,predicate3]];
+
         
         
 
@@ -568,7 +552,7 @@ NSString *catSearchtext;
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //NSIndexPath *path=[[NSIndexPath alloc]init];
+    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
         
@@ -582,10 +566,7 @@ NSString *catSearchtext;
     
     NSError* error = nil;
     Employee *obj = [self.filteredtableArray objectAtIndex:indexPath.row];
-    /*
-     NSLog(@"NAME  %@", obj.name);
-     NSLog(@"NAME  %@", obj.favrt);
-     */
+  
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     [fetchRequest setEntity:[NSEntityDescription entityForName:@"Employee" inManagedObjectContext:managedObjectContext]];
@@ -631,15 +612,12 @@ NSString *catSearchtext;
     if([emp1.favrt  isEqual:@"1"] )
     {
         favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"icon22.png"]];
-        //favAction.title.autoContentAccessingProxy;// .contentMode = UIViewContentModeScaleAspectFit;
-        // favAction.backgroundEffect.
-      // [[UIButton appearance] setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+        
     }
     else
     {
         favAction.backgroundColor = [[UIColor  alloc] initWithPatternImage:[UIImage imageNamed:@"icon11.png"]];
-//     [[UIButton appearance]
-//                                         forState:UIControlStateNormal];
+
     }
     
     
@@ -680,14 +658,9 @@ NSString *catSearchtext;
 }
 
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+
 
 @end

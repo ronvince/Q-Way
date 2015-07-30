@@ -20,7 +20,6 @@
     if ((self = [super init])) {
         [self setCaptureSession:[[AVCaptureSession alloc] init]];
         
-        // captureMetadataOutput = [[AVCaptureMetadataOutput alloc] init];
         
     }
     return self;
@@ -57,7 +56,6 @@
     previewLayer = nil;
     captureSession = nil;
     
-    //[super dealloc];
-}
+   }
 
 @end

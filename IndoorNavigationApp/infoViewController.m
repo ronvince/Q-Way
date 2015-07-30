@@ -82,10 +82,17 @@
         
         name.text=_place.placeName;
         desig.text=_place.placeType;
-        // email.text=_employe.email;
+        if([_place.placeType isEqualToString:@"Entry/Exit"])
+        {
+            NSString *imageName=[NSString stringWithFormat:@"Entry.png"];
+            img.image=[UIImage imageNamed:imageName] ;
+        }
+        else
+        {
+            NSString *imageName=[NSString stringWithFormat:@"%@.png",_place.placeType];
+            img.image=[UIImage imageNamed:imageName]  ;
+        }
         
-        NSString *imageName=[NSString stringWithFormat:@"%@.png",_place.placeType];
-        img.image = [UIImage imageNamed:imageName];
     }
     
     
@@ -94,7 +101,7 @@
     [self.view addSubview:desig];
     [self.view addSubview:img];
     [self.view addSubview:email];
-   // [self.view addSubview:phno];
+
     
     // Do any additional setup after loading the view.
 }

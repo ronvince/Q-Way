@@ -14,8 +14,6 @@
 
 @property (retain) AVCaptureVideoPreviewLayer *previewLayer;
 @property (retain) AVCaptureSession *captureSession;
-//@property (retain) AVCaptureMetadataOutput *captureMetadataOutput;
-
 
 - (void)addVideoPreviewLayer;
 - (void)addVideoInput;
