@@ -1,9 +1,6 @@
 //
 //  mapDraw.m
 //  IndoorNavigationApp
-//
-//  Created by user on 6/29/15.
-//  Copyright (c) 2015 user. All rights reserved.
 //  Written By Jithin V.
 
 #import "mapDraw.h"
@@ -25,8 +22,7 @@
 @property (nonatomic, strong) UIImageView *Qrimage;
 @property (nonatomic, strong) UILabel *imglbl;
 @property (nonatomic, strong) UILabel *giflbl;
-@property (nonatomic, strong) UIButton *subimbtn;
-@property (strong, nonatomic) FLAnimatedImageView *greengif;
+@property (strong, nonatomic) FLAnimatedImageView *gifimageview;
 @property (strong, nonatomic) FLAnimatedImageView *refreshgif;
 
 - (void)centerScrollViewContents;
@@ -48,12 +44,25 @@
 @synthesize Qrimage = _Qrimage;
 @synthesize imglbl =_imglbl;
 @synthesize giflbl =_giflbl;
-@synthesize subimbtn=_subimbtn;
-@synthesize greengif=_greengif;
+@synthesize gifimageview=_gifimageview;
+
+NSInteger cx;
+NSInteger cy;
+NSInteger ex;
+NSInteger ey;
+NSMutableArray *gifimg;
+NSMutableArray *employeedetails;
+NSMutableArray *placedetails;
+int rotationlock=0;
+int lock=0;
+int m;
+int subviewstart=0;
+int searchstart=0;
+int samesearch;
 
 
-int a =0;
-- (void)centerScrollViewContents {
+- (void)centerScrollViewContents
+{
     CGSize boundsSize = self.scrollView.bounds.size;
     CGRect contentsFrame = self.imageView.frame;
     
@@ -76,7 +85,8 @@ int a =0;
 }
 
 
-- (void)scrollViewDoubleTapped:(UITapGestureRecognizer*)recognizer {
+- (void)scrollViewDoubleTapped:(UITapGestureRecognizer*)recognizer
+{
     
     CGPoint pointInView = [recognizer locationInView:self.imageView];
     CGFloat newZoomScale =self.scrollView.zoomScale*1.5;
@@ -93,31 +103,15 @@ int a =0;
     CGRect rectToZoomTo = CGRectMake(x, y, w, h);
     
     [self.scrollView zoomToRect:rectToZoomTo animated:YES];
-    }
+}
 
-- (void)scrollViewTwoFingerTapped:(UITapGestureRecognizer*)recognizer {
+- (void)scrollViewTwoFingerTapped:(UITapGestureRecognizer*)recognizer
+{
     CGFloat newZoomScale =self.scrollView.zoomScale/1.5;
     newZoomScale = MAX(newZoomScale, self.scrollView.minimumZoomScale);
     [self.scrollView setZoomScale:newZoomScale animated:YES];
     
 }
-
-NSInteger cx;
-NSInteger cy;
-NSInteger ca=0;
-NSInteger nu;
-NSInteger ex;
-NSInteger ey;
-NSInteger ea=0;
-NSMutableArray *gifimg;
-NSMutableArray *employeedetails;
-NSMutableArray *placedetails;
-int rotationlock=0;
-int lock=0;
-int m;
-int subviewstart=0;
-int searchstart=0;
-int samesearch;
 
 - (void)viewDidLoad
 {
@@ -137,10 +131,8 @@ int samesearch;
     self.imageView = [[UIView alloc] init];
     self.imageView.frame = (CGRect){.origin=CGPointMake(0, 0), .size=CGSizeMake(1200,1450)};
     [self.scrollView addSubview:self.imageView];
-  [self.imageView addSubview:self.Mapimage];
+    [self.imageView addSubview:self.Mapimage];
     
-    
-    //for toast message
     UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 540, 210, 25)];
     [self setInvalidlabel:tempLabel];
     [self.invalidlabel setFont:[UIFont fontWithName:@"Avenir-Roman" size:13]];
@@ -152,29 +144,11 @@ int samesearch;
     [_invalidlabel setHidden:YES];
     [[self view] addSubview:_invalidlabel];
 
-    
-    
-    
-    if (nu==1)
-    {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Invalid" message:@"No such QR Code in Database" delegate:self cancelButtonTitle:@"Back" otherButtonTitles:nil];
-               [alert show];
-    
-        
-    }
-    //////////////////////////////////////////
-    
-    
     self.imageView.userInteractionEnabled = YES;
     self.Mapimage.userInteractionEnabled = YES;
-    
     gifimg = [[NSMutableArray alloc] initWithObjects:nil];
-    
-    
     employeedetails = [[NSMutableArray alloc] initWithObjects:nil];
     placedetails = [[NSMutableArray alloc] initWithObjects:nil];
-    
-/////////////////////////////////////////////////
     self.scrollView.contentSize = CGSizeMake(self.imageView.frame.size.width , self.imageView.frame.size.height);
     UITapGestureRecognizer *doubleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scrollViewDoubleTapped:)];
     doubleTapRecognizer.numberOfTapsRequired = 2;
@@ -191,20 +165,16 @@ int samesearch;
     tap.numberOfTapsRequired = 1;
     tap.numberOfTouchesRequired = 1;
     [self.Mapimage addGestureRecognizer:tap];
-    //////////////////////////
     
     _Mapimage.transform=CGAffineTransformMakeRotation(DEGREES_TO_RADIANS(-58));
-    
-    //////////////////////
-
     [self.view addSubview:self.databutton];
-     [self.view addSubview:self.searchbutton];
-     [self.view addSubview:self.logbutton];
-     [self.view addSubview:self.QRcodebutton];
+    [self.view addSubview:self.searchbutton];
+    [self.view addSubview:self.logbutton];
+    [self.view addSubview:self.QRcodebutton];
     [self.view addSubview:self.clearbutton];
     [self.view addSubview:self.lockbutton];
-   [self.view addSubview:self.favbutton];
-    //////////////////////////////////////////////////////
+    [self.view addSubview:self.favbutton];
+    
     CGRect scrollViewFrame = self.scrollView.frame;
     CGFloat scaleWidth = scrollViewFrame.size.width / self.scrollView.contentSize.width;
     CGFloat scaleHeight = scrollViewFrame.size.height/ self.scrollView.contentSize.height;
@@ -227,9 +197,6 @@ int samesearch;
     CGRect rectToZoomTo = CGRectMake(x, y, w, h);
     
     [self.scrollView zoomToRect:rectToZoomTo animated:YES];
-
-    
-    
     
     [self centerScrollViewContents];
     
@@ -267,8 +234,8 @@ NSInteger prev=0;
     {
         for(m=0;m<gifimg.count;m++)
         {
-            _greengif=gifimg[m];
-            self.greengif.transform = CGAffineTransformRotate (self.greengif.transform, DEGREES_TO_RADIANS(-(num-prev)));
+            _gifimageview=gifimg[m];
+            self.gifimageview.transform = CGAffineTransformRotate (self.gifimageview.transform, DEGREES_TO_RADIANS(-(num-prev)));
 
         }
 
@@ -301,10 +268,10 @@ NSInteger prev=0;
     
                 for(i=0;i<gifimg.count;i++)
                 {
-                    _greengif=gifimg[i];
-                _greengif.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
+                    _gifimageview=gifimg[i];
+                _gifimageview.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
                     
-                self.greengif.transform = CGAffineTransformRotate(self.greengif.transform,DEGREES_TO_RADIANS(-(num-58)));
+                self.gifimageview.transform = CGAffineTransformRotate(self.gifimageview.transform,DEGREES_TO_RADIANS(-(num-58)));
                 }
 
 
@@ -326,19 +293,11 @@ int btny;
     CGPoint tapPoint = [recognizer locationInView:self.Mapimage];
     btnx=tapPoint.x;
     btny=tapPoint.y;
-    NSLog(@"hi");
-    
-    NSLog(@"%i",btnx);
-    NSLog(@"%i",btny);
     infoViewController *popController = [[infoViewController alloc] init];
     
     for(int i=0;i<employeedetails.count;i++)
         {
             _employemap=employeedetails[i];
-             NSLog(@"%@",_employemap.x);
-             NSLog(@"%@",_employemap.y);
-             NSLog(@"%i",btnx);
-             NSLog(@"%i",btny);
             if([_employemap.x intValue]<=(btnx-94) && [_employemap.x intValue]>=(btnx-106)&&[_employemap.y intValue]<=(btny-94) && [_employemap.y intValue]>=(btny-106))
             {
         
@@ -382,9 +341,7 @@ int btny;
     if ([segue.identifier isEqualToString:@"modal1"])
     {
         Qrc *Qrcode = (Qrc *)segue.sourceViewController;
-        NSLog(@"Values are %@", Qrcode.Qrx);
-        NSLog(@"Values are %@", Qrcode.Qry);
-        NSLog(@"Values are %ld", (long)Qrcode.nullQrDB);
+    
         [self.locationManager startUpdatingHeading];
         
            if(Qrcode.Qrx!=NULL && Qrcode.Qry!=NULL)
@@ -404,7 +361,7 @@ int btny;
               self.imglbl = [[UILabel  alloc] initWithFrame:CGRectMake(-250,-50,600,100)];
               [_imglbl   setText:@"You"];
               [_imglbl setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:70]];
-              [_imglbl setTextColor:[UIColor brownColor ]];
+              [_imglbl setTextColor:[UIColor blueColor ]];
               _imglbl.textAlignment = NSTextAlignmentCenter;
               [self.Qrimage addSubview:self.imglbl];
                 
@@ -441,19 +398,7 @@ int btny;
                                               userInfo:nil
                                                repeats:NO];
            }
-        
-        CGFloat newZoomScale =_scrollView.zoomScale;
-        
-        CGSize scrollViewSize = self.scrollView.bounds.size;
-        
-        CGFloat w = scrollViewSize.width / newZoomScale;
-        CGFloat h = scrollViewSize.height / newZoomScale;
-        CGFloat x = _Mapimage.center.x- (w / 2.0f);
-        CGFloat y = _Mapimage.center.y- (h / 2.0f);
-        
-        CGRect rectToZoomTo = CGRectMake(x, y, w, h);
-        
-        [self.scrollView zoomToRect:rectToZoomTo animated:YES];
+      
         
 
     }
@@ -483,49 +428,31 @@ int btny;
              ex=[search.employexy.x  intValue];
              ey=[search.employexy.y intValue];
              
-             self.greengif=[[FLAnimatedImageView alloc]init];
+             self.gifimageview=[[FLAnimatedImageView alloc]init];
              FLAnimatedImage *gifwork = [[FLAnimatedImage alloc] initWithAnimatedGIFData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"spot" ofType:@"gif"]]];
-             self.greengif.frame = (CGRect){.origin=CGPointMake(ex,ey), .size=CGSizeMake(200,200)};
-             self.greengif.animatedImage = gifwork;
+             self.gifimageview.frame = (CGRect){.origin=CGPointMake(ex,ey), .size=CGSizeMake(200,200)};
+             self.gifimageview.animatedImage = gifwork;
         
              self.giflbl = [[UILabel  alloc] initWithFrame:CGRectMake(-200,-30,600,100)];
         
              [_giflbl   setText:search.employexy.name];
              [_giflbl setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:70]];
-             [_giflbl setTextColor:[UIColor brownColor ]];
+             [_giflbl setTextColor:[UIColor blueColor ]];
              _giflbl.textAlignment = NSTextAlignmentCenter;
         
-             [self.greengif addSubview:self.giflbl];
+             [self.gifimageview addSubview:self.giflbl];
+        
+             self.gifimageview.userInteractionEnabled = YES;
         
         
-             self.imageView.userInteractionEnabled = YES;
-             self.Mapimage.userInteractionEnabled = YES;
-             self.greengif.userInteractionEnabled = YES;
+             [gifimg addObject:_gifimageview];
         
-        
-             [gifimg addObject:_greengif];
-        
-             [self.Mapimage addSubview:_greengif];
+             [self.Mapimage addSubview:_gifimageview];
              searchstart=1;
-             _greengif.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
-             self.greengif.transform = CGAffineTransformRotate(self.greengif.transform,DEGREES_TO_RADIANS(-(num-58)));
+             _gifimageview.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
+             self.gifimageview.transform = CGAffineTransformRotate(self.gifimageview.transform,DEGREES_TO_RADIANS(-(num-58)));
                
-               
-             /* CGFloat newZoomScale =_scrollView.zoomScale;
-               
-               CGSize scrollViewSize = self.scrollView.bounds.size;
-               
-               CGFloat w = scrollViewSize.width / newZoomScale;
-               CGFloat h = scrollViewSize.height / newZoomScale;
-               CGFloat x = _Mapimage.center.x- (w / 2.0f);
-               CGFloat y = _Mapimage.center.y- (h / 2.0f);
-               
-               CGRect rectToZoomTo = CGRectMake(x, y, w, h);
-               
-               [self.scrollView zoomToRect:rectToZoomTo animated:YES];*/
-               
-               
-
+         
            }
        }
     else if(search.placexy)
@@ -549,84 +476,40 @@ int btny;
         ex=[search.placexy.x  intValue];
         ey=[search.placexy.y intValue];
         
-        self.greengif=[[FLAnimatedImageView alloc]init];
+        self.gifimageview=[[FLAnimatedImageView alloc]init];
         FLAnimatedImage *gifwork = [[FLAnimatedImage alloc] initWithAnimatedGIFData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"spot" ofType:@"gif"]]];
-        self.greengif.frame = (CGRect){.origin=CGPointMake(ex,ey), .size=CGSizeMake(200,200)};
-        self.greengif.animatedImage = gifwork;
+        self.gifimageview.frame = (CGRect){.origin=CGPointMake(ex,ey), .size=CGSizeMake(200,200)};
+        self.gifimageview.animatedImage = gifwork;
         
         self.giflbl = [[UILabel  alloc] initWithFrame:CGRectMake(-200,-30,600,100)];
         
         [_giflbl   setText:search.placexy.placeName];
         [_giflbl setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:70]];
-        [_giflbl setTextColor:[UIColor brownColor ]];
+        [_giflbl setTextColor:[UIColor blueColor ]];
         _giflbl.textAlignment = NSTextAlignmentCenter;
         
-        [self.greengif addSubview:self.giflbl];
+        [self.gifimageview addSubview:self.giflbl];
 
-        self.imageView.userInteractionEnabled = YES;
-        self.Mapimage.userInteractionEnabled = YES;
-        self.greengif.userInteractionEnabled = YES;
-        [gifimg addObject:_greengif];
+        self.gifimageview.userInteractionEnabled = YES;
+        [gifimg addObject:_gifimageview];
         
-        [self.Mapimage addSubview:_greengif];
+        [self.Mapimage addSubview:_gifimageview];
         searchstart=1;
-        _greengif.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
-         self.greengif.transform = CGAffineTransformRotate(self.greengif.transform,DEGREES_TO_RADIANS(-(num-58)));
+        _gifimageview.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
+         self.gifimageview.transform = CGAffineTransformRotate(self.gifimageview.transform,DEGREES_TO_RADIANS(-(num-58)));
               
-              
-              
-            /*  CGFloat newZoomScale =_scrollView.zoomScale;
-              
-              CGSize scrollViewSize = self.scrollView.bounds.size;
-              
-              CGFloat w = scrollViewSize.width / newZoomScale;
-              CGFloat h = scrollViewSize.height / newZoomScale;
-              CGFloat x = _Mapimage.center.x- (w / 2.0f);
-              CGFloat y = _Mapimage.center.y- (h / 2.0f);
-              
-              CGRect rectToZoomTo = CGRectMake(x, y, w, h);
-              
-              [self.scrollView zoomToRect:rectToZoomTo animated:YES];*/
               
               
           }
         }
         
-        CGFloat newZoomScale =_scrollView.zoomScale;
-        
-        CGSize scrollViewSize = self.scrollView.bounds.size;
-        
-        CGFloat w = scrollViewSize.width / newZoomScale;
-        CGFloat h = scrollViewSize.height / newZoomScale;
-        CGFloat x = _Mapimage.center.x- (w / 2.0f);
-        CGFloat y = _Mapimage.center.y- (h / 2.0f);
-        
-        CGRect rectToZoomTo = CGRectMake(x, y, w, h);
-        
-        [self.scrollView zoomToRect:rectToZoomTo animated:YES];
-        
-
         
      }
   else if([segue.identifier isEqualToString:@"time2map"])
     {
         
         [self.locationManager startUpdatingHeading];
-        
-        CGFloat newZoomScale =_scrollView.zoomScale;
-        
-        CGSize scrollViewSize = self.scrollView.bounds.size;
-        
-        CGFloat w = scrollViewSize.width / newZoomScale;
-        CGFloat h = scrollViewSize.height / newZoomScale;
-        CGFloat x = _Mapimage.center.x- (w / 2.0f);
-        CGFloat y = _Mapimage.center.y- (h / 2.0f);
-        
-        CGRect rectToZoomTo = CGRectMake(x, y, w, h);
-        
-        [self.scrollView zoomToRect:rectToZoomTo animated:YES];
-        
-
+       
     }
   else if([segue.identifier isEqualToString:@"favourite"])
    {
@@ -654,71 +537,34 @@ int btny;
                ex=[favouritesearch.favouriteemployeexy.x  intValue];
                ey=[favouritesearch.favouriteemployeexy.y intValue];
                
-               self.greengif=[[FLAnimatedImageView alloc]init];
+               self.gifimageview=[[FLAnimatedImageView alloc]init];
                FLAnimatedImage *gifwork = [[FLAnimatedImage alloc] initWithAnimatedGIFData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"spot" ofType:@"gif"]]];
-               self.greengif.frame = (CGRect){.origin=CGPointMake(ex,ey), .size=CGSizeMake(200,200)};
-               self.greengif.animatedImage = gifwork;
+               self.gifimageview.frame = (CGRect){.origin=CGPointMake(ex,ey), .size=CGSizeMake(200,200)};
+               self.gifimageview.animatedImage = gifwork;
                
                self.giflbl = [[UILabel  alloc] initWithFrame:CGRectMake(-200,-30,600,100)];
                
                [_giflbl   setText:favouritesearch.favouriteemployeexy.name];
                [_giflbl setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:70]];
-               [_giflbl setTextColor:[UIColor brownColor ]];
+               [_giflbl setTextColor:[UIColor blueColor ]];
                _giflbl.textAlignment = NSTextAlignmentCenter;
                
-               [self.greengif addSubview:self.giflbl];
+               [self.gifimageview addSubview:self.giflbl];
+               
+               self.gifimageview.userInteractionEnabled = YES;
                
                
-               self.imageView.userInteractionEnabled = YES;
-               self.Mapimage.userInteractionEnabled = YES;
-               self.greengif.userInteractionEnabled = YES;
+               [gifimg addObject:_gifimageview];
                
-               
-               [gifimg addObject:_greengif];
-               
-               [self.Mapimage addSubview:_greengif];
+               [self.Mapimage addSubview:_gifimageview];
                searchstart=1;
-               _greengif.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
-               self.greengif.transform = CGAffineTransformRotate(self.greengif.transform,DEGREES_TO_RADIANS(-(num-58)));
-               
-               
-               
-             /*  CGFloat newZoomScale =_scrollView.zoomScale;
-               
-               CGSize scrollViewSize = self.scrollView.bounds.size;
-               
-               CGFloat w = scrollViewSize.width / newZoomScale;
-               CGFloat h = scrollViewSize.height / newZoomScale;
-               CGFloat x = _Mapimage.center.x- (w / 2.0f);
-               CGFloat y = _Mapimage.center.y- (h / 2.0f);
-               
-               CGRect rectToZoomTo = CGRectMake(x, y, w, h);
-               
-               [self.scrollView zoomToRect:rectToZoomTo animated:YES];*/
-               
+               _gifimageview.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
+               self.gifimageview.transform = CGAffineTransformRotate(self.gifimageview.transform,DEGREES_TO_RADIANS(-(num-58)));
 
 
            }
            
-           
        }
-
-       
-       
-       CGFloat newZoomScale =_scrollView.zoomScale;
-       
-       CGSize scrollViewSize = self.scrollView.bounds.size;
-       
-       CGFloat w = scrollViewSize.width / newZoomScale;
-       CGFloat h = scrollViewSize.height / newZoomScale;
-       CGFloat x = _Mapimage.center.x- (w / 2.0f);
-       CGFloat y = _Mapimage.center.y- (h / 2.0f);
-       
-       CGRect rectToZoomTo = CGRectMake(x, y, w, h);
-       
-       [self.scrollView zoomToRect:rectToZoomTo animated:YES];
-       
- 
        
     
    }
@@ -742,18 +588,16 @@ int btny;
             if(samesearch==0)
                 
             {
-
-            
             
             [employeedetails addObject:categorysearch.categoryemployexy];
             
             ex=[categorysearch.categoryemployexy.x  intValue];
             ey=[categorysearch.categoryemployexy.y intValue];
             
-            self.greengif=[[FLAnimatedImageView alloc]init];
+            self.gifimageview=[[FLAnimatedImageView alloc]init];
             FLAnimatedImage *gifwork = [[FLAnimatedImage alloc] initWithAnimatedGIFData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"spot" ofType:@"gif"]]];
-            self.greengif.frame = (CGRect){.origin=CGPointMake(ex,ey), .size=CGSizeMake(200,200)};
-            self.greengif.animatedImage = gifwork;
+            self.gifimageview.frame = (CGRect){.origin=CGPointMake(ex,ey), .size=CGSizeMake(200,200)};
+            self.gifimageview.animatedImage = gifwork;
             
            
             
@@ -761,37 +605,21 @@ int btny;
             
             [_giflbl   setText:categorysearch.categoryemployexy.name];
             [_giflbl setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:70]];
-            [_giflbl setTextColor:[UIColor brownColor ]];
+            [_giflbl setTextColor:[UIColor blueColor ]];
             _giflbl.textAlignment = NSTextAlignmentCenter;
             
-            [self.greengif addSubview:self.giflbl];
+            [self.gifimageview addSubview:self.giflbl];
             
             
-            self.imageView.userInteractionEnabled = YES;
-            self.Mapimage.userInteractionEnabled = YES;
-            self.greengif.userInteractionEnabled = YES;
-            [gifimg addObject:_greengif];
             
-           [self.Mapimage addSubview:_greengif];
+            self.gifimageview.userInteractionEnabled = YES;
+            [gifimg addObject:_gifimageview];
+            
+           [self.Mapimage addSubview:_gifimageview];
             searchstart=1;
-            _greengif.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
+            _gifimageview.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
             
-            self.greengif.transform = CGAffineTransformRotate(self.greengif.transform,DEGREES_TO_RADIANS(-(num-58)));
-                
-
-                
-             /*   CGFloat newZoomScale =_scrollView.zoomScale;
-                
-                CGSize scrollViewSize = self.scrollView.bounds.size;
-                
-                CGFloat w = scrollViewSize.width / newZoomScale;
-                CGFloat h = scrollViewSize.height / newZoomScale;
-                CGFloat x = _Mapimage.center.x- (w / 2.0f);
-                CGFloat y = _Mapimage.center.y- (h / 2.0f);
-                
-                CGRect rectToZoomTo = CGRectMake(x, y, w, h);
-                
-                [self.scrollView zoomToRect:rectToZoomTo animated:YES];*/
+            self.gifimageview.transform = CGAffineTransformRotate(self.gifimageview.transform,DEGREES_TO_RADIANS(-(num-58)));
                 
 
             }
@@ -821,68 +649,51 @@ int btny;
             ex=[categorysearch.categoryplacexy.x  intValue];
             ey=[categorysearch.categoryplacexy.y intValue];
     
-            self.greengif=[[FLAnimatedImageView alloc]init];
+            self.gifimageview=[[FLAnimatedImageView alloc]init];
             FLAnimatedImage *gifwork = [[FLAnimatedImage alloc] initWithAnimatedGIFData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"spot" ofType:@"gif"]]];
-            self.greengif.frame = (CGRect){.origin=CGPointMake(ex,ey), .size=CGSizeMake(200,200)};
-            self.greengif.animatedImage = gifwork;
+            self.gifimageview.frame = (CGRect){.origin=CGPointMake(ex,ey), .size=CGSizeMake(200,200)};
+            self.gifimageview.animatedImage = gifwork;
             
             
             self.giflbl = [[UILabel  alloc] initWithFrame:CGRectMake(-200,-30,600,100)];
             
             [_giflbl   setText:categorysearch.categoryplacexy.placeName];
             [_giflbl setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:70]];
-            [_giflbl setTextColor:[UIColor brownColor ]];
+            [_giflbl setTextColor:[UIColor blueColor ]];
             _giflbl.textAlignment = NSTextAlignmentCenter;
             
-            [self.greengif addSubview:self.giflbl];
+            [self.gifimageview addSubview:self.giflbl];
             
-            self.imageView.userInteractionEnabled = YES;
-            self.Mapimage.userInteractionEnabled = YES;
-            self.greengif.userInteractionEnabled = YES;
+            self.gifimageview.userInteractionEnabled = YES;
             
             
-            [gifimg addObject:_greengif];
+            [gifimg addObject:_gifimageview];
             
-            [self.Mapimage addSubview:_greengif];
+            [self.Mapimage addSubview:_gifimageview];
             searchstart=1;
-             _greengif.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
-            self.greengif.transform = CGAffineTransformRotate(self.greengif.transform,DEGREES_TO_RADIANS(-(num-58)));
+             _gifimageview.transform=CGAffineTransformMakeScale(0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
+            self.gifimageview.transform = CGAffineTransformRotate(self.gifimageview.transform,DEGREES_TO_RADIANS(-(num-58)));
                 
-                
-                
-             /*   CGFloat newZoomScale =_scrollView.zoomScale;
-                
-                CGSize scrollViewSize = self.scrollView.bounds.size;
-                
-                CGFloat w = scrollViewSize.width / newZoomScale;
-                CGFloat h = scrollViewSize.height / newZoomScale;
-                CGFloat x = _Mapimage.center.x- (w / 2.0f);
-                CGFloat y = _Mapimage.center.y- (h / 2.0f);
-                
-                CGRect rectToZoomTo = CGRectMake(x, y, w, h);
-                
-                [self.scrollView zoomToRect:rectToZoomTo animated:YES];*/
-                
-
 
             }
         }
-        
-        CGFloat newZoomScale =_scrollView.zoomScale;
-        
-        CGSize scrollViewSize = self.scrollView.bounds.size;
-        
-        CGFloat w = scrollViewSize.width / newZoomScale;
-        CGFloat h = scrollViewSize.height / newZoomScale;
-        CGFloat x = _Mapimage.center.x- (w / 2.0f);
-        CGFloat y = _Mapimage.center.y- (h / 2.0f);
-        
-        CGRect rectToZoomTo = CGRectMake(x, y, w, h);
-        
-        [self.scrollView zoomToRect:rectToZoomTo animated:YES];
-        
-
+       
     }
+     
+     CGFloat newZoomScale =_scrollView.zoomScale;
+     
+     CGSize scrollViewSize = self.scrollView.bounds.size;
+     
+     CGFloat w = scrollViewSize.width / newZoomScale;
+     CGFloat h = scrollViewSize.height / newZoomScale;
+     CGFloat x = _Mapimage.center.x- (w / 2.0f);
+     CGFloat y = _Mapimage.center.y- (h / 2.0f);
+     
+     CGRect rectToZoomTo = CGRectMake(x, y, w, h);
+     
+     [self.scrollView zoomToRect:rectToZoomTo animated:YES];
+     
+
 
  }
 
@@ -893,7 +704,8 @@ int btny;
      
      NSMutableArray *imageArray = [NSMutableArray new];
      
-     for (int i = 1; i <= 12; i ++) {
+     for (int i=1;i<=12;i++)
+     {
          [imageArray addObject:[UIImage imageNamed:[NSString stringWithFormat:@"l%d.png",i]]];
      }
      
@@ -914,13 +726,14 @@ int btny;
  }
 
 
--(void)loading:(NSTimer *)theTimer {
+-(void)loading:(NSTimer *)theTimer
+{
     
     
     for(m=0;m<gifimg.count;m++)
     {
-        _greengif=gifimg[m];
-        [_greengif removeFromSuperview];
+        _gifimageview=gifimg[m];
+        [_gifimageview removeFromSuperview];
     }
     
     if(gifimg.count>0)
@@ -970,9 +783,9 @@ int btny;
              {
                  for(m=0;m<gifimg.count;m++)
                  {
-                     _greengif=gifimg[m];
-                     self.greengif.transform = CGAffineTransformMakeRotation ( DEGREES_TO_RADIANS(-(num-58)));
-                      _greengif.transform=CGAffineTransformScale(_greengif.transform, 0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
+                     _gifimageview=gifimg[m];
+                     self.gifimageview.transform = CGAffineTransformMakeRotation ( DEGREES_TO_RADIANS(-(num-58)));
+                      _gifimageview.transform=CGAffineTransformScale(_gifimageview.transform, 0.312500/_scrollView.zoomScale,0.312500/_scrollView.zoomScale );
                      
                  }
                  
